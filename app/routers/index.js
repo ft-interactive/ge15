@@ -1,7 +1,8 @@
 var mount = require('koa-mount');
 
 var routers = {
-  '': require('./areas')
+  '/graphic':require('./graphic'),
+  '/area': require('./areas')
 };
 
 var prefix = '/uk/2015';
