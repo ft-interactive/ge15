@@ -18,7 +18,11 @@ function svgGraphic(decoratorName, data, callback){
 			var htmlbody = window.d3.select('body');
 
 			htmlbody.call( decorator, data );
-			callback ( null, doctype + htmlbody.html() );
+			if(errors){
+				callback ( null, doctype + '' );				
+			}else{
+				callback ( null, doctype + htmlbody.html() );
+			}
 		}
 	});
 }
