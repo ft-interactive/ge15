@@ -8,7 +8,7 @@ module.exports = function() {
 
   router.get('slope', '/slope/:constituency', function* (next){
   	console.log(' slope! ' + this.params.constituency);
-  	var data = [];
+  	var data = [this.params.constituency];
   	graphics('simple', data, this);
   	yield next;
   });
