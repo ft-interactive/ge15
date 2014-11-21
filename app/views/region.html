@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{region.name}}{% endblock %}
+
+
+{% block content %}
+<h1>Region: {{region.name}}</h1>
+
+<a hre="http://statistics.data.gov.uk/doc/statistical-geography/{{ region.id }}">ONS Geography page</a>
+
+{% for constituency in constituencies %}
+  {% if loop.first %}<h2>Constituencies</h2><ul>{% endif %}
+  <li><a href="/uk/2015/{{ region.slug }}/{{constituency.slug}}">{{ constituency.ft_name }}</a></li>
+  {% if loop.last %}</ul>{% endif %}
+{% endfor %}
+
+{% endblock %}

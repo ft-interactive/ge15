@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{ ward.name }}{% endblock %}
+
+
+{% block content %}
+<h1>Ward: {{ ward.name }}</h1>
+<dl>
+  <dt>Constituency</dt>
+  <dd><a href="/uk/2015/{{region.slug}}/{{constituency.slug}}">{{ constituency.ft_name }}</a></dd>
+  <dt>Region</dt>
+  <dd><a href="/uk/2015/{{region.slug}}">{{ region.name }}</a></dd>
+</dl>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block title %}Postcode{% endblock %}
+
+
+{% block content %}
+
+<p>What constituency is <strong>{{ postcode.outcode }}</strong> in?</p>
+
+{% for constituency in constituencies %}
+  {% if loop.first %}<ul>{% endif %}
+  <li><a href="/uk/2015/constituencies/{{constituency.slug}}">{{ constituency.ft_name }}</a></li>
+  {% if loop.last %}</ul>{% endif %}
+{% endfor %}
+
+{% endblock %}

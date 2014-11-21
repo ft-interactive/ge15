@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{constituency.ft_name}}{% endblock %}
+
+
+{% block content %}
+<h1>{{constituency.ft_name}}</h1>
+<dl>
+  <dt>ONS ID</dt>
+  <dd><a href="http://statistics.data.gov.uk/doc/statistical-geography/{{ constituency.id }}">{{ constituency.id }}</a></dd>
+  <dt>BBC ID</dt>
+  <dd>{{ constituency.bbc_id }}</dd>
+  <dt>PA ID</dt>
+  <dd>{{ constituency.pa_id }}</dd>
+  <dt>Region</dt>
+  <dd><a href="/uk/2015/{{ region.slug }}">{{ region.name }}</a></dd>
+</dl>
+
+
+{% for ward in wards %}
+  {% if loop.first %}<h2>Wards</h2><ul id="wards">{% endif %}
+  <li><a href="/uk/2015/{{ region.slug }}/{{ constituency.slug }}/{{ ward.slug }}/{{ ward.ons_id }}">{{ ward.name }}</a></li>
+  {% if loop.last %}</ul>{% endif %}
+{% endfor %}
+
+{% endblock %}

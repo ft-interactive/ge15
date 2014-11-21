@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block title %}UK Constituencies{% endblock %}
+
+
+{% block content %}
+<h1>UK Constituencies</h1>
+{% for constituency in constituencies %}
+  {% if loop.first %}<ul>{% endif %}
+  <li><a href="/uk/2015/c/{{constituency.slug}}">{{ constituency.ft_name }}</a></li>
+  {% if loop.last %}</ul>{% endif %}
+{% endfor %}
+
+{% endblock %}
