@@ -1,5 +1,6 @@
 'use strict';
 
 module.exports = {
-	simple:require('./simple.js')
+	simple:require('./simple.js'),
+	slope:require('./slope.js')
 };
