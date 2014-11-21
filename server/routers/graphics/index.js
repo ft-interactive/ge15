@@ -1,23 +1,17 @@
-var app = require('../../util/app');
+var Router = require('koa-router');
+var koa = require('koa');
 var graphics = require('../../graphics/svg');
 
-function* slope(next) {
-  console.log(' slope! ' + this.params.constituency);
-  var data = [];
-  graphics('simple', data, this);
-  yield next;
-}
+module.exports = function() {
+  var router = koa();
+  router.use(Router(router));
 
-function* map(next) {
-  this.body = 'I am a map chart for the "' + this.params.constituency + '" constituency';
-  yield next;
-}
+  router.get('slope', '/slope/:constituency', function* (next){
+  	console.log(' slope! ' + this.params.constituency);
+  	var data = [this.params.constituency];
+  	graphics('simple', data, this);
+  	yield next;
+  });
 
-function main() {
-  return app().router()
-  .get('/slopes/constituency/:constituency.svg', slope)
-  .get('/maps/constituency/:constituency.svg', map);
+  return router;
 }
-
-module.exports = main;
-if (!module.parent) main().listen(process.env.PORT || 5000);
