@@ -18,6 +18,7 @@ function svgGraphic(decoratorName, data, callback){
 			var htmlbody = window.d3.select('body');
 
 			htmlbody.call( decorator, data );
+
 			if(errors){
 				callback ( null, doctype + '' );				
 			}else{
