@@ -7,9 +7,8 @@ module.exports = function() {
   router.use(Router(router));
 
   router.get('slope', '/slope/:constituency', function* (next){
-  	console.log(' slope! ' + this.params.constituency);
-  	var data = [this.params.constituency];
-  	graphics('simple', data, this);
+  	this.type = 'image/svg+xml';
+  	this.body = yield graphics('simple', [this.params.constituency]);
   	yield next;
   });
 
