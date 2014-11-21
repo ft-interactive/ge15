@@ -3,7 +3,6 @@ var koa = require('koa');
 var svg = require('../../graphics/svg');
 var slopeLayout = require('../../graphics/slope-layout')();
 
-
 //TODO, make these set-able (explicitly via the route or a series of pre defined configs (Large, medium, XL etc)...?)
 var width = 200,
 	height = 200,
@@ -30,13 +29,12 @@ module.exports = function() {
   	var plotData = {
   		name: constituencyResults.name,
   		labels:function(d){ return d.data.party; },
-  		colours:function
+  		colors:function(d){ return colorScale(d.data.party); },
   		slopes: slopeLayout( constituencyResults.parties ),
   		width: width,
   		height: height,
   		margin: margin
   	};
-  	console.log(plotData);
   	this.body = yield svg('slope', constituencyResults);
   	yield next;
   });
@@ -44,6 +42,12 @@ module.exports = function() {
   return router;
 };
 
+
+//TODO factor out colour scales
+var d3 = require('d3');
+var colorScale = d3.scale.ordinal()
+	.range(['#F00','#00F','#FA0','#A0F'])
+	.domain(['Labour','Conservative','Liberal Democrat','UKIP']);
 
 //TODO replace this dummy data thing
 function getResultsData(constituencyID){
