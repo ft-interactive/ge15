@@ -28,14 +28,14 @@ module.exports = function() {
   	var constituencyResults = getResultsData(this.params.constituency);
   	var plotData = {
   		name: constituencyResults.name,
-  		labels:function(d){ return d.data.party; },
-  		colors:function(d){ return colorScale(d.data.party); },
+  		label:function(d){ return d.data.party; },
+  		color:function(d){ return colorScale(d.data.party); },
   		slopes: slopeLayout( constituencyResults.parties ),
   		width: width,
   		height: height,
   		margin: margin
   	};
-  	this.body = yield svg('slope', constituencyResults);
+  	this.body = yield svg('slope', plotData);
   	yield next;
   });
 
