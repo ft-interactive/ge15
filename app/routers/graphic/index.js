@@ -7,7 +7,9 @@ var slopeLayout = require('../../graphics/slope-layout')();
 //TODO, make these set-able (explicitly via the route or a series of pre defined configs (Large, medium, XL etc)...?)
 var width = 200,
 	height = 200,
-	margin = {top:10,bottom:10,left:10,right:10};
+	margin = {top:10,bottom:10,left:10,right:10}
+	plotHeight = height - (margin.top + margin.bottom),
+	plotWidth = width - (margin.left + margin.right);
 
 slopeLayout.start(function(d){
 	return d.pct2005;
@@ -18,7 +20,7 @@ slopeLayout.end(function(d){
 });
 
 slopeLayout.domain( [0,100] );
-slopeLayout.range( [200,0] );
+slopeLayout.range( [plotHeight,0] );
 slopeLayout.attr({
 	'fill':function(d){ console.log(d.name, '---', parties); return parties[d.name].primarycolor; },
 	'stroke':function(d){ return parties[d.name].secondarycolor; }

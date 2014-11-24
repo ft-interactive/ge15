@@ -18,7 +18,7 @@ module.exports = function (selection, data){
 
 
 	var slope = svg.selectAll('g').data(data.slopes).enter()
-			.append('g');
+		.append('g');
 
 	slope.append('line').attr({
 		'stroke': function(d){ return d.stroke; },
@@ -27,7 +27,6 @@ module.exports = function (selection, data){
 		'x2': plotWidth,
 		'y2': function(d){ return d.slopeEnd; }
 	});
-
 
 	//start point
 	slope.append('circle').attr({
@@ -48,6 +47,5 @@ module.exports = function (selection, data){
 	slope.append('text').attr({
 		x:plotWidth,
 		y:function(d){ return d.slopeEnd; }
-	}).text(data.label);
-			
+	}).text(data.label);			
 }
