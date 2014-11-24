@@ -23,10 +23,7 @@ function slopeLayout(){
 			};
 
 			for(var i in attributes){
-				console.log('attr',attributes[i]);
-				if(!o[i]){ //don't overwrite the madatory things
-					console.log('a ', d)
-					console.log('f ', attributes[i])
+				if(!o[i]){ //don't overwrite the mandatory things
 					o[i] = attributes[i](d); 
 				}
 			}

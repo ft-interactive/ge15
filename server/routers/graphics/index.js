@@ -7,7 +7,7 @@ var slopeLayout = require('../../graphics/slope-layout')();
 //TODO, make these set-able (explicitly via the route or a series of pre defined configs (Large, medium, XL etc)...?)
 var width = 200,
 	height = 200,
-	margin = {top:10,bottom:10,left:10,right:10}
+	margin = {top:10,bottom:10,left:10,right:50}
 	plotHeight = height - (margin.top + margin.bottom),
 	plotWidth = width - (margin.left + margin.right);
 
@@ -22,28 +22,27 @@ slopeLayout.end(function(d){
 slopeLayout.domain( [0,100] );
 slopeLayout.range( [plotHeight,0] );
 slopeLayout.attr({
-	'fill':function(d){ console.log(d.name, '---', parties); return parties[d.name].primarycolor; },
-	'stroke':function(d){ return parties[d.name].secondarycolor; }
+	'fill':function(d){ return parties[d.name].primarycolor; },
+	'stroke':function(d){ return parties[d.name].secondarycolor; },
+	'label':function(d){ return d.pct2010 + '%'; }
 })
 
 module.exports = function() {
   var router = koa();
   router.use(Router(router));
 
-  router.get('slope', '/slope/:constituency', function* (next){
+  router.get('slope', '/slope/:slopeconfig/:constituency', function* (next){
   	this.type = 'image/svg+xml';
   	var constituencyResults = getResultsData(this.params.constituency);
-
+  	var plotConfig = {};
+  	console.log(plotConfig);
   	var plotData = {
   		name: constituencyResults.name,
-  		label:function(d){ return d.data.party; },
   		slopes: slopeLayout( constituencyResults.parties ),
   		width: width,
   		height: height,
   		margin: margin
   	};
-  	console.log(plotData.slopes);
-
   	this.body = yield svg('slope', plotData);
   	yield next;
   });
