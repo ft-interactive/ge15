@@ -61,4 +61,6 @@ function slopeLayout(){
 	return slopeData;
 }
 
-module.exports = slopeLayout;
+module.exports = {
+	layout:slopeLayout
+};
