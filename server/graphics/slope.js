@@ -2,9 +2,9 @@
 var d3 = require('d3');
 
 module.exports = function (selection, data){
-	var plotWidth = data.width - (data.margin.left + data.margin.right);
-	var plotHeight = data.height - (data.margin.top + data.margin.bottom);
-	var radius = data.dotRadius;
+	var plotWidth = data.width - (data.margin.left + data.margin.right),
+		plotHeight = data.height - (data.margin.top + data.margin.bottom),
+		radius = data.dotRadius;
 
 	var svg = selection
 		.append('svg').attr({
