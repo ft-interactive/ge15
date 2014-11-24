@@ -12,15 +12,33 @@ function slopeLayout(){
 	}
 
 	var scale = d3.scale.linear();
+	var attributes = {};
 
 	function slopeData(data){
 		return data.map(function(d){
-			return {
+			var o = {
 				slopeStart:scale( startAccessor(d) ),
 				slopeEnd:scale( endAccessor(d) ),
 				data:d
 			};
+
+			for(var i in attributes){
+				console.log('attr',attributes[i]);
+				if(!o[i]){ //don't overwrite the madatory things
+					console.log('a ', d)
+					console.log('f ', attributes[i])
+					o[i] = attributes[i](d); 
+				}
+			}
+			return o; 
 		})
+	}
+
+	slopeData.attr = function(o){
+		for(var i in o){
+			attributes[i] = d3.functor(o[i]);
+		}
+		return slopeData;
 	}
 
 	slopeData.start = function(f){

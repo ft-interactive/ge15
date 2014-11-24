@@ -21,7 +21,7 @@ module.exports = function (selection, data){
 			.append('g');
 
 	slope.append('line').attr({
-		'stroke':data.color,
+		'stroke': function(d){ return d.stroke; },
 		'x1': 0,
 		'y1': function(d){ return d.slopeStart; },
 		'x2': plotWidth,
@@ -31,7 +31,7 @@ module.exports = function (selection, data){
 
 	//start point
 	slope.append('circle').attr({
-		'fill':data.color,
+		'fill': function(d){ return d.fill; },
 		'r':radius,
 		'cx':0,
 		'cy':function(d){ return d.slopeStart; }
@@ -39,7 +39,7 @@ module.exports = function (selection, data){
 
 	//end point
 	slope.append('circle').attr({
-		'fill':data.color,
+		'fill': function(d){ return d.fill; },
 		'r':radius,
 		'cx':plotWidth,
 		'cy':function(d){ return d.slopeEnd; }
