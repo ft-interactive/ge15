@@ -2,8 +2,6 @@
 var d3 = require('d3');
 
 module.exports = function (selection, data){
-	console.log(data);
-
 	var plotWidth = data.width - (data.margin.left + data.margin.right);
 	var plotHeight = data.height - (data.margin.top + data.margin.bottom);
 	var radius = 3;
@@ -45,7 +43,11 @@ module.exports = function (selection, data){
 	});
 
 	slope.append('text').attr({
-		x:plotWidth,
-		y:function(d){ return d.slopeEnd; }
-	}).text(data.label);			
+		x:plotWidth+5,
+		y:function(d){ return d.slopeEnd + 4; },
+		'font-family':'BentonSans,sans-serif',
+		'font-size':10,
+		'fill':'#000',
+		'fill-opacity':0.7
+	}).text(function(d){ return d.label; });			
 }
