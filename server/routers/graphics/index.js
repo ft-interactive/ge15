@@ -1,7 +1,7 @@
 var Router = require('koa-router');
 var koa = require('koa');
 var svg = require('../../graphics/svg');
-var slopeOptions = require('../../graphics/slope-config');
+
 var geoData = require('../../data/geo-data');
 
 
@@ -10,14 +10,32 @@ module.exports = function() {
   router.use(Router(router));
   router.get('slope', '/slope/:slopeconfig/:constituency', slopeConfig, drawSlope);
 
-  router.get('constituency-map','/map/constituency/:constituency');
-  router.get('region-map','/map/region/:region');
-  router.get('nation-map','/map/nation/:nation');
-  router.get('UK-map','/map/uk');
-  router.get('map')
+  router.get('constituency-map','/map/constituency/:constituency', mapData, drawMap);
+
   return router;
 };
 
+//map stuff
+
+var mapData = function* (next){
+	this.geoData = {
+		height:500,
+		width:500,
+		geoJSON:geoData.constituency(this.params.constituency)
+	};
+	yield next;
+}
+
+var drawMap = function* (next){
+	this.body = yield svg('map', this.geoData);
+	yield next;
+}
+
+
+
+//Slope chart stuff
+
+var slopeOptions = require('../../graphics/slope-config');
 
 var slopeConfig = function* (next){
 	if(slopeOptions[this.params.slopeconfig]) {

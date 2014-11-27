@@ -2,5 +2,6 @@
 
 module.exports = {
 	simple:require('./simple.js'),
-	slope:require('./slope.js')
+	slope:require('./slope.js'),
+	map:require('./map.js')
 };
