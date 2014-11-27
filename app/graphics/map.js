@@ -14,6 +14,13 @@ function stroke(d){
 	return '#999';
 }
 
+function strokeWidth(d){
+	if(d.properties.type == 'primary'){
+		return '4';
+	}
+	return 1;
+}
+	
 function getBounds(features, path){
 	//TODO get this working n the case of multiple features
 	var bounds = path.bounds(features[0]);
@@ -57,7 +64,8 @@ module.exports = function (selection, data, options){
 			'd':path,
 			'id':function(d){ return d.id; },
 			'fill':fill,
-			'stroke':stroke
+			'stroke':stroke,
+			'stroke-linejoin':'round'
 		});
 
 	var focus = data.geoJSON.features.filter(function(feature){
@@ -74,6 +82,8 @@ module.exports = function (selection, data, options){
 
 	frame.select('g').attr({
 		'transform':'translate(' + translate + ') scale(' + scale + ')'
-	}).style('stroke-width',1/scale);
+	}).selectAll('path').style('stroke-width', function(d){
+		return strokeWidth(d)/scale;
+	});
 
 }
