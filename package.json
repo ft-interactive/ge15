@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node --harmony ./server.js",
-    "watch": "nodemon --harmony ./server.js"
+    "watch": "nodemon --harmony ./server.js --quiet --ext js,json,html,csv"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
     "co": "^3.1.0",
     "co-request": "^0.2.0",
     "dsv": "0.0.3",
+    "gulp": "^3.8.10",
     "koa": "^0.13.0",
     "koa-cash": "^1.0.1",
     "koa-compose": "^2.3.0",

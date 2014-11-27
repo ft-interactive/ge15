@@ -1,4 +1,4 @@
-id,ons_name,ft_name,slug,bbc_id,pa_id,guardian_id,region_id
+id,ons_name,name,slug,bbc_id,pa_id,guardian_id,region_id
 E14000530,Aldershot,Aldershot,aldershot,7,7,669
 E14000531,Aldridge-Brownhills,Aldridge-Brownhills,aldridge-brownhills,8,8,670
 E14000532,Altrincham and Sale West,Altrincham and Sale West,altrincham-and-sale-west,9,9,671
@@ -649,4 +649,3 @@ W07000077,Islwyn,Islwyn,islwyn,342,336,1048
 W07000078,Vale of Glamorgan,Vale of Glamorgan,vale-of-glamorgan,599,589,1390
 W07000079,Cardiff West,Cardiff West,cardiff-west,126,129,792
 W07000080,Cardiff South and Penarth,Cardiff South and Penarth,cardiff-south-and-penarth,125,128,791
-	,,,,,,

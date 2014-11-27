@@ -1,16 +1,28 @@
+{% set showHeader = true %}
 {% extends 'layout.html' %}
 
 {% block title %}{{region.name}}{% endblock %}
 
+{% block header %}
+<div>
+  <div>{% parent %}</div>
+  <div>sticky content</div>
+</div>
+{% endblock %}
 
 {% block content %}
+
+{% for item in navigation %}
+<a href="{{item.href}}">{{item.label}}</a>
+{% endfor %}
+
 <h1>Region: {{region.name}}</h1>
 
 <a hre="http://statistics.data.gov.uk/doc/statistical-geography/{{ region.id }}">ONS Geography page</a>
 
 {% for constituency in constituencies %}
   {% if loop.first %}<h2>Constituencies</h2><ul>{% endif %}
-  <li><a href="/uk/2015/{{ region.slug }}/{{constituency.slug}}">{{ constituency.ft_name }}</a></li>
+  <li><a href="/uk/2015/results/{{ region.slug }}/{{constituency.slug}}">{{ constituency.name }}</a></li>
   {% if loop.last %}</ul>{% endif %}
 {% endfor %}
 

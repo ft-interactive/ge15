@@ -1,7 +1,6 @@
 module.exports = main;
 
 var koa = require('koa');
-var views = require('koa-views');
 var routers = require('./routers');
 var pkg = require('../package.json');
 var swig = require('swig');
@@ -45,13 +44,11 @@ function main() {
   app.use(requestId());
   app.use(responseTime());
   app.use(printRequestId());
-  app.use(views('views', {
-    cache: app.isProd ? 'memory' : false,
-    map: {
-      html: 'swig'
-    }
-  }));
-
+  app.use(function*(next){
+    this.locals = this.locals || {};
+    this.locals.context = this;
+    yield next;
+  });
   routers(app);
 
   if (app.isProd) {

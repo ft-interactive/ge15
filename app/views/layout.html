@@ -18,18 +18,27 @@
         <meta property="fb:page_id" content="8860325749" />
         {#
         google plus #}
-        <link href="https://plus.google.com/113457471429583444041/" rel="publisher" />
 
+        {% block meta %}{% endblock %}
+
+        <link href="https://plus.google.com/113457471429583444041/" rel="publisher" />
+        {% block stylesheets %}{% endblock %}
         <link rel="shortcut icon" href="http://im.ft-static.com/m/icons/favicon.ico" type="image/x-icon">
         <link rel="apple-touch-icon" href="http://im.ft-static.com/m/icons/apple-touch-icon.png">
 
         <meta name="format-detection" content="telephone=no" />
 
         <script src="//cdn.polyfill.io/v1/polyfill.min.js"></script>
+        {% block headscripts %}{% endblock %}
     </head>
     <body itemscope itemtype="http://schema.org/WebPage">
+        {% block header%}
+        {% if showHeader %}
+        {% include "./masthead.html" %}
+        {% endif %}
+        {% endblock %}
 
         {% block content %}{% endblock %}
-
+        {% block scripts %}{% endblock %}
     </body>
 </html>
