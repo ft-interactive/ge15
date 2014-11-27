@@ -15,13 +15,16 @@ module.exports = function() {
   return router;
 };
 
+
+
 //map stuff
 
 var mapData = function* (next){
 	this.geoData = {
-		height:500,
-		width:500,
-		geoJSON:geoData.constituency(this.params.constituency)
+		height: 500,
+		width: 500,
+		margin: {top:20, left:20, bottom:20, right:20},
+		geoJSON: geoData.constituency(this.params.constituency)
 	};
 	yield next;
 }
