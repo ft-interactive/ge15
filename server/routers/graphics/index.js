@@ -16,7 +16,6 @@ module.exports = function() {
 };
 
 
-
 //map stuff
 
 var mapData = function* (next){

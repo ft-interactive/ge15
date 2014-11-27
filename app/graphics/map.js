@@ -3,31 +3,39 @@
 var d3 = require('d3');
 
 
-
-
-function fill(){
+function fill(d){
 	return 'none';
 }
 
-function stroke(){
-	return '#000';
+function stroke(d){
+	if(d.properties.type == 'primary'){
+		return '#000';
+	}
+	return '#999';
 }
 
 function getBounds(features, path){
 	//TODO get this working n the case of multiple features
-	return path.bounds(features[0]);
+	var bounds = path.bounds(features[0]);
+	if(features.length != 1){
+		features.forEach(function(feature){
+			var featureBounds = path.bounds(feature);
+			bounds[0][0] = Math.min(bounds[0][0], featureBounds[0][0]);
+			bounds[0][1] = Math.min(bounds[0][1], featureBounds[0][1]);
+			bounds[1][0] = Math.max(bounds[1][0], featureBounds[1][0]);
+			bounds[1][1] = Math.max(bounds[1][1], featureBounds[1][1]);
+		});
+	}
+	return bounds;
 }
 
 module.exports = function (selection, data, options){
-	console.log('a map');
-	console.log('map data ', data.geoJSON);
-
 	var plotWidth = data.width - (data.margin.left + data.margin.right);
 	var plotHeight = data.height - (data.margin.top + data.margin.bottom);
 
 //TODO .. fix this projection so it's not centered on Wales
 	var projection = d3.geo.albers()
-	    .center([-3.5, 52.54])
+	    .center([-1.7, 54.1])
 	    .rotate([0, 0])
 	    .parallels([50, 60])
 	    .scale(6000)
@@ -52,7 +60,11 @@ module.exports = function (selection, data, options){
 			'stroke':stroke
 		});
 
-	var bounds = getBounds(data.geoJSON.features, path),
+	var focus = data.geoJSON.features.filter(function(feature){
+		return (feature.properties.focus);
+	})
+
+	var bounds = getBounds(focus, path),
 		dx = bounds[1][0] - bounds[0][0],
 		dy = bounds[1][1] - bounds[0][1],
 		x = (bounds[0][0] + bounds[1][0]) / 2,

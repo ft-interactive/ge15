@@ -6,22 +6,31 @@ var constituencyLookup = require('./constituencies');
 var topology = topojson.presimplify( JSON.parse( fs.readFileSync(__dirname + '/constituencies-high.topojson','utf-8') ) );
 var neighborhoods = topojson.neighbors( topology.objects.constituencies.geometries );
 var constituencies = topojson.feature( topology, topology.objects.constituencies ).features;
-//var regionBoundaries = topojson.mesh(topology, topology.objects.constituencies, function())
-//console.log( neighborhoods );
+var indexLookup = {};
+
+constituencies.forEach(function(d,i){
+	indexLookup[d.id] = i;
+});
 
 function constituency(id, detail){
 	//the constituency,
-	var constituency = topojson.feature( topology, topology.objects.constituencies ).features
-		.filter(function(d){
-			return  d.id == id;
-		})[0];
+	var constituencyIndex = indexLookup[id];
+	var constituency = topojson.feature( topology, topology.objects.constituencies ).features[constituencyIndex];
+	var neighbors = neighborhoods[constituencyIndex];
 
 	constituency.properties.type = 'primary';
+	constituency.properties.focus = true;
 	
 	//its neighbouring constituencies, marked neighbour
+	var neighbourhood = topojson.feature( topology, topology.objects.constituencies ).features
+		.filter(function(d,i){
+			return (neighbors.indexOf(i) > -1);
+		});
+
+	var features = neighbourhood.concat( constituency );
 	//regional borders,
 	//land
-	return composeGeoJSON( [constituency] );
+	return composeGeoJSON( features );
 }
 
 function region(id, detail){
