@@ -3,24 +3,44 @@
 var d3 = require('d3');
 
 
+//styling functions
+
 function fill(d){
 	return 'none';
 }
 
 function stroke(d){
+	if(!d.properties) return '#999';
+
 	if(d.properties.type == 'primary'){
 		return '#000';
+	}else if(d.properties.type == 'regionalBoundary'){
+		return ' #F00'
 	}
 	return '#999';
 }
 
 function strokeWidth(d){
+	if(!d.properties) return '1';
+
 	if(d.properties.type == 'primary'){
-		return '4';
+		return '2';
+	}else if(d.properties.type == 'regionalBoundary'){
+		return '4'
 	}
 	return 1;
 }
-	
+
+function strokeDasharray(d){
+	if(!d.properties) return [];
+	if(d.properties.type == 'regionalBoundary'){
+		return [4,4];
+	}
+	return [];
+}
+
+//end styling functions
+
 function getBounds(features, path){
 	//TODO get this working n the case of multiple features
 	var bounds = path.bounds(features[0]);
@@ -68,7 +88,9 @@ module.exports = function (selection, data, options){
 			'stroke-linejoin':'round'
 		});
 
+
 	var focus = data.geoJSON.features.filter(function(feature){
+		if(!feature.properties) return false;
 		return (feature.properties.focus);
 	})
 
@@ -81,9 +103,13 @@ module.exports = function (selection, data, options){
 		translate = [plotWidth / 2 - scale * x, plotHeight / 2 - scale * y];
 
 	frame.select('g').attr({
-		'transform':'translate(' + translate + ') scale(' + scale + ')'
-	}).selectAll('path').style('stroke-width', function(d){
-		return strokeWidth(d)/scale;
-	});
+		'transform':'translate(' + translate + ') scale(' + scale + ')' })
+		.selectAll('path')
+		.style('stroke-width', function(d){
+			return strokeWidth(d)/scale;
+		})
+		.style('stroke-dasharray', function(d){
+			return strokeDasharray(d).map(function(e){ return e/scale }).join(',');
+		});
 
 }
