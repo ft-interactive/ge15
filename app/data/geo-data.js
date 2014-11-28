@@ -1,18 +1,41 @@
 'use strict';
+
+//TODO dynamic simplification
+//TODO region mesh
+
 var fs = require('fs');
 var topojson = require('topojson');
-var constituencyLookup = require('./constituencies');
+var constituencyData = require('./constituencies');
+var constituencyLookup = {};
 
 var topology = topojson.presimplify( JSON.parse( fs.readFileSync(__dirname + '/constituencies-high.topojson','utf-8') ) );
 var neighborhoods = topojson.neighbors( topology.objects.constituencies.geometries );
 var constituencies = topojson.feature( topology, topology.objects.constituencies ).features;
 var indexLookup = {};
 
+
+
 constituencies.forEach(function(d,i){
 	indexLookup[d.id] = i;
 });
 
+constituencyData.forEach(function(d,i){
+	constituencyLookup[d.ons_id] = d;
+});
+
+//TODO should I be using meshArcs and turning it to geojson later?
+var regionalBoundaries = topojson.mesh(topology, topology.objects.constituencies, function(a,b){
+	return (constituencyLookup[ a.id ].region_code !== constituencyLookup[ b.id ].region_code);
+});
+
+console.log(topojson.filter);
+
+if(!regionalBoundaries.properties) regionalBoundaries.properties = {};
+regionalBoundaries.properties.type = 'regionalBoundary';
+
+
 function constituency(id, detail){
+
 	//the constituency,
 	var constituencyIndex = indexLookup[id];
 	var constituency = topojson.feature( topology, topology.objects.constituencies ).features[constituencyIndex];
@@ -27,8 +50,9 @@ function constituency(id, detail){
 			return (neighbors.indexOf(i) > -1);
 		});
 
-	var features = neighbourhood.concat( constituency );
 	//regional borders,
+	var features = neighbourhood.concat( constituency, regionalBoundaries );
+	
 	//land
 	return composeGeoJSON( features );
 }
