@@ -91,7 +91,12 @@ module.exports = function (selection, data, options){
 		.attr({
 			'd':path,
 			'id':function(d){ return d.id; },
-			'fill':fill,
+			'fill':function(d){
+				if(data.colourScale && d.constituency == true){
+					return data.colourScale(d);
+				}
+				return 'none';
+			},
 			'stroke':stroke,
 			'stroke-linejoin':'round'
 		});

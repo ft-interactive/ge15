@@ -75,7 +75,10 @@ function nation(id, detail){
 function all(detail){
 	if(['high','low','medium'].indexOf(detail) < 0) detail = 'low';
 	//the whole thing
-	var constituencies = topojson.feature( topology[detail], topology[detail].objects.constituencies ).features;
+	var constituencies = topojson.feature( topology[detail], topology[detail].objects.constituencies ).features.map(function(d){
+		d.constituency = true;
+		return d
+	});
 	var coast = topojson.mesh(topology[detail], topology[detail].objects.constituencies, function(a,b){
 		return a === b;
 	});
