@@ -15,7 +15,11 @@ function stroke(d){
 	if(d.properties.type == 'primary'){
 		return '#000';
 	}else if(d.properties.type == 'regionalBoundary'){
-		return ' #F00'
+		return '#F00'
+	}else if(d.properties.type == 'minor'){
+		return 'none';
+	}else if(d.properties.type == 'coast'){
+		return '#0FF';
 	}
 	return '#999';
 }
@@ -27,6 +31,10 @@ function strokeWidth(d){
 		return '2';
 	}else if(d.properties.type == 'regionalBoundary'){
 		return '4'
+	}else if(d.properties.type == 'minor'){
+		return '0.5';
+	}else if(d.properties.type == 'coast'){
+		return '1';
 	}
 	return 1;
 }
