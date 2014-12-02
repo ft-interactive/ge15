@@ -4,6 +4,7 @@ var svg = require('../../graphics/svg');
 
 var geoData = require('../../data/geo-data');
 var resultData = require('../../data/results');
+var parties = require('../../data/parties');
 
 module.exports = function() {
   var router = koa();
@@ -18,8 +19,11 @@ module.exports = function() {
 
 
 //map stuff
+function colourByParty(id){
 
-var mapOptions = {
+}
+
+var constituencyMapOptions = {
 	'small': {
 		height: 100,
 		width: 100,
@@ -40,21 +44,42 @@ var mapOptions = {
 	}
 };
 
-var constituencyMapConfig = function* (next){
-	if(mapOptions[this.params.mapconfig]) {
-		this.plotConfig = mapOptions[this.params.mapconfig];
-	}else{
-		this.plotConfig = mapOptions['small'];
+var ukMapOptions = {
+	'small': {
+		height: 100,
+		width: 100,
+		margin: {top:5, left:5, bottom:5, right:5},
+		detail:'low'
+	},
+	'medium': {
+		height: 600,
+		width: 600,
+		margin: {top:20, left:20, bottom:20, right:20},
+		detail:'low'
+	},
+	'large': {
+		height: 1000,
+		width: 1000,
+		margin: {top:50, left:50, bottom:50, right:50},
+		detail:'low'
 	}
-	this.plotConfig.geoJSON = geoData.constituency(this.params.constituency, this.plotConfig.detail);
+};
+
+var constituencyMapConfig = function* (next){
+	if(constituencyMapOptions[this.params.mapconfig]) {
+		this.plotConfig = constituencyMapOptions[this.params.mapconfig];
+	}else{
+		this.plotConfig = constituencyMapOptions['small'];
+	}
+	this.plotConfig.geoJSON = geoData.constituency(this.plotConfig.detail);
 	yield next;
 }
 
 var UKMapConfig = function* (next){
-	if(mapOptions[this.params.mapconfig]) {
-		this.plotConfig = mapOptions[this.params.mapconfig];
+	if(ukMapOptions[this.params.mapconfig]) {
+		this.plotConfig = ukMapOptions[this.params.mapconfig];
 	}else{
-		this.plotConfig = mapOptions['small'];
+		this.plotConfig = ukMapOptions['small'];
 	}
 	this.plotConfig.geoJSON = geoData.uk();
 	yield next;

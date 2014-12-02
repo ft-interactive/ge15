@@ -72,10 +72,19 @@ function nation(id, detail){
 	//land
 }
 
-function all(id, detail){
+function all(detail){
+	if(['high','low','medium'].indexOf(detail) < 0) detail = 'low';
 	//the whole thing
-	var features = [];
-	return composeGeoJSON(features);
+	var constituencies = topojson.feature( topology[detail], topology[detail].objects.constituencies ).features;
+	var coast = topojson.mesh(topology[detail], topology[detail].objects.constituencies, function(a,b){
+		return a === b;
+	});
+	if(!coast.properties) coast.properties = {};
+	coast.properties.type = 'coast';
+	coast.properties.focus = true;
+
+	var features = constituencies.concat(coast);
+	return composeGeoJSON( constituencies.concat(coast) );
 }
 
 function composeGeoJSON(features){
