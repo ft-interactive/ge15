@@ -3,14 +3,15 @@ var koa = require('koa');
 var svg = require('../../graphics/svg');
 
 var geoData = require('../../data/geo-data');
-
+var resultData = require('../../data/results');
 
 module.exports = function() {
   var router = koa();
   router.use(Router(router));
-  router.get('slope', '/slope/:slopeconfig/:constituency', slopeConfig, drawSlope);
 
-  router.get('constituency-map','/map/constituency/:constituency', mapData, drawMap);
+  router.get('slope', '/slope/:slopeconfig/:constituency', slopeConfig, drawSlope);
+  router.get('constituency-map','/map/constituency/:mapconfig/:constituency', constituencyMapConfig, drawMap);
+  router.get('constituency-map','/map/uk/:mapconfig', UKMapConfig, drawMap);
 
   return router;
 };
@@ -18,21 +19,51 @@ module.exports = function() {
 
 //map stuff
 
-var mapData = function* (next){
-	this.geoData = {
-		height: 500,
-		width: 500,
+var mapOptions = {
+	'small': {
+		height: 100,
+		width: 100,
+		margin: {top:5, left:5, bottom:5, right:5},
+		detail:'medium'
+	},
+	'medium': {
+		height: 600,
+		width: 600,
 		margin: {top:20, left:20, bottom:20, right:20},
-		geoJSON: geoData.constituency(this.params.constituency)
-	};
+		detail:'medium'
+	},
+	'large': {
+		height: 1000,
+		width: 1000,
+		margin: {top:50, left:50, bottom:50, right:50},
+		detail:'high'
+	}
+};
+
+var constituencyMapConfig = function* (next){
+	if(mapOptions[this.params.mapconfig]) {
+		this.plotConfig = mapOptions[this.params.mapconfig];
+	}else{
+		this.plotConfig = mapOptions['small'];
+	}
+	this.plotConfig.geoJSON = geoData.constituency(this.params.constituency, this.plotConfig.detail);
+	yield next;
+}
+
+var UKMapConfig = function* (next){
+	if(mapOptions[this.params.mapconfig]) {
+		this.plotConfig = mapOptions[this.params.mapconfig];
+	}else{
+		this.plotConfig = mapOptions['small'];
+	}
+	this.plotConfig.geoJSON = geoData.uk();
 	yield next;
 }
 
 var drawMap = function* (next){
-	this.body = yield svg('map', this.geoData);
+	this.body = yield svg('map', this.plotConfig);
 	yield next;
 }
-
 
 
 //Slope chart stuff
@@ -49,29 +80,11 @@ var slopeConfig = function* (next){
 }
 
 var drawSlope = function* (next){
-  	var constituencyResults = getResultsData(this.params.constituency);
+  	var constituencyResults = resultData.constituency(this.params.constituency) // getResultsData(this.params.constituency);
 
   	this.type = 'image/svg+xml';
   	this.plotConfig.name = constituencyResults.name;
   	this.plotConfig.slopes = this.plotConfig.layout( constituencyResults.parties );
   	this.body = yield svg('slope', this.plotConfig);
   	yield next;
-}
-
-//TODO replace this dummy data thing
-function getResultsData(constituencyID){
-	return {
-		name:"Test Place",
-		id:constituencyID,
-		results:[
-			{year:2005, winner:'Labour'},
-			{year:2010, winner:'Conservative'}
-		],
-		parties:[
-			{name:'Labour', pct2005:'46', pct2010:'37'},
-			{name:'Conservative', pct2005:'43', pct2010:'51'},
-			{name:'Liberal Democrat', pct2005:'7', pct2010:'8'},
-			{name:'UK Independence Party', pct2005:'0', pct2010:'4'}
-		]
-	}
 }

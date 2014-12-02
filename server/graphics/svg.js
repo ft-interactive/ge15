@@ -24,6 +24,9 @@ function svgGraphic(decoratorName, data, callback){
 			}else{
 				callback ( null, doctype + htmlbody.html() );
 			}
+
+			window.__stopAllTimers();
+			window.close();
 		}
 	});
 }
