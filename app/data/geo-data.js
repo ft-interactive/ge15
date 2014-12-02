@@ -1,16 +1,18 @@
 'use strict';
 
-//TODO dynamic simplification
-//TODO region mesh
-
 var fs = require('fs');
 var topojson = require('topojson');
 var constituencyData = require('./constituencies');
 var constituencyLookup = {};
 
-var topology = topojson.presimplify( JSON.parse( fs.readFileSync(__dirname + '/constituencies-high.topojson','utf-8') ) );
-var neighborhoods = topojson.neighbors( topology.objects.constituencies.geometries );
-var constituencies = topojson.feature( topology, topology.objects.constituencies ).features;
+var topology = {}
+//TODO dynamic simplification
+topology.high = JSON.parse( fs.readFileSync(__dirname + '/constituencies-high.topojson','utf-8') );
+topology.medium = JSON.parse( fs.readFileSync(__dirname + '/constituencies-medium.topojson','utf-8') );
+topology.low = JSON.parse( fs.readFileSync(__dirname + '/constituencies-low.topojson','utf-8') );
+
+var neighborhoods = topojson.neighbors( topology.high.objects.constituencies.geometries );
+var constituencies = topojson.feature( topology.high, topology.high.objects.constituencies ).features;
 var indexLookup = {};
 
 
@@ -24,7 +26,7 @@ constituencyData.forEach(function(d,i){
 });
 
 //TODO should I be using meshArcs and turning it to geojson later?
-var regionalBoundaries = topojson.mesh(topology, topology.objects.constituencies, function(a,b){
+var regionalBoundaries = topojson.mesh(topology.high, topology.high.objects.constituencies, function(a,b){
 	return (constituencyLookup[ a.id ].region_code !== constituencyLookup[ b.id ].region_code);
 });
 
@@ -35,17 +37,17 @@ regionalBoundaries.properties.type = 'regionalBoundary';
 
 
 function constituency(id, detail){
-
+	if(['high','low','medium'].indexOf(detail) < 0) detail = 'high';
 	//the constituency,
 	var constituencyIndex = indexLookup[id];
-	var constituency = topojson.feature( topology, topology.objects.constituencies ).features[constituencyIndex];
+	var constituency = topojson.feature( topology[detail], topology[detail].objects.constituencies ).features[constituencyIndex];
 	var neighbors = neighborhoods[constituencyIndex];
 
 	constituency.properties.type = 'primary';
 	constituency.properties.focus = true;
 	
 	//its neighbouring constituencies, marked neighbour
-	var neighbourhood = topojson.feature( topology, topology.objects.constituencies ).features
+	var neighbourhood = topojson.feature( topology[detail], topology[detail].objects.constituencies ).features
 		.filter(function(d,i){
 			return (neighbors.indexOf(i) > -1);
 		});
@@ -53,7 +55,8 @@ function constituency(id, detail){
 	//regional borders,
 	var features = neighbourhood.concat( constituency, regionalBoundaries );
 	
-	//land
+	//TODO land
+
 	return composeGeoJSON( features );
 }
 
@@ -71,6 +74,8 @@ function nation(id, detail){
 
 function all(id, detail){
 	//the whole thing
+	var features = [];
+	return composeGeoJSON(features);
 }
 
 function composeGeoJSON(features){
@@ -86,5 +91,5 @@ module.exports = {
 	constituency:constituency,
 	region:region,
 	nation:nation,
-	map:all
+	uk:all
 }
