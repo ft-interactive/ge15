@@ -4,6 +4,8 @@ var svg = require('../../graphics/svg');
 
 var geoData = require('../../data/geo-data');
 var resultData = require('../../data/results');
+var constituencySummary = resultData.constituencies();
+
 var parties = require('../../data/parties');
 
 module.exports = function() {
@@ -19,8 +21,9 @@ module.exports = function() {
 
 
 //map stuff
-function colourByParty(id){
-
+function colourByParty(d){
+	var winner = constituencySummary[d.id].winner;
+	return parties[winner].primarycolor; 
 }
 
 var constituencyMapOptions = {
@@ -49,19 +52,22 @@ var ukMapOptions = {
 		height: 100,
 		width: 100,
 		margin: {top:5, left:5, bottom:5, right:5},
-		detail:'low'
+		detail:'low',
+		colourScale:colourByParty
 	},
 	'medium': {
 		height: 600,
 		width: 600,
 		margin: {top:20, left:20, bottom:20, right:20},
-		detail:'low'
+		detail:'low',
+		colourScale:colourByParty
 	},
 	'large': {
 		height: 1000,
 		width: 1000,
 		margin: {top:50, left:50, bottom:50, right:50},
-		detail:'low'
+		detail:'low',
+		colourScale:colourByParty
 	}
 };
 
