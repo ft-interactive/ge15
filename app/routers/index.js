@@ -5,6 +5,7 @@ var pathRouters = {
   results: require('./results')
 };
 
+var infoRouter = require('./info');
 var prefix = '/uk/2015';
 
 module.exports = function(app) {
@@ -17,4 +18,6 @@ module.exports = function(app) {
     route = prefix + '/' + path;
     app.use(mount(route, router));
   }
+
+  app.use(mount('/', infoRouter()));
 };
