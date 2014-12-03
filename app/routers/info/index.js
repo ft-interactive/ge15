@@ -5,8 +5,14 @@ function* gtg(next) {
   this.body = 'OK';
 }
 
+function* home(next) {
+  this.redirect('/uk/2015/results/');
+  this.status = 302;
+}
+
 function main() {
   return app().router()
+  .get('/', home)
   .get('/__gtg', gtg);
 }
 
