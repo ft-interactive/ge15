@@ -30,3 +30,5 @@ bower_components
 
 # IDE files
 .idea
+
+.sass-cache
