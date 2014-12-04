@@ -31,19 +31,22 @@ var constituencyMapOptions = {
 		height: 100,
 		width: 100,
 		margin: {top:5, left:5, bottom:5, right:5},
-		detail:'medium'
+		detail:'medium',
+		colourScale:colourByParty
 	},
 	'medium': {
 		height: 600,
 		width: 600,
 		margin: {top:20, left:20, bottom:20, right:20},
-		detail:'medium'
+		detail:'medium',
+		colourScale:colourByParty
 	},
 	'large': {
 		height: 1000,
 		width: 1000,
 		margin: {top:50, left:50, bottom:50, right:50},
-		detail:'high'
+		detail:'high',
+		colourScale:colourByParty
 	}
 };
 
@@ -77,7 +80,7 @@ var constituencyMapConfig = function* (next){
 	}else{
 		this.plotConfig = constituencyMapOptions['small'];
 	}
-	this.plotConfig.geoJSON = geoData.constituency(this.plotConfig.detail);
+	this.plotConfig.geoJSON = geoData.constituency(this.params.constituency, this.plotConfig.detail);
 	yield next;
 }
 

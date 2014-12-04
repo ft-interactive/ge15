@@ -92,7 +92,7 @@ module.exports = function (selection, data, options){
 			'd':path,
 			'id':function(d){ return d.id; },
 			'fill':function(d){
-				if(data.colourScale && d.constituency == true){
+				if(data.colourScale && d.properties.constituency == true){
 					return data.colourScale(d);
 				}
 				return 'none';
