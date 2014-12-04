@@ -4,7 +4,7 @@ var svg = require('../../graphics/svg');
 
 var geoData = require('../../data/geo-data');
 var resultData = require('../../data/results');
-var constituencySummary = resultData.constituencies();
+//var constituencySummary = resultData.constituencies();
 
 var parties = require('../../data/parties');
 
@@ -13,84 +13,26 @@ module.exports = function() {
   router.use(Router(router));
 
   router.get('slope', '/slope/:slopeconfig/:constituency', slopeConfig, drawSlope);
-  router.get('constituency-map','/map/constituency/:mapconfig/:constituency', constituencyMapConfig, drawMap);
-  router.get('constituency-map','/map/uk/:mapconfig', UKMapConfig, drawMap);
+//TODO specify id as an optinal parameter
+  router.get('map-area','/map/:areatype/:mapconfig/:id', mapConfig, drawMap);
+  router.get('map-general','/map/:areatype/:mapconfig/', mapConfig, drawMap);
 
   return router;
 };
 
 
 //map stuff
-function colourByParty(d){
-	var winner = constituencySummary[d.id].winner;
-	return parties[winner].primarycolor; 
-}
 
-var constituencyMapOptions = {
-	'small': {
-		height: 100,
-		width: 100,
-		margin: {top:5, left:5, bottom:5, right:5},
-		detail:'medium',
-		colourScale:colourByParty
-	},
-	'medium': {
-		height: 600,
-		width: 600,
-		margin: {top:20, left:20, bottom:20, right:20},
-		detail:'medium',
-		colourScale:colourByParty
-	},
-	'large': {
-		height: 1000,
-		width: 1000,
-		margin: {top:50, left:50, bottom:50, right:50},
-		detail:'high',
-		colourScale:colourByParty
-	}
-};
+var mapOptions = require('../../graphics/map-config');
 
-var ukMapOptions = {
-	'small': {
-		height: 100,
-		width: 100,
-		margin: {top:5, left:5, bottom:5, right:5},
-		detail:'low',
-		colourScale:colourByParty
-	},
-	'medium': {
-		height: 600,
-		width: 600,
-		margin: {top:20, left:20, bottom:20, right:20},
-		detail:'low',
-		colourScale:colourByParty
-	},
-	'large': {
-		height: 1000,
-		width: 1000,
-		margin: {top:50, left:50, bottom:50, right:50},
-		detail:'low',
-		colourScale:colourByParty
-	}
-};
 
-var constituencyMapConfig = function* (next){
-	if(constituencyMapOptions[this.params.mapconfig]) {
-		this.plotConfig = constituencyMapOptions[this.params.mapconfig];
+var mapConfig = function* (next){
+	if(mapOptions[this.params.areatype][this.params.mapconfig]) {
+		this.plotConfig = mapOptions[this.params.areatype][this.params.mapconfig];
 	}else{
-		this.plotConfig = constituencyMapOptions['small'];
+		this.plotConfig = mapOptions[this.params.areatype]['small'];
 	}
-	this.plotConfig.geoJSON = geoData.constituency(this.params.constituency, this.plotConfig.detail);
-	yield next;
-}
-
-var UKMapConfig = function* (next){
-	if(ukMapOptions[this.params.mapconfig]) {
-		this.plotConfig = ukMapOptions[this.params.mapconfig];
-	}else{
-		this.plotConfig = ukMapOptions['small'];
-	}
-	this.plotConfig.geoJSON = geoData.uk();
+	this.plotConfig.geoJSON = geoData[this.params.areatype](this.params.id, this.plotConfig.detail);
 	yield next;
 }
 
