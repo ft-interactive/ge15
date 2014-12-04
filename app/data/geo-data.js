@@ -6,7 +6,7 @@ var constituencyData = require('./constituencies');
 var constituencyLookup = {};
 
 var topology = {}
-//TODO dynamic simplification
+//TODO dynamic simplification?
 topology.high = JSON.parse( fs.readFileSync(__dirname + '/constituencies-high.topojson','utf-8') );
 topology.medium = JSON.parse( fs.readFileSync(__dirname + '/constituencies-medium.topojson','utf-8') );
 topology.low = JSON.parse( fs.readFileSync(__dirname + '/constituencies-low.topojson','utf-8') );
