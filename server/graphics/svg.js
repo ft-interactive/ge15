@@ -13,18 +13,21 @@ function svgGraphic(decoratorName, data, callback){
 		html:'<html><body></body></html>',
 		features:{QuerySelector:true},
 		done:function(errors, window){
-			window.d3 = nodeD3;
-			window.d3.select('body').html('');
-			var htmlbody = window.d3.select('body');
-			
-			htmlbody.call( decorator, data );
+			if(typeof decorator == 'function'){
+				window.d3 = nodeD3;
+				window.d3.select('body').html('');
+				var htmlbody = window.d3.select('body');
+				
+				htmlbody.call( decorator, data );
 
-			if(errors){
-				callback ( null, doctype + '' );				
+				if(errors){
+					callback ( null, doctype + '' );				
+				}else{
+					callback ( null, doctype + htmlbody.html() );
+				}
 			}else{
-				callback ( null, doctype + htmlbody.html() );
+				callback(null, 'not a graphic');
 			}
-
 			window.__stopAllTimers();
 			window.close();
 		}
