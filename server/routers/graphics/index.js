@@ -15,8 +15,22 @@ module.exports = function() {
   router.get('map-area','/map/:areatype/:mapconfig/:id', mapConfig, drawMap);
   router.get('map-general','/map/:areatype/:mapconfig/', mapConfig, drawMap);
 
+  router.get('constituency-bar-chart','/bars/constituency/:barsconfig/:constituency', barsConfig, drawBars);
+
   return router;
 };
+
+//bar chart stuff
+
+var barsOptions = require('../../graphics/bars-config'),
+	barsConfig = function* (next){
+		yield next;
+	},
+
+	drawBars = function* (next) {
+		this.body = yield svg('bars', this.plotConfig);
+		yield next;
+	};
 
 
 //map stuff
