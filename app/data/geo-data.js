@@ -44,6 +44,9 @@ function constituency(id, detail){
 	//the constituency,
 	var constituencyIndex = indexLookup[id];
 	var constituency = constituencyFeatures[detail][constituencyIndex];
+
+	console.log(constituencyIndex, constituency);
+
 	var neighbors = neighborhoods[constituencyIndex];
 
 	if(!constituency.properties) constituency.properties = {};

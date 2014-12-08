@@ -1,12 +1,10 @@
-var Router = require('koa-router');
-var koa = require('koa');
-var svg = require('../../graphics/svg');
+var Router = require('koa-router'),
+	koa = require('koa'),
+	svg = require('../../graphics/svg'),
+	geoData = require('../../data/geo-data'),
+	resultData = require('../../data/results'),
+	parties = require('../../data/parties');
 
-var geoData = require('../../data/geo-data');
-var resultData = require('../../data/results');
-//var constituencySummary = resultData.constituencies();
-
-var parties = require('../../data/parties');
 
 module.exports = function() {
   var router = koa();
@@ -23,44 +21,43 @@ module.exports = function() {
 
 //map stuff
 
-var mapOptions = require('../../graphics/map-config');
+var mapOptions = require('../../graphics/map-config'),
 
+	mapConfig = function* (next){
+		if(mapOptions[this.params.areatype][this.params.mapconfig]) {
+			this.plotConfig = mapOptions[this.params.areatype][this.params.mapconfig];
+		}else{
+			this.plotConfig = mapOptions[this.params.areatype]['small'];
+		}
+		this.plotConfig.geoJSON = geoData[this.params.areatype](this.params.id, this.plotConfig.detail);
+		yield next;
+	},
 
-var mapConfig = function* (next){
-	if(mapOptions[this.params.areatype][this.params.mapconfig]) {
-		this.plotConfig = mapOptions[this.params.areatype][this.params.mapconfig];
-	}else{
-		this.plotConfig = mapOptions[this.params.areatype]['small'];
-	}
-	this.plotConfig.geoJSON = geoData[this.params.areatype](this.params.id, this.plotConfig.detail);
-	yield next;
-}
-
-var drawMap = function* (next){
-	this.body = yield svg('map', this.plotConfig);
-	yield next;
-}
+	drawMap = function* (next){
+		this.body = yield svg('map', this.plotConfig);
+		yield next;
+	};
 
 
 //Slope chart stuff
 
-var slopeOptions = require('../../graphics/slope-config');
+var slopeOptions = require('../../graphics/slope-config'),
+	
+	slopeConfig = function* (next){
+		if(slopeOptions[this.params.slopeconfig]) {
+			this.plotConfig = slopeOptions[this.params.slopeconfig];
+		}else{
+			this.plotConfig = slopeOptions['small'];
+		}
+		yield next;
+	},
 
-var slopeConfig = function* (next){
-	if(slopeOptions[this.params.slopeconfig]) {
-		this.plotConfig = slopeOptions[this.params.slopeconfig];
-	}else{
-		this.plotConfig = slopeOptions['small'];
-	}
-	yield next;
-}
+	drawSlope = function* (next){
+	  	var constituencyResults = resultData.constituency(this.params.constituency) // getResultsData(this.params.constituency);
 
-var drawSlope = function* (next){
-  	var constituencyResults = resultData.constituency(this.params.constituency) // getResultsData(this.params.constituency);
-
-  	this.type = 'image/svg+xml';
-  	this.plotConfig.name = constituencyResults.name;
-  	this.plotConfig.slopes = this.plotConfig.layout( constituencyResults.parties );
-  	this.body = yield svg('slope', this.plotConfig);
-  	yield next;
-}
+	  	this.type = 'image/svg+xml';
+	  	this.plotConfig.name = constituencyResults.name;
+	  	this.plotConfig.slopes = this.plotConfig.layout( constituencyResults.parties );
+	  	this.body = yield svg('slope', this.plotConfig);
+	  	yield next;
+	};
