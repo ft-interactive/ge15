@@ -5,6 +5,22 @@ var parties = require('../data/parties');
 
 var domain = [0,100];
 
+function start(d){
+	return d.pct2005;
+}
+
+function end(d){
+	return d.pct2010;
+}
+
+function fill(d){ 
+	return parties[d.name].primarycolor; 
+}
+
+function stroke(d){ 
+	return parties[d.name].secondarycolor; 
+}
+
 module.exports = {
 	small:{
 		width:100,
@@ -14,15 +30,11 @@ module.exports = {
 		layout:slopeLayout()
 			.domain( domain )
 			.range( [80,0] )
-			.start( function(d){
-				return d.pct2005;
-			})
-			.end( function(d){
-				return d.pct2010;
-			})
+			.start( start )
+			.end( end )
 			.attr({
-				'fill':function(d){ return parties[d.name].primarycolor; },
-				'stroke':function(d){ return parties[d.name].secondarycolor; }
+				'fill':fill,
+				'stroke':stroke
 			})
 	},
 	medium:{
@@ -33,15 +45,11 @@ module.exports = {
 		layout:slopeLayout()
 			.domain( domain )
 			.range( [180,0] )
-			.start( function(d){
-				return d.pct2005;
-			})
-			.end( function(d){
-				return d.pct2010;
-			})
+			.start( start )
+			.end( end )
 			.attr({
-				'fill':function(d){ return parties[d.name].primarycolor; },
-				'stroke':function(d){ return parties[d.name].secondarycolor; },
+				'fill':fill,
+				'stroke':stroke,
 				'label':function(d){ return d.pct2010 + '%'; }
 			})
 	},
@@ -53,15 +61,11 @@ module.exports = {
 		layout:slopeLayout()
 			.domain( domain )
 			.range( [380,0] )
-			.start( function(d){
-				return d.pct2005;
-			})
-			.end( function(d){
-				return d.pct2010;
-			})
+			.start( start )
+			.end( end )
 			.attr({
-				'fill':function(d){ return parties[d.name].primarycolor; },
-				'stroke':function(d){ return parties[d.name].secondarycolor; },
+				'fill':fill,
+				'stroke':stroke,
 				'label':function(d){ return d.pct2010 + '% ' + parties[d.name].shortname; }
 			})
 	}
