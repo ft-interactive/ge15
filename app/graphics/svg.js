@@ -13,7 +13,8 @@ function svgGraphic(decoratorName, data, callback){
 		html:'<html><body></body></html>',
 		features:{QuerySelector:true},
 		done:function(errors, window){
-			if(typeof decorator == 'function'){
+			var type = typeof decorator;
+			if(type != undefined && type == 'function'){
 				window.d3 = nodeD3;
 				window.d3.select('body').html('');
 				var htmlbody = window.d3.select('body');
@@ -21,9 +22,14 @@ function svgGraphic(decoratorName, data, callback){
 				htmlbody.call( decorator, data );
 
 				if(errors){
-					callback ( null, doctype + '' );				
+					window.__stopAllTimers();
+					window.close();
+					callback ( null, doctype + '' );			
 				}else{
-					callback ( null, doctype + htmlbody.html() );
+					var markup = htmlbody.html()
+					window.__stopAllTimers();
+					window.close();
+					callback ( null, doctype + markup );
 				}
 			}else{
 				callback(null, 'not a graphic');
