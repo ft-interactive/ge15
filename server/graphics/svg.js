@@ -1,6 +1,6 @@
 'use strict'
 
-var nodeD3 = require('d3');
+var d3 = require('d3');
 var jsdom = require('jsdom').jsdom;
 var decorators = require('./decorators.js');
 var thunkify = require('thunkify');
@@ -9,15 +9,9 @@ var doctype = '<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C
 
 function svgGraphic(decoratorName, data, callback){
 	var decorator = decorators[decoratorName];
-	var document = jsdom();
-	var window = document.parentWindow;
-	window.d3 = nodeD3;
-	window.d3.select('body').html('');
-	var htmlbody = window.d3.select('body');
+	var htmlbody = d3.select('body');
 	htmlbody.call( decorator, data );
-	var markup = htmlbody.html()
-	window.__stopAllTimers();
-	window.close();
+	var markup = htmlbody.html();
 	callback ( null, doctype + markup );
 }
 
