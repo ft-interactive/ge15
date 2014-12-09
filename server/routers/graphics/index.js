@@ -1,7 +1,10 @@
 var app = require('../../util/app');
+var graphics = require('../../graphics/svg');
 
 function* slope(next) {
-  this.body = 'I am a slope chart for the "' + this.params.constituency + '" constituency';
+  console.log(' slope! ' + this.params.constituency);
+  var data = [];
+  graphics('simple', data, this);
   yield next;
 }
 
