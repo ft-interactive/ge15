@@ -1,0 +1,23 @@
+/**
+ * 1. Make type rendering look crisper
+ * 2. Set baseline font size to 10px
+ * 3. Fixes an IE11 bug where rouding with % would create scaling issues  
+ *    See http://bit.ly/1g4X0bX — thanks @7studio and @dawitti
+ * 4. Set default text size back to 16px (at default zoom level)
+ * 5. Set relative line spacing to 1.375 (16px * 1.375 = 22px)
+ */
+
+
+html {
+  font-family: oFontsGetFontFamilyWithFallbacks(BentonSans);
+  -moz-osx-font-smoothing: grayscale; /* 1 */
+  -webkit-font-smoothing: antialiased; /* 1 */
+  font-size: 62.5%; /* 2 */
+  font-size: calc(1em * 0.625); /* 3 */
+  color: oColorsGetColorFor(body, text);
+}
+
+body {
+  font-size: 1.6em; /* 4 */
+  line-height: 1.375; /* 5 */
+}

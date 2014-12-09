@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html class="core o-hoverable-on" lang="en-GB">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>{% block title %}{% endblock %}</title>
+        <meta name="description" content="{% block description %}{% endblock %}" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="copyright" content="Financial Times" />
+        <meta name="robots" content="index,follow" />
+        <meta name="author" content="FT Interactive Graphics" />
+
+        {# addScript function #}
+        <script>function addScript(src,async,defer){var o=document.createElement('script');if(async){o.async=true;}if(defer){o.defer=true;}o.src=src;var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(o, s);return s;}</script>
+
+        {# start chartbeat timer #}
+        <script>var _sf_startpt=(new Date()).getTime()</script>
+
+        {% include "./cut-the-mustard.html" %}
+
+        {% include "./social-meta.html" %}
+
+        {% block meta %}{% endblock %}
+
+        {% include "./favicon.html" %}
+
+        <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="{{ baseurl.static }}/css/main.css" />{% block stylesheets %}{% endblock %}
+        <!--<![endif]-->
+        <!--[if lte IE 8]>
+        <link rel="stylesheet" href="/css/main-oldie.css" />{% block oldIEstylesheets %}{% endblock %}
+        <![endif]-->
+
+        <meta name="format-detection" content="telephone=no" />
+        <script>
+        if (cutsTheMustard) {
+            addScript('//cdn.polyfill.io/v1/polyfill.min.js', false, false);
+            addScript('{{ baseurl.static }}/js/common.js', true, true);
+        } else {
+            addScript('//cdn.polyfill.io/v1/polyfill.min.js?features=Document', false, false);
+        }
+        </script>
+        {% block headscripts %}{% endblock %}
+    </head>
+    <body itemscope itemtype="http://schema.org/WebPage" class="layout {% if view.layout.iframed %}layout--iframed {% endif %}{% if view.layout.blankPage %}layout--blankpage {% endif %}{% if view.layout.fullWidth %}layout--fullwidth {% endif %}">
+        {% block header%}
+        {% include "./masthead.html" %}
+        {% endblock %}
+
+        <div id="main" class="layout__container o-ft-typography-article-body-wrapper">
+        {% block content %}{% endblock %}
+        </div>
+        
+        {% block footer%}
+        {% include "./site-footer.html" %}
+        {% endblock %}
+
+        {% block scripts %}{% endblock %}
+
+        {#Analytics #}
+        <script>
+            {# IG Google Analytics account #}
+            var _gaq = _gaq || [];(function() {_gaq.push(['_setAccount', 'UA-35229645-1']);_gaq.push(['_trackPageview']);_gaq.push(['_setDomainName', 'ig.ft.com']);_gaq.push(['_setCookiePath', '/']);if (!!window['User'] && window.User.id) {_gaq.push(['_setCustomVar', 1, 'User', User.id, 1]);}if (window.analytics) {window.analytics.timing = function timing(category, variable, time) {_gaq.push(['_trackTiming', category, variable,  time]);};}addScript(('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js', true, false);})();
+            {# Chartbeat #}
+            var _sf_async_config={};_sf_async_config.uid = 14181;_sf_async_config.domain = 'ft.com';_sf_async_config.useCanonical = true;_sf_async_config.sections = 'Books';_sf_async_config.authors = 'Interactive';(function(){function loadChartbeat() {window._sf_endpt=(new Date()).getTime();var e = document.createElement('script');e.setAttribute('src', '//static.chartbeat.com/js/chartbeat.js');document.body.appendChild(e);}var oldonload = window.onload;window.onload = (typeof window.onload != 'function') ?loadChartbeat : function() { oldonload(); loadChartbeat(); };})();
+        </script>
+    </body>
+</html>

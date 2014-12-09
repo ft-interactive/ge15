@@ -1,0 +1,31 @@
+// Make a whole block clickable, but only part of it react on :hover
+//
+// <a href="#" class="fauxlink">
+//   text
+//   <span class="fauxlink__target">
+//     Looks like a link
+//   </span>
+// </a>
+
+.fauxlink__target {
+  color: oColorsGetColorFor(link, text);
+}
+
+.fauxlink {
+  color: oColorsGetColorFor(body, text);
+
+  &:hover,
+  &:focus {
+    color: oColorsGetColorFor(body, text);
+
+    .fauxlink__target {
+      color: oColorsGetColorFor(link-hover, text);
+    }
+  }
+
+  &:active {
+    .fauxlink__target {
+      color: oColorsGetColorFor(body, text);
+    }
+  }
+}

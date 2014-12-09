@@ -7,7 +7,7 @@
 <h1>UK Constituencies</h1>
 {% for constituency in constituencies %}
   {% if loop.first %}<ul>{% endif %}
-  <li><a href="/uk/2015/results/{{constituency.slug}}">{{ constituency.name }}</a></li>
+  <li><a href="{{ baseurl.site }}/uk/2015/results/{{constituency.slug}}">{{ constituency.name }}</a></li>
   {% if loop.last %}</ul>{% endif %}
 {% endfor %}
 

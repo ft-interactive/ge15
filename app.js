@@ -1,4 +1,4 @@
-var app = require('./app')();
+var app = require('./server')();
 var http = require('http');
 var server = http.createServer(app.callback());
 var port = process.env.PORT || 3000

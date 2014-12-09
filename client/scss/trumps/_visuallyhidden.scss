@@ -1,0 +1,5 @@
+// Hide content visually, still readable by screen readers
+
+.visuallyhidden {
+  @include visuallyhidden;
+}

@@ -1,0 +1,37 @@
+html {
+  overflow-y: auto; // Force scrollbar to avoid repaints during page load
+}
+html,
+body {
+  background: oColorsGetColorFor(page, background);
+}
+body {
+  margin: 0;
+}
+
+.layout__container {
+  @extend %o-grid-row;
+  @extend %o-grid-col;
+  @extend %o-grid-colspan-12;
+  
+  .layout--fullwidth & {
+    max-width: none;
+  }
+
+  .o-header + & {
+    margin-top: 2rem;
+  }
+
+  .layout--blankpage .o-header + & {
+    margin-top: 0;
+  }
+}
+
+#main {
+  min-height: 100vh;
+}
+
+.layout--iframed #main, .layout--blankpage #main {
+  min-height: 0;
+}
+

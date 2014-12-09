@@ -1,0 +1,27 @@
+.text-tinier {
+  @include text-size(tinier);
+}
+.text-tiny {
+  @include text-size(tiny);
+}
+.text-smaller {
+  @include text-size(smaller);
+}
+.text-small {
+  @include text-size(small);
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.text-quiet {
+  color: #75746c;
+}
+
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}

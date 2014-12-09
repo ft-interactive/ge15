@@ -1,0 +1,19 @@
+// Code inside `@if $is-oldie {}` will compile inside oldie.css
+$is-oldie: false !default;
+
+// Same thing but with mq()
+$mq-breakpoints: (
+  mobile:          320px,
+  mobileLandscape: 480px,
+  tablet:          620px,
+  document:        980px
+);
+
+$gutter: 20;
+
+$text-sizes: (
+  tinier:  11px,
+  tiny:    12px,
+  smaller: 13px,
+  small:   14px
+);

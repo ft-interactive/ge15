@@ -1,0 +1,23 @@
+// Origami settings overrides
+$o-ft-buttons-is-silent: false;
+$o-ft-forms-is-silent: false;
+$o-ft-typography-is-silent: false;
+$o-fonts-is-silent: true;
+$o-grid-is-silent: false;
+$o-colors-is-silent: true;
+$o-ft-footer-is-silent: false;
+$o-ft-icons-is-silent: true;
+
+@include oAssetsSetModulePaths((
+  o-ft-footer: '//build.origami.ft.com/files/o-ft-footer@^2.0.3',
+));
+
+// Fix BentonSans Light font-face declaration in o-fonts
+// See https://github.com/Financial-Times/o-fonts/issues/25
+// @font-face {
+//   font-family: BentonSans;
+//   font-weight: 200;
+//   font-style: normal;
+//   src: url("//build.origami.ft.com/files/o-fonts-assets@0.2.2/bentonsans-lighter.eot");
+//   src: url("//build.origami.ft.com/files/o-fonts-assets@0.2.2/bentonsans-lighter.eot?#iefix") format("embedded-opentype"), url("//build.origami.ft.com/files/o-fonts-assets@0.2.2/bentonsans-lighter.woff") format("woff"), url("//build.origami.ft.com/files/o-fonts-assets@0.2.2/bentonsans-lighter.ttf") format("truetype"); }
+

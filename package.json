@@ -3,11 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "description": "UK General Election 2015 site",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --harmony ./server.js",
-    "watch": "nodemon --harmony ./server.js --quiet --ext js,json,html,csv"
+    "start": "node --harmony ./app.js",
+    "watch": "gulp watch",
+    "build": "gulp",
+    "postinstall": "bundle install && bower install && gulp"
   },
   "repository": {
     "type": "git",
@@ -20,10 +22,24 @@
   },
   "homepage": "https://github.com/ft-interactive/ge15",
   "dependencies": {
+    "browserify": "^6.3.3",
     "co": "^3.1.0",
     "co-request": "^0.2.0",
+    "debowerify": "^1.1.1",
     "dsv": "0.0.3",
+    "envify": "^3.2.0",
     "gulp": "^3.8.10",
+    "gulp-autoprefixer": "^2.0.0",
+    "gulp-csso": "^0.2.9",
+    "gulp-filter": "^1.0.2",
+    "gulp-jshint": "^1.9.0",
+    "gulp-livereload": "^2.1.1",
+    "gulp-nodemon": "^1.0.4",
+    "gulp-rev-replace": "^0.3.1",
+    "gulp-ruby-sass": "1.0.0-alpha",
+    "gulp-scss-lint": "^0.1.4",
+    "gulp-uglify": "^1.0.1",
+    "gulp-util": "^3.0.1",
     "koa": "^0.13.0",
     "koa-cash": "^1.0.1",
     "koa-compose": "^2.3.0",
@@ -55,8 +71,13 @@
     "remarkable": "^1.4.0",
     "speakingurl": "^0.17.0",
     "string": "^2.2.0",
+    "stripify": "^1.2.0",
     "swig": "git://github.com/kavanagh/swig",
-    "thunkify": "^2.1.2"
+    "thunkify": "^2.1.2",
+    "vinyl": "^0.4.5",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.0.0",
+    "watchify": "^2.1.1"
   },
   "devDependencies": {
     "nodemon": "^1.2.1"

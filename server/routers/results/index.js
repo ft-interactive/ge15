@@ -67,6 +67,19 @@ function main() {
 
     .use(assignLocal('navigation', navigation))
 
+    .use(function*(next){
+      var iframed = !!this.query.iframed
+      this.locals.view = {
+        layout: {
+          fullWidth: false,
+          blankPage: iframed,
+          iframed: iframed
+        }
+      };
+      yield next;
+    })
+
+
     .router()
 
     .param('ward', params.ward)

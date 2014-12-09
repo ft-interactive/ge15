@@ -1,0 +1,29 @@
+{
+  "name": "ge15",
+  "homepage": "http://elections.ft.com/uk/2015",
+  "main": "client/main.js",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "o-colors": "~2.4.3",
+    "sass-mq": "~2.2.0",
+    "o-fonts": "~1.4.2",
+    "scut": "~1.0.1",
+    "position": "~0.2.14",
+    "ftdomdelegate": "~2.0.3",
+    "next-header": "~1.2.11",
+    "o-grid": "~2.4.1",
+    "o-ft-footer": "~2.0.3",
+    "o-ft-icons": "~2.3.2"
+  },
+  "resolutions": {
+    "o-grid": "~2.4.1",
+    "o-ft-icons": "~2.3.2"
+  }
+}

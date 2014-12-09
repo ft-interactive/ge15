@@ -1,0 +1,19 @@
+.o-header {
+  font-size: 16px;
+}
+.o-header__nav a {
+  &:hover, &:focus{
+    color: #FFFFFF;
+  }
+}
+.uber-index__child a{
+  &:hover, &:focus{
+    color: oColorsGetPaletteColor(pink-tint3);
+  }
+}
+
+.o-ft-footer{
+  border-top: 0;
+  background: oColorsGetColorFor(page, background);
+  color: oColorsGetColorFor(page, text);
+}

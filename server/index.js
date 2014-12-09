@@ -13,15 +13,23 @@ var conditional = require('koa-conditional-get');
 var etag = require('koa-etag');
 var serve = require('koa-static');
 var htmlMinifier = require('koa-html-minifier');
+var livereload = require('koa-livereload');
 var printRequestId = require('./middleware/print-request-id');
 var ms = require('ms');
 var filters = require('./filters');
+var path = require('path');
 
 for (var fn in filters) {
   if (_.isFunction(filters[fn])) {
     swig.setFilter(fn, filters[fn]);
   }
 }
+
+var baseurl = {
+  static: '', // TODO: use cdn host if production
+  site: '',
+  ft: '//www.ft.com'
+};
 
 function main() {
   var app = koa();
@@ -35,10 +43,10 @@ function main() {
 
   if (!app.isProd) app.debug();
 
-  app.use(favicon('./public/favicon.ico'));
+  app.use(favicon(path.resolve(__dirname, '../favicon.ico')));
   app.use(conditional());
   app.use(etag());
-  app.use(serve(__dirname + '/public', {
+  app.use(serve(path.resolve(__dirname, '../public'), {
     maxage: app.isProd ? ms('30 days') : 0
   }));
   app.use(requestId());
@@ -47,16 +55,19 @@ function main() {
   app.use(function*(next){
     this.locals = this.locals || {};
     this.locals.context = this;
+    this.locals.baseurl = baseurl;
     yield next;
   });
-  routers(app);
 
   if (app.isProd) {
     app.use(htmlMinifier({
       collapseWhitespace: true
     }));
+  } else {
+    app.use(livereload());
   }
 
+  routers(app);
   return app;
 }
 

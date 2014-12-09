@@ -1,0 +1,9 @@
+a {
+  text-decoration: none;
+  color: oColorsGetColorFor(link, text);
+
+  &:focus,
+  &:hover {
+    color: oColorsGetColorFor(link-hover, text);
+  }
+}

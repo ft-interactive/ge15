@@ -1,0 +1,49 @@
+%unstyled-list,
+.unstyled-list {
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 0;
+  padding-left: 0;
+
+  &,
+  > li {
+    list-style-type: none;
+  }
+}
+
+.inline-list {
+  @extend %unstyled-list;
+
+  > li {
+    display: inline-block;
+    line-height: 1.8;
+    @if $is-oldie {
+      *display: inline; // IE7 doesn't understand inline-block other than on naturally inline elements
+      zoom: 1;
+    }
+  }
+}
+.inline-list--spaced {
+  > li {
+    padding-left: $gutter/2;
+    padding-right: $gutter/2;
+  }
+}
+
+.row-list {
+  @extend %unstyled-list;
+  table-layout: fixed;
+  display: table;
+  width: 100%;
+
+  > li {
+    display: table-cell;
+    vertical-align: top;
+  }
+}
+.row-list--thirds {
+  > li {
+    width: 33%;
+    max-width: 33%;
+  }
+}

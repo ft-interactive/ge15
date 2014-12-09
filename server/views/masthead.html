@@ -1,0 +1,47 @@
+{% if not view.layout.blankPage %}
+<header data-o-component="o-header" class="o-header">
+  <div class="o-header__container--primary">
+    <div class="o-header__primary">
+      <div class="o-header__left">
+        <div class="o-header__logo o-header__logo--ft">
+          <a href="{{ baseurl.ft }}/"><abbr title="Financial Times">FT</abbr></a>
+        </div>
+        <a href="{{ baseurl.ft }}/" class="o-header__masthead"><i></i></a>
+      </div>
+      <nav class="o-header__right o-header__nav"><!--
+        --><ul><!--
+          -->{# Next Feature: Not available yet<li><a href="#" class="o-header-button" data-target-panel="myft">&nbsp;</a></li>#}<!--
+          -->{# Search doesn't seem right yet<li><a href="#" class="o-header-button-js" data-target-panel="search">Search<i class="icon icon__search"></i></a></li>#}<!--
+          --><li><a href="#" class="o-header-button-js" data-target-panel="menu">Menu<i class="icon icon__menu"></i></a></li><!--
+        --></ul><!--
+      --></nav>
+    </div>
+  </div>
+  <div class="o-header__container--secondary">
+    <div class="o-header__secondary o-header__secondary--search">
+      <form action="/search" class="o-ft-forms__affix-wrapper">
+        <input type="search" name="q" class="o-ft-forms__field" placeholder="Search here" value=""></input>
+        <div class="o-ft-forms__suffix">
+          <button class="o-ft-buttons">Go</button>
+        </div>
+      </form>
+    </div>
+    <div class="o-header__secondary o-header__secondary--menu o-header__secondary--menu-js">
+    </div>
+    <div class="o-header__secondary o-header__secondary--myft o-header__secondary--myft-js">
+      <ul class="myft">
+        {# Next Feature: Not available yet
+        <li data-o-grid-colspan="6 M6 L6 XL6">
+          <div class="myft__title">My Page</div>
+          <ul data-user-preference-list="favourites"></ul>
+        </li>
+        <li data-o-grid-colspan="6 M6 L6 XL6">
+          <div class="myft__title">Read For Later</div>
+          <ul data-user-preference-list="forlaters"></ul>
+        </li>
+         #}
+      </ul>
+    </div>
+  </div>
+</header>
+{% endif %}
