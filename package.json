@@ -57,7 +57,8 @@
     "speakingurl": "^0.17.0",
     "string": "^2.2.0",
     "swig": "git://github.com/kavanagh/swig",
-    "thunkify": "^2.1.2"
+    "thunkify": "^2.1.2",
+    "topojson": "^1.6.18"
   },
   "devDependencies": {
     "nodemon": "^1.2.1"
