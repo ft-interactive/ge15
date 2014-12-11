@@ -9,11 +9,12 @@
 
 
 html {
+  // scss-lint:disable DuplicateProperty
   font-family: oFontsGetFontFamilyWithFallbacks(BentonSans);
   -moz-osx-font-smoothing: grayscale; /* 1 */
   -webkit-font-smoothing: antialiased; /* 1 */
   font-size: 62.5%; /* 2 */
-  font-size: calc(1em * 0.625); /* 3 */
+  font-size: calc(1em * 0.625); // No lint reported /* 3 */ 
   color: oColorsGetColorFor(body, text);
 }
 

@@ -31,7 +31,8 @@ body {
   min-height: 100vh;
 }
 
-.layout--iframed #main, .layout--blankpage #main {
+.layout--iframed .layout__container--main,
+.layout--blankpage .layout__container--main {
   min-height: 0;
 }
 
