@@ -25,17 +25,21 @@
         {% include "./favicon.html" %}
 
         <!--[if gt IE 8]><!-->
-        <link rel="stylesheet" href="{{ baseurl.static }}/css/main.css" />{% block stylesheets %}{% endblock %}
-        <!--<![endif]-->
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />{% spaceless %}
+        {% block stylesheets %}
+        {% endblock %}
+        {% endspaceless %}<!--<![endif]-->
         <!--[if lte IE 8]>
-        <link rel="stylesheet" href="/css/main-oldie.css" />{% block oldIEstylesheets %}{% endblock %}
-        <![endif]-->
+        <link rel="stylesheet" href="{{ asset('css/main-oldie.css') }}" />{% spaceless %}
+        {% block oldIEstylesheets %}
+        {% endblock %}
+        {% endspaceless %}<![endif]-->
 
         <meta name="format-detection" content="telephone=no" />
         <script>
         if (cutsTheMustard) {
             addScript('//cdn.polyfill.io/v1/polyfill.min.js', false, false);
-            addScript('{{ baseurl.static }}/js/common.js', true, true);
+            addScript('{{ asset("js/common.js") }}', true, true);
         } else {
             addScript('//cdn.polyfill.io/v1/polyfill.min.js?features=Document', false, false);
         }

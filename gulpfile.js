@@ -8,8 +8,9 @@ var jshint = require('gulp-jshint');
 var livereload = require('gulp-livereload');
 var nodemon = require('gulp-nodemon');
 
-var revReplace = require('gulp-rev-replace');
 var rev = require('gulp-rev');
+var revReplace = require('gulp-rev-replace');
+var revNapkin = require('gulp-rev-napkin');
 
 var sass = require('gulp-ruby-sass');
 var scsslint = require('gulp-scss-lint');
@@ -34,16 +35,10 @@ gulp.task('default', ['lint', 'rev']);
 // TODO:
 // svg minification
 // Revving
-//  - delete unrevved js and css when complete
 //  - html, css, js need to refer to revved files.
 // CI Build
 //   - codeship or travis
 // CDNify urls in js and css
-// Images
-//   - copy to public
-//   - compress 
-//   - rev
-//   - modify html and css after revving
 // Haikro
 //   - move deps to devdeps
 //   - build packs
@@ -106,7 +101,7 @@ function createBrowserify(watch) {
   return b;
 }
 
-gulp.task('js', function(){
+gulp.task('js', function() {
   var b = createBrowserify(false);
   b.transform('stripify');
 // Transforms we might need here
@@ -118,8 +113,9 @@ gulp.task('rev', ['clean', 'compress'], function () {
   return gulp.src(['public/css/*.css', 'public/js/*.js'], {base: 'assets'})
         .pipe(gulp.dest('public'))  // copy original assets to build dir
         .pipe(rev())
-        .pipe(revReplace())
-        .pipe(gulp.dest('public'))  // write rev'd assets to build dir
+        .pipe(revReplace({replaceInExtensions: ['.css']}))
+        .pipe(revNapkin())
+        .pipe(gulp.dest('public')) // write rev'd assets to build dir
         .pipe(rev.manifest())
         .pipe(gulp.dest('public')); // write manifest to build dir
 });
@@ -144,17 +140,23 @@ gulp.task('clean', function(cb) {
 gulp.task('jshint', function() {
   return gulp.src('client/**/*.js')
         .pipe(jshint())
-        .pipe(jshint.reporter('default'));
+        .pipe(jshint.reporter('jshint-stylish'))
+        .pipe(jshint.reporter('fail'));
 });
 
 gulp.task('scsslint', function() {
   return gulp.src('client/scss/**/*.scss')
-        .pipe(scsslint());
+        .pipe(scsslint({bundleExec: true}));
+        // Fail the build if errors or warnings
+        // TODO: write a custom reporter that only fails on errors
+        // .pipe(scsslint.failReporter());
 });
 
-gulp.task('lint', ['jshint', 'scsslint']);
+gulp.task('lint', ['jshint', 'scsslint'], function(cb) {
+  cb();
+});
 
-gulp.task('dev', function(){dev = true;});
+gulp.task('dev', function(cb){dev = true;cb();});
 
 gulp.task('watch', ['dev', 'sass'], function() {
   gulp.watch('./public/**/*.*').on('change', livereload.changed);
