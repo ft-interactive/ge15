@@ -43,6 +43,15 @@
         {% block headscripts %}{% endblock %}
     </head>
     <body itemscope itemtype="http://schema.org/WebPage" class="layout {% if view.layout.iframed %}layout--iframed {% endif %}{% if view.layout.blankPage %}layout--blankpage {% endif %}{% if view.layout.fullWidth %}layout--fullwidth {% endif %}">
+
+        {#
+        FT Tracking module 1.2.3.1 #}
+        <script src="http://s2.ft-static.com/scripts/392b9acc/bundles/tracking.js"></script>
+        <noscript>
+            <img alt="" border="0" width="1" height="1" src="http://track.ft.com/track/track.js?javascript=disabled"/>
+            <img alt="" border="0" width="1" height="1" src="http://stats.ft.com/si/track.gif?WT.js=No"/>
+        </noscript>
+
         {% block header%}
         {% include "./masthead.html" %}
         {% endblock %}
