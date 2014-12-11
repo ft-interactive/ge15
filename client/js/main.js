@@ -1,7 +1,7 @@
 'use strict';
 // use npm module
 var _ = require('lodash');
-var header = require('next-header');
+require('next-header');
 
 //use origami bower component
 var oDate = require('o-date');

@@ -3,7 +3,7 @@ module.exports = main;
 var koa = require('koa');
 var routers = require('./routers');
 var pkg = require('../package.json');
-var swig = require('swig');
+
 var _ = require('lodash');
 var trace = require('koa-trace');
 var favicon = require('koa-favicon');
@@ -16,20 +16,7 @@ var htmlMinifier = require('koa-html-minifier');
 var livereload = require('koa-livereload');
 var printRequestId = require('./middleware/print-request-id');
 var ms = require('ms');
-var filters = require('./filters');
 var path = require('path');
-
-for (var fn in filters) {
-  if (_.isFunction(filters[fn])) {
-    swig.setFilter(fn, filters[fn]);
-  }
-}
-
-var baseurl = {
-  static: '', // TODO: use cdn host if production
-  site: '',
-  ft: '//www.ft.com'
-};
 
 function main() {
   var app = koa();
@@ -55,7 +42,6 @@ function main() {
   app.use(function*(next){
     this.locals = this.locals || {};
     this.locals.context = this;
-    this.locals.baseurl = baseurl;
     yield next;
   });
 
