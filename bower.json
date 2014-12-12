@@ -20,7 +20,8 @@
     "next-header": "~1.2.11",
     "o-grid": "~2.4.1",
     "o-ft-footer": "~2.0.3",
-    "o-ft-icons": "~2.3.2"
+    "o-ft-icons": "~2.3.2",
+    "o-date": "~1.1.0"
   },
   "resolutions": {
     "o-grid": "~2.4.1",
