@@ -8,6 +8,9 @@ lib-cov
 coverage
 node_modules
 bower_components
+tmp
+node-linux-*
+node-v*
 .lock-wscript
 .idea
 .sass-cache
