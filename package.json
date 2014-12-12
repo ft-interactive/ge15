@@ -9,7 +9,7 @@
     "start": "NODE_ENV=production node --harmony ./app.js",
     "watch": "gulp watch",
     "build": "gulp",
-    "postinstall": "bundle install && bower install && gulp"
+    "postinstall": "bower install && gulp"
   },
   "repository": {
     "type": "git",
