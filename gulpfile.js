@@ -146,7 +146,7 @@ gulp.task('jshint', function() {
 
 gulp.task('scsslint', function() {
   return gulp.src('client/scss/**/*.scss')
-        .pipe(scsslint({bundleExec: true}));
+        .pipe(scsslint());
         // Fail the build if errors or warnings
         // TODO: write a custom reporter that only fails on errors
         // .pipe(scsslint.failReporter());
