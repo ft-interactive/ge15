@@ -1,2 +1,1 @@
-web: npm start
-watch: npm run watch
+web: node --harmony ./app.js
