@@ -6,7 +6,7 @@
   "scripts": {
     "build": "gulp",
     "clean": "git clean -fxd",
-    "deploy": "haikro create build deploy --heroku-token $HEROKU_AUTH_TOKEN --app $HEROKU_APP --verbose",
+    "deploy": "haikro build deploy --heroku-token $HEROKU_AUTH_TOKEN --app $HEROKU_APP --verbose",
     "prune": "npm prune --production",
     "publish": "npm run clean && npm install && npm run build && npm run prune && npm run deploy",
     "start": "NODE_ENV=production node --harmony ./app.js",
