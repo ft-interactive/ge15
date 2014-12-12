@@ -44,6 +44,9 @@
             addScript('//cdn.polyfill.io/v1/polyfill.min.js?features=Document', false, false);
         }
         </script>
+
+        {# IG Google Analytics account #}
+        <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-35229645-1', 'example.com');ga('require', 'displayfeatures');ga('send', 'pageview');</script>
         {% block headscripts %}{% endblock %}
     </head>
     <body itemscope itemtype="http://schema.org/WebPage" class="layout {% if view.layout.iframed %}layout--iframed {% endif %}{% if view.layout.blankPage %}layout--blankpage {% endif %}{% if view.layout.fullWidth %}layout--fullwidth {% endif %}">
@@ -72,8 +75,6 @@
 
         {#Analytics #}
         <script>
-            {# IG Google Analytics account #}
-            var _gaq = _gaq || [];(function() {_gaq.push(['_setAccount', 'UA-35229645-1']);_gaq.push(['_trackPageview']);_gaq.push(['_setDomainName', 'ig.ft.com']);_gaq.push(['_setCookiePath', '/']);if (!!window['User'] && window.User.id) {_gaq.push(['_setCustomVar', 1, 'User', User.id, 1]);}if (window.analytics) {window.analytics.timing = function timing(category, variable, time) {_gaq.push(['_trackTiming', category, variable,  time]);};}addScript(('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js', true, false);})();
             {# Chartbeat #}
             var _sf_async_config={};_sf_async_config.uid = 14181;_sf_async_config.domain = 'ft.com';_sf_async_config.useCanonical = true;_sf_async_config.sections = 'Books';_sf_async_config.authors = 'Interactive';(function(){function loadChartbeat() {window._sf_endpt=(new Date()).getTime();var e = document.createElement('script');e.setAttribute('src', '//static.chartbeat.com/js/chartbeat.js');document.body.appendChild(e);}var oldonload = window.onload;window.onload = (typeof window.onload != 'function') ?loadChartbeat : function() { oldonload(); loadChartbeat(); };})();
         </script>
