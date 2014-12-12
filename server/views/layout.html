@@ -25,17 +25,16 @@
         {% include "./favicon.html" %}
 
         <!--[if gt IE 8]><!-->
-        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />{% spaceless %}
-        {% block stylesheets %}
-        {% endblock %}
-        {% endspaceless %}<!--<![endif]-->
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+        {% block stylesheets %}{% endblock %}
+        <!--<![endif]-->
         <!--[if lte IE 8]>
-        <link rel="stylesheet" href="{{ asset('css/main-oldie.css') }}" />{% spaceless %}
-        {% block oldIEstylesheets %}
-        {% endblock %}
-        {% endspaceless %}<![endif]-->
+        <link rel="stylesheet" href="{{ asset('css/main-oldie.css') }}" />
+        {% block oldIEstylesheets %}{% endblock %}
+        <![endif]-->
 
         <meta name="format-detection" content="telephone=no" />
+
         <script>
         if (cutsTheMustard) {
             addScript('//cdn.polyfill.io/v1/polyfill.min.js', false, false);
@@ -46,18 +45,23 @@
         </script>
 
         {# IG Google Analytics account #}
+        {% if flags.tracking %}
         <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-35229645-1', 'example.com');ga('require', 'displayfeatures');ga('send', 'pageview');</script>
+        {% else %}
+        <script>function ga(){}</script>
+        {% endif %}
+
         {% block headscripts %}{% endblock %}
     </head>
     <body itemscope itemtype="http://schema.org/WebPage" class="layout {% if view.layout.iframed %}layout--iframed {% endif %}{% if view.layout.blankPage %}layout--blankpage {% endif %}{% if view.layout.fullWidth %}layout--fullwidth {% endif %}">
 
-        {#
-        FT Tracking module 1.2.3.1 #}
+        {% if flags.tracking %}
         <script src="http://s2.ft-static.com/scripts/392b9acc/bundles/tracking.js"></script>
         <noscript>
             <img alt="" border="0" width="1" height="1" src="http://track.ft.com/track/track.js?javascript=disabled"/>
             <img alt="" border="0" width="1" height="1" src="http://stats.ft.com/si/track.gif?WT.js=No"/>
         </noscript>
+        {% endif %}
 
         {% block header%}
         {% include "./masthead.html" %}
@@ -73,10 +77,12 @@
 
         {% block scripts %}{% endblock %}
 
-        {#Analytics #}
+        {% if flags.tracking %}
         <script>
             {# Chartbeat #}
             var _sf_async_config={};_sf_async_config.uid = 14181;_sf_async_config.domain = 'ft.com';_sf_async_config.useCanonical = true;_sf_async_config.sections = 'Books';_sf_async_config.authors = 'Interactive';(function(){function loadChartbeat() {window._sf_endpt=(new Date()).getTime();var e = document.createElement('script');e.setAttribute('src', '//static.chartbeat.com/js/chartbeat.js');document.body.appendChild(e);}var oldonload = window.onload;window.onload = (typeof window.onload != 'function') ?loadChartbeat : function() { oldonload(); loadChartbeat(); };})();
         </script>
+        {% endif %}
+
     </body>
 </html>
