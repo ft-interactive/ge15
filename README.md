@@ -1,4 +1,4 @@
-# UK General Election 2015 site [![Codeship Status for ft-interactive/ge15](https://codeship.com/projects/345102d0-585d-0130-1abe-123138152df8/status)](https://codeship.com/projects/1503)
+# UK 2015 election site [![Codeship Status for ft-interactive/ge15](https://codeship.com/projects/345102d0-585d-0130-1abe-123138152df8/status)](https://codeship.com/projects/1503)
 
 ## Developing the app
 
