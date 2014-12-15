@@ -6,11 +6,11 @@
   "scripts": {
     "build": "gulp",
     "postinstall": "bower install",
-    "clean": "git clean -fxd",
     "deploy": "npm run build && haikro build deploy --heroku-token $HEROKU_AUTH_TOKEN --app $HEROKU_APP --verbose",
     "prune": "npm prune --production",
     "local": "npm run build && NODE_ENV=production npm run start",
     "start": "node --harmony ./app.js",
+    "pre-test": "gulp lint sass",
     "test": "testling",
     "watch": "gulp watch"
   },

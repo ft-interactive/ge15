@@ -30,7 +30,15 @@ var dev = false;
 process.stdin.setMaxListeners(0);
 process.stdout.setMaxListeners(0);
 
-gulp.task('default', ['lint', 'rev']);
+gulp.task('default', ['build-production']);
+
+gulp.task('build', ['lint', 'compress'], function(cb) {
+  cb();
+});
+
+gulp.task('build-production', ['build', 'rev'], function(cb) {
+  cb();
+});
 
 // TODO:
 // svg minification
@@ -109,7 +117,7 @@ gulp.task('js', function() {
   return b.end();
 });
 
-gulp.task('rev', ['clean', 'compress'], function () {
+gulp.task('rev', function () {
   return gulp.src(['public/css/*.css', 'public/js/*.js'], {base: 'assets'})
         .pipe(gulp.dest('public'))  // copy original assets to build dir
         .pipe(rev())
