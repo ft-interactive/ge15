@@ -30,13 +30,9 @@ var dev = false;
 process.stdin.setMaxListeners(0);
 process.stdout.setMaxListeners(0);
 
-gulp.task('default', ['build-production']);
+gulp.task('default', ['build', 'rev']);
 
 gulp.task('build', ['lint', 'compress'], function(cb) {
-  cb();
-});
-
-gulp.task('build-production', ['build', 'rev'], function(cb) {
   cb();
 });
 
@@ -128,10 +124,10 @@ gulp.task('rev', function () {
         .pipe(gulp.dest('public')); // write manifest to build dir
 });
 
-gulp.task('compress', ['clean', 'sass', 'js'], function() {
+gulp.task('compress', ['clean', 'sass', 'js'], function(cb) {
   var css = filter('css/*.css');
   var js = filter('js/*.js');
-  return gulp.src('public/**')
+  gulp.src('public/**')
         .pipe(css)
         .pipe(csso())
         .pipe(css.restore())
@@ -139,6 +135,7 @@ gulp.task('compress', ['clean', 'sass', 'js'], function() {
         .pipe(uglify({preserveComments: 'some'}))
         .pipe(js.restore())
         .pipe(gulp.dest('public'));
+  cb();
 });
 
 gulp.task('clean', function(cb) {
