@@ -11,7 +11,7 @@
     "prune": "npm prune --production",
     "local": "npm run build && NODE_ENV=production npm run start",
     "start": "node --harmony ./app.js",
-    "test": "echo \"No test specified\" && exit 0",
+    "test": "testling",
     "watch": "gulp watch"
   },
   "repository": {
@@ -69,6 +69,7 @@
   },
   "devDependencies": {
     "browserify": "^6.3.3",
+    "chai": "^1.10.0",
     "debowerify": "^1.1.1",
     "envify": "^3.2.0",
     "gulp": "^3.8.10",
@@ -87,6 +88,8 @@
     "gulp-util": "^3.0.1",
     "jshint-stylish": "^1.0.0",
     "stripify": "^1.2.0",
+    "tape": "^3.0.3",
+    "testling": "^1.7.1",
     "vinyl": "^0.4.5",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.0.0",
@@ -94,5 +97,14 @@
   },
   "engines": {
     "node": "0.11.13"
+  },
+  "testling": {
+    "files": [
+      "test/*.js"
+    ],
+    "browsers": [
+      "chrome/latest",
+      "firefox/latest"
+    ]
   }
 }
