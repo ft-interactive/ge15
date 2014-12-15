@@ -5,8 +5,8 @@
 Before you start, you must ensure you have version 0.11.13 of Node.js. As this is an unstable version, it's recommended that you do not simply upgrade node but use a version manager to switch to the require version. The [n](https://github.com/tj/n) package is perfect for this.
 
 ```shell
-$ npm install n
-$ n latest
+$ sudo npm install -g n
+$ sudo n 0.11.14
 $ node --version
 v0.11.13
 ```
@@ -14,7 +14,7 @@ v0.11.13
 You'll also need gulp to build the project and run the app in development.
 
 ```shell
-$ npm install -g gulp
+$ sudo npm install -g gulp
 ```
 
 Next, clone this app and install the dependencies...
