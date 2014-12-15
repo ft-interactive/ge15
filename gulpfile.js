@@ -124,10 +124,10 @@ gulp.task('rev', function () {
         .pipe(gulp.dest('public')); // write manifest to build dir
 });
 
-gulp.task('compress', ['clean', 'sass', 'js'], function(cb) {
+gulp.task('compress', ['clean', 'sass', 'js'], function() {
   var css = filter('css/*.css');
   var js = filter('js/*.js');
-  gulp.src('public/**')
+  return gulp.src('public/**')
         .pipe(css)
         .pipe(csso())
         .pipe(css.restore())
@@ -135,7 +135,6 @@ gulp.task('compress', ['clean', 'sass', 'js'], function(cb) {
         .pipe(uglify({preserveComments: 'some'}))
         .pipe(js.restore())
         .pipe(gulp.dest('public'));
-  cb();
 });
 
 gulp.task('clean', function(cb) {
