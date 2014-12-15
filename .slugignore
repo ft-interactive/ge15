@@ -5,6 +5,7 @@ schema.md
 LICENSE
 ./bower_components
 ./client
+./test
 ./.sass-cache
 ./.bowerrc
 ./.jshintrc
