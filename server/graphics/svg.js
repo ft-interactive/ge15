@@ -10,6 +10,7 @@ var doctype = '<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C
 function svgGraphic(decoratorName, data, callback){
 	var decorator = decorators[decoratorName];
 	var htmlbody = d3.select('body');
+	htmlbody.html('');
 	htmlbody.call( decorator, data );
 	var markup = htmlbody.html();
 	callback ( null, doctype + markup );
