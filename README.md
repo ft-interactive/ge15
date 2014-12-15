@@ -35,5 +35,5 @@ $ gulp watch
 If you want to see the app working locally as it would run on the server do this:
 
 ```shell
-$ gulp && npm start
+$ npm run local
 ```
