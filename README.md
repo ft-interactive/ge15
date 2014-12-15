@@ -1,5 +1,4 @@
-UK General Election 2015 site
-==========================
+# UK 2015 election site [![Codeship Status for ft-interactive/ge15](https://codeship.com/projects/345102d0-585d-0130-1abe-123138152df8/status)](https://codeship.com/projects/1503)
 
 ## Developing the app
 
@@ -35,5 +34,5 @@ $ gulp watch
 If you want to see the app working locally as it would run on the server do this:
 
 ```shell
-$ gulp && npm start
+$ npm run local
 ```

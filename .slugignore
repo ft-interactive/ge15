@@ -3,3 +3,15 @@
 .DS_Store
 schema.md
 LICENSE
+./bower_components
+./client
+./test
+./.sass-cache
+./.bowerrc
+./.jshintrc
+./.scss-lint.yml
+bower.json
+Gemfile
+Gemfile.lock
+gulpfile.js
+README.md
