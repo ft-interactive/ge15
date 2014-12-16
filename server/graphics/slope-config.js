@@ -66,7 +66,7 @@ module.exports = {
 			.attr({
 				'fill':fill,
 				'stroke':stroke,
-				'label':function(d){ return d.pct2010 + '% ' + parties[d.name].shortname; }
+				'label':function(d){ return d.pct2010 + '% ' + parties[d.name].abbreviation; }
 			})
 	}
 };
