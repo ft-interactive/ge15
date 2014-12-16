@@ -8,11 +8,13 @@ var Router = require('koa-router'),
 
 function main() {
   return app().router()
-  .get('slope', '/slope/:slopeconfig/:constituency', slopeConfig, drawSlope)
-	//TODO specify id as an optinal parameter
-  .get('maparea', '/map/:areatype/:mapconfig/:id', mapConfig, drawMap)
-  .get('mapgeneral', '/map/:areatype/:mapconfig/', mapConfig, drawMap)
-	.get('constituency-bar-chart','/bars/constituency/:barsconfig/:constituency', barsConfig, drawBars);
+			.get('slope', '/slope/:slopeconfig/:constituency', slopeConfig, drawSlope)
+			.get('slope', '/slope/:slopeconfig/:constituency', slopeConfig, drawSlope)
+			//TODO specify id as an optinal parameter
+			.get('maparea','/map/:areatype/:mapconfig/:id', mapConfig, drawMap)
+			.get('mapgeneral','/map/:areatype/:mapconfig/', mapConfig, drawMap)
+			.get('constituencybarchart','/bars/constituency/:barsconfig/:constituency', barsConfig, drawBars);
+
 };
 
 //bar chart stuff
@@ -61,15 +63,14 @@ var slopeOptions = require('../../graphics/slope-config'),
 		yield next;
 	},
 
-
 	drawSlope = function* (next){
-		var constituencyResults = resultData.constituency(this.params.constituency) // getResultsData(this.params.constituency);
+	  	var constituencyResults = resultData.constituency(this.params.constituency) // getResultsData(this.params.constituency);
 
-		this.type = 'image/svg+xml';
-		this.plotConfig.name = constituencyResults.name;
-		this.plotConfig.slopes = this.plotConfig.layout( constituencyResults.parties );
-		this.body = yield svg('slope', this.plotConfig);
-		yield next;
+	  	this.type = 'image/svg+xml';
+	  	this.plotConfig.name = constituencyResults.name;
+	  	this.plotConfig.slopes = this.plotConfig.layout( constituencyResults.parties );
+	  	this.body = yield svg('slope', this.plotConfig);
+	  	yield next;
 	};
 
 module.exports = main;
