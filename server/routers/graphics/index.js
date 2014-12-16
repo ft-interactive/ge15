@@ -5,20 +5,14 @@ var Router = require('koa-router'),
 	resultData = require('../../data/results'),
 	parties = require('../../data/parties');
 
-
-module.exports = function() {
-  var router = koa();
-  router.use(Router(router));
-
-  router.get('slope', '/slope/:slopeconfig/:constituency', slopeConfig, drawSlope);
-//TODO specify id as an optinal parameter
-  router.get('map-area','/map/:areatype/:mapconfig/:id', mapConfig, drawMap);
-  router.get('map-general','/map/:areatype/:mapconfig/', mapConfig, drawMap);
-
-  router.get('constituency-bar-chart','/bars/constituency/:barsconfig/:constituency', barsConfig, drawBars);
-
-  return router;
-};
+function main() {
+  return app().router()
+			.get('slope', '/slope/:slopeconfig/:constituency', slopeConfig, drawSlope)
+			//TODO specify id as an optinal parameter
+			.get('maparea','/map/:areatype/:mapconfig/:id', mapConfig, drawMap)
+			.get('mapgeneral','/map/:areatype/:mapconfig/', mapConfig, drawMap)
+			.get('constituencybarchart','/bars/constituency/:barsconfig/:constituency', barsConfig, drawBars);
+}
 
 //bar chart stuff
 
@@ -75,3 +69,6 @@ var slopeOptions = require('../../graphics/slope-config'),
 	  	this.body = yield svg('slope', this.plotConfig);
 	  	yield next;
 	};
+
+module.exports = main;
+if (!module.parent) main().listen(process.env.PORT || 5000);
