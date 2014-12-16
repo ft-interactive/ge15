@@ -25,7 +25,7 @@ module.exports = {
 			d.winner = randomParty();
 			d.turout = 100 * (0.5 + Math.random()/3);
 			d.margin = 100 * (Math.random()/8);
-			lookup[d.ons_id] = d;
+			lookup[d.id] = d;
 		})
 		return lookup;
 	},

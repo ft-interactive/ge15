@@ -23,17 +23,18 @@ var indexLookup = {};
 
 
 
-constituencyFeatures.high.forEach(function(d,i){
+constituencyFeatures.high.forEach(function (d,i) {
 	indexLookup[d.id] = i;
 });
 
-constituencyData.forEach(function(d,i){
-	constituencyLookup[d.ons_id] = d;
+constituencyData.forEach(function (d,i) {
+	constituencyLookup[d.id] = d;
 });
 
 //TODO should I be using meshArcs and turning it to geojson later?
-var regionalBoundaries = topojson.mesh(topology.high, topology.high.objects.constituencies, function(a,b){
-	return (constituencyLookup[ a.id ].region_code !== constituencyLookup[ b.id ].region_code);
+var regionalBoundaries = topojson.mesh(topology.high, topology.high.objects.constituencies, function (a,b) {
+	// console.log(a, b);
+	return (constituencyLookup[ a.id ].region_id !== constituencyLookup[ b.id ].region_id);
 });
 
 if(!regionalBoundaries.properties) regionalBoundaries.properties = {};
