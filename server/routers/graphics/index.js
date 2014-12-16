@@ -42,6 +42,7 @@ function* mapConfig(next) {
 }
 
 function* drawMap(next) {
+  this.type = 'image/svg+xml';
 	this.body = yield svg('map', this.plotConfig);
 	yield next;
 }
