@@ -2,7 +2,8 @@ var mount = require('koa-mount');
 
 var pathRouters = {
   graphics: require('./graphics'),
-  results: require('./results')
+  results: require('./results'),
+  parties: require('./parties')
 };
 
 var infoRouter = require('./info');

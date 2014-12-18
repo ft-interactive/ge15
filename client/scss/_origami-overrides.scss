@@ -14,8 +14,8 @@
   }
 }
 
-.o-ft-footer {
-  border-top: 0;
-  background: oColorsGetColorFor(page, background);
-  color: oColorsGetColorFor(page, text);
+.o-ft-footer__link-lists,
+.o-ft-footer__copyright {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }

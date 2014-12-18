@@ -6,6 +6,7 @@ var index = _.indexBy(constituencies, 'slug');
 var regions = require('../../data/regions');
 var co = require('co');
 var thunkify = require('thunkify');
+var models = require('../../models');
 
 function* render(next) {
   if (this.view) {
@@ -44,14 +45,17 @@ var params = {
     this.assert(this.locals.ward, 404, 'Ward not found');
     yield next;
   },
-  constituency: function* constituency(constituency, next) {
-    this.locals.constituency = index[constituency];
-    this.assert(this.locals.constituency, 404, 'Constituency not found');
+  constituency: function* constituency(slug, next) {
+    var region_id = this.locals.region.id;
+    var constituency = yield models.Constituency.find({where:{slug: slug, region_id: region_id}});
+    this.assert(constituency, 404, 'Constituency not found');
+    this.locals.constituency = constituency.values;
     yield next;
   },
-  region: function* region(region, next) {
-    this.locals.region = _.where(regions, {slug: region})[0];
-    this.assert(this.locals.region, 404, 'Region not found');
+  region: function* region(slug, next) {
+    var region = yield models.Region.find({where:{slug: slug}});
+    this.assert(region, 404, 'Region not found');
+    this.locals.region = region.values;
     yield next;
   }
 }
@@ -79,7 +83,6 @@ function main() {
       yield next;
     })
 
-
     .router()
 
     .param('ward', params.ward)
@@ -99,7 +102,10 @@ function main() {
       yield next;
     }, render)
     .get('constituency', '/:region/:constituency', view('constituency'), function* (next) {
-      this.locals.wards = _.where(wards, {constituency: {id: this.locals.constituency.id}});
+      // TODO: how do we find wards? because the colummn is a string array.
+      // this.locals.wards = _.where(wards, {constituency: {id: this.locals.constituency.id}});
+      var wards = models.Ward.findAll({where: '\'' + this.locals.constituency.id + '\' = ANY(constituencies)'})
+      this.locals.wards = wards
       yield next;
     }, render)
     .get('ward', '/:region/:constituency/:ward', view('ward'), render);

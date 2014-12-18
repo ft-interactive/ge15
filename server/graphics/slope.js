@@ -49,5 +49,5 @@ module.exports = function (selection, data){
 		'font-size':10,
 		'fill':'#000',
 		'fill-opacity':0.7
-	}).text(function(d){ return d.label; });			
+	}).text(function(d){ return d.label; });
 }
