@@ -52,7 +52,7 @@
 + abbrv* (from PA, not necessarily very readable eg "C" for conservative)
 + name (the full proper name, eg Liberal Democrats)
 + shortname (eg Lib Dems)
-+ ft_abbrv (max 5 chars, case sensitive: eg Con --  for use in space constrained labeling)
++ ftabbrv (max 5 chars, case sensitive: eg Con --  for use in space constrained labeling)
 + slug (derived from shortname field)
 + color
 + secondary_color
@@ -143,7 +143,7 @@
 + abbrv* (from PA, not necessarily very readable eg "C" for conservative)
 + name (the full proper name, eg Liberal Democrats)
 + shortname (eg Lib Dems)
-+ ft_abbrv (max 5 chars, case sensitive: eg Con --  for use in space constrained labeling)
++ ftabbrv (max 5 chars, case sensitive: eg Con --  for use in space constrained labeling)
 + slug (derived from shortname field)
 + color
 + secondary_color
