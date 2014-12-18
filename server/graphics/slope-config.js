@@ -14,7 +14,7 @@ function end(d){
 }
 
 function fill(d){ 
-	return parties[d.name].primarycolor; 
+	return parties[d.name].color; 
 }
 
 function stroke(d){ 
@@ -66,7 +66,7 @@ module.exports = {
 			.attr({
 				'fill':fill,
 				'stroke':stroke,
-				'label':function(d){ return d.pct2010 + '% ' + parties[d.name].abbreviation; }
+				'label':function(d){ return d.pct2010 + '% ' + parties[d.name].ftabbrv; }
 			})
 	}
 };

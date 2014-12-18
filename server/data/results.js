@@ -12,10 +12,10 @@ module.exports = {
 				{year:2010, winner:'Conservative Party'}
 			],
 			parties:[
-				{name:'Labour Party', pct2005:'46', pct2010:'37'},
-				{name:'Conservative Party', pct2005:'43', pct2010:'51'},
+				{name:'Labour', pct2005:'46', pct2010:'37'},
+				{name:'Conservative', pct2005:'43', pct2010:'51'},
 				{name:'Liberal Democrat', pct2005:'7', pct2010:'8'},
-				{name:'United Kingdom Independence Party', pct2005:'0', pct2010:'4'}
+				{name:'UK Independence Party', pct2005:'0', pct2010:'4'}
 			]
 		}
 	},
@@ -37,9 +37,9 @@ module.exports = {
 
 function randomParty(){
 	var r = Math.random();
-	if(r<.4) return 'Conservative Party';
-	if(r<0.8) return 'Labour Party';
+	if(r<.4) return 'Conservative';
+	if(r<0.8) return 'Labour';
 	if(r<0.95) return 'Liberal Democrat';
-	if(r<0.97) return 'United Kingdom Independence Party';
-	return 'Green Party';
+	if(r<0.97) return 'UK Independence Party';
+	return 'Green';
 }

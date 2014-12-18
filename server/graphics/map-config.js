@@ -5,7 +5,7 @@ var constituencySummary = resultData.constituencies();
 
 function colourByParty(d){
 	var winner = constituencySummary[d.id].winner;
-	return parties[winner].primarycolor; 
+	return parties[winner].color; 
 }
 
 module.exports = {
