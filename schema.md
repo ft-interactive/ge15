@@ -1,30 +1,28 @@
 # Schema plan
 
-Key
-- * values in the 
+### Proposed data schema
 
 ## Constituency
-+ id* (ONS)
-+ name (allows us to change the style of name)
++ ons_id* (ONS)
++ ft_name (allows us to change the style of name)
 + ons_name (never changes)
-+ region_id (ONS - FK region.id) 
++ region_code (ONS - FK region.id) 
 + region_name (ONS)
-+ slug* (from name field)
++ ft_slug* (from name field)
 + pa_id*
 + bbc_id*
 + bbc_href*
 + guardian_id*
 + guardian_href*
-+ ? mp_previous, do we want to copy stuff of the lastest row in the election table?
-+ ? party_previous
++ party_previous
 + ? has_result - used for election night
-+ ? new mp
 + party
-+ swing - used after result for swing
-+ swing_previous - used before election swing in last election
-+ hold (FK party.id)
-+ loss (FK party.id)
-+ gain (FK party.id)
++ swing
++ swing_from
++ swing_to
++ is_gain (boolean)
++ declaration_time
++ revision
 
 # ConstituencyGroup
 + id
@@ -51,40 +49,45 @@ Key
 + constituency_slug (FK constituency.slug)
 
 ## Party
-+ id* (numeric) -- perhaps this could be the pa_id instead???????
-+ longname (the full proper name, eg Liberal Democrats)
-+ shortname* (eg Lib Dems)
-+ abbrv (max 5 chars, case sensitive: eg Con)
-+ pa_id (not necessarily very readable eg "C" for conservative)
++ abbrv* (from PA, not necessarily very readable eg "C" for conservative)
++ name (the full proper name, eg Liberal Democrats)
++ shortname (eg Lib Dems)
++ ft_abbrv (max 5 chars, case sensitive: eg Con --  for use in space constrained labeling)
 + slug (derived from shortname field)
 + color
++ secondary_color
 
 ## Election
-+ year
++ id (built from ons_id and election date nuix timestamp)
++ date
 + constituency_id (FK constitiuency.id)
 + is_byelection (boolean)
++ is_notional (boolean)
++ electorate
 + turnout
 + turnout_pc (% turnout)
++ turnout_pc_change
 + winning_votes
 + winning_candidate_name
 + winning_candidate_id (FK candidate.id - or null if not running in 2015)
-+ winning_party_id (FK party.id - or null if the party does not exist anymore)
-+ winning_party_name (FK party.shortname)
-+ majority size
-+ other_votes (spolied ballot etc, if we want to keep a record of this stuff)
-
-## ElectionResult
-+ year
-+ constituency_id  (FK constitiuency.id)
-+ party_name (FK party.shortname)
-+ party_id (FK party.id)
-+ votes
-+ candidate_name
-+ candidate_id (if they appear in the candidates table, otherwise null)
++ winning_party (FK party.abbreviation)
++ majority (integer)
++ majority_pc
++ majority_pc_change
++ is_gain (boolean)
++ sitting_party (FK party.abbreviation)
++ swing (integer)
++ swing_to (FK party.id)
++ swing_from (FK party.id)
 
 ## Candidate
+
 + id* (numeric)
-+ name
-+ party_id (FK party.id)
-+ party_name (FK party.shortname)
++ date
++ election_id
++ party (FK party.abbreviation)
++ votes
++ votes_pc
++ candidate_name
++ sex
 + slug (made by concatenating party_name + name)
