@@ -1,0 +1,63 @@
+.constituency-group {
+  &__slope {
+    margin-bottom: 0.5em;
+    @include oGridRespondTo(S) {
+      margin-bottom: 0.75em;
+    }
+  }
+
+  &__details {
+    p {
+      line-height: 1.25;
+      @include oGridRemoveGutters();
+      @include oGridRespondTo(S) {
+        @include oGridRemoveGutters('left');
+      }
+    }
+    &.o-grid-row {
+      margin-left:  auto;
+      margin-right: auto;
+    }
+  }
+
+  &__locator-map {
+    @include oGridRemoveGutters('left');
+    border: 1px solid black;
+    line-height: 0;
+    margin-bottom: .5em;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__constituency-name {
+    height: 36px;
+    max-width: 90%;
+    line-height: 1.1;
+    font-size: 0.75em;
+    @include oGridRespondTo(S) {
+      line-height: 1.15;
+      font-size: 0.8em;
+      color: lighten(oColorsGetColorFor(body, text), 3%);
+    }
+    @include oGridRespondTo(M) {
+      height: 30px;
+      max-width: 80%;
+      color: lighten(oColorsGetColorFor(body, text), 10%);
+    }
+  }
+
+  &__slope-graphic {
+    padding-top: 65%;
+    position: relative;
+    margin-bottom: 5px;
+    border: 1px solid black;
+
+    svg {
+      display: inline-block;
+      overflow: hidden;
+      @include absolute(fill);
+    }
+  }
+}

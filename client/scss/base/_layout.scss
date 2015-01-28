@@ -1,32 +1,31 @@
-
 html,
 body {
   background: oColorsGetColorFor(page, background);
 }
-body {
-  margin: 0;
-}
 
-.page-full {
-  overflow-y: scroll; // Force scrollbar to avoid repaints during page load
-}
+.layout {
 
-.blank-page {
-  overflow-y: auto;
-}
-
-.layout__container {
-
-  .layout--fullwidth & {
-    max-width: none;
+  body {
+    margin: 0;
+    // Force scrollbar to avoid repaints during page load
+    overflow-y: scroll;
   }
 
-  .o-header + & {
+  &--iframed {
+    overflow-y: auto;
+  }
+
+  &--fullwidth {
+    .layout__container {
+      max-width: none;
+    }
+  }
+
+  .o-header + &__container {
     margin-top: 2rem;
+    .layout--blankpage & {
+      margin-top: 0;
+    }
   }
 
-  .layout--blankpage .o-header + & {
-    margin-top: 0;
-  }
 }
-

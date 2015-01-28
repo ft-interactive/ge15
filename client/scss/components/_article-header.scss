@@ -1,0 +1,42 @@
+.article-header {
+  margin-bottom: 1em;
+
+  &--center {
+    text-align: center;
+  }
+
+  &__headline {
+
+    margin: 0;
+    font-family: $font-article-headline;
+    font-weight: normal;
+    font-size: 3em;
+    line-height: 1.15;
+    @include oColorsFor(title, text);
+
+    &--large {
+
+    }
+
+  }
+
+  &__byline,
+  &__dateline {
+    @include oColorsFor(muted, text);
+    margin-top:     0;
+    margin-bottom:  0;
+  }
+
+  &__byline {
+
+  }
+
+  &__dateline {
+
+  }
+
+  &__standfirst {
+
+  }
+
+}

@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<article class="article">
+  <header class="article-header article-header--center o-grid-row" data-o-grid-colspan="12">
+    {% block article_header %}{% endblock %}
+  </header>
+  <div class="article-body o-grid-row" data-o-grid-colspan="12">
+    {% block article_body %}{% endblock %}
+  </div>
+  <footer class="article-footer o-grid-row" data-o-grid-colspan="12">{% block article_footer %}{% endblock %}</footer>
+</article>
+{% endblock %}
