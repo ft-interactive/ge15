@@ -1,8 +1,8 @@
 'use strict';
 // use npm module
 var _ = require('lodash');
-require('next-header');
-
+// require('o-header');
+require('./header.js');
 //use origami bower component
 var oDate = require('o-date');
 
@@ -15,5 +15,5 @@ console.log(isProd);
 console.log(stuff);
 
 document.addEventListener('DOMContentLoaded', function() {
-    document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
+  document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
 });

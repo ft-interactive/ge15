@@ -1,6 +1,4 @@
-html {
-  overflow-y: auto; // Force scrollbar to avoid repaints during page load
-}
+
 html,
 body {
   background: oColorsGetColorFor(page, background);
@@ -9,8 +7,16 @@ body {
   margin: 0;
 }
 
+.page-full {
+  overflow-y: scroll; // Force scrollbar to avoid repaints during page load
+}
+
+.blank-page {
+  overflow-y: auto;
+}
+
 .layout__container {
-  
+
   .layout--fullwidth & {
     max-width: none;
   }
@@ -22,14 +28,5 @@ body {
   .layout--blankpage .o-header + & {
     margin-top: 0;
   }
-}
-
-#main {
-  min-height: 100vh;
-}
-
-.layout--iframed .layout__container--main,
-.layout--blankpage .layout__container--main {
-  min-height: 0;
 }
 

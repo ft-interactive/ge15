@@ -1,3 +1,7 @@
+$font-heading: $o-fonts-sans-serif; 
+$font-body: $o-fonts-sans-serif;
+$font-article-headline: $o-fonts-millerdisplay-normal; 
+$font-article-body: $o-fonts-serif; 
 /**
  * 1. Make type rendering look crisper
  * 2. Set baseline font size to 10px
@@ -6,11 +10,9 @@
  * 4. Set default text size back to 16px (at default zoom level)
  * 5. Set relative line spacing to 1.375 (16px * 1.375 = 22px)
  */
-
-
 html {
   // scss-lint:disable DuplicateProperty
-  font-family: oFontsGetFontFamilyWithFallbacks(BentonSans);
+  font-family: $font-body;
   -moz-osx-font-smoothing: grayscale; /* 1 */
   -webkit-font-smoothing: antialiased; /* 1 */
   font-size: 62.5%; /* 2 */

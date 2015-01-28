@@ -3,10 +3,10 @@
 @import "o-assets/main";
 @import "origami-config";
 
-@import "o-colors/main";
 @import "o-fonts/main";
-@import "o-ft-footer/main";
-@import "next-header/main";
+@import "o-colors/main";
+@import "o-ft-icons/main";
+@import "o-header/main";
 @import "o-footer/main";
 
 @import "sass-mq/mq";
@@ -17,8 +17,9 @@
 // https://github.com/Piderman/SASS-positioning-mixin
 @import "position/dist/position";
 
-@import "origami-overrides";
+@import "origami-override/o-fonts";
 @import "origami-override/o-grid";
+@import "origami-override/o-header";
 @import "origami-override/o-footer";
 
 @import "base/layout";
