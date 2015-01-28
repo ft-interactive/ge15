@@ -5,11 +5,10 @@ $o-ft-typography-is-silent: false;
 $o-fonts-is-silent: true;
 $o-grid-is-silent: false;
 $o-colors-is-silent: true;
-$o-ft-footer-is-silent: false;
 $o-ft-icons-is-silent: true;
 
 @include oAssetsSetModulePaths((
-  o-ft-footer: '//build.origami.ft.com/files/o-ft-footer@^2.0.3',
+  o-footer: '//build.origami.ft.com/files/o-ft-footer@^2.0.4',
 ));
 
 // Fix BentonSans Light font-face declaration in o-fonts

@@ -1,0 +1,24 @@
+.o-footer{
+  background: $nav-bg-color;
+  border-top: 1px solid oColorsGetPaletteColor(pink-tint3);
+  border-color: rgba(0, 0, 0, 0.15);
+  color: $nav-text-color;
+  margin-top: 0;
+}
+
+.o-footer__title{
+  color: $nav-text-color;
+}
+
+.o-footer__link > a {
+  &:link, &:visited {
+    color: $nav-text-color;
+  }
+  .o-hoverable-on &:hover {
+    color: #000;
+  }
+}
+
+.o-footer__pearson{
+  background: rgba(0, 0, 0, 0.2);
+}

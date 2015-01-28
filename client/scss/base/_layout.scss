@@ -10,9 +10,6 @@ body {
 }
 
 .layout__container {
-  @extend %o-grid-row;
-  @extend %o-grid-col;
-  @extend %o-grid-colspan-12;
   
   .layout--fullwidth & {
     max-width: none;
