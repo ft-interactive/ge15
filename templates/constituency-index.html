@@ -2,7 +2,6 @@
 
 {% block title %}UK Constituencies{% endblock %}
 
-
 {% block content %}
 <h1>UK Constituencies</h1>
 {% for constituency in constituencies %}
@@ -10,5 +9,4 @@
   <li><a href="{{ baseurl.site }}/uk/2015/results/{{constituency.region.slug}}/{{constituency.slug}}">{{ constituency.name }}</a></li>
   {% if loop.last %}</ul>{% endif %}
 {% endfor %}
-
 {% endblock %}

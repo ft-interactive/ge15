@@ -67,7 +67,7 @@ module.exports = function(options) {
   app.isProd = options.isProd;
 
   if (options.views) {
-    app.use(views('../views', {
+    app.use(views('../../templates', {
       cache: app.isProd ? 'memory' : false,
       map: {
         html: 'swig'

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="core o-hoverable-on" lang="en-GB">
+<html class="core o-hoverable-on layout {% if view.layout.iframed %}layout--iframed {% endif %}{% if view.layout.blankPage %}layout--blankpage {% endif %}{% if view.layout.fullWidth %}layout--fullwidth {% endif %}" lang="en-GB">
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -53,7 +53,7 @@
 
         {% block headscripts %}{% endblock %}
     </head>
-    <body itemscope itemtype="http://schema.org/WebPage" class="layout {% if view.layout.iframed %}layout--iframed {% endif %}{% if view.layout.blankPage %}layout--blankpage {% endif %}{% if view.layout.fullWidth %}layout--fullwidth {% endif %}">
+    <body itemscope itemtype="http://schema.org/WebPage">
 
         {% if flags.tracking %}
         <script src="http://s2.ft-static.com/scripts/392b9acc/bundles/tracking.js"></script>
@@ -64,10 +64,10 @@
         {% endif %}
 
         {% block header%}
-        {% include "./masthead.html" %}
+        {% include "./site-header.html" %}
         {% endblock %}
 
-        <main class="layout__container layout__container--main o-ft-typography-article-body-wrapper">
+        <main class="layout__container layout__container--main">
         {% block content %}{% endblock %}
         </main>
         
