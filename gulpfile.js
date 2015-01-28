@@ -1,4 +1,5 @@
 var fs = require('fs');
+var _ = require('lodash');
 
 var gulp = require('gulp');
 var autoprefixer = require('gulp-autoprefixer');
@@ -21,7 +22,7 @@ var browserify = require('browserify');
 var watchify = require('watchify');
 var debowerify = require('debowerify');
 var envify = require('envify');
-
+var dotenv = require('dotenv');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var rimraf = require('rimraf');
@@ -29,6 +30,9 @@ var dev = false;
 
 process.stdin.setMaxListeners(0);
 process.stdout.setMaxListeners(0);
+
+dotenv.load();
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 gulp.task('default', ['lint', 'rev']);
 
@@ -40,7 +44,6 @@ gulp.task('default', ['lint', 'rev']);
 //   - codeship or travis
 // CDNify urls in js and css
 // Haikro
-//   - move deps to devdeps
 //   - build packs
 
 gulp.task('sass', function() {
@@ -68,11 +71,9 @@ function createBrowserify(watch) {
     b = watchify(b);
   }
 
+  var e = _.assign({}, process.env, {_: 'purge'});
   b.transform('debowerify')
-  b.transform('envify', {
-    _: 'purge',
-    NODE_ENV: process.env.NODE_ENV || 'development'
-  });
+  b.transform('envify', e);
 
 // Transforms we might need here
 // Browserify-shim for JS libs without commonsJS.
@@ -159,22 +160,26 @@ gulp.task('lint', ['jshint', 'scsslint'], function(cb) {
 gulp.task('dev', function(cb){dev = true;cb();});
 
 gulp.task('watch', ['dev', 'sass'], function() {
+
   gulp.watch('./public/**/*.*').on('change', livereload.changed);
   gulp.watch('./client/scss/**/*.scss', ['sass']);
+
   createBrowserify(true).once('file', function(){
+
     livereload.listen();
     nodemon({
       script: 'app.js',
       nodeArgs: ['--harmony'],
       quiet: true,
-      delay: 0.5,
-      watch: 'server',
-      ext: 'js,json,html,csv'
+      delay: 0.1,
+      watch: ['server', 'templates', 'app.js'],
+      ext: 'js,json,html'
     })
     .on('start', function(a) {
       setTimeout(function(){
         livereload.changed(a);
-      }, 1010);
+      }, 1000);
     })
+
   }).end();
 });
