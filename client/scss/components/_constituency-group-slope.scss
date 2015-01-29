@@ -8,14 +8,14 @@
 
   &__details {
     p {
-      line-height: 1.25;
       @include oGridRemoveGutters();
+      line-height: 1.25;
       @include oGridRespondTo(S) {
         @include oGridRemoveGutters('left');
       }
     }
     &.o-grid-row {
-      margin-left:  auto;
+      margin-left: auto;
       margin-right: auto;
     }
   }
@@ -24,7 +24,7 @@
     @include oGridRemoveGutters('left');
     border: 1px solid black;
     line-height: 0;
-    margin-bottom: .5em;
+    margin-bottom: 0.5em;
     img {
       width: 100%;
       height: auto;
@@ -55,9 +55,9 @@
     border: 1px solid black;
 
     svg {
+      @include absolute(fill);
       display: inline-block;
       overflow: hidden;
-      @include absolute(fill);
     }
   }
 }

@@ -1,7 +1,7 @@
 .article-body {
+  @include oColorsFor(body, text);
   font-family: $font-article-body;
   font-size: 16px;
-  @include oColorsFor(body, text);
 
   & > * {
     max-width: 630px;
@@ -9,12 +9,12 @@
   }
 
   & > .o-grid-row {
-    margin-left:  auto;
+    margin-left: auto;
     margin-right: auto;
   }
 
   p {
-    margin-top:    0;
+    margin-top: 0;
     margin-bottom: 0;
     padding-bottom: 1em;
     max-width: 630px;
@@ -31,15 +31,15 @@
   }
 
   &__subhead {
+    @include oColorsFor(title, text);
 
-    margin-top:    1em;
+    margin-top: 1em;
     margin-bottom: 0;
-    padding-top:    0;
+    padding-top: 0;
     padding-bottom: 0.1em;
 
     font-family: $font-heading;
     font-weight: normal;
-    @include oColorsFor(title, text);
 
     &h2 { font-size: 1.5em;  }
 

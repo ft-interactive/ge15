@@ -6,7 +6,7 @@ $o-fonts-is-silent: false;
 $o-grid-is-silent: false;
 $o-header-is-silent: false;
 $o-colors-is-silent: true;
-$o-grid-debug-mode: true;
+$o-grid-debug-mode: false;
 
 @include oAssetsSetModulePaths((
   o-footer: '//build.origami.ft.com/files/o-ft-footer@^2.0.4',

@@ -28,12 +28,12 @@ function enable() {
 function pinHeader () {
   primaryEl.classList.remove('o-header--unpinned');
   primaryEl.classList.add('o-header--pinned');
-};
+}
 
 function unpinHeader () {
   primaryEl.classList.add('o-header--unpinned');
   primaryEl.classList.remove('o-header--pinned'); 
-};
+}
 
 function disable() {
   if (headroom) {

@@ -19,10 +19,10 @@
   }
 
   &__footer {
+    @include oColorsFor(muted, text);
     border-top: 1px solid oColorsGetPaletteColor(pink-tint2);
     font-size: 0.8em;
     padding: 0;
-    @include oColorsFor(muted, text);
   }
 
 }

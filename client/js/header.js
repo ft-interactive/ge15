@@ -3,14 +3,12 @@
 var sticky = require('./sticky');
 var Delegate = require('dom-delegate');
 var header = document.querySelector('.o-header');
-var headerContainer = document.querySelector('.o-header__container--primary');
 var defaultPanel = header.getAttribute('data-o-header-default-panel');
 var delegate = new Delegate(header);
 var bodyDelegate = new Delegate();
 var scrollPosition;
 
 function openPanel(panel) {
-  var container = document.querySelector('.o-header__container--primary');
   header.setAttribute('data-o-header-current-panel', panel);
   if (defaultPanel && defaultPanel === panel) {
     sticky.enable();
@@ -26,7 +24,6 @@ function openPanel(panel) {
 
 function closePanel() {
   header.removeAttribute('data-o-header-current-panel');
-  document.querySelector('.o-header__container--primary');
   sticky.enable();
   if (scrollPosition) {
     window.scrollTo(0, scrollPosition);

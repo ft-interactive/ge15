@@ -34,16 +34,9 @@
 .o-header__primary__right {
   width: 58px;
   border: 1px solid oColorsGetPaletteColor(pink-tint3);
-  border-color: rgba(0,0,0,.05);
-  border-top: none;
-  border-bottom: none;
-  a {
-    color: rgba(0,0,0,0.35);
-    cursor: pointer;
-    .o-hoverable-on &:hover {
-      color: #111;
-    }
-  }
+  border-color: rgba(0, 0, 0, 0.05);
+  border-top: 0;
+  border-bottom: 0;
 
   @include oGridRespondTo(S) {
     width: 80px;
@@ -52,14 +45,22 @@
   @include oGridRespondTo(M) {
     width: 180px;
   }
+
+  a {
+    color: rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+    .o-hoverable-on &:hover {
+      color: #111111;
+    }
+  }
 }
 
 .o-header__primary__left {
-  border-left: none;
+  border-left: 0;
 }
 
 .o-header__primary__right {
-  border-right: none;
+  border-right: 0;
 }
 
 .o-header__primary-link {
@@ -70,18 +71,19 @@
     margin-left: 4px;
     font-size: 12px;
     text-transform: uppercase;
-    .o-hoverable-on &:hover {
-      color: #000000;
-    }
 
     @include oGridRespondTo($until:M) {
       display: none;
     }
-    
+
+    .o-hoverable-on &:hover {
+      color: #000000;
+    }
+
   }
 
   & + & {
-    padding-left: 5px
+    padding-left: 5px;
   }
 
 }
@@ -89,7 +91,7 @@
 .o-header__logo {
   margin: 0;
 
-  a{
+  a {
     padding: 6px 8px;
     display: inline-block;
     
@@ -97,15 +99,15 @@
       padding: 8px 10px;
     }
 
-    .o-header__container &,
-    .o-hoverable-on .o-header__container & {
-      opacity: 0.8;
-      
-      &:focus,
-      .o-hoverable-on &:hover {
-        opacity: 1;
-      }
-    }
+    // .o-header__container &,
+    // .o-hoverable-on .o-header__container & {
+    //   opacity: 0.8;
+
+    //   &:focus,
+    //   .o-hoverable-on &:hover {
+    //     opacity: 1;
+    //   }
+    // }
   }
 
   img {
@@ -196,7 +198,7 @@ $uber-nav-item-height: 39px;
 }
 
 .uber-index__child a {
-  color: #6B655E;
+  color: #6b655e;
   font-size: 14px;
 }
 
