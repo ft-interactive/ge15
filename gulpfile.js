@@ -178,6 +178,9 @@ gulp.task('watch', ['dev', 'sass'], function() {
     .on('start', function(a) {
       setTimeout(function(){
         livereload.changed(a);
+        if (process.argv.indexOf('--open') > -1) {
+          require('opn')('http://0.0.0.0:' + (process.env.PORT || 3000));
+        }
       }, 1000);
     })
 
