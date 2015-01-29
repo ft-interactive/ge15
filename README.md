@@ -78,3 +78,27 @@ If you want to see the app working locally as it would run on the server do this
 ```shell
 $ npm run local
 ```
+
+## Build and Deploy
+
+You cannot use Heroku's git interface for deployment, you also cannot deploy directly to production. Instead we use [Haikro](https://github.com/matthew-andrews/haikro) to make the slug on the [CI server (Codeship)](https://codeship.com/projects/1503) and the deploy to Heroku.
+
+### Codeship (Continuous Integration / CI)
+
+[Codeship](https://codeship.com/projects/1503) watches for git commits on ANY branch and builds the app. The build will pass or fail. The result will be reported on the "election-2015" slack channel.
+
+All successful build on the master branch will get deployed to the [CI instance of the app](http://uk-election-2015-ci.herokuapp.com/).
+
+When what you see in the CI app good to go then you need to promote to production:
+
+```
+$ heroku pipeline:promote -a uk-election-2015-ci
+```
+
+### Production
+
+The DNS records for http://elections.ft.com points to a Fastly Varnish server.
+
+[Fastly currently routes all traffic](https://app.fastly.com/#configure/service/656lsqYifRuigSP96daQvp) to the main Heroku server:
+
+http://uk-election-2015.herokuapp.com/
