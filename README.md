@@ -2,9 +2,9 @@
 
 ## Developing the app
 
-You only need to do steps 1-5 the first time you install. Then repeat step 6.
+You only need to do steps 1-5 the first time you install. Then repeat step 6 during development.
 
-### 1. Correct version of node
+### 1. Get the correct version of node
 
 Ensure you have version 0.11.13 of Node.js.
 
@@ -53,7 +53,7 @@ This will create a local db called ge15. Now fill it with some data.
 $ DATABASE_URL=postgres://`whoami`@localhost:5432/ge15 node --harmony server/data/load
 ```
 
-### Create a `.env` file
+### 5. Create a `.env` file
 
 To begin with you just need to point the app a your database.
 
@@ -68,6 +68,10 @@ To run the app locally (in development mode) and watch for file changes do this:
 ```shell
 $ gulp watch
 ```
+
+The browser will reload when there are serverside code changes, client JS changes or CSS/SASS changes.
+
+### Also...
 
 If you want to see the app working locally as it would run on the server do this:
 
