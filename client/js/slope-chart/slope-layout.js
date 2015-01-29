@@ -1,11 +1,13 @@
+'use strict';
+
 function slopeLayout(){
   var startAccessor = function(d){
     return d.start;
-  }
+  };
 
   var endAccessor = function(d){
     return d.start;
-  }
+  };
 
   var scale = d3.scale.linear();
 
@@ -16,28 +18,28 @@ function slopeLayout(){
         slopeEnd:scale( endAccessor(d) ),
         data:d
       };
-    })
+    });
   }
 
   slopeData.start = function(f){
     startAccessor = f;
     return slopeData;
-  }
+  };
 
   slopeData.end = function(f){
     endAccessor = f;
     return slopeData;
-  }
+  };
 
   slopeData.domain = function(a){
     scale.domain(a);
     return slopeData;
-  }
+  };
 
   slopeData.range = function(a){
     scale.range(a);
     return slopeData;
-  }
+  };
 
   return slopeData;
 }
