@@ -69,6 +69,8 @@ To run the app locally (in development mode) and watch for file changes do this:
 $ gulp watch
 ```
 
+Then open the site at [localhost:3000](http://localhost:3000/) (unless you've set a different port in your `.env` file). You can also do `$ gulp watch --open` to open your browser automatically when it's ready.
+
 The browser will reload when there are serverside code changes, client JS changes or CSS/SASS changes.
 
 ### Also...
