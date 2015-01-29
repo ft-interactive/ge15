@@ -1,3 +1,3 @@
 #!/bin/sh
 createuser
-createdb-Eutf8 ge15
+createdb -Eutf8 ge15
