@@ -1,3 +1,7 @@
+'use strict';
+
+var d3 = require('d3');
+
 function slopeChart(){
   var startClass = d3.functor('start-point');
   var endClass = d3.functor('end-point');
@@ -49,39 +53,33 @@ function slopeChart(){
   chart.radius = function(f){
     radius = d3.functor(f);
     return chart;
-  }
+  };
 
   chart.slopeClass = function(f){
     slopeClass = d3.functor(f);
     return chart;
-  }
+  };
 
   chart.startClass = function(f){
     startClass = d3.functor(f);
     return chart;
-  }
+  };
 
   chart.endClass = function(f){
     endClass = d3.functor(f);
     return chart;
-  }
+  };
 
   chart.width = function(x){
     width = d3.functor(x);
     return chart;
-  }
-
-  chart.label = function(f){
-    label = f;
-    return chart;
-  }
-
+  };
   chart.labelClass = function(f){
     labelClass = f;
     return chart;
-  }
+  };
 
-  return chart
+  return chart;
 }
 
 module.exports = slopeChart;
