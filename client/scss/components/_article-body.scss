@@ -1,9 +1,9 @@
-
-
 .article-body {
-  @include oColorsFor(body, text);
-  font-family: $font-article-body;
+  /* @include oColorsFor(body, text); */
+  // use slightly darker body text than Origami suggests
+  color: #222;
 
+  font-family: $font-article-body;
 
   & > * {
     margin: 0 auto;
@@ -28,7 +28,10 @@
 
   & > *,
   & > p {
-    max-width: $copy-width-medium;
+    max-width: $copy-width-large;
+    @include oGridRespondTo($until: L) {
+      max-width: $copy-width-medium;
+    }
     @include oGridRespondTo($until: M) {
       max-width: $copy-width-small;
     }
