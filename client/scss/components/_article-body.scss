@@ -1,10 +1,11 @@
+
+
 .article-body {
   @include oColorsFor(body, text);
   font-family: $font-article-body;
-  font-size: 16px;
+
 
   & > * {
-    max-width: 630px;
     margin: 0 auto;
   }
 
@@ -17,9 +18,23 @@
     margin-top: 0;
     margin-bottom: 0;
     padding-bottom: 1em;
-    max-width: 630px;
     font-size: 1em;
     line-height: 1.5;
+    max-width: $copy-width-medium;
+    @include oGridRespondTo($until: S) {
+      line-height: 1.4;
+    }
+  }
+
+  & > *,
+  & > p {
+    max-width: $copy-width-medium;
+    @include oGridRespondTo($until: M) {
+      max-width: $copy-width-small;
+    }
+    @include oGridRespondTo($until: S) {
+      max-width: $copy-width-x-small;
+    }
   }
 
   a {
@@ -41,14 +56,14 @@
     font-family: $font-heading;
     font-weight: normal;
 
-    &h2 { font-size: 1.5em;  }
+    &h2 { font-size: 1.38em;  }
 
-    &h3 { font-size: 1.22em; }
+    &h3 { font-size: 1.3em; }
 
-    &h4 { font-size: 1.15em; }
+    &h4 { font-size: 1.22em; }
 
     &h5,
-    &h6 { font-size: 1.05em; }
+    &h6 { font-size: 1.105em; }
 
   }
 }

@@ -1,3 +1,20 @@
+$copy-width-x-small: 93%;
+$copy-width-small: 88%;
+$copy-width-medium: 650px;
+$copy-size-x-small: 16px;
+$copy-size-small: 17px;
+$copy-size-medium: 18px;
+
 .article {
+
+  font-size: $copy-size-medium;
+
+  @include oGridRespondTo($until: M) {
+    font-size: $copy-size-small;
+  }
+
+  @include oGridRespondTo($until: S) {
+    font-size: $copy-size-x-small;
+  }
 
 }

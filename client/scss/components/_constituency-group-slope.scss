@@ -9,7 +9,7 @@
   &__details {
     p {
       @include oGridRemoveGutters();
-      line-height: 1.25;
+      line-height: 1.15;
       @include oGridRespondTo(S) {
         @include oGridRemoveGutters('left');
       }
@@ -34,16 +34,15 @@
   &__constituency-name {
     height: 36px;
     max-width: 90%;
-    line-height: 1.1;
-    font-size: 0.75em;
+    line-height: 1.05;
+    font-size: 0.78em;
     @include oGridRespondTo(S) {
-      line-height: 1.15;
       font-size: 0.8em;
       color: lighten(oColorsGetColorFor(body, text), 3%);
     }
     @include oGridRespondTo(M) {
-      height: 30px;
-      max-width: 80%;
+      height: 34px;
+      max-width: 85%;
       color: lighten(oColorsGetColorFor(body, text), 10%);
     }
   }

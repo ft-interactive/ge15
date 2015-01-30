@@ -2,9 +2,17 @@
 
   margin-top: 1em;
   margin-bottom: 1em;
-
   font-family: $font-body;
-  font-size: 15px;
+  font-size: round($copy-size-medium * 0.9);
+
+  @include oGridRespondTo($until: M) {
+    font-size: round($copy-size-small * 0.9);
+  }
+
+  @include oGridRespondTo($until: S) {
+    font-size: round($copy-size-x-small * 0.9);
+  }
+
 
   &__title {
     border-top: 4px solid oColorsGetPaletteColor(pink-tint2);
