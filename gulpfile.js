@@ -1,3 +1,5 @@
+'use strict';
+
 var fs = require('fs');
 var _ = require('lodash');
 
@@ -20,11 +22,8 @@ var gutil = require('gulp-util');
 
 var browserify = require('browserify');
 var watchify = require('watchify');
-var debowerify = require('debowerify');
-var envify = require('envify');
 var dotenv = require('dotenv');
 var source = require('vinyl-source-stream');
-var buffer = require('vinyl-buffer');
 var rimraf = require('rimraf');
 var dev = false;
 
@@ -38,13 +37,7 @@ gulp.task('default', ['lint', 'rev']);
 
 // TODO:
 // svg minification
-// Revving
-//  - html, css, js need to refer to revved files.
-// CI Build
-//   - codeship or travis
 // CDNify urls in js and css
-// Haikro
-//   - build packs
 
 gulp.task('sass', function() {
   var style = dev ? 'expanded' : 'compressed';
@@ -72,7 +65,7 @@ function createBrowserify(watch) {
   }
 
   var e = _.assign({}, process.env, {_: 'purge'});
-  b.transform('debowerify')
+  b.transform('debowerify');
   b.transform('envify', e);
 
 // Transforms we might need here
@@ -97,7 +90,7 @@ function createBrowserify(watch) {
 
   b.end = function() {
     return rebundle();
-  }
+  };
 
   return b;
 }
@@ -181,8 +174,8 @@ gulp.task('watch', ['dev', 'sass'], function() {
         if (process.argv.indexOf('--open') > -1) {
           require('opn')('http://0.0.0.0:' + (process.env.PORT || 3000));
         }
-      }, 1000);
-    })
+      }, 1100);
+    });
 
   }).end();
 });
