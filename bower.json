@@ -22,7 +22,8 @@
     "o-date": "~1.1.0",
     "o-footer": "Financial-Times/o-ft-footer#3.0.0-beta.2",
     "o-header": "Financial-Times/o-ft-header#3.0.0-beta.1",
-    "dom-delegate": "~2.0.3"
+    "dom-delegate": "~2.0.3",
+    "o-ft-typography": "~1.16.0"
   },
   "resolutions": {
     "o-grid": ">=3.0.0-beta.5",
