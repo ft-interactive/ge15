@@ -11,7 +11,7 @@
         <meta name="author" content="FT Interactive Graphics" />
 
         {# addScript function #}
-        <script>function addScript(src,async,defer){var o=document.createElement('script');if(async){o.async=true;}if(defer){o.defer=true;}o.src=src;var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(o, s);return s;}</script>
+        <script>function addScript(src,async,defer){var o=document.createElement('script');o.src=src;o.async=!!async;o.defer=!!defer;var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(o, s);return o;}</script>
 
         {# start chartbeat timer #}
         <script>var _sf_startpt=(new Date()).getTime()</script>
