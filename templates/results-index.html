@@ -191,7 +191,10 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
     width = 180,
     height = 80,
     margin = {top:10,left:10,bottom:10,right:80},
-    slopeHeight = height - (margin.top + margin.bottom);
+    slopeHeight = height - (margin.top + margin.bottom),
+    slopeScale = d3.scale.linear()
+      .domain([0,70])
+      .range([slopeHeight,0]);
 
     var layout = graphics.slope.layout()
       .start(function(d){
@@ -199,9 +202,7 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
       })
       .end(function(d){
         return d.resultprediction;
-      })
-      .domain([0,70])
-      .range([slopeHeight,0]);
+      });
 
     var SVGSlope = graphics.slope.svg()
       .width(70)
@@ -222,7 +223,8 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
         if( i==0 ){
           return partyShortName[d.data.party];
         }
-      });
+      })
+      .scale(slopeScale);
 
       function status(response) {
         if (response.status >= 200 && response.status < 300) {
@@ -276,14 +278,23 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
               .attr({'class':'o-grid-row'});
 
 
-        var divs = g.selectAll('div.constituency').data(function(d){
+        var container = g.selectAll('div.constituency').data(function(d){
           return d.constituencies;
         }).enter()
           .append('div').attr({
             'class':'constituency-group__slope',
             'data-o-grid-colspan':'4 M3 L2 XL2'
-          }).append('div').attr({
+          })
+
+        divs = container.append('div').attr({
             'class':'constituency-group__slope-graphic'
+          });
+
+        container.append('div')
+          .attr({
+            'class':'constituency-group__constituency-name'
+          }).text(function(d){
+            return d.name;
           });
 
         divs.append('svg').attr({
@@ -305,12 +316,7 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
               .call(SVGSlope)
         });
 
-        divs.append('div')
-          .attr({
-            'class':'constituency-group__constituency-name'
-          }).text(function(d){
-              return d.name;
-            });
+
       }
 
     window.redrawSlopes = function(){
