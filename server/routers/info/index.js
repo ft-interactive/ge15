@@ -6,7 +6,7 @@ function* gtg(next) {
 }
 
 function* home(next) {
-  this.redirect('/uk/2015/results/');
+  this.redirect('/uk/2015/forecast/');
   this.status = 302;
 }
 
