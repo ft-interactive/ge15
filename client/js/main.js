@@ -1,7 +1,7 @@
 'use strict';
 
-//require('./header.js');
 require('fetch');
+require('./header.js');
 
 document.graphics = {};
 document.graphics.slope = require('./slope-chart/index.js');
