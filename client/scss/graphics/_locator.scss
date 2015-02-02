@@ -1,0 +1,62 @@
+@import "graphics/parties";
+
+.subunit.SCT ,
+.subunit.WLS ,
+.subunit.NIR ,
+.subunit.ENG { fill: rgba(0,0,0,0.05); }
+
+.subunit.IRL { fill: rgba(0,0,0,0.02); }
+
+
+.subunit-boundary {
+  fill: none;
+  stroke: rgba(0,0,0,0.1);
+  stroke-linejoin: round;
+}
+
+.subunit-boundary.IRL {
+  fill: none;
+  stroke: none;
+}
+
+.constituency-point{
+  .c{
+    fill:$conservative-dark;
+    stroke:$conservative-dark;
+  }
+
+  .lab{
+    fill:$labour-dark;
+    stroke:$labour-dark;
+  }
+
+  .ld{
+    fill:$liberal-democrat-dark;
+    stroke:$liberal-democrat-dark;
+  }
+
+  .ukip{
+    fill:$ukip-dark;
+    stroke:$ukip-dark;
+  }
+
+  .snp{
+    fill:$snp-dark;
+    stroke:$snp-dark;
+  }
+
+  .pc{
+    fill:$plaid-cymru-dark;
+    stroke:$plaid-cymru-dark;
+  }
+
+  .green{
+    fill:$green-dark;
+    stroke:$green-dark;
+  }
+
+  .other{
+    fill:$other-dark;
+    stroke:$other-dark;
+  }
+}

@@ -1,0 +1,44 @@
+@import "graphics/parties";
+
+td{
+  text-align:right;
+  padding:5px;
+
+  .rowhead{
+    font-weight:bold;
+  }
+
+  .c{
+    background:$conservative;
+  }
+
+  .ld{
+    background:$liberal-democrat;
+  }
+
+  .lab{
+    background:$labour;
+  }
+
+  .snp{
+    background:$snp;
+  }
+  .pc{
+    background:$plaid-cymru;
+  }
+  .ukip{
+    background:$ukip;
+  }
+  .green{
+    background:$green;
+  }
+  .sf{
+    background:$sinn-fein;
+  }
+  .dup{
+    background:$dup;
+  }
+  .sdlp{
+    background:$sdlp;
+  }
+}

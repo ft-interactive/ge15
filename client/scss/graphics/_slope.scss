@@ -1,0 +1,58 @@
+@import "graphics/parties";
+
+line{
+  stroke-width:2;
+  stroke:#000;
+}
+
+.slope{
+  stroke-width:2;
+}
+
+.end-point, .start-point{
+  stroke-opacity:0;
+}
+
+.c{
+  fill:$conservative-dark;
+  stroke:$conservative-dark;
+}
+
+.lab{
+  fill:$labour-dark;
+  stroke:$labour-dark;
+}
+
+.ld{
+  fill:$liberal-democrat-dark;
+  stroke:$liberal-democrat-dark;
+}
+
+.ukip{
+  fill:$ukip-dark;
+  stroke:$ukip-dark;
+}
+
+.snp{
+  fill:$snp-dark;
+  stroke:$snp-dark;
+}
+
+.pc{
+  fill:$plaid-cymru-dark;
+  stroke:$plaid-cymru-dark;
+}
+
+.green{
+  fill:$green-dark;
+  stroke:$green-dark;
+}
+
+.other{
+  fill:$other-dark;
+  stroke:$other-dark;
+}
+
+text.slope-label{
+  stroke:none;
+}
