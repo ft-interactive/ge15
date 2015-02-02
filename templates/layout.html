@@ -38,7 +38,8 @@
         <script>
         if (cutsTheMustard) {
             addScript('//cdn.polyfill.io/v1/polyfill.min.js', false, false);
-            addScript('{{ asset("js/common.js") }}', true, true);
+            addScript('{{ asset("js/vendor.js") }}', false, true);
+            addScript('{{ asset("js/common.js") }}', false, true);
         } else {
             addScript('//cdn.polyfill.io/v1/polyfill.min.js?features=Document', false, false);
         }
@@ -70,7 +71,7 @@
         <main class="layout__container layout__container--main">
         {% block content %}{% endblock %}
         </main>
-        
+
         {% block footer%}
         {% include "./site-footer.html" %}
         {% endblock %}

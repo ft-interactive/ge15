@@ -1,7 +1,9 @@
 /* global Headroom */
 
 'use strict';
+
 require('headroom.js');
+
 var primaryEl = document.querySelector('.o-header__container--primary');
 var headroom;
 
@@ -32,7 +34,7 @@ function pinHeader () {
 
 function unpinHeader () {
   primaryEl.classList.add('o-header--unpinned');
-  primaryEl.classList.remove('o-header--pinned'); 
+  primaryEl.classList.remove('o-header--pinned');
 }
 
 function disable() {

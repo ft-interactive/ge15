@@ -58,13 +58,27 @@ gulp.task('sass', function() {
 });
 
 function createBrowserify(watch) {
-  var b = browserify({entries: ['./client/js/main.js'], debug: dev}, watch ? watchify.args : undefined);
+  var o = {
+    entries: ['./client/js/main.js'],
+    debug: dev
+  };
+  var b = browserify(o, watch ? watchify.args : undefined);
 
   if (watch) {
     b = watchify(b);
   }
 
   var e = _.assign({}, process.env, {_: 'purge'});
+
+  b.external([
+    'headroom.js',
+    'dom-delegate',
+    'o-date',
+    'fetch',
+    'topojson',
+    'd3'
+  ]);
+
   b.transform('debowerify');
   b.transform('envify', e);
 
@@ -94,6 +108,32 @@ function createBrowserify(watch) {
 
   return b;
 }
+
+gulp.task('vendor', function() {
+
+  var b = browserify({
+    debug: dev
+  });
+
+  b.transform('debowerify');
+
+  b.require([
+    {file:'./bower_components/headroom.js/dist/headroom.js', expose:'headroom.js'},
+    {file:'./bower_components/dom-delegate/lib/delegate.js', expose:'dom-delegate'},
+    {file:'./bower_components/o-hoverable/main.js', expose:'o-hoverable'},
+    {file:'./bower_components/o-date/main.js', expose:'o-date'},
+    {file:'./bower_components/fetch/fetch.js', expose:'fetch'},
+    {file:'./bower_components/topojson/topojson.js', expose:'topojson'},
+    'd3'
+  ]);
+
+
+  var stream = b.bundle().pipe(source('vendor.js'));
+
+  stream.pipe(gulp.dest('./public/js'));
+
+  return stream;
+});
 
 gulp.task('js', function() {
   var b = createBrowserify(false);
@@ -152,7 +192,7 @@ gulp.task('lint', ['jshint', 'scsslint'], function(cb) {
 
 gulp.task('dev', function(cb){dev = true;cb();});
 
-gulp.task('watch', ['dev', 'sass'], function() {
+gulp.task('watch', ['dev', 'sass', 'vendor'], function() {
 
   gulp.watch('./public/**/*.*').on('change', livereload.changed);
   gulp.watch('./client/scss/**/*.scss', ['sass']);

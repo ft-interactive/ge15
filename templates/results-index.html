@@ -28,11 +28,12 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-<script src="http://d3js.org/queue.v1.min.js"></script>
-<script src="http://d3js.org/topojson.v1.min.js"></script>
 
 <script>
+
+var d3 = require('d3');
+var topojson = require('topojson');
+
 //NOTE this stuff should all be browserified etc. in good time
 //SLOPE
 document.addEventListener('o.DOMContentLoaded', function() {
@@ -375,10 +376,24 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
         }
       });
 
-      queue()
-        .defer(d3.json, dataURL)
-        .defer(d3.json, mapURL)
-        .await(gotData);
+      function status(response) {
+        if (response.status >= 200 && response.status < 300) {
+          return Promise.resolve(response)
+        } else {
+          return Promise.reject(new Error(response.statusText))
+        }
+      }
+
+      function toJson(response) {
+        return response.json();
+      }
+
+      Promise.all([
+        fetch(dataURL).then(status).then(toJson),
+        fetch(mapURL).then(status).then(toJson),
+      ]).then(function onData(responses) {
+        gotData(undefined, responses[0], responses[1])
+      });
 
       function gotData(error, data, map){
         var groups = constituencySlopeData(data);

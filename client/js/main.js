@@ -1,6 +1,5 @@
 'use strict';
 
-require('o-hoverable');
 require('./header.js');
 require('fetch');
 
