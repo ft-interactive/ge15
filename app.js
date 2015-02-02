@@ -1,4 +1,5 @@
 'use strict';
+
 var app = require('./server')();
 var http = require('http');
 var server = http.createServer(app.callback());
