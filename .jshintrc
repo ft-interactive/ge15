@@ -14,6 +14,9 @@
     "esnext": true,
     "expr": true,
     "gcl": true,
+    "globals": {
+      "fetch": true
+    },
     "globalstrict": true,
     "lastsemic": true,
     "multistr": true,

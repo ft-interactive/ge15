@@ -24,6 +24,8 @@
     "o-header": "Financial-Times/o-ft-header#3.0.0-beta.1",
     "dom-delegate": "~2.0.3",
     "o-ft-typography": "~1.16.0"
+    "topojson": "~1.6.18",
+    "fetch": "~0.7.0"
   },
   "resolutions": {
     "o-grid": ">=3.0.0-beta.6",
