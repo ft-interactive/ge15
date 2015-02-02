@@ -189,9 +189,10 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
     var graphics = document.graphics,
 
     width = 180,
-    height = 80,
-    margin = {top:10,left:10,bottom:10,right:80},
+    height = 100,
+    margin = {top:2,left:2,bottom:10,right:80},
     slopeHeight = height - (margin.top + margin.bottom),
+    slopeWidth = width - (margin.left + margin.right),
     slopeScale = d3.scale.linear()
       .domain([0,70])
       .range([slopeHeight,0]);
@@ -205,7 +206,7 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
       });
 
     var SVGSlope = graphics.slope.svg()
-      .width(70)
+      .width(slopeWidth)
       .radius(2)
       .endClass(function(d){
         return  ' end-point ' +d.data.party;
@@ -320,9 +321,19 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
       }
 
     window.redrawSlopes = function(){
-      SVGSlope.width(30);
+      //Resize the SVG
+      var size = d3.select('.constituency-group__slope-graphic').node().getBoundingClientRect()
+      slopeHeight = size.height - (margin.top + margin.bottom);
+      slopeWidth = size.width - (margin.left + margin.right);
+      slopeScale.domain([0, slopeHeight]);
+
+      SVGSlope
+        .width(slopeWidth)
+        .scale(slopeScale)
+
       var chartSVGs = d3.selectAll('svg.slope-chart').each(function(d,i){
-        var slopes = d3.select(this).selectAll('g.slope').call(SVGSlope.reposition);
+        var svg = d3.select(this);
+        var slope = svg.selectAll('g.slope').call(SVGSlope.reposition);
       });
 
     }
@@ -332,32 +343,35 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
 
 </script>
 
+<!-- REFACTOR stuff below here... -->
+
 <script>
 
 function dataTable(g){
   var table = g.append('div')
-  .attr({
-    'class':'constituency-group__data',
-    'data-o-grid-colspan':12
-  })
-  .append('table')
+    .attr({
+      'class':'constituency-group__data',
+      'data-o-grid-colspan':12
+    })
+    .append('table');
 
-  table.append('thead').html('<tr><th></th><th>Gain</th><th>Loss</th><th>Hold</th></tr>')
+  table.append('thead').html('<tr><th></th><th>Gain</th><th>Loss</th><th>Hold</th></tr>');
+
   table.append('tbody')
-  .selectAll('tr').data(function(d){
-    return toArray(d.partychanges,'party','total').sort(function(a,b){
-      var aMag = (a.gain + a.loss);
-      var bMag = (b.gain + b.loss);
-      if(aMag>bMag) return -1;
-      if(aMag<bMag) return 1;
-      if(a.party>b.party) return 1;
-      if(a.party<b.party) return -1;
-      return 0;
+    .selectAll('tr').data(function(d){
+      return toArray(d.partychanges,'party','total').sort(function(a,b){
+        var aMag = (a.gain + a.loss);
+        var bMag = (b.gain + b.loss);
+        if(aMag>bMag) return -1;
+        if(aMag<bMag) return 1;
+        if(a.party>b.party) return 1;
+        if(a.party<b.party) return -1;
+        return 0;
+      });
+    })
+    .enter().append('tr').html(function(d){
+      return '<td class="' + d.party + ' rowhead">'+partyShortName[d.party]+'</td><td>+'+d.gain+'</td><td>-'+d.loss+'</td><td>'+d.hold+'</td>';
     });
-  })
-  .enter().append('tr').html(function(d){
-    return '<td class="' + d.party + ' rowhead">'+partyShortName[d.party]+'</td><td>+'+d.gain+'</td><td>-'+d.loss+'</td><td>'+d.hold+'</td>';
-  });
 }
 
 //utility function for converting an object into and array, each keyed value becoming an element
@@ -375,6 +389,7 @@ function toArray(o, keyname, ignorekeys){
 }
 
 </script>
+
 
 
 <script>
