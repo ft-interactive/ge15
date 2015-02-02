@@ -184,8 +184,6 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
 
   function loaded(){
     console.log('graphics', document.graphics.slope);
-
-
     var graphics = document.graphics,
     mapURL = 'https://gist.githubusercontent.com/tomgp/8defaceafdce7a11cc7a/raw/991ac83d5a6905b7946fd49ce8bd71a1c986de4c/simplemap.topojson',
     partyShortName = {'lab':'Lab','c':'Con','ld':'LD','green':'Grn','ukip':'UKIP','snp':'SNP','dup':'DUP','sf':'SF','pc':'PC','alliance':'A'},
@@ -314,7 +312,7 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
           .append('circle')
           .attr({
             'class':function(d){
-              return 'constituency-point ' + (d.holderpredicted) + '-dark';
+              return 'constituency-point ' + (d.holderpredicted);
             },
             'r':2,
             'transform':function(d){
