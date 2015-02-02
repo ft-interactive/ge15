@@ -25,6 +25,7 @@ var watchify = require('watchify');
 var dotenv = require('dotenv');
 var source = require('vinyl-source-stream');
 var rimraf = require('rimraf');
+var resolve = require('resolve');
 var dev = false;
 
 process.stdin.setMaxListeners(0);
@@ -71,15 +72,15 @@ function createBrowserify(watch) {
   var e = _.assign({}, process.env, {_: 'purge'});
 
   b.external([
-    'headroom.js',
-    'dom-delegate',
-    'o-date',
-    'fetch',
-    'topojson',
+    resolve.sync('./bower_components/headroom.js/dist/headroom.js'),
+    resolve.sync('./bower_components/dom-delegate/lib/delegate.js'),
+    resolve.sync('./bower_components/o-date/main.js'),
+    resolve.sync('./bower_components/fetch/fetch.js'),
+    resolve.sync('./bower_components/topojson/topojson.js'),
     'd3'
   ]);
 
-  b.transform('debowerify');
+  // b.transform('debowerify');
   b.transform('envify', e);
 
 // Transforms we might need here
@@ -115,8 +116,6 @@ gulp.task('vendor', function() {
     debug: dev
   });
 
-  b.transform('debowerify');
-
   b.require([
     {file:'./bower_components/headroom.js/dist/headroom.js', expose:'headroom.js'},
     {file:'./bower_components/dom-delegate/lib/delegate.js', expose:'dom-delegate'},
@@ -126,7 +125,6 @@ gulp.task('vendor', function() {
     {file:'./bower_components/topojson/topojson.js', expose:'topojson'},
     'd3'
   ]);
-
 
   var stream = b.bundle().pipe(source('vendor.js'));
 
@@ -138,8 +136,6 @@ gulp.task('vendor', function() {
 gulp.task('js', function() {
   var b = createBrowserify(false);
   b.transform('stripify');
-// Transforms we might need here
-// exposify - if we want to use scripts included via script tags (perhaps via transfigurify)
   return b.end();
 });
 
