@@ -74,6 +74,12 @@ function slopeChart(){
     width = d3.functor(x);
     return chart;
   };
+
+  chart.label = function(f){
+    label = f;
+    return chart;
+  };
+
   chart.labelClass = function(f){
     labelClass = f;
     return chart;
