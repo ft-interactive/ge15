@@ -11,6 +11,7 @@ function slopeChart(){
   var labelClass = d3.functor('slope-label');
   var endLabelOffset = d3.functor('translate(4,4)');
   var width = 200;
+  var scale = d3.scale.linear();
 
   function chart(g){
     g.enter().append('g').attr('class','slope');
@@ -48,27 +49,27 @@ function slopeChart(){
   chart.reposition = function(g){
     g.select('._slope-line').attr({
       'x1': 0,
-      'y1': function(d){ return d.slopeStart; },
+      'y1': function(d){ return scale(d.slopeStart); },
       'x2': width,
-      'y2': function(d){ return d.slopeEnd; }
+      'y2': function(d){ return scale(d.slopeEnd); }
     });
 
     g.select('._slope-text').attr({
       x:width,
-      y:function(d){ return d.slopeEnd; },
+      y:function(d){ return scale(d.slopeEnd); },
       transform:endLabelOffset
     });
 
     g.select('._slope-end').attr({
       'r':radius,
       'cx':width,
-      'cy':function(d){ return d.slopeEnd; }
+      'cy':function(d){ return scale(d.slopeEnd); }
     });
 
     g.select('._slope-start').attr({
       'r':radius,
       'cx':0,
-      'cy':function(d){ return d.slopeStart; }
+      'cy':function(d){ return scale(d.slopeStart); }
     });
   };
 
@@ -104,6 +105,11 @@ function slopeChart(){
 
   chart.labelClass = function(f){
     labelClass = f;
+    return chart;
+  };
+
+  chart.scale = function(x){
+    scale = x;
     return chart;
   };
 
