@@ -191,16 +191,7 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
     width = 180,
     height = 80,
     margin = {top:10,left:10,bottom:10,right:80},
-    slopeHeight = height - (margin.top + margin.bottom)
-    locatorHeight = 300, locatorWidth = 200,
-    locatorProjection = projection = d3.geo.albers()
-      .center([-2.5, 55.4])
-      .rotate([0, 0])
-      .parallels([50, 60])
-      .scale(1500)
-      .translate([locatorWidth / 2, locatorHeight / 2]),
-
-    path = d3.geo.path().projection(locatorProjection);
+    slopeHeight = height - (margin.top + margin.bottom);
 
     var layout = graphics.slope.layout()
       .start(function(d){
@@ -225,7 +216,7 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
         return d.data.party + ' slope'
       })
       .labelClass(function(d){
-        return d.data.party + '-dark slope-label'
+        return d.data.party + ' slope-label'
       })
       .label(function(d,i){
         if( i==0 ){
@@ -296,7 +287,7 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
           });
 
         divs.append('svg').attr({
-          class:'slope',
+          class:'slope-chart',
           'data-constituency':function(d){ return d.id; },
           viewBox:'0 0 ' + width + ' ' + height + '',
           preserveAspectRatio:'xMinYMid meet',
@@ -305,10 +296,13 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
         }).append('g').attr({
           'transform':'translate(' + margin.left + ',' + margin.top + ')'
         }).each(function(d){
-          d3.select(this).append('g').selectAll('g.slope')
-          .data(layout(d.parties).sort(byPrediction))
-          .enter()
-          .call(SVGSlope)
+          d3.select(this).selectAll('g.slope')
+          .data(layout(d.parties).sort(function (a,b){
+            if(a.slopeEnd<b.slopeEnd) return -1
+              if(a.slopeEnd>b.slopeEnd) return 1
+                return 0;
+              }))
+              .call(SVGSlope)
         });
 
         divs.append('div')
@@ -319,28 +313,17 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
             });
       }
 
+    window.redrawSlopes = function(){
+      SVGSlope.width(30);
+      var chartSVGs = d3.selectAll('svg.slope-chart').each(function(d,i){
+        var slopes = d3.select(this).selectAll('g.slope').call(SVGSlope.reposition);
+      });
+
+    }
+
   };
 
-  //sort on
-  function byPrediction(a,b){
-    if(a.slopeEnd<b.slopeEnd) return -1
-    if(a.slopeEnd>b.slopeEnd) return 1
-    return 0;
-  }
 
-  //utility
-  function toArray(o,keyname,ignorekeys){
-    var a = [];
-    if(!keyname) keyname = 'key';
-    if(!ignorekeys) ignorekeys = [];
-    for(var i in o){
-      if(ignorekeys.indexOf(i)==-1){
-        o[i][keyname] = i;
-        a.push(o[i]);
-      }
-    }
-    return a;
-  }
 </script>
 
 <script>
@@ -367,14 +350,38 @@ function dataTable(g){
     });
   })
   .enter().append('tr').html(function(d){
-    return '<td class="'+d.party+' rowhead">'+partyShortName[d.party]+'</td><td>+'+d.gain+'</td><td>-'+d.loss+'</td><td>'+d.hold+'</td>';
+    return '<td class="' + d.party + ' rowhead">'+partyShortName[d.party]+'</td><td>+'+d.gain+'</td><td>-'+d.loss+'</td><td>'+d.hold+'</td>';
   });
+}
+
+//utility function for converting an object into and array, each keyed value becoming an element
+function toArray(o, keyname, ignorekeys){
+  var a = [];
+  if(!keyname) keyname = 'key';
+  if(!ignorekeys) ignorekeys = [];
+  for(var i in o){
+    if(ignorekeys.indexOf(i)==-1){
+      o[i][keyname] = i;
+      a.push(o[i]);
+    }
+  }
+  return a;
 }
 
 </script>
 
 
 <script>
+
+var locatorHeight = 300, locatorWidth = 200,
+locatorProjection = projection = d3.geo.albers()
+  .center([-2.5, 55.4])
+  .rotate([0, 0])
+  .parallels([50, 60])
+  .scale(1500)
+  .translate([locatorWidth / 2, locatorHeight / 2]),
+
+  path = d3.geo.path().projection(locatorProjection);
 
 function locator(g, map){
   var svg = g.append('div').attr('class','locator-container')

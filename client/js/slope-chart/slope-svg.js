@@ -13,42 +13,64 @@ function slopeChart(){
   var width = 200;
 
   function chart(g){
+    g.enter().append('g').attr('class','slope');
 
     //slope
+    g.append('line')
+      .attr({
+        'class':slopeClass
+      })
+      .classed('_slope-line','true');
 
-    g.append('line').attr({
+    //start point
+    g.append('circle')
+      .attr({
+        'class':startClass
+      })
+      .classed('_slope-start','true');
+
+    //end point
+    g.append('circle')
+      .attr({
+        'class':endClass
+      })
+      .classed('_slope-end','true');
+
+    g.append('text').text(label)
+      .attr({
+        'class':labelClass
+      })
+      .classed('_slope-text','true');
+
+    chart.reposition(g);
+  }
+
+  chart.reposition = function(g){
+    g.select('._slope-line').attr({
       'x1': 0,
       'y1': function(d){ return d.slopeStart; },
       'x2': width,
-      'y2': function(d){ return d.slopeEnd; },
-      'class':slopeClass
+      'y2': function(d){ return d.slopeEnd; }
     });
 
-
-    //start point
-
-    g.append('circle').attr({
-      'class':startClass,
-      'r':radius,
-      'cx':0,
-      'cy':function(d){ return d.slopeStart; }
+    g.select('._slope-text').attr({
+      x:width,
+      y:function(d){ return d.slopeEnd; },
+      transform:endLabelOffset
     });
 
-    //end point
-    g.append('circle').attr({
-      'class':endClass,
+    g.select('._slope-end').attr({
       'r':radius,
       'cx':width,
       'cy':function(d){ return d.slopeEnd; }
     });
 
-    g.append('text').attr({
-      x:width,
-      y:function(d){ return d.slopeEnd; },
-      'class':labelClass,
-      transform:endLabelOffset
-    }).text(label);
-  }
+    g.select('._slope-start').attr({
+      'r':radius,
+      'cx':0,
+      'cy':function(d){ return d.slopeStart; }
+    });
+  };
 
   chart.radius = function(f){
     radius = d3.functor(f);
