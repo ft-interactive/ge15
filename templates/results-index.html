@@ -34,8 +34,6 @@
 var d3 = require('d3');
 var topojson = require('topojson');
 
-//NOTE this stuff should all be browserified etc. in good time
-//SLOPE
 document.addEventListener('o.DOMContentLoaded', function() {
   loaded();
 });
@@ -181,13 +179,14 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
 
 <script>
 
+  var mapURL = 'https://gist.githubusercontent.com/tomgp/8defaceafdce7a11cc7a/raw/991ac83d5a6905b7946fd49ce8bd71a1c986de4c/simplemap.topojson',
+  partyShortName = {'lab':'Lab','c':'Con','ld':'LD','green':'Grn','ukip':'UKIP','snp':'SNP','dup':'DUP','sf':'SF','pc':'PC','alliance':'A'},
+  dataURL = 'http://bertha.ig.ft.com/view/publish/ig/0AtxzL7xNk41FdHpvYkNPNlBnd1FXaUhFTXFUeG15VWc/basic,resultnow,details,predictions,coordinates';
+
 
   function loaded(){
     console.log('graphics', document.graphics.slope);
     var graphics = document.graphics,
-    mapURL = 'https://gist.githubusercontent.com/tomgp/8defaceafdce7a11cc7a/raw/991ac83d5a6905b7946fd49ce8bd71a1c986de4c/simplemap.topojson',
-    partyShortName = {'lab':'Lab','c':'Con','ld':'LD','green':'Grn','ukip':'UKIP','snp':'SNP','dup':'DUP','sf':'SF','pc':'PC','alliance':'A'},
-    dataURL = 'http://bertha.ig.ft.com/view/publish/ig/0AtxzL7xNk41FdHpvYkNPNlBnd1FXaUhFTXFUeG15VWc/basic,resultnow,details,predictions,coordinates',
 
     width = 180,
     height = 80,
@@ -276,76 +275,8 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
 
         overview.call(dataTable);
         overview.call(locator, map);
-
         divs.call(groupContainer);
       };
-
-      function locator(g, map){
-        var svg = g.append('div').attr('class','locator-container')
-        .append('svg')
-        .attr({
-          viewBox:'0 0 ' + locatorWidth + ' ' + locatorHeight + '',
-          width:locatorWidth,
-          height:locatorHeight
-        });
-
-        svg.selectAll(".subunit")
-        .data(topojson.feature(map, map.objects.subunits).features)
-        .enter().append("path")
-        .attr("class", function(d) { return "subunit " + d.id; })
-        .attr("d", path);
-
-        svg.append("path")
-        .datum(topojson.mesh(map, map.objects.subunits, function(a, b) { return a !== b && a.id !== "IRL"; }))
-        .attr("d", path)
-        .attr("class", "subunit-boundary");
-
-        svg.append("path")
-        .datum(topojson.mesh(map, map.objects.subunits, function(a, b) { return a === b && a.id === "IRL"; }))
-        .attr("d", path)
-        .attr("class", "subunit-boundary IRL");
-
-        svg.each(function(group){
-          d3.select(this).selectAll('circle')
-          .data(group.constituencies)
-          .enter()
-          .append('circle')
-          .attr({
-            'class':function(d){
-              return 'constituency-point ' + (d.holderpredicted);
-            },
-            'r':2,
-            'transform':function(d){
-              return 'translate(' + locatorProjection(d.coords) + ')';}
-            });
-          });
-        }
-
-      function dataTable(g){
-        var table = g.append('div')
-        .attr({
-          'class':'constituency-group__data',
-          'data-o-grid-colspan':12
-        })
-        .append('table')
-
-        table.append('thead').html('<tr><th></th><th>Gain</th><th>Loss</th><th>Hold</th></tr>')
-        table.append('tbody')
-        .selectAll('tr').data(function(d){
-          return toArray(d.partychanges,'party','total').sort(function(a,b){
-            var aMag = (a.gain + a.loss);
-            var bMag = (b.gain + b.loss);
-            if(aMag>bMag) return -1;
-            if(aMag<bMag) return 1;
-            if(a.party>b.party) return 1;
-            if(a.party<b.party) return -1;
-            return 0;
-          });
-        })
-        .enter().append('tr').html(function(d){
-          return '<td class="'+d.party+' rowhead">'+partyShortName[d.party]+'</td><td>+'+d.gain+'</td><td>-'+d.loss+'</td><td>'+d.hold+'</td>';
-        });
-      }
 
       function groupContainer(g){
         g = g.append('div')
@@ -410,5 +341,83 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
     }
     return a;
   }
+</script>
+
+<script>
+
+function dataTable(g){
+  var table = g.append('div')
+  .attr({
+    'class':'constituency-group__data',
+    'data-o-grid-colspan':12
+  })
+  .append('table')
+
+  table.append('thead').html('<tr><th></th><th>Gain</th><th>Loss</th><th>Hold</th></tr>')
+  table.append('tbody')
+  .selectAll('tr').data(function(d){
+    return toArray(d.partychanges,'party','total').sort(function(a,b){
+      var aMag = (a.gain + a.loss);
+      var bMag = (b.gain + b.loss);
+      if(aMag>bMag) return -1;
+      if(aMag<bMag) return 1;
+      if(a.party>b.party) return 1;
+      if(a.party<b.party) return -1;
+      return 0;
+    });
+  })
+  .enter().append('tr').html(function(d){
+    return '<td class="'+d.party+' rowhead">'+partyShortName[d.party]+'</td><td>+'+d.gain+'</td><td>-'+d.loss+'</td><td>'+d.hold+'</td>';
+  });
+}
+
+</script>
+
+
+<script>
+
+function locator(g, map){
+  var svg = g.append('div').attr('class','locator-container')
+  .append('svg')
+  .attr({
+    viewBox:'0 0 ' + locatorWidth + ' ' + locatorHeight + '',
+    width:locatorWidth,
+    height:locatorHeight
+  });
+
+  svg.selectAll(".subunit")
+  .data(topojson.feature(map, map.objects.subunits).features)
+  .enter()
+  .append("path")
+  .attr("class", function(d) { return "subunit " + d.id; })
+  .attr("d", path);
+
+  svg.append("path")
+  .datum(topojson.mesh(map, map.objects.subunits, function(a, b) { return a !== b && a.id !== "IRL"; }))
+  .attr("d", path)
+  .attr("class", "subunit-boundary");
+
+  svg.append("path")
+  .datum(topojson.mesh(map, map.objects.subunits, function(a, b) { return a === b && a.id === "IRL"; }))
+  .attr("d", path)
+  .attr("class", "subunit-boundary IRL");
+
+  svg.each(function(group){
+    console.log(group, this);
+    d3.select(this).selectAll('circle')
+    .data(group.constituencies)
+    .enter()
+    .append('circle')
+    .attr({
+      'class':function(d){
+        return 'constituency-point ' + (d.holderpredicted);
+      },
+      'r':2,
+      'transform':function(d){
+        return 'translate(' + locatorProjection(d.coords) + ')';}
+      });
+    });
+  }
+
 </script>
 {% endblock %}
