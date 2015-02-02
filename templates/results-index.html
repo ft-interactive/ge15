@@ -396,7 +396,7 @@ function locator(g, map){
   .data(topojson.feature(map, map.objects.subunits).features)
   .enter()
   .append("path")
-  .attr("class", function(d) { return "subunit " + d.id; })
+  .attr("class", function(d) { return "subunit region-" + d.id.toLowerCase(); })
   .attr("d", path);
 
   svg.append("path")

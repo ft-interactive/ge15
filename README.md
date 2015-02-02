@@ -74,7 +74,7 @@ The browser will reload when there are serverside code changes, client JS change
 
 To get code onto the master branch:
 
-1. Work in a short-lived branch. Creating these via Github is easy.
+1. Work in a [short-lived branch](https://guides.github.com/introduction/flow/). Creating these via Github is easy.
 2. Push your changes to github frequently. Rebase to origin/master often and squash commits.
 3. Create a pull request when you are done. Give the PR a short commit message that summarises the work you did on the branch.
 4. Get someone else to review and merge the branch. If the project is successfully building and passing tests in CI (codeship) then this will be as easy for them as reading the git diffs and clicking the green merge button.

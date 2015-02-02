@@ -1,44 +1,50 @@
 @import "graphics/parties";
 
-td{
-  text-align:right;
-  padding:5px;
+td {
+  text-align: right;
+  padding: 5px;
 
-  .rowhead{
-    font-weight:bold;
-  }
-
-  .c{
-    background:$conservative;
+  .rowhead {
+    font-weight: bold;
   }
 
-  .ld{
-    background:$liberal-democrat;
+  .c {
+    background: $conservative;
   }
 
-  .lab{
-    background:$labour;
+  .ld {
+    background: $liberal-democrat;
   }
 
-  .snp{
-    background:$snp;
+  .lab {
+    background: $labour;
   }
-  .pc{
-    background:$plaid-cymru;
+
+  .snp {
+    background: $snp;
   }
-  .ukip{
-    background:$ukip;
+
+  .pc {
+    background: $plaid-cymru;
   }
-  .green{
-    background:$green;
+
+  .ukip {
+    background: $ukip;
   }
-  .sf{
-    background:$sinn-fein;
+
+  .green {
+    background: $green;
   }
-  .dup{
-    background:$dup;
+
+  .sf {
+    background: $sinn-fein;
   }
-  .sdlp{
-    background:$sdlp;
+
+  .dup {
+    background: $dup;
+  }
+
+  .sdlp {
+    background: $sdlp;
   }
 }
