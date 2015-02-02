@@ -4,24 +4,25 @@
 
 require('headroom.js');
 
-var primaryEl = document.querySelector('.o-header__container--primary');
+var primaryEl;
 var headroom;
 
 function enable() {
+  primaryEl = document.querySelector('.o-header__container--primary');
   headroom = new Headroom(primaryEl, {
-    "offset": 205,
-    "tolerance": 5,
-    "classes": {
-      "initial": "o-header--initial",
-      "pinned": "o-header--pinned",
-      "unpinned": "o-header--unpinned"
+    offset: 205,
+    tolerance: 5,
+    classes: {
+      initial: 'o-header--initial',
+      pinned: 'o-header--pinned',
+      unpinned: 'o-header--unpinned'
     },
     onPin: function() {
       primaryEl.isPinned = true;
     },
-      onUnpin: function() {
-        primaryEl.isPinned = false;
-      }
+    onUnpin: function() {
+      primaryEl.isPinned = false;
+    }
   });
   primaryEl.isPinned = true;
   headroom.init();
@@ -48,5 +49,5 @@ module.exports = {
   enable: enable,
   disable: disable,
   pinHeader: pinHeader,
-  unpinHeader: unpinHeader
+  unpinHeader: unpinHeader,
 };
