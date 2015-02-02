@@ -1,6 +1,6 @@
 # UK 2015 election site [![Codeship Status for ft-interactive/ge15](https://codeship.com/projects/345102d0-585d-0130-1abe-123138152df8/status)](https://codeship.com/projects/1503)
 
-## Intial setup
+## Initial setup
 
 You only need to do steps 1-5 the first time you install.
 
@@ -21,7 +21,7 @@ v0.11.13
 
 ### 2. Install gulp
 
-[gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md) is used to build project and run the app in development.
+[gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md) is used to build the project and run the app in development. Here's how to install it:
 
 ```shell
 $ sudo npm install -g gulp
@@ -39,10 +39,10 @@ The npm install will also kick of the bower install process.
 
 ### 4. Get a database
 
-a) Ensure you have [postgres installed](http://postgresapp.com/)
-b) configuring your path to allow use of the [command line](http://postgresapp.com/documentation/cli-tools.html) utilities.
-c) create a local database (called ge15): `$ createdb -Eutf8 ge15`
-d) Now fill it with some data:
+a. Ensure you have [postgres installed](http://postgresapp.com/)
+b. [configure your path to allow use of the command line](http://postgresapp.com/documentation/cli-tools.html) utilities.
+c. create a local database (called ge15): `$ createdb -Eutf8 ge15`
+d. Now fill it with some data:
 
 ```shell
 $ DATABASE_URL=postgres://`whoami`@localhost:5432/ge15 node --harmony server/data/load
