@@ -51,12 +51,16 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
   spreadsheet.resultnow = makeLookup( spreadsheet.resultnow, 'id' );
   spreadsheet.predictions = makeLookup( spreadsheet.predictions, 'id' );
   spreadsheet.coordinates = makeLookup( spreadsheet.coordinates, 'id' );
+
   //create constituency objects
   var constituencies = spreadsheet.details.map(function(c){
     var now = resultNormalise( spreadsheet.resultnow[c.onsid] );
     var prediction = spreadsheet.predictions[c.onsid];
     var coords = spreadsheet.coordinates[c.onsid];
     var parties = [];
+    var partyindex  = 0;
+    var maxIndex = 0;
+    var maxPrediction = 0;
     for(var p in now){
       var record = {
         party: p,
@@ -64,18 +68,26 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
       };
 
       if(prediction){
-        record.resultprediction = prediction[p]
+        record.resultprediction = prediction[p];
+        record.currentholder = prediction.currentholder;
       }
+      //work out the winner
       parties.push(record);
+      partyindex ++;
     }
+
 
     //filter parties so it doesnt include parties with 0->0 or 0->undefined
     parties = parties.filter(function(p){
-      if(p.resultprediction == 0 && p.resultnow == 0){
+      if(!p.resultprediction) p.resultprediction = 0;
+      if(!p.resultnow) p.resultnow = 0;
+      if(parseFloat(p.resultprediction) < 5 && parseFloat(p.resultnow) < 5){
         return false;
       }
       return true;
     });
+    console.log(parties.length);
+
     var holderNowValue = 0 , holderNow,
     holderPredictedValue = 0, holderPredicted;
     for (var p in parties){
@@ -219,7 +231,7 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
         return d.data.party + ' slope-label'
       })
       .label(function(d,i){
-        if( d.predictedWinner ){
+        if( d.data.predictedwinner ){
           return partyShortName[d.data.party];
         }
       })
@@ -321,7 +333,6 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
 
     window.redrawSlopes = function(){
       //Resize the SVG
-      console.log('r')
       var size = d3.select('.constituency-group__slope-graphic').node().getBoundingClientRect()
 
       slopeWidth = size.width - (margin.left + margin.right);
