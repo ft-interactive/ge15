@@ -25,7 +25,7 @@ var watchify = require('watchify');
 var dotenv = require('dotenv');
 var source = require('vinyl-source-stream');
 var rimraf = require('rimraf');
-var resolve = require('resolve');
+var glob = require('glob');
 var dev = false;
 
 process.stdin.setMaxListeners(0);
@@ -35,6 +35,18 @@ dotenv.load();
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 gulp.task('default', ['lint', 'rev']);
+
+var vendorBundle = [
+  {file:'./bower_components/headroom.js/dist/headroom.js', expose:'headroom.js'},
+  {file:'./bower_components/dom-delegate/lib/delegate.js', expose:'dom-delegate'},
+  {file:'./bower_components/o-hoverable/main.js', expose:'o-hoverable'},
+  {file:'./bower_components/o-date/main.js', expose:'o-date'},
+  {file:'./bower_components/fetch/fetch.js', expose:'fetch'},
+  {file:'./bower_components/topojson/topojson.js', expose:'topojson'},
+  'd3'
+];
+
+
 
 // TODO:
 // svg minification
@@ -58,11 +70,13 @@ gulp.task('sass', function() {
         .pipe(gulp.dest('./public/css'));
 });
 
-function createBrowserify(watch) {
+function createBrowserify(entry, bundle, watch) {
+
   var o = {
-    entries: ['./client/js/main.js'],
+    entries: './client/js/' + entry,
     debug: dev
   };
+
   var b = browserify(o, watch ? watchify.args : undefined);
 
   if (watch) {
@@ -71,16 +85,13 @@ function createBrowserify(watch) {
 
   var e = _.assign({}, process.env, {_: 'purge'});
 
-  b.external([
-    resolve.sync('./bower_components/headroom.js/dist/headroom.js'),
-    resolve.sync('./bower_components/dom-delegate/lib/delegate.js'),
-    resolve.sync('./bower_components/o-date/main.js'),
-    resolve.sync('./bower_components/fetch/fetch.js'),
-    resolve.sync('./bower_components/topojson/topojson.js'),
-    'd3'
-  ]);
+  b.transform('debowerify');
 
-  // b.transform('debowerify');
+  b.external(vendorBundle.map(function (v) {
+    if (typeof v === 'string') return v;
+    return v.expose;
+  }));
+
   b.transform('envify', e);
 
 // Transforms we might need here
@@ -96,10 +107,10 @@ function createBrowserify(watch) {
           .on('error', function(evt){
             gutil.log('Browserify Error', evt);
             var errFile = 'var stack = ' + JSON.stringify(evt.stack) + ';' +
-            'var err = ' + JSON.stringify(evt) + ';console.error("Browserify Error: ' + evt.message + '", stack, err)';
-            fs.writeFileSync('./public/js/common.js', errFile);
+            'var err = ' + JSON.stringify(evt) + ';console.error("Browserify Error in ' + entry + ': ' + evt.message + '", stack, err)';
+            fs.writeFileSync('./public/js/' + bundle, errFile);
           })
-          .pipe(source('common.js'))
+          .pipe(source(bundle))
           .pipe(gulp.dest('./public/js'));
   }
 
@@ -115,16 +126,8 @@ gulp.task('vendor', function() {
   var b = browserify({
     debug: dev
   });
-
-  b.require([
-    {file:'./bower_components/headroom.js/dist/headroom.js', expose:'headroom.js'},
-    {file:'./bower_components/dom-delegate/lib/delegate.js', expose:'dom-delegate'},
-    {file:'./bower_components/o-hoverable/main.js', expose:'o-hoverable'},
-    {file:'./bower_components/o-date/main.js', expose:'o-date'},
-    {file:'./bower_components/fetch/fetch.js', expose:'fetch'},
-    {file:'./bower_components/topojson/topojson.js', expose:'topojson'},
-    'd3'
-  ]);
+  b.transform('debowerify');
+  b.require(vendorBundle);
 
   var stream = b.bundle().pipe(source('vendor.js'));
 
@@ -133,18 +136,26 @@ gulp.task('vendor', function() {
   return stream;
 });
 
-gulp.task('js', function() {
-  var b = createBrowserify(false);
-  b.transform('stripify');
-  return b.end();
+function getBundles() {
+  return glob.sync('**/*.main.js', {cwd: 'client/js', nodir: true}).map(function(filename){
+    return {file: filename, bundle: filename.replace('.main.js', '.js')};
+  });
+}
+
+gulp.task('js', ['vendor'], function() {
+  return Promise.all(getBundles().map(function(d){
+    var b = createBrowserify(d.file, d.bundle, false);
+    b.transform('stripify');
+    return b.end();
+  }));
 });
 
 gulp.task('rev', ['clean', 'compress'], function () {
-  return gulp.src(['public/css/*.css', 'public/js/*.js'], {base: 'assets'})
+  return gulp.src(['public/css/*.css', 'public/js/**/*.js'], {base: 'assets'})
         .pipe(gulp.dest('public'))  // copy original assets to build dir
         .pipe(rev())
         .pipe(revReplace({replaceInExtensions: ['.css']}))
-        .pipe(revNapkin())
+        .pipe(revNapkin({verbose:false}))
         .pipe(gulp.dest('public')) // write rev'd assets to build dir
         .pipe(rev.manifest())
         .pipe(gulp.dest('public')); // write manifest to build dir
@@ -152,7 +163,7 @@ gulp.task('rev', ['clean', 'compress'], function () {
 
 gulp.task('compress', ['clean', 'sass', 'js'], function() {
   var css = filter('css/*.css');
-  var js = filter('js/*.js');
+  var js = filter('js/**/*.js');
   return gulp.src('public/**')
         .pipe(css)
         .pipe(csso())
@@ -186,16 +197,23 @@ gulp.task('lint', ['jshint', 'scsslint'], function(cb) {
   cb();
 });
 
-gulp.task('dev', function(cb){dev = true;cb();});
+gulp.task('dev', function(cb) {
+  dev = true;
+  cb();
+});
 
 gulp.task('watch', ['dev', 'sass', 'vendor'], function() {
 
   gulp.watch('./public/**/*.*').on('change', livereload.changed);
   gulp.watch('./client/scss/**/*.scss', ['sass']);
 
-  createBrowserify(true).once('file', function(){
+  var bundles = getBundles().map(function (d) {
+    return createBrowserify(d.file, d.bundle, true);
+  });
 
-    livereload.listen();
+  livereload.listen();
+
+  function startServer() {
     nodemon({
       script: 'app.js',
       nodeArgs: ['--harmony'],
@@ -212,6 +230,12 @@ gulp.task('watch', ['dev', 'sass', 'vendor'], function() {
         }
       }, 1100);
     });
+  }
 
-  }).end();
+  bundles[0].once('file', startServer);
+
+  bundles.forEach(function(b){
+    b.end();
+  });
+
 });

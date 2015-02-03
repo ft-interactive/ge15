@@ -1,5 +1,5 @@
 <script>
-var cutsTheMustard = ('querySelector' in document);
+var cutsTheMustard = ('getComputedStyle' in window);
 if (cutsTheMustard) {document.documentElement.className = document.documentElement.className.replace(/\bcore\b/g, 'enhanced');}
 </script>
 <style>

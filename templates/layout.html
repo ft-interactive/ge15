@@ -23,7 +23,7 @@
         {% block meta %}{% endblock %}
 
         {% include "./favicon.html" %}
-
+        {% spaceless %}
         <!--[if gt IE 8]><!-->
         <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
         {% block stylesheets %}{% endblock %}
@@ -32,12 +32,13 @@
         <link rel="stylesheet" href="{{ asset('css/main-oldie.css') }}" />
         {% block oldIEstylesheets %}{% endblock %}
         <![endif]-->
+        {% endspaceless %}
 
         <meta name="format-detection" content="telephone=no" />
 
         <script>
         if (cutsTheMustard) {
-         addScript('//cdn.polyfill.io/v1/polyfill.min.js', false, false);
+         addScript('//cdn.polyfill.io/v1/polyfill.min.js?features=default,Promise', false, false);
          addScript('{{ asset("js/vendor.js") }}', false, false);
          addScript('{{ asset("js/common.js") }}', false, false);
         } else {
@@ -81,7 +82,7 @@
         {% if flags.tracking %}
         <script>
             {# Chartbeat #}
-            var _sf_async_config={};_sf_async_config.uid = 14181;_sf_async_config.domain = 'ft.com';_sf_async_config.useCanonical = true;_sf_async_config.sections = 'Books';_sf_async_config.authors = 'Interactive';(function(){function loadChartbeat() {window._sf_endpt=(new Date()).getTime();var e = document.createElement('script');e.setAttribute('src', '//static.chartbeat.com/js/chartbeat.js');document.body.appendChild(e);}var oldonload = window.onload;window.onload = (typeof window.onload != 'function') ?loadChartbeat : function() { oldonload(); loadChartbeat(); };})();
+            var _sf_async_config={};_sf_async_config.uid = 14181;_sf_async_config.domain = 'ft.com';_sf_async_config.useCanonical = true;_sf_async_config.sections = 'Books';_sf_async_config.authors = 'Interactive';(function(){function loadChartbeat() {window._sf_endpt=(new Date()).getTime();var e = document.createElement('script');e.setAttribute('src', '//static.chartbeat.com/js/chartbeat.js');document.body.appendChild(e);}var oldonload = window.onload;window.onload = (typeof window.onload != 'function') ? loadChartbeat : function() { oldonload(); loadChartbeat(); };})();
         </script>
         {% endif %}
 

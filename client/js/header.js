@@ -8,12 +8,14 @@ var defaultPanel;
 var delegate;
 var scrollPosition;
 
-if (typeof window !== 'undefined') {
-  document.addEventListener('o.DOMContentLoaded', init);
-}
+exports.init = function() {
 
-function init() {
   header = document.querySelector('.o-header');
+
+  if (!header) {
+    return;
+  }
+
   defaultPanel = header.getAttribute('data-o-header-default-panel');
   delegate = new Delegate(header);
   delegate.on('click', '.o-header-button-js', onHeaderButtonClick);
@@ -22,7 +24,7 @@ function init() {
   });
   bodyDelegate.on('click', togglePanel);
   sticky.enable();
-}
+};
 
 function openPanel(panel) {
   header.setAttribute('data-o-header-current-panel', panel);
