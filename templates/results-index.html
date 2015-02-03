@@ -79,14 +79,14 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
     parties[maxPredictionIndex].winner = true;
     //filter parties so it doesnt include parties with 0->0 or 0->undefined
     parties = parties.filter(function(p){
+      var voteShareThreshold = 5;
       if(!p.resultprediction) p.resultprediction = 0;
       if(!p.resultnow) p.resultnow = 0;
-      if(parseFloat(p.resultprediction) < 5 && parseFloat(p.resultnow) < 5){
+      if(parseFloat(p.resultprediction) < voteShareThreshold && parseFloat(p.resultnow) < voteShareThreshold){
         return false;
       }
       return true;
     });
-    console.log(parties.length);
 
     var holderNowValue = 0 , holderNow,
     holderPredictedValue = 0, holderPredicted;
