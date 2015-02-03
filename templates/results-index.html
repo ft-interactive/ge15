@@ -112,7 +112,6 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
       description:spreadsheet.data[list].description,
       constituencies:populateGroup(spreadsheet.data[list].constituencies, constituencies)
     }
-    console.log(spreadsheet.data[list].headline);
     spreadsheet.data[list].partychanges = getPartyChanges(spreadsheet.data[list].constituencies);
   }
 
@@ -123,7 +122,6 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
 
   //helpful functions...
   function getPartyChanges(list){
-    //console.log(list)
     var summary = {total:0};
     list.forEach(function(d){
       summary.total ++;
@@ -186,7 +184,6 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
 
 
   function loaded(){
-    console.log('graphics', document.graphics.slope);
     var graphics = document.graphics,
 
     width = 180,
@@ -222,7 +219,7 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
         return d.data.party + ' slope-label'
       })
       .label(function(d,i){
-        if( i==0 ){
+        if( d.predictedWinner ){
           return partyShortName[d.data.party];
         }
       })
@@ -244,7 +241,8 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
         fetch(dataURL).then(status).then(toJson),
         fetch(mapURL).then(status).then(toJson),
       ]).then(function onData(responses) {
-        gotData(undefined, responses[0], responses[1])
+        gotData(undefined, responses[0], responses[1]);
+        redrawSlopes();
       });
 
       function gotData(error, data, map){
@@ -323,10 +321,12 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
 
     window.redrawSlopes = function(){
       //Resize the SVG
+      console.log('r')
       var size = d3.select('.constituency-group__slope-graphic').node().getBoundingClientRect()
-      slopeHeight = size.height - (margin.top + margin.bottom);
+
       slopeWidth = size.width - (margin.left + margin.right);
-      slopeScale.domain([0, slopeHeight]);
+      slopeHeight = slopeWidth/slopeAspect;
+      slopeScale.range([slopeHeight,0]);
 
       SVGSlope
         .width(slopeWidth)
@@ -335,10 +335,15 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
       var chartSVGs = d3.selectAll('svg.slope-chart').each(function(d,i){
         var svg = d3.select(this);
         var slope = svg.selectAll('g.slope').call(SVGSlope.reposition);
+        var w = slopeWidth + (margin.left+margin.right);
+        var h = slopeHeight + (margin.top+margin.bottom);
+        svg.attr({
+          width:w,
+          height:h,
+          viewBox:'0 0 ' + w + ' ' + h + '',
+        });
       });
-
-    }
-
+    };
   };
 
 
@@ -432,7 +437,6 @@ function locator(g, map){
   .attr("class", "subunit-boundary IRL");
 
   svg.each(function(group){
-    console.log(group, this);
     d3.select(this).selectAll('circle')
     .data(group.constituencies)
     .enter()
