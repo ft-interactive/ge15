@@ -37,10 +37,11 @@ function slopeChart(){
       })
       .classed('_slope-end','true');
 
-    g.append('text').text(label)
+    g.append('text')
       .attr({
         'class':labelClass
       })
+      .text(label)
       .classed('_slope-text','true');
 
     chart.reposition(g);

@@ -180,8 +180,9 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
 <script>
 
   var mapURL = 'https://gist.githubusercontent.com/tomgp/8defaceafdce7a11cc7a/raw/991ac83d5a6905b7946fd49ce8bd71a1c986de4c/simplemap.topojson',
-  partyShortName = {'lab':'Lab','c':'Con','ld':'LD','green':'Grn','ukip':'UKIP','snp':'SNP','dup':'DUP','sf':'SF','pc':'PC','alliance':'A'},
-  dataURL = 'http://bertha.ig.ft.com/view/publish/ig/0AtxzL7xNk41FdHpvYkNPNlBnd1FXaUhFTXFUeG15VWc/basic,resultnow,details,predictions,coordinates';
+    partyShortName = {'lab':'Lab','c':'Con','ld':'LD','green':'Grn','ukip':'UKIP','snp':'SNP','dup':'DUP','sf':'SF','pc':'PC','alliance':'A'},
+    dataURL = 'http://bertha.ig.ft.com/view/publish/ig/0AtxzL7xNk41FdHpvYkNPNlBnd1FXaUhFTXFUeG15VWc/basic,resultnow,details,predictions,coordinates',
+    slopeAspect = 1;
 
 
   function loaded(){
@@ -190,7 +191,7 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
 
     width = 180,
     height = 100,
-    margin = {top:2,left:2,bottom:10,right:80},
+    margin = {top:5,left:2,bottom:5,right:40},
     slopeHeight = height - (margin.top + margin.bottom),
     slopeWidth = width - (margin.left + margin.right),
     slopeScale = d3.scale.linear()
