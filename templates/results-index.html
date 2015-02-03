@@ -68,15 +68,15 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
       };
 
       if(prediction){
+        maxPrediction = Math.max(prediction[p], maxPrediction);
+        if(maxPrediction == prediction[p]) { maxPredictionIndex = partyindex; }
         record.resultprediction = prediction[p];
-        record.currentholder = prediction.currentholder;
       }
       //work out the winner
       parties.push(record);
       partyindex ++;
     }
-
-
+    parties[maxPredictionIndex].winner = true;
     //filter parties so it doesnt include parties with 0->0 or 0->undefined
     parties = parties.filter(function(p){
       if(!p.resultprediction) p.resultprediction = 0;
@@ -231,7 +231,7 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
         return d.data.party + ' slope-label'
       })
       .label(function(d,i){
-        if( d.data.predictedwinner ){
+        if( d.data.winner ){
           return partyShortName[d.data.party];
         }
       })
