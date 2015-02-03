@@ -5,7 +5,7 @@ var topojson = require('topojson');
 
 function locatorMap(){
   var height = 300,
-  width = 300,
+  width = 200,
   map,
   locations,
   locatorProjection = d3.geo.albers() //standard UK
@@ -21,8 +21,8 @@ function locatorMap(){
       .append('svg')
       .attr({
         viewBox:'0 0 ' + width + ' ' + height + '',
-        width:height,
-        height:width
+        width:width,
+        height:height
       });
 
     if(map){
@@ -62,6 +62,16 @@ function locatorMap(){
 
   locator.locations = function(a){
     locations = a;
+    return locator;
+  };
+
+  locator.width = function(x){
+    width = x;
+    return locator;
+  };
+
+  locator.height = function(x){
+    width = x;
     return locator;
   };
 
