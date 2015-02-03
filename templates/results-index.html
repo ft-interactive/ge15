@@ -279,7 +279,13 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
             .attr({'class':'o-grid-row constituency-group__details'});
 
         overview.call(dataTable);
-        overview.call(locator, map);
+        overview.each(function(g,i){
+          var locator = graphics.constituencyLocator()
+            .map(map)
+            .locations(g.constituencies);
+            
+          d3.select(this).call(locator);
+        });
         divs.call(groupContainer);
       };
 
@@ -407,61 +413,4 @@ function toArray(o, keyname, ignorekeys){
 
 </script>
 
-
-
-<script>
-
-var locatorHeight = 300, locatorWidth = 200,
-locatorProjection = projection = d3.geo.albers()
-  .center([-2.5, 55.4])
-  .rotate([0, 0])
-  .parallels([50, 60])
-  .scale(1500)
-  .translate([locatorWidth / 2, locatorHeight / 2]),
-
-  path = d3.geo.path().projection(locatorProjection);
-
-function locator(g, map){
-  var svg = g.append('div').attr('class','locator-container')
-  .append('svg')
-  .attr({
-    viewBox:'0 0 ' + locatorWidth + ' ' + locatorHeight + '',
-    width:locatorWidth,
-    height:locatorHeight
-  });
-
-  svg.selectAll(".subunit")
-  .data(topojson.feature(map, map.objects.subunits).features)
-  .enter()
-  .append("path")
-  .attr("class", function(d) { return "subunit region-" + d.id.toLowerCase(); })
-  .attr("d", path);
-
-  svg.append("path")
-  .datum(topojson.mesh(map, map.objects.subunits, function(a, b) { return a !== b && a.id !== "IRL"; }))
-  .attr("d", path)
-  .attr("class", "subunit-boundary");
-
-  svg.append("path")
-  .datum(topojson.mesh(map, map.objects.subunits, function(a, b) { return a === b && a.id === "IRL"; }))
-  .attr("d", path)
-  .attr("class", "subunit-boundary IRL");
-
-  svg.each(function(group){
-    d3.select(this).selectAll('circle')
-    .data(group.constituencies)
-    .enter()
-    .append('circle')
-    .attr({
-      'class':function(d){
-        return 'constituency-point ' + (d.holderpredicted);
-      },
-      'r':2,
-      'transform':function(d){
-        return 'translate(' + locatorProjection(d.coords) + ')';}
-      });
-    });
-  }
-
-</script>
 {% endblock %}
