@@ -1,5 +1,13 @@
 'use strict';
 
+// Ensure we are running the correct version of Node
+var pkg = require('./package.json');
+if (process.version.substr(1) !== pkg.engines.node) {
+  console.error('\nYou are using the wrong Node version: ' + process.version);
+  console.error('\nTry this:\n  $ n ' + pkg.engines.node + '\n');
+  process.exit(1);
+}
+
 var fs = require('fs');
 var _ = require('lodash');
 
