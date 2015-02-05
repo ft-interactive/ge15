@@ -58,7 +58,6 @@ document.addEventListener('o.DOMContentLoaded', function() {
     slopeHeight = height - (margin.top + margin.bottom),
     slopeWidth = width - (margin.left + margin.right),
 
-
     slopeScale = d3.scale.linear()
       .domain([0,70])
       .range([slopeHeight,0]);
@@ -87,7 +86,8 @@ document.addEventListener('o.DOMContentLoaded', function() {
         return d.data.party + ' slope-label'
       })
       .label(function(d,i){
-          return partyShortName[d.data.party];
+        if( d.data.winner ){
+          return document.data.partyShortNames[d.data.party];
         }
       })
       .scale(slopeScale);
