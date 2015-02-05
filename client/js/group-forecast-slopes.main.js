@@ -1,5 +1,6 @@
 'use strict';
 var d3 = require('d3');
+var debounce = require('lodash-node/modern/functions/debounce');
 
 document.graphics = {};
 document.data = {};
@@ -81,6 +82,11 @@ function loaded(){
     ]).then(function onData(responses) {
       gotData(undefined, responses[0], responses[1]);
       window.redrawSlopes();
+      var resize = debounce(function(e) {
+        console.log('redraw');
+        window.redrawSlopes();
+      }, 200);
+      window.addEventListener("resize", resize, false);
     });
 
   function gotData(error, data, map){
@@ -165,7 +171,7 @@ function loaded(){
   window.redrawSlopes = function(){
     //Resize the SVG
     var size = d3.select('.constituency-group__slope-graphic').node().getBoundingClientRect();
-    
+
     slopeWidth = size.width - (margin.left + margin.right);
     slopeHeight = slopeWidth/slopeAspect;
     slopeScale.range([slopeHeight,0]);
