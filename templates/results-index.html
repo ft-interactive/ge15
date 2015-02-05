@@ -258,7 +258,9 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
       });
 
       function gotData(error, data, map){
+
         var groups = constituencySlopeData(data);
+        console.log(groups)
         var divs = d3.select('#slope-groups')
           .selectAll('div.group')
           .data(groups)
@@ -283,7 +285,7 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
           var locator = graphics.constituencyLocator()
             .map(map)
             .locations(g.constituencies);
-            
+
           d3.select(this).call(locator);
         });
         divs.call(groupContainer);
@@ -339,6 +341,7 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
 
     window.redrawSlopes = function(){
       //Resize the SVG
+      console.log('hello!');
       var size = d3.select('.constituency-group__slope-graphic').node().getBoundingClientRect()
 
       slopeWidth = size.width - (margin.left + margin.right);
