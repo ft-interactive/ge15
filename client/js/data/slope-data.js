@@ -22,19 +22,21 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
     var maxPrediction = 0;
 
     for(var p in now){
-      var record = {
-        party: p,
-        resultnow: now[p]
-      };
+      if(now.hasOwnProperty(p)){
+        var record = {
+          party: p,
+          resultnow: now[p]
+        };
 
-      if(prediction){
-        maxPrediction = Math.max(prediction[p], maxPrediction);
-        if(maxPrediction === prediction[p]) { maxPredictionIndex = partyindex; }
-        record.resultprediction = prediction[p];
+        if(prediction){
+          maxPrediction = Math.max(prediction[p], maxPrediction);
+          if(maxPrediction === prediction[p]) { maxPredictionIndex = partyindex; }
+          record.resultprediction = prediction[p];
+        }
+        //work out the winner
+        parties.push(record);
+        partyindex ++;
       }
-      //work out the winner
-      parties.push(record);
-      partyindex ++;
     }
     parties[maxPredictionIndex].winner = true;
     //filter parties so it doesnt include parties with 0->0 or 0->undefined
@@ -50,16 +52,18 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
 
     var holderNowValue = 0 , holderNow,
     holderPredictedValue = 0, holderPredicted;
-    for (var p in parties){
-      if(parties[p].resultnow > holderNowValue){
-        holderNowValue = parties[p].resultnow;
-        holderNow = parties[p].party;
-      }
+    for (p in parties){
+      if (parties.hasOwnProperty(p)) {
+        if(parties[p].resultnow > holderNowValue){
+          holderNowValue = parties[p].resultnow;
+          holderNow = parties[p].party;
+        }
 
-      if(parties[p].resultprediction !== undefined){
-        if(parties[p].resultprediction > holderPredictedValue){
-          holderPredictedValue = parties[p].resultprediction;
-          holderPredicted = parties[p].party;
+        if(parties[p].resultprediction !== undefined){
+          if(parties[p].resultprediction > holderPredictedValue){
+            holderPredictedValue = parties[p].resultprediction;
+            holderPredicted = parties[p].party;
+          }
         }
       }
     }
@@ -79,12 +83,14 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
   constituencies = makeLookup(constituencies, 'id');
 
   for(var list in spreadsheet.data){
-    spreadsheet.data[list] = {
-      headline:spreadsheet.data[list].bucket,
-      description:spreadsheet.data[list].description,
-      constituencies:populateGroup(spreadsheet.data[list].constituencies, constituencies)
-    };
-    spreadsheet.data[list].partychanges = getPartyChanges(spreadsheet.data[list].constituencies);
+    if(spreadsheet.data.hasOwnProperty(list)){
+      spreadsheet.data[list] = {
+        headline:spreadsheet.data[list].bucket,
+        description:spreadsheet.data[list].description,
+        constituencies:populateGroup(spreadsheet.data[list].constituencies, constituencies)
+      };
+      spreadsheet.data[list].partychanges = getPartyChanges(spreadsheet.data[list].constituencies);
+    }
   }
 
   return spreadsheet.data;
@@ -130,8 +136,10 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
     var pctScale = 100/r.votes;
     var remainder = 100;
     for(var party in normalised){
-      normalised[party] = Math.round(r[party]*pctScale * 100)/100;
-      remainder -= normalised[party];
+      if(normalised.hasOwnProperty(party)){
+        normalised[party] = Math.round(r[party]*pctScale * 100)/100;
+        remainder -= normalised[party];
+      }
     }
     normalised.other = remainder;
     return normalised;
