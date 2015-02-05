@@ -83,7 +83,6 @@ function loaded(){
       gotData(undefined, responses[0], responses[1]);
       window.redrawSlopes();
       var resize = debounce(function(e) {
-        console.log('redraw');
         window.redrawSlopes();
       }, 200);
       window.addEventListener("resize", resize, false);
