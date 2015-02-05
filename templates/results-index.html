@@ -28,7 +28,11 @@
 {% endblock %}
 
 {% block scripts %}
-
+<script>
+  if (cutsTheMustard) {
+    addScript('{{ asset("js/group-forecast-slopes.js") }}', false, false);
+  }
+</script>
 <script>
 
 var d3 = require('d3');
@@ -110,7 +114,7 @@ document.addEventListener('o.DOMContentLoaded', function() {
       function gotData(error, data, map){
 
         var groups = document.data.processForecastData(data);
-        console.log(groups)
+
         var divs = d3.select('#slope-groups')
           .selectAll('div.group')
           .data(groups)
@@ -191,7 +195,6 @@ document.addEventListener('o.DOMContentLoaded', function() {
 
     window.redrawSlopes = function(){
       //Resize the SVG
-      console.log('hello!');
       var size = d3.select('.constituency-group__slope-graphic').node().getBoundingClientRect()
 
       slopeWidth = size.width - (margin.left + margin.right);
