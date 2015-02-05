@@ -21,7 +21,7 @@ body {
     }
   }
 
-  .o-header + &__container {
+  .site-header + &__container {
     margin-top: 2rem;
     .layout--blankpage & {
       margin-top: 0;

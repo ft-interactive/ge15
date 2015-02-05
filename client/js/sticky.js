@@ -4,12 +4,12 @@
 
 require('headroom.js');
 
-var primaryEl;
+var el;
 var headroom;
+var scrollPosition;
 
 function enable() {
-  primaryEl = document.querySelector('.o-header__container--primary');
-  headroom = new Headroom(primaryEl, {
+  headroom = new Headroom(el, {
     offset: 205,
     tolerance: 5,
     classes: {
@@ -18,24 +18,24 @@ function enable() {
       unpinned: 'o-header--unpinned'
     },
     onPin: function() {
-      primaryEl.isPinned = true;
+      el.isPinned = true;
     },
     onUnpin: function() {
-      primaryEl.isPinned = false;
+      el.isPinned = false;
     }
   });
-  primaryEl.isPinned = true;
+  el.isPinned = true;
   headroom.init();
 }
 
 function pinHeader () {
-  primaryEl.classList.remove('o-header--unpinned');
-  primaryEl.classList.add('o-header--pinned');
+  el.classList.remove('o-header--unpinned');
+  el.classList.add('o-header--pinned');
 }
 
 function unpinHeader () {
-  primaryEl.classList.add('o-header--unpinned');
-  primaryEl.classList.remove('o-header--pinned');
+  el.classList.add('o-header--unpinned');
+  el.classList.remove('o-header--pinned');
 }
 
 function disable() {
@@ -45,9 +45,49 @@ function disable() {
   }
 }
 
+function onOpenPanel(event) {
+  var d = event.detail;
+  if (d.isDefaultPanel) {
+    el.classList.remove('o-header--initial');
+    enable();
+  } else {
+    disable();
+  }
+  // TODO: remove this and uses a class of some sort.
+  if (d.panel === 'menu') {
+    el.classList.add('o-header--initial');
+  }
+
+  if (d.panel) {
+    scrollPosition = window.scrollY;
+    window.scrollTo(0, 0);
+  }
+}
+
+function onClosePanel(event) {
+  el.classList.remove('o-header--initial');
+  enable();
+  if (scrollPosition) {
+    window.scrollTo(0, scrollPosition);
+    scrollPosition = undefined;
+  }
+}
+
+function init(options) {
+  options = options || {};
+  el = options.el;
+  if (!el) {
+    return;
+  }
+  enable();
+  el.addEventListener('oHeader.openPanel', onOpenPanel);
+  el.addEventListener('oHeader.closePanel', onClosePanel);
+}
+
 module.exports = {
   enable: enable,
   disable: disable,
   pinHeader: pinHeader,
   unpinHeader: unpinHeader,
+  init: init
 };

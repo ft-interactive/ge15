@@ -1,3 +1,13 @@
+
+$_o-header-primary-height: (
+  xsmall: 35px,
+  small: 37px,
+  medium: 47px
+);
+
+$_o-header-border-width: 1px;
+
+.o-header,
 .o-header * {
   box-sizing: border-box;
 }
@@ -6,7 +16,29 @@
   @include oColorsFor(page);
   background-image: none;
   max-height: none;
-  min-height: 0;
+  min-height: map-get($_o-header-primary-height, xsmall) + $_o-header-border-width;
+
+  @if map-has-key($_o-header-primary-height, small) {
+    @include oGridRespondTo(S) {
+      min-height: map-get($_o-header-primary-height, small) + $_o-header-border-width;
+    }
+  }
+  @if map-has-key($_o-header-primary-height, medium) {
+    @include oGridRespondTo(M) {
+      min-height: map-get($_o-header-primary-height, medium) + $_o-header-border-width;
+    }
+  }
+  @if map-has-key($_o-header-primary-height, large) {
+    @include oGridRespondTo(L) {
+      min-height: map-get($_o-header-primary-height, large) + $_o-header-border-width;
+    }
+  }
+  @if map-has-key($_o-header-primary-height, xlarge) {
+    @include oGridRespondTo(XL) {
+      min-height: map-get($_o-header-primary-height, xlarge) + $_o-header-border-width;
+    }
+  }
+
 }
 
 .o-header__container {
@@ -15,10 +47,32 @@
 }
 
 .o-header__primary {
-  height: auto;
-  border-bottom: 1px solid oColorsGetPaletteColor(pink-tint3);
+  border-bottom: $_o-header-border-width solid oColorsGetPaletteColor(pink-tint3);
   border-color: rgba(0, 0, 0, 0.15);
-  mix-blend-mode: luminosity;
+  height: map-get($_o-header-primary-height, xsmall);
+  @include oColorsFor(page);
+
+  @if map-has-key($_o-header-primary-height, small) {
+    @include oGridRespondTo(S) {
+      height: map-get($_o-header-primary-height, small);
+    }
+  }
+  @if map-has-key($_o-header-primary-height, medium) {
+    @include oGridRespondTo(M) {
+      height: map-get($_o-header-primary-height, medium);
+    }
+  }
+  @if map-has-key($_o-header-primary-height, large) {
+    @include oGridRespondTo(L) {
+      height: map-get($_o-header-primary-height, large);
+    }
+  }
+  @if map-has-key($_o-header-primary-height, xlarge) {
+    @include oGridRespondTo(XL) {
+      height: map-get($_o-header-primary-height, xlarge);
+    }
+  }
+
 }
 
 .o-header__primary__left,
@@ -94,7 +148,7 @@
   a {
     padding: 6px 8px;
     display: inline-block;
-    
+
     @include oGridRespondTo(M) {
       padding: 8px 10px;
     }
@@ -138,6 +192,48 @@
   [data-o-header-current-panel="menu"] & {
     display: block;
   }
+}
+
+.o-header--initial .o-header__container--primary {
+  position: fixed;
+  z-index: 10;
+  right: 0;
+  left: 0;
+  top: 0;
+  transition: transform 200ms linear;
+}
+
+.o-header--initial .o-header__container--secondary {
+  margin-top: map-get($_o-header-primary-height, xsmall);
+
+  @if map-has-key($_o-header-primary-height, small) {
+    @include oGridRespondTo(S) {
+      margin-top: map-get($_o-header-primary-height, small) + $_o-header-border-width;
+    }
+  }
+  @if map-has-key($_o-header-primary-height, medium) {
+    @include oGridRespondTo(M) {
+      margin-top: map-get($_o-header-primary-height, medium) + $_o-header-border-width;
+    }
+  }
+  @if map-has-key($_o-header-primary-height, large) {
+    @include oGridRespondTo(L) {
+      margin-top: map-get($_o-header-primary-height, large) + $_o-header-border-width;
+    }
+  }
+  @if map-has-key($_o-header-primary-height, xlarge) {
+    @include oGridRespondTo(XL) {
+      margin-top: map-get($_o-header-primary-height, xlarge) + $_o-header-border-width;
+    }
+  }
+}
+
+.o-header--pinned .o-header__container--primary {
+  transform: translateY(0px);
+}
+
+.o-header--unpinned .o-header__container--primary {
+  transform: translateY(-50px);
 }
 
 .o-header__secondary {

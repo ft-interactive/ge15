@@ -1,14 +1,12 @@
 'use strict';
 
-var sticky = require('./sticky');
 var Delegate = require('dom-delegate');
 var bodyDelegate = new Delegate();
 var header;
 var defaultPanel;
 var delegate;
-var scrollPosition;
 
-exports.init = function() {
+exports.init = function(options) {
 
   header = document.querySelector('.o-header');
 
@@ -16,37 +14,45 @@ exports.init = function() {
     return;
   }
 
+  options = options || {};
+
   defaultPanel = header.getAttribute('data-o-header-default-panel');
   delegate = new Delegate(header);
   delegate.on('click', '.o-header-button-js', onHeaderButtonClick);
   delegate.on('click', function(event) {
     event.stopPropagation();
   });
-  bodyDelegate.on('click', togglePanel);
-  sticky.enable();
+  bodyDelegate.on('click', onClickOutside);
+
+  if (options.sticky) {
+    require('./sticky').init({el: header});
+  }
+
+  var evt = new CustomEvent('oHeader.init', {
+    detail: {
+      defaultPanel: defaultPanel
+    }
+  });
+
+  header.dispatchEvent(evt);
 };
 
 function openPanel(panel) {
   header.setAttribute('data-o-header-current-panel', panel);
-  if (defaultPanel && defaultPanel === panel) {
-    sticky.enable();
-  } else {
-    sticky.disable();
-  }
-
-  if (panel) {
-    scrollPosition = window.scrollY;
-    window.scrollTo(0, 0);
-  }
+  var isDefaultPanel = defaultPanel && defaultPanel === panel;
+  var evt = new CustomEvent('oHeader.openPanel', {
+    detail: {
+      isDefaultPanel: isDefaultPanel,
+      panel: panel
+    }
+  });
+  header.dispatchEvent(evt);
 }
 
 function closePanel() {
   header.removeAttribute('data-o-header-current-panel');
-  sticky.enable();
-  if (scrollPosition) {
-    window.scrollTo(0, scrollPosition);
-    scrollPosition = undefined;
-  }
+  var evt = new CustomEvent('oHeader.closePanel');
+  header.dispatchEvent(evt);
 }
 
 function onHeaderButtonClick(event) {
@@ -57,6 +63,7 @@ function onHeaderButtonClick(event) {
   var targetPanel = event.target.getAttribute('data-o-header-target') ||
                     event.target.parentNode.getAttribute('data-o-header-target') ||
                     defaultPanel;
+
   var currentPanel = header.getAttribute('data-o-header-current-panel');
   if (currentPanel !== targetPanel && targetPanel !== defaultPanel) {
     bodyDelegate.root(document.body);
@@ -71,7 +78,7 @@ function onHeaderButtonClick(event) {
   }
 }
 
-function togglePanel(event) {
+function onClickOutside(event) {
   event.preventDefault();
   event.stopPropagation();
   if (defaultPanel) {
