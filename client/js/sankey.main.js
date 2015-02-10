@@ -210,10 +210,6 @@ function createSummary(data){
   if(data.sourceLinks){
     target = (data.sourceLinks.length>0);
   }
-
-  links.forEach(function(l){
-    console.log(linkDescription(l, target) )
-  });
 }
 
 function toClass(str){ return str.replace(/\s/g,'_'); }
