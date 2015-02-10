@@ -43,7 +43,34 @@ function drawSankey(data){
       id:'sankey-graphic'
     });
 
-  svg.append('defs');
+  var gradients = svg.append('defs').selectAll('linearGradient').data(data.links)
+    .enter()
+      .append('linearGradient')
+        .attr({
+          id:gradientName,
+          x1:'0%',
+          x2:'100%',
+          y1:'0%',
+          y2:'0%'
+        });
+
+  gradients.append('stop')
+    .attr({
+      offset:'0%'
+    })
+    .style('stop-color',function(d){
+      return partyColour(d.source.name);
+    })
+    .style('stop-opacity',1);
+
+  gradients.append('stop')
+    .attr({
+      offset:'100%'
+    })
+    .style('stop-color',function(d){
+      return partyColour(d.target.name);
+    })
+    .style('stop-opacity',1);
 
   svg.selectAll('text.axis-label').data(['2010','2015'])
     .enter()
@@ -112,13 +139,27 @@ function drawSankey(data){
 
   function clearSelections(){
     //unselect all the nodes
-    d3.selectAll('rect').classed('selected', false);
+    d3.selectAll('rect')
+      .classed('selected', false);
     //unselect all the links
-    d3.selectAll('path').classed('selected', false);
+    d3.selectAll('path')
+      .classed('selected', false)
+      .style('stroke', null)
+      .style('stroke-opacity', null);
   }
 
   function linkClass(d){
       return toClass(d.source.name + '-to-' +d.target.name);
+  }
+
+  function gradientName(d){
+    return ( toClass(d.source.name) + '--' + toClass(d.target.name) + '-gradient');
+  }
+
+  function partyColour(p){
+    var partyCode = party.fullNameToCode[p];
+    console.log(partyCode);
+    return party.colours[partyCode];
   }
 
   d3.selectAll('rect').on('click',function(d){
@@ -127,12 +168,20 @@ function drawSankey(data){
     d3.select(this).classed('selected', true);
     if(d.x === 0){ //if it's on the left
         d.sourceLinks.forEach(function(link){
-        d3.selectAll('.'+linkClass(link)).classed('selected',true);
+        d3.selectAll('.'+linkClass(link))
+          .classed('selected',true)
+          .style('stroke', function(d){
+            return 'url(#'+gradientName(d)+')';
+          })
+          .style('stroke-opacity',1);
       });
-      //go through all the sourcelinks
     }else{ //if it's on the right
       d.targetLinks.forEach(function(link){
-        d3.selectAll('.'+linkClass(link)).classed('selected',true);
+        d3.selectAll('.'+linkClass(link)).classed('selected',true)
+        .style('stroke', function(d){
+          return 'url(#'+gradientName(d)+')';
+        })
+        .style('stroke-opacity',1);
       });
     }
   });
