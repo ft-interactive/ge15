@@ -17,22 +17,12 @@ d3.tsv(latestPredictions, function(d){
 
 function drawSankey(data){
   function toClass(str){ return str.replace(/\s/g,'_'); }
-  function permute(a){
-    var permutations = [];
-    for(var i = 0; i<a.length; i++){
-      for(var j = 0; j<a.length; j++){
-        permutations.push([a[i],a[j]]);
-      }
-    }
-    return permutations;
-  }
 
-  console.log('drawing sankey');
   d3.select('#sankey svg').remove();
   var parentSize = d3.select('#sankey').node().getBoundingClientRect();
   var height = 500;
   var width = parentSize.width;
-  var margin = {top:10,left:0,bottom:10,right:10};
+  var margin = {top:30,left:0,bottom:10,right:10};
   var chartHeight = height - (margin.top + margin.bottom);
   var chartWidth = width - (margin.left + margin.right);
 
@@ -49,10 +39,28 @@ function drawSankey(data){
   var svg = d3.select('#sankey').append('svg')
     .attr({
       width:width,
-      height:height
+      height:height,
+      id:'sankey-graphic'
     });
 
   svg.append('defs');
+
+  svg.selectAll('text.axis-label').data(['2010','2015'])
+    .enter()
+      .append('text')
+        .attr({
+          'class':'axis-label',
+          'text-anchor':function(d,i){
+            if(i===0) return 'start';
+            return 'end';
+          },
+          'transform':function(d,i){
+            var xPos = (width-margin.right)*i;
+            var yPos = margin.top - 4;
+            return 'translate('+xPos+','+yPos+')';
+          }
+        }).text(function(d){ return d; });
+
   svg = svg.append('g')
       .attr('transform','translate('+margin.left+','+margin.top+')');
 
@@ -118,13 +126,11 @@ function drawSankey(data){
     //mark this node as selected
     d3.select(this).classed('selected', true);
     if(d.x === 0){ //if it's on the left
-      console.log('2010', d.sourceLinks);
-      d.sourceLinks.forEach(function(link){
+        d.sourceLinks.forEach(function(link){
         d3.selectAll('.'+linkClass(link)).classed('selected',true);
       });
       //go through all the sourcelinks
-    }else{ //if it's on the right{
-      console.log('2015', d);
+    }else{ //if it's on the right
       d.targetLinks.forEach(function(link){
         d3.selectAll('.'+linkClass(link)).classed('selected',true);
       });
@@ -132,10 +138,8 @@ function drawSankey(data){
   });
 
   d3.selectAll('path').on('click',function(d){
-    //unselect all the nodes
-    //inselect all the links
-    //mark this link as selected
-    //mark the ends of the link selected
+    clearSelections();
+    d3.select(this).classed('selected', true);
     console.log('d ', d);
   });
 }
