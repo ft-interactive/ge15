@@ -45,7 +45,7 @@ function drawSankey(data){
       .append('g')
       .attr('transform','translate('+margin.left+','+margin.top+')');
 
-  var link = svg.append('g').selectAll('.link')
+  svg.append('g').selectAll('.link')
       .data(data.links)
     .enter()
       .append('path')
