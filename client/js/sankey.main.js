@@ -140,24 +140,24 @@ function drawSankey(data){
     clearSelections();
     //mark this node as selected
     d3.select(this).classed('selected', true);
-    if(d.x === 0){ //if it's on the left
-        d.sourceLinks.forEach(function(link){
-        d3.selectAll('.'+linkClass(link))
-          .classed('selected',true)
-          .style('stroke', function(d){
-            return 'url(#'+gradientName(d)+')';
-          })
-          .style('stroke-opacity',1);
-      });
-    }else{ //if it's on the right
-      d.targetLinks.forEach(function(link){
-        d3.selectAll('.'+linkClass(link)).classed('selected',true)
+    d.sourceLinks.forEach(function(link){
+      d3.selectAll('.'+linkClass(link))
+        .classed('selected',true)
         .style('stroke', function(d){
           return 'url(#'+gradientName(d)+')';
         })
         .style('stroke-opacity',1);
-      });
-    }
+    });
+
+    d.targetLinks.forEach(function(link){
+      d3.selectAll('.'+linkClass(link)).classed('selected',true)
+      .style('stroke', function(d){
+        return 'url(#'+gradientName(d)+')';
+      })
+      .style('stroke-opacity',1);
+    });
+
+    populateTable(d);
   });
 
   d3.selectAll('path').on('click',function(d){
@@ -167,8 +167,12 @@ function drawSankey(data){
         return 'url(#'+gradientName(d)+')';
       })
       .style('stroke-opacity',1);
-    console.log('d ', d);
+    populateTable(d);
   });
+}
+
+function populateTable(d){
+  console.log('table',d);
 }
 
 function toClass(str){ return str.replace(/\s/g,'_'); }
