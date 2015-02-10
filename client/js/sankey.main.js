@@ -1,21 +1,29 @@
 'use strict';
 var d3 = require('d3');
 d3.sankey = require('./sankey/d3plugin.js');
+var debounce = require('lodash-node/modern/functions/debounce');
 
 var sankeyData = require('./sankey/sankey-data.js');
 var latestPredictions = 'http://ig.ft.com/data/electionforecast-co-uk/tsv/prediction-latest';
 
-d3.tsv(latestPredictions, drawSankey);
+d3.tsv(latestPredictions, function(d){
+  var data = sankeyData(d);
+  var resize = debounce(function(e) {
+    drawSankey(data);
+  }, 200);
+  window.addEventListener("resize", resize, false);
+  drawSankey(data);
+});
 
 function drawSankey(data){
 
   function toClass(str){ return str.replace(/\s/g,'_'); }
-
   console.log('drawing sankey');
-  data = sankeyData(data);
+  d3.select('#sankey svg').remove();
+  var parentSize = d3.select('#sankey').node().getBoundingClientRect();
   var height = 500;
-  var width = 500;
-  var margin = {top:10,left:10,bottom:10,right:10};
+  var width = parentSize.width;
+  var margin = {top:10,left:0,bottom:10,right:10};
   var chartHeight = height - (margin.top + margin.bottom);
   var chartWidth = width - (margin.left + margin.right);
 
