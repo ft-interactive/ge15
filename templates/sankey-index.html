@@ -12,12 +12,9 @@
 
 {% block scripts %}
 <script>
-
-var d3 = require('d3');
-var topojson = require('topojson');
-
-document.addEventListener('o.DOMContentLoaded', function() {
-  console.log('hello!');
-});
+console.log('here');
+if (cutsTheMustard) {
+  addScript('{{ asset("js/sankey.js") }}', false, false);
+}
 </script>
 {% endblock %}
