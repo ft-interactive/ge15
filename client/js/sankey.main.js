@@ -8,5 +8,76 @@ var latestPredictions = 'http://ig.ft.com/data/electionforecast-co-uk/tsv/predic
 d3.tsv(latestPredictions, drawSankey);
 
 function drawSankey(data){
+
+  function toClass(str){ return str.replace(/\s/g,'_'); }
+
+  console.log('drawing sankey');
   data = sankeyData(data);
+  var height = 500;
+  var width = 500;
+  var margin = {top:10,left:10,bottom:10,right:10};
+  var chartHeight = height - (margin.top + margin.bottom);
+  var chartWidth = width - (margin.left + margin.right);
+
+  var sankey = d3.sankey()
+    .size([chartWidth, chartHeight])
+    .nodeWidth(15)
+    .nodePadding(10)
+    .nodes(data.nodes)
+    .links(data.links)
+    .layout(32);
+
+  var path = sankey.link();
+
+  var svg = d3.select('#sankey').append('svg')
+    .attr({
+      width:width,
+      height:height
+    })
+      .append('g')
+      .attr('transform','translate('+margin.left+','+margin.top+')');
+
+  var link = svg.append('g').selectAll('.link')
+      .data(data.links)
+    .enter()
+      .append('path')
+      .attr({
+        'class':function(d){
+          return 'link ' + toClass(d.source.name + '-to-' +d.target.name);
+        },
+        d:path
+      })
+      .style('stroke-width', function(d) { return Math.max(1, d.dy); });
+
+  var node = svg.append('g').selectAll('.node')
+      .data(data.nodes)
+    .enter()
+      .append('g')
+      .attr('class', 'node')
+      .attr('transform', function(d) { return 'translate(' + d.x + ',' + d.y + ')'; });
+
+  node.append('rect')
+    .attr('height', function(d) { return d.dy; })
+    .attr('width', sankey.nodeWidth())
+    .attr('class',function(d){
+      return d.name;
+    })
+      .append('title')
+      .text(function(d) { return d.name + " " + d.value; });
+
+
+  node.append('text')
+    .attr({
+      'x':-6,
+      'y':function(d) { return d.dy / 2; },
+      'dy':'.35em',
+      'text-anchor':'end',
+      'transform':null
+    })
+    .text(function(d) { return d.name + ' ('+d.value + ')'; })
+    .filter(function(d) { return d.x < width / 2; })
+    .attr({
+      'x':6 + sankey.nodeWidth(),
+      'text-anchor':'start'
+    });
 }
