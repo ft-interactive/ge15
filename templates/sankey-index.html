@@ -1,0 +1,23 @@
+{% extends 'article.html' %}
+
+{% block title %}Areas{% endblock %}
+
+{% block article_header %}
+<h1 class="article-header__headline">Seat gains and losses</h1>
+{% endblock %}
+
+{% block article_body %}
+<div id="sankey"></div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+
+var d3 = require('d3');
+var topojson = require('topojson');
+
+document.addEventListener('o.DOMContentLoaded', function() {
+  console.log('hello!');
+});
+</script>
+{% endblock %}
