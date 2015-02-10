@@ -156,8 +156,7 @@ function drawSankey(data){
       })
       .style('stroke-opacity',1);
     });
-
-    populateTable(d);
+    createSummary(d);
   });
 
   d3.selectAll('path').on('click',function(d){
@@ -167,12 +166,54 @@ function drawSankey(data){
         return 'url(#'+gradientName(d)+')';
       })
       .style('stroke-opacity',1);
-    populateTable(d);
+    createSummary(d);
   });
 }
 
-function populateTable(d){
-  console.log('table',d);
+function createSummary(data){
+  console.log('summary');
+
+  function linkDescription(l, target){
+    var seats = 'seats';
+    if(l.value === 1){
+      seats = 'seat';
+    }
+    if(l.source.name === l.target.name){
+      return (l.source.name + ' retain ' + l.value + ' ' + seats);
+    }else{
+      if(target){
+        return (l.source.name + ' lose ' + l.value + ' ' + seats + ' to ' + l.target.name);
+      }else{
+        return (l.target.name + ' gain ' + l.value + ' ' + seats + ' from ' + l.source.name);
+      }
+    }
+    return '';
+  }
+  var links = [];
+  if(!data.hasOwnProperty('name')){   //if it has a 'name property it's a node, otehrwise it's a link
+    links = [data];
+  }else{
+    links = links.concat(data.sourceLinks, data.targetLinks);
+  }
+
+  links = links.sort(function(a,b){return b.value - a.value; });
+
+  var listItems = d3.select('#selection-info').selectAll('div').data(links);
+
+  listItems.exit().remove();
+
+  listItems.enter().append('div');
+
+  listItems.text(function(d){return linkDescription(d,target); });
+
+  var target = false;
+  if(data.sourceLinks){
+    target = (data.sourceLinks.length>0);
+  }
+
+  links.forEach(function(l){
+    console.log(linkDescription(l, target) )
+  });
 }
 
 function toClass(str){ return str.replace(/\s/g,'_'); }
@@ -198,6 +239,5 @@ function gradientName(d){
 
 function partyColour(p){
   var partyCode = party.fullNameToCode[p];
-  console.log(partyCode);
   return party.colours[partyCode];
 }
