@@ -17,3 +17,69 @@ if (cutsTheMustard) {
 }
 </script>
 {% endblock %}
+
+{% block stylesheets %}
+<style>
+svg{
+  font-family: BentonSans, sans-serif;
+}
+
+.Conservatives{
+  fill:#6da8e1;
+  stroke:none;
+}
+.Labour{
+  fill:#e25050;
+  stroke:none;
+}
+.Liberal.Democrats{
+  fill:#ffc660;
+  stroke:none;
+}
+.UKIP{
+  fill:#ca6dbf;
+  stroke:none;
+}
+.Greens{
+  fill:#65a68c;
+  stroke:none;
+}
+.SNP{
+  fill:#f2e24d;
+  stroke:none;
+}
+.Other{
+  fill:#cccccc;
+  stroke:none;
+}
+.Plaid.Cymru{
+  fill:#827996;
+  stroke:none;
+}
+
+.missing{
+  fill:#ddd;
+  stroke:none;
+}
+
+.error-band{
+  stroke:#999;
+  shape-rendering:crispEdges;
+}
+
+
+.node rect {
+  shape-rendering: crispEdges;
+}
+
+.node text {
+  font-size:0.9em;
+}
+
+path.link {
+  fill: none;
+  stroke: #000;
+  stroke-opacity: .2;
+}
+</style>
+{% endblock %}

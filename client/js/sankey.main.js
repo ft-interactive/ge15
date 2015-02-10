@@ -21,8 +21,8 @@ function drawSankey(data){
 
   var sankey = d3.sankey()
     .size([chartWidth, chartHeight])
-    .nodeWidth(15)
-    .nodePadding(10)
+    .nodeWidth(30)
+    .nodePadding(20)
     .nodes(data.nodes)
     .links(data.links)
     .layout(32);
