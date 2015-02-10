@@ -136,7 +136,7 @@ function drawSankey(data){
       'text-anchor':'start'
     });
 
-  d3.selectAll('rect').on('click',function(d){
+  d3.selectAll('.node').on('click',function(d){
     clearSelections();
     //mark this node as selected
     d3.select(this).classed('selected', true);
@@ -162,7 +162,11 @@ function drawSankey(data){
 
   d3.selectAll('path').on('click',function(d){
     clearSelections();
-    d3.select(this).classed('selected', true);
+    d3.select(this).classed('selected', true)
+      .style('stroke', function(d){
+        return 'url(#'+gradientName(d)+')';
+      })
+      .style('stroke-opacity',1);
     console.log('d ', d);
   });
 }

@@ -38,7 +38,7 @@ var partyColours = {
   'green':'#65a68c',
   'snp':'#f2e24d',
   'other':'#cccccc',
-  'pc':'#827996'
+  'pc':'#54A19C'
 };
 
 module.exports = {
