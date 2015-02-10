@@ -16,7 +16,6 @@ d3.tsv(latestPredictions, function(d){
 });
 
 function drawSankey(data){
-  function toClass(str){ return str.replace(/\s/g,'_'); }
 
   d3.select('#sankey svg').remove();
   var parentSize = d3.select('#sankey').node().getBoundingClientRect();
@@ -137,31 +136,6 @@ function drawSankey(data){
       'text-anchor':'start'
     });
 
-  function clearSelections(){
-    //unselect all the nodes
-    d3.selectAll('rect')
-      .classed('selected', false);
-    //unselect all the links
-    d3.selectAll('path')
-      .classed('selected', false)
-      .style('stroke', null)
-      .style('stroke-opacity', null);
-  }
-
-  function linkClass(d){
-      return toClass(d.source.name + '-to-' +d.target.name);
-  }
-
-  function gradientName(d){
-    return ( toClass(d.source.name) + '--' + toClass(d.target.name) + '-gradient');
-  }
-
-  function partyColour(p){
-    var partyCode = party.fullNameToCode[p];
-    console.log(partyCode);
-    return party.colours[partyCode];
-  }
-
   d3.selectAll('rect').on('click',function(d){
     clearSelections();
     //mark this node as selected
@@ -191,4 +165,31 @@ function drawSankey(data){
     d3.select(this).classed('selected', true);
     console.log('d ', d);
   });
+}
+
+function toClass(str){ return str.replace(/\s/g,'_'); }
+
+function clearSelections(){
+  //unselect all the nodes
+  d3.selectAll('rect')
+  .classed('selected', false);
+  //unselect all the links
+  d3.selectAll('path')
+  .classed('selected', false)
+  .style('stroke', null)
+  .style('stroke-opacity', null);
+}
+
+function linkClass(d){
+  return toClass(d.source.name + '-to-' +d.target.name);
+}
+
+function gradientName(d){
+  return ( toClass(d.source.name) + '--' + toClass(d.target.name) + '-gradient');
+}
+
+function partyColour(p){
+  var partyCode = party.fullNameToCode[p];
+  console.log(partyCode);
+  return party.colours[partyCode];
 }
