@@ -1,15 +1,25 @@
 'use strict';
 
 var app = require('../../util/app');
-var models = require('../../models');
+var viewLocals = require('../../middleware/view-locals');
+var siteNav = require('../../middleware/site-navigation');
 
 function* home(next) {
-  yield this.render('forecast-index', {});
+  yield this.render('projections-index', {
+    page: {
+      title: 'What if the election were tomorrow?'
+    }
+  });
   yield next;
 }
 
 function main() {
   return app()
+
+        .use(siteNav())
+
+        .use(viewLocals())
+
         .router()
 
         // forecast home page

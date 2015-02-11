@@ -1,13 +1,19 @@
-@import "graphics/parties";
-
 line {
   stroke-width: 2;
   stroke: #000000;
 }
 
 .slope {
-  stroke-width: 2;
+  stroke-width: 1.2;
+  @include oGridRespondTo(S) {
+    stroke-width: 1.7;
+  }
+  @include oGridRespondTo(M) {
+    stroke-width: 2;
+  }
 }
+
+
 
 .end-point,
 .start-point {
@@ -15,45 +21,84 @@ line {
 }
 
 .c {
-  fill: $conservative-dark;
-  stroke: $conservative-dark;
+  fill: $conservative;
+  stroke: $conservative;
 }
 
 .lab {
-  fill: $labour-dark;
-  stroke: $labour-dark;
+  fill: $labour;
+  stroke: $labour;
 }
 
 .ld {
-  fill: $liberal-democrat-dark;
-  stroke: $liberal-democrat-dark;
+  fill: $liberal-democrat;
+  stroke: $liberal-democrat;
 }
 
 .ukip {
-  fill: $ukip-dark;
-  stroke: $ukip-dark;
+  fill: $ukip;
+  stroke: $ukip;
 }
 
 .snp {
-  fill: $snp-dark;
-  stroke: $snp-dark;
+  fill: $snp;
+  stroke: $snp;
 }
 
 .pc {
-  fill: $plaid-cymru-dark;
-  stroke: $plaid-cymru-dark;
+  fill: $plaid-cymru;
+  stroke: $plaid-cymru;
 }
 
 .green {
-  fill: $green-dark;
-  stroke: $green-dark;
+  fill: $green;
+  stroke: $green;
 }
 
 .other {
-  fill: $other-dark;
-  stroke: $other-dark;
+  fill: $other;
+  stroke: $other;
 }
 
 .slope-label {
   stroke: none;
+  font-size: 10px;
+  font-weight: bold;
+
+  @include oGridRespondTo(M) {
+    font-size: 12px;
+  }
+
+
+  &.c {
+    fill: $conservative-dark;
+  }
+
+  &.lab {
+    fill: $labour-dark;
+  }
+
+  &.ld {
+    fill: $liberal-democrat-dark;
+  }
+
+  &.ukip {
+    fill: $ukip-dark;
+  }
+
+  &.snp {
+    fill: $snp-dark;
+  }
+
+  &.pc {
+    fill: $plaid-cymru-dark;
+  }
+
+  &.green {
+    fill: $green-dark;
+  }
+
+  &.other {
+    fill: $other-dark;
+  }
 }

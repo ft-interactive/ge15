@@ -1,5 +1,7 @@
 .constituency-group {
   &__slope {
+    max-width: 110px;
+    min-width: 90px;
     margin-bottom: 0.5em;
     @include oGridRespondTo(S) {
       margin-bottom: 0.75em;
@@ -22,12 +24,17 @@
 
   &__locator-map {
     @include oGridRemoveGutters('left');
-    border: 1px solid black;
-    line-height: 0;
     margin-bottom: 0.5em;
-    img {
-      width: 100%;
-      height: auto;
+    float: right;
+    &-ratio {
+      line-height: 0;
+      position: relative;
+      padding-top: 139%;
+    }
+    svg {
+      @include absolute(fill);
+      display: inline-block;
+      overflow: hidden;
     }
   }
 
@@ -35,28 +42,116 @@
     height: 36px;
     max-width: 90%;
     line-height: 1.05;
-    font-size: 0.78em;
+    font-size: 0.6em;
+    color: lighten(oColorsGetColorFor(body, text), 10%);
     @include oGridRespondTo(S) {
-      font-size: 0.8em;
-      color: lighten(oColorsGetColorFor(body, text), 3%);
+      font-size: 0.65em;
+      color: lighten(oColorsGetColorFor(body, text), 15%);
     }
     @include oGridRespondTo(M) {
       height: 34px;
-      max-width: 85%;
-      color: lighten(oColorsGetColorFor(body, text), 10%);
+      color: lighten(oColorsGetColorFor(body, text), 25%);
     }
   }
 
   &__slope-graphic {
-    padding-top: 65%;
+    padding-top: 90%;
     position: relative;
     margin-bottom: 5px;
-    //border: 1px solid black;
 
     svg {
       @include absolute(fill);
       display: inline-block;
       overflow: hidden;
     }
+  }
+}
+
+.constituency-group__summary-table {
+  @include oGridRemoveGutters('left');
+  float: right;
+  margin-bottom: 0.5em;
+
+  @include oGridRespondTo(S) {
+    padding-right: 10px;
+  }
+
+  table {
+    border-spacing: 0;
+    width: 100%;
+    color: oColorsGetPaletteColor(grey-tint5);
+    font-size: 12px;
+  }
+  th,
+  td {
+    width: 50px;
+    padding: 5px;
+    font-size: 1em;
+    text-align: left;
+    border-bottom: 1px solid oColorsGetPaletteColor(pink-tint2);
+  }
+  thead th {
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 0.8em;
+  }
+  tbody td {
+    letter-spacing: 1px;
+  }
+
+  .rowhead {
+    font-weight: bold;
+    position: relative;
+    padding-right: 14px;
+    text-align: right;
+    &:before {
+      content: " ";
+      display: block;
+      position: absolute;
+      width: 8px;
+      height: 100%;
+      right: 0;
+      top: 0;
+    }
+  }
+
+  .c:before {
+    background: $conservative;
+  }
+
+  .ld:before {
+    background: $liberal-democrat;
+  }
+
+  .lab:before {
+    background: $labour;
+  }
+
+  .snp:before {
+    background: $snp;
+  }
+
+  .pc:before {
+    background: $plaid-cymru;
+  }
+
+  .ukip:before {
+    background: $ukip;
+  }
+
+  .green:before {
+    background: $green;
+  }
+
+  .sf:before {
+    background: $sinn-fein;
+  }
+
+  .dup:before {
+    background: $dup;
+  }
+
+  .sdlp:before {
+    background: $sdlp;
   }
 }

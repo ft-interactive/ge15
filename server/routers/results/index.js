@@ -1,23 +1,19 @@
+'use strict';
+
 var app = require('../../util/app');
 var _ = require('lodash');
 var constituencies = require('../../data/constituencies');
 var wards = require('../../data/wards');
-var index = _.indexBy(constituencies, 'slug');
 var regions = require('../../data/regions');
-var co = require('co');
-var thunkify = require('thunkify');
 var models = require('../../models');
+var viewLocals = require('../../middleware/view-locals');
+var siteNav = require('../../middleware/site-navigation');
 
 function* render(next) {
   if (this.view) {
     yield this.render(this.view.name, this.view.data);
   }
   yield next;
-}
-
-function isGenerator(fn) {
-  if (!fn) return false;
-  return fn.constructor.name === 'GeneratorFunction';
 }
 
 function view(name, data) {
@@ -28,15 +24,6 @@ function view(name, data) {
     };
     yield next;
   };
-}
-
-function assignLocal(property, data) {
-  // TODO: let data be a generator/yieldable
-  var f = _.isFunction(data) ? f : _.constant(data);
-  return function*(next) {
-    this.locals[property] = f.call(this);
-    yield next;
-  }
 }
 
 var params = {
@@ -60,28 +47,15 @@ var params = {
   }
 }
 
-var navigation = [
-  {label: 'one', href: '/one'},
-  {label: 'two', href: '/two'}
-];
+
 
 function main() {
 
   return app()
 
-    .use(assignLocal('navigation', navigation))
+    .use(siteNav())
 
-    .use(function*(next){
-      var iframed = !!this.query.iframed
-      this.locals.view = {
-        layout: {
-          fullWidth: false,
-          blankPage: iframed,
-          iframed: iframed
-        }
-      };
-      yield next;
-    })
+    .use(viewLocals())
 
     .router()
 

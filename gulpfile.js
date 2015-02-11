@@ -49,11 +49,9 @@ var vendorBundle = [
   {file:'./bower_components/dom-delegate/lib/delegate.js', expose:'dom-delegate'},
   {file:'./bower_components/o-hoverable/main.js', expose:'o-hoverable'},
   {file:'./bower_components/o-date/main.js', expose:'o-date'},
-  {file:'./bower_components/fetch/fetch.js', expose:'fetch'},
   {file:'./bower_components/topojson/topojson.js', expose:'topojson'},
   'd3'
 ];
-
 
 
 // TODO:

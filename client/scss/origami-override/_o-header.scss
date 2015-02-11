@@ -100,13 +100,6 @@ $_o-header-border-width: 1px;
     width: 180px;
   }
 
-  a {
-    color: rgba(0, 0, 0, 0.35);
-    cursor: pointer;
-    .o-hoverable-on &:hover {
-      color: #111111;
-    }
-  }
 }
 
 .o-header__primary__left {
@@ -118,8 +111,25 @@ $_o-header-border-width: 1px;
 }
 
 .o-header__primary-link {
+
+  // !important is needed below to win a
+  // specificity battle with o-header
+
+  color: rgba(0, 0, 0, 0.35) !important;
+  cursor: pointer;
   display: inline;
   padding: 15px 10px;
+
+  .o-hoverable-on &:hover {
+    color: #111111 !important;
+    opacity: 0.7;
+  }
+
+
+  &:focus {
+    color: #111111 !important;
+  }
+
   .o-header__primary-label {
     vertical-align: middle;
     margin-left: 4px;
@@ -131,7 +141,7 @@ $_o-header-border-width: 1px;
     }
 
     .o-hoverable-on &:hover {
-      color: #000000;
+      color: #000000 !important;
     }
 
   }
@@ -139,7 +149,6 @@ $_o-header-border-width: 1px;
   & + & {
     padding-left: 5px;
   }
-
 }
 
 .o-header__logo {

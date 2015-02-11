@@ -1,10 +1,11 @@
+'use strict';
+
 module.exports = main;
 
 var koa = require('koa');
 var routers = require('./routers');
 var pkg = require('../package.json');
 
-var _ = require('lodash');
 var trace = require('koa-trace');
 var favicon = require('koa-favicon');
 var requestId = require('koa-request-id');

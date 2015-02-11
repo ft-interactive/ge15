@@ -1,7 +1,7 @@
 'use strict';
 
 //DATA PROCESSING this should be done server side
-function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet with the following sheets
+function constituencySlopeData(spreadsheet) { //takes a bertha JSON spreadsheet with the following sheets
   //data ... a list of lists of constituency ids
   //resultsnow ... constituency results as of the last election that took place there (by election or 2010 general)
   //details ... full constituency name, ft slug etc
@@ -12,7 +12,7 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
   spreadsheet.coordinates = makeLookup( spreadsheet.coordinates, 'id' );
 
   //create constituency objects
-  var constituencies = spreadsheet.details.map(function(c){
+  var constituencies = spreadsheet.details.map(function(c) {
     var now = resultNormalise( spreadsheet.resultnow[c.onsid] );
     var prediction = spreadsheet.predictions[c.onsid];
     var coords = spreadsheet.coordinates[c.onsid];
@@ -21,14 +21,14 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
     var maxPredictionIndex = 0;
     var maxPrediction = 0;
 
-    for(var p in now){
-      if(now.hasOwnProperty(p)){
+    for(var p in now) {
+      if(now.hasOwnProperty(p)) {
         var record = {
           party: p,
           resultnow: now[p]
         };
 
-        if(prediction){
+        if(prediction) {
           maxPrediction = Math.max(prediction[p], maxPrediction);
           if(maxPrediction === prediction[p]) { maxPredictionIndex = partyindex; }
           record.resultprediction = prediction[p];
@@ -40,7 +40,7 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
     }
     parties[maxPredictionIndex].winner = true;
     //filter parties so it doesnt include parties with 0->0 or 0->undefined
-    parties = parties.filter(function(p){
+    parties = parties.filter(function(p) {
       var voteShareThreshold = 5;
       if(!p.resultprediction) p.resultprediction = 0;
       if(!p.resultnow) p.resultnow = 0;
@@ -50,24 +50,26 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
       return true;
     });
 
-    var holderNowValue = 0 , holderNow,
-    holderPredictedValue = 0, holderPredicted;
-    for (p in parties){
+    var holderNowValue = 0;
+    var holderNow;
+    var holderPredictedValue = 0;
+    var holderPredicted;
+
+    for (p in parties) {
       if (parties.hasOwnProperty(p)) {
-        if(parties[p].resultnow > holderNowValue){
+        if(parties[p].resultnow > holderNowValue) {
           holderNowValue = parties[p].resultnow;
           holderNow = parties[p].party;
         }
 
-        if(parties[p].resultprediction !== undefined){
-          if(parties[p].resultprediction > holderPredictedValue){
+        if(parties[p].resultprediction !== undefined) {
+          if(parties[p].resultprediction > holderPredictedValue) {
             holderPredictedValue = parties[p].resultprediction;
             holderPredicted = parties[p].party;
           }
         }
       }
     }
-
 
     var o = {
       name: c.ftname,
@@ -78,12 +80,15 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
       holderpredicted: holderPredicted,
       parties: parties
     };
+
     return o;
+
   });
+
   constituencies = makeLookup(constituencies, 'id');
 
-  for(var list in spreadsheet.data){
-    if(spreadsheet.data.hasOwnProperty(list)){
+  for (var list in spreadsheet.data) {
+    if (spreadsheet.data.hasOwnProperty(list)) {
       spreadsheet.data[list] = {
         headline:spreadsheet.data[list].bucket,
         description:spreadsheet.data[list].description,
@@ -95,21 +100,24 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
 
   return spreadsheet.data;
 
-
-
-
   //helpful functions...
-  function getPartyChanges(list){
-    var summary = {total:0};
-    list.forEach(function(d){
+  function getPartyChanges(list) {
+    var summary = {total: 0};
+    list.forEach(function(d) {
       summary.total ++;
-      if(d.holdernow !== d.holderpredicted){
-        if(!summary[d.holdernow]){ summary[d.holdernow] = {gain:0,loss:0,hold:0}; }
-        if(!summary[d.holderpredicted]){ summary[d.holderpredicted] = {gain:0,loss:0,hold:0}; }
+      if (d.holdernow !== d.holderpredicted) {
+        if (!summary[d.holdernow]) {
+          summary[d.holdernow] = {gain:0,loss:0,hold:0};
+        }
+        if (!summary[d.holderpredicted]){
+          summary[d.holderpredicted] = {gain:0,loss:0,hold:0};
+        }
         summary[d.holdernow].loss ++;
         summary[d.holderpredicted].gain ++;
-      }else{
-        if(!summary[d.holdernow]){ summary[d.holdernow] = {gain:0,loss:0,hold:0}; }
+      } else {
+        if (!summary[d.holdernow]){
+          summary[d.holdernow] = {gain:0,loss:0,hold:0};
+        }
         summary[d.holdernow].hold ++;
       }
     });
@@ -117,13 +125,14 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
     return(summary);
   }
 
-  function populateGroup(list, constituencies){
-    return list.map( function(d){
+  function populateGroup(list, constituencies) {
+    return list.map(function(d) {
       return constituencies[d];
-    } ).sort();
+    }).sort();
   }
 
-  function resultNormalise(r){ //transform the result data in percentages, use only parties for which we have predictions
+  //transform the result data in percentages, use only parties for which we have predictions
+  function resultNormalise(r) {
     var normalised = {
       lab:0,
       c:0,
@@ -133,11 +142,11 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
       snp:0,
       pc:0
     };
-    var pctScale = 100/r.votes;
+    var pctScale = 100 / r.votes;
     var remainder = 100;
-    for(var party in normalised){
-      if(normalised.hasOwnProperty(party)){
-        normalised[party] = Math.round(r[party]*pctScale * 100)/100;
+    for (var party in normalised) {
+      if (normalised.hasOwnProperty(party)) {
+        normalised[party] = Math.round(r[party]*pctScale * 100) / 100;
         remainder -= normalised[party];
       }
     }
@@ -145,9 +154,9 @@ function constituencySlopeData(spreadsheet){ //takes a bertha JSON spreadsheet w
     return normalised;
   }
 
-  function makeLookup(a, property){
+  function makeLookup(a, property) {
     var o = {};
-    a.forEach(function(d){
+    a.forEach(function(d) {
       o[d[property]] = d;
     });
     return o;

@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<html class="core o-hoverable-on layout {% if view.layout.iframed %}layout--iframed {% endif %}{% if view.layout.blankPage %}layout--blankpage {% endif %}{% if view.layout.fullWidth %}layout--fullwidth {% endif %}" lang="en-GB">
+<html class="core o-hoverable-on layout {{ view.layout.classes|join(' ') }} {% if view.layout.iframed %}layout--iframed {% endif %}{% if view.layout.blankPage %}layout--blankpage {% endif %}{% if view.layout.fullWidth %}layout--fullwidth {% endif %}" lang="en-GB">
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>{% block title %}{% endblock %}</title>
+        <title>{% block title %}{{ page.title }} - General Election 2015, FT.com{% endblock %}</title>
         <meta name="description" content="{% block description %}{% endblock %}" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="copyright" content="Financial Times" />
         <meta name="robots" content="index,follow" />
         <meta name="author" content="FT Interactive Graphics" />
 
-        {# addScript function #}
-        <script>function addScript(src,async,defer){if (!async && !defer) {document.write('\x3Cscript src="'+src+'">\x3C/script>');return;}var o=document.createElement('script');o.src=src;o.async=!!async;if(defer)o.defer=!!defer;var s=document.getElementsByTagName('script')[0];s.parentNode.appendChild(o);return o;}</script>
+        {% include "./add-script.html" %}
 
         {# start chartbeat timer #}
         <script>var _sf_startpt=(new Date()).getTime()</script>
@@ -36,15 +35,15 @@
 
         <meta name="format-detection" content="telephone=no" />
 
-        <script>
-        if (cutsTheMustard) {
-         addScript('//cdn.polyfill.io/v1/polyfill.min.js?features=default,Promise,fetch', false, false);
-         addScript('{{ asset("js/vendor.js") }}', false, false);
-         addScript('{{ asset("js/common.js") }}', false, false);
-        } else {
-         addScript('//cdn.polyfill.io/v1/polyfill.min.js?features=Document', false, false);
+        <script>{% spaceless %}
+        if(cutsTheMustard){
+          addScript('//cdn.polyfill.io/v1/polyfill.min.js?features=default,Promise,fetch', false, false);
+          addScript('{{ asset("js/vendor.js") }}', false, false);
+          addScript('{{ asset("js/common.js") }}', false, false);
+        }else{
+          addScript('//cdn.polyfill.io/v1/polyfill.min.js?features=Document', false, false);
         }
-        </script>
+        {% endspaceless %}</script>
 
         {# IG Google Analytics account #}
         {% if flags.tracking %}
@@ -55,7 +54,7 @@
 
         {% block headscripts %}{% endblock %}
     </head>
-    <body itemscope itemtype="http://schema.org/WebPage">
+    <body itemscope itemtype="http://schema.org/WebPage" class="{{ view.layout.body.classes|join(' ') }}">
 
         {% if flags.tracking %}
         <script src="http://s2.ft-static.com/scripts/392b9acc/bundles/tracking.js"></script>
@@ -76,6 +75,22 @@
         {% block footer%}
         {% include "./site-footer.html" %}
         {% endblock %}
+
+        {% if bundle %}
+        {% spaceless %}
+        <script>
+        if(cutsTheMustard){
+            {% if Array.isArray(bundle) %}
+            {% for b in bundle %}
+              addScript('{{ asset("js/" + b) }}', false, false);
+            {% endfor %}
+            {% else %}
+              addScript('{{ asset("js/" + bundle) }}', false, false);
+            {% endif %}
+        }
+        </script>
+        {% endspaceless %}
+        {% endif %}
 
         {% block scripts %}{% endblock %}
 

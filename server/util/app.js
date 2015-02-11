@@ -1,3 +1,5 @@
+'use strict';
+
 var koa = require('koa');
 var router = require('koa-router');
 var views = require('koa-views');
@@ -10,13 +12,12 @@ var defaultOptions = {
   views: true,
   router: false,
   isProd: prod
-}
+};
 
-for (var fn in filters) {
-  if (_.isFunction(filters[fn])) {
-    swig.setFilter(fn, filters[fn]);
-  }
-}
+Object.keys(filters).forEach(function(name) {
+  if (!_.isFunction(filters[name])) return;
+  swig.setFilter(name, filters[name]);
+});
 
 var baseurl = {
   static: '', // TODO: use cdn host if production
@@ -41,7 +42,7 @@ if (prod) {
 } else {
   getAsset = function(name) {
     return baseurl.static + '/' + name;
-  }
+  };
 }
 
 function getNow() {
@@ -78,7 +79,7 @@ module.exports = function(options) {
   app.router = function() {
     app.use(router(app));
     return app;
-  }
+  };
 
   // set options.router = true
   // to autostart the router
@@ -87,4 +88,4 @@ module.exports = function(options) {
   }
 
   return app;
-}
+};

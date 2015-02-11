@@ -2,16 +2,20 @@
 
 module.exports = new Promise(function(resolve) {
 
-  function dispatchOrigamiEvent() {
-    document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
+  var domContentLoaded = 'DOMContentLoaded';
+  var doc = document;
+  var isLoaded = doc.readyState === 'interactive' ||
+                 doc.readyState === 'complete';
+
+  if (isLoaded)
+    done();
+  else
+    doc.addEventListener(domContentLoaded, done);
+
+  function done() {
+    doc.removeEventListener(domContentLoaded, done);
+    doc.dispatchEvent(new CustomEvent('o.' + domContentLoaded));
     resolve();
   }
-
-  var alreadyDOMcontentloaded = document.readyState === 'interactive' || document.readyState === 'complete';
-
-  if (alreadyDOMcontentloaded)
-    dispatchOrigamiEvent();
-  else
-    document.addEventListener('DOMContentLoaded', dispatchOrigamiEvent);
 
 });
