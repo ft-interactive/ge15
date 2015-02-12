@@ -2,7 +2,7 @@
 
 {% block title %}Parliamentary seat change forecast{% endblock %}
 
- {% block article_header %} 
+ {% block article_header %}
 {% endblock %}
 
 {% block article_body %}
@@ -14,7 +14,13 @@
   <div id="sankey-description" class="" data-o-grid-colspan="12 M6 L6">
     <p>This graphic shows a predicted redistribution of parliamentary seats. It is based on open data from <a href="http://electionforecast.co.uk/">electionforecast.co.uk</a> and is updated regularly.</p>
     <p id="inputs">
-      Labour: <a href="#" data-party="Labour" data-direction="to" class="chart-preset">gains</a> Click on the chart for detailed information.</p>
+      Highlight key flows:
+      <a href="#" data-party="Labour" data-direction="to" class="chart-preset">Labour gains</a> or
+      <a href="#" data-party="Labour" data-direction="from" class="chart-preset">losses</a>.
+      <a href="#" data-party="Conservatives" data-direction="to" class="chart-preset">Conservative gains</a> or
+      <a href="#" data-party="Conservatives" data-direction="from" class="chart-preset">losses</a>.
+      <a href="#" data-party="Liberal Democrats" data-direction="to" class="chart-preset">Lib Dem losses</a>.
+      Or other parties on the chart for detailed information.</p>
     <div id="selection-info" class="info-pane"></div>
   </div>
 </div>
@@ -132,7 +138,7 @@ path.link {
   border-top: 1px solid #a7a59b;
   margin-top: 2em;
   padding-top: 1em;
-  max-width: 100%;  
+  max-width: 100%;
 }
 
 /* o-grid stuff from */
@@ -1020,7 +1026,7 @@ head:after {
   .notes{
     max-width:670px;
   }
-  
+
   }
 
 </style>

@@ -14,7 +14,8 @@ d3.tsv(latestPredictions, function(d){
   }, 200);
   window.addEventListener("resize", resize, false);
   drawSankey(data);
-  d3.select('.chart-preset').on('click',function(){
+  d3.selectAll('.chart-preset').on('click',function(){
+    clearSelections();
     d3.event.preventDefault();
     var party = d3.select(this).attr('data-party');
     var direction = d3.select(this).attr('data-direction');
@@ -202,12 +203,12 @@ function createSummary(data){
       seats = 'seat';
     }
     if(l.source.name === l.target.name){
-      return (l.source.name + ' retain ' + l.value + ' ' + seats);
+      return (l.source.name + ' retain <b>' + l.value + '</b> ' + seats);
     }else{
       if(target){
-        return (l.source.name + ' lose ' + l.value + ' ' + seats + ' to ' + l.target.name);
+        return (l.source.name + ' lose <b>' + l.value + '</b> ' + seats + ' to ' + l.target.name);
       }else{
-        return (l.target.name + ' gain ' + l.value + ' ' + seats + ' from ' + l.source.name);
+        return (l.target.name + ' gain <b>' + l.value + '</b> ' + seats + ' from ' + l.source.name);
       }
     }
     return '';
@@ -223,7 +224,7 @@ function createSummary(data){
     target = (data[0].target !== data[1].target);
   }
 
-  listItems.text(function(d){return linkDescription(d,target); });
+  listItems.html(function(d){return linkDescription(d,target); });
 }
 
 function toClass(str){ return str.replace(/\s/g,'_'); }
