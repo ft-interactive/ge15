@@ -9,17 +9,19 @@
 <div class="o-grid-row" data-o-grid-colspan="12">
   <div data-o-grid-colspan="12 M6 L6">
     <div id="sankey"></div>
-    <div id="selection-info" class="info-pane"></div>
   </div>
   <div id="sankey-description" class="" data-o-grid-colspan="12 M6 L6">
     <h1 class="article-header__headline">Seat flow</h1>
+
     <p>This graphic shows a predicted redistribution of parliamentary seats. It is based on open data from <a href="http://electionforecast.co.uk/">electionforecast.co.uk</a> and is updated regularly.</p>
     <p id="inputs">Click on the chart for detailed information.</p>
-    <p>The model used by electionforecast.co.uk combines data provided by YouGov with publicly released polls, historical election results, and data from the UK Census.</p> </div>
-
-
+    <div id="selection-info" class="info-pane"></div>
+  </div>
 </div>
-<div>Notes: Electionforecast.co.uk does not publish seat by seat predictions for Northern Ireland's 18 parliamentary seats These are included in 'Others' </div>
+<div class="notes">
+    <p>The model used by electionforecast.co.uk combines data provided by YouGov with publicly released polls, historical election results, and data from the UK Census.</p> </div>
+    <p>Electionforecast.co.uk does not publish seat by seat predictions for Northern Ireland's 18 parliamentary seats These are included in &lquot;Others&rquot;</p>
+</div>
 {% endblock %}
 
 {% block scripts %}
@@ -36,7 +38,8 @@ svg{
   font-family: BentonSans, sans-serif;
 }
 text.axis-label{
-  font-weight:bold;
+  font-weight:200;
+  font-size: 1.2em;
 }
 .Conservatives{
   fill:#6da8e1;
@@ -96,6 +99,28 @@ path.link {
 .selection-rect{
   fill-opacity:0;
   cursor:pointer;
+}
+
+#sankey{
+  margin-top: 3px;
+}
+
+#sankey-description, #selection-info{
+  padding-left: 1em;
+}
+
+.seatNum{
+  font-weight: bold;
+}
+
+#selection-info{
+  font-family: BentonSans, sans-serif;
+  line-height: 1.6em
+}
+
+#selection-info > div:first-child {
+  border-top: 1px solid #a7a59b ;
+  padding-top: 6px;;
 }
 </style>
 {% endblock %}

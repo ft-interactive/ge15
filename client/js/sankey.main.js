@@ -6,6 +6,7 @@ var party = require('./data/party-data.js');
 var sankeyData = require('./sankey/sankey-data.js');
 var latestPredictions = 'http://ig.ft.com/data/electionforecast-co-uk/tsv/prediction-latest';
 
+
 d3.tsv(latestPredictions, function(d){
   var data = sankeyData(d);
   var resize = debounce(function(e) {
@@ -139,7 +140,6 @@ function drawSankey(data){
       'transform':null
     })
     .text(function(d) {
-        console.log(d.name);
       var partyCode = party.fullNameToCode[d.name];
       return party.shortNames[partyCode] + ' ('+d.value + ')'; })
     .filter(function(d) { return d.x < width / 2; })
@@ -165,6 +165,8 @@ function drawSankey(data){
       .style('stroke', selectedStrokeStyle)
       .style('stroke-opacity',1);
     });
+
+
     createSummary(d);
   });
 
@@ -173,6 +175,7 @@ function drawSankey(data){
     d3.select(this).classed('selected', true)
       .style('stroke', selectedStrokeStyle)
       .style('stroke-opacity',1);
+
     createSummary(d);
   });
 }
