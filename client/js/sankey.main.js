@@ -114,7 +114,7 @@ function drawSankey(data){
     .attr('height', function(d) { return d.dy; })
     .attr('width', sankey.nodeWidth())
     .attr('class',function(d){
-      return 'node ' + d.name;
+      return 'node ' + toClass(d.name);
     })
       .append('title')
       .text(function(d) { return d.name + " " + d.value; });
@@ -141,20 +141,17 @@ function drawSankey(data){
     clearSelections();
     //mark this node as selected
     d3.select(this).classed('selected', true);
+
     d.sourceLinks.forEach(function(link){
       d3.selectAll('.'+linkClass(link))
         .classed('selected',true)
-        .style('stroke', function(d){
-          return 'url(#'+gradientName(d)+')';
-        })
+        .style('stroke', selectedStrokeStyle)
         .style('stroke-opacity',1);
     });
 
     d.targetLinks.forEach(function(link){
       d3.selectAll('.'+linkClass(link)).classed('selected',true)
-      .style('stroke', function(d){
-        return 'url(#'+gradientName(d)+')';
-      })
+      .style('stroke', selectedStrokeStyle)
       .style('stroke-opacity',1);
     });
     createSummary(d);
@@ -163,9 +160,7 @@ function drawSankey(data){
   d3.selectAll('path').on('click',function(d){
     clearSelections();
     d3.select(this).classed('selected', true)
-      .style('stroke', function(d){
-        return 'url(#'+gradientName(d)+')';
-      })
+      .style('stroke', selectedStrokeStyle)
       .style('stroke-opacity',1);
     createSummary(d);
   });
@@ -227,6 +222,13 @@ function clearSelections(){
 
 function linkClass(d){
   return toClass(d.source.name + '-to-' +d.target.name);
+}
+
+function selectedStrokeStyle(d){
+  if(d.source.name === d.target.name ){
+    return partyColour(d.source.name);
+  }
+  return 'url(#'+gradientName(d)+')';
 }
 
 function gradientName(d){

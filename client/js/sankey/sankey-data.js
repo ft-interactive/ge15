@@ -45,7 +45,6 @@ module.exports = function createSankeyData(data){
       });
     }
   }
-  console.log(sankeyData)
   return sankeyData;
 };
 
