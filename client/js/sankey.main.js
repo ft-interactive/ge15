@@ -146,7 +146,7 @@ function drawSankey(data){
     })
     .text(function(d) {
       var partyCode = party.fullNameToCode[d.name];
-      return party.shortNames[partyCode] + ' ('+d.value + ')'; })
+      return party.shortNames[partyCode] + ': '+d.value ; })
     .filter(function(d) { return d.x < width / 2; })
     .attr({
       'x':6 + sankey.nodeWidth(),
