@@ -127,19 +127,19 @@ function createBrowserify(entry, bundle, watch) {
   return b;
 }
 
-gulp.task('vendor', function() {
+gulp.task('vendor', function(cb) {
 
-  var b = browserify({
+  browserify({
     debug: dev
-  });
-  b.transform('debowerify');
-  b.require(vendorBundle);
+  })
+  .transform('debowerify')
+  .require(vendorBundle)
+  .bundle()
+  .on('error', cb)
+  .on('end', cb)
+  .pipe(source('vendor.js'))
+  .pipe(gulp.dest('./public/js'));
 
-  var stream = b.bundle().pipe(source('vendor.js'));
-
-  stream.pipe(gulp.dest('./public/js'));
-
-  return stream;
 });
 
 function getBundles() {
@@ -148,13 +148,29 @@ function getBundles() {
   });
 }
 
-gulp.task('js', ['vendor'], function() {
-  return Promise.all(getBundles().map(function(d){
-    var b = createBrowserify(d.file, d.bundle, false);
-    b.transform('stripify');
-    return b.end();
-  }));
+gulp.task('bundles', function(cb) {
+
+  var waiting = 0;
+
+  function r() {
+    waiting--;
+    if (!waiting) cb();
+  }
+
+  getBundles()
+    .map(function(d) {
+      waiting++;
+      return createBrowserify(d.file, d.bundle, false)
+              .transform('stripify');
+    })
+    .forEach(function(b) {
+      b.end()
+        .on('error', cb)
+        .on('end', r);
+    });
 });
+
+gulp.task('js', ['bundles', 'vendor']);
 
 gulp.task('rev', ['clean', 'compress'], function () {
   return gulp.src(['public/css/*.css', 'public/js/**/*.js'], {base: 'assets'})
@@ -184,24 +200,26 @@ gulp.task('clean', function(cb) {
   rimraf('public', cb);
 });
 
-gulp.task('jshint', function() {
-  return gulp.src('client/**/*.js')
-        .pipe(jshint())
-        .pipe(jshint.reporter('jshint-stylish'))
-        .pipe(jshint.reporter('fail'));
+gulp.task('jshint', function(cb) {
+  gulp.src('client/**/*.js')
+    .pipe(jshint())
+    .pipe(jshint.reporter('jshint-stylish'))
+    .pipe(jshint.reporter('fail'))
+    .on('error', cb)
+    .on('finish', cb);
 });
 
-gulp.task('scsslint', function() {
-  return gulp.src('client/scss/**/*.scss')
-        .pipe(scsslint());
-        // Fail the build if errors or warnings
-        // TODO: write a custom reporter that only fails on errors
-        // .pipe(scsslint.failReporter());
+gulp.task('scsslint', function(cb) {
+  gulp.src('client/scss/**/*.scss')
+    .pipe(scsslint())
+    .on('error', cb)
+    .on('end', cb);
+    // Fail the build if errors or warnings
+    // TODO: write a custom reporter that only fails on errors
+    // .pipe(scsslint.failReporter());
 });
 
-gulp.task('lint', ['jshint', 'scsslint'], function(cb) {
-  cb();
-});
+gulp.task('lint', ['jshint', 'scsslint']);
 
 gulp.task('dev', function(cb) {
   dev = true;
@@ -229,7 +247,7 @@ gulp.task('watch', ['dev', 'sass', 'vendor'], function() {
       ext: 'js,json,html'
     })
     .on('start', function(a) {
-      setTimeout(function(){
+      setTimeout(function() {
         livereload.changed(a);
         if (process.argv.indexOf('--open') > -1) {
           require('opn')('http://0.0.0.0:' + (process.env.PORT || 3000));
@@ -238,10 +256,15 @@ gulp.task('watch', ['dev', 'sass', 'vendor'], function() {
     });
   }
 
-  bundles[0].once('file', startServer);
+  var waiting = bundles.length;
+
+  function dec() {
+    waiting--;
+    if (!waiting) startServer();
+  }
 
   bundles.forEach(function(b){
-    b.end();
+    b.end().on('end', dec);
   });
 
 });
