@@ -47,10 +47,10 @@ $_o-header-border-width: 1px;
 }
 
 .o-header__primary {
+  @include oColorsFor(page);
   border-bottom: $_o-header-border-width solid oColorsGetPaletteColor(pink-tint3);
   border-color: rgba(0, 0, 0, 0.15);
   height: map-get($_o-header-primary-height, xsmall);
-  @include oColorsFor(page);
 
   @if map-has-key($_o-header-primary-height, small) {
     @include oGridRespondTo(S) {
