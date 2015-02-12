@@ -17,7 +17,7 @@
     "scut": "~1.0.1",
     "position": "~0.2.14",
     "headroom.js": "https://github.com/WickyNilliams/headroom.js.git#^v0.7.0",
-    "o-grid": ">=3.0.0-beta.6",
+    "o-grid": ">=3.0.0-beta.9",
     "o-ft-icons": "~2.3.4",
     "o-date": "~1.1.0",
     "o-footer": "Financial-Times/o-ft-footer#3.0.0-beta.3",
@@ -27,7 +27,7 @@
     "topojson": "~1.6.18"
   },
   "resolutions": {
-    "o-grid": ">=3.0.0-beta.6",
+    "o-grid": ">=3.0.0-beta.9",
     "o-ft-icons": "2.3.4",
     "sass-mq": "^3.1.0",
     "o-assets": "^0.4.0"

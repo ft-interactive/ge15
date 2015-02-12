@@ -6,6 +6,13 @@
     @include oGridRespondTo(S) {
       margin-bottom: 0.75em;
     }
+
+    // o-grid floats the last
+    // column right. but in this
+    // case we need a fluid tile layout
+    & + &:last-child{
+      float: left;
+    }
   }
 
   &__details {
@@ -25,7 +32,10 @@
   &__locator-map {
     @include oGridRemoveGutters('left');
     margin-bottom: 0.5em;
-    float: right;
+    float: left !important; // override o-grid behaviour
+    @include oGridRespondTo(L) {
+      float: right !important; // override o-grid behaviour
+    }
     &-ratio {
       line-height: 0;
       position: relative;
