@@ -3,17 +3,20 @@
 {% block title %}Parliamentary seat change forecast{% endblock %}
 
 {% block article_header %}
-<h1 class="article-header__headline">Seat flow</h1>
 {% endblock %}
 
 {% block article_body %}
 <div class="o-grid-row" data-o-grid-colspan="12">
-  <div id="sankey" class="" data-o-grid-colspan="12 M6 L6"></div>
+  <div data-o-grid-colspan="12 M6 L6">
+    <div id="sankey"></div>
+    <div id="selection-info" class="info-pane"></div>
+  </div>
   <div id="sankey-description" class="" data-o-grid-colspan="12 M6 L6">
+    <h1 class="article-header__headline">Seat flow</h1>
     <p>This graphic shows a predicted redistribution of parliamentary seats. It is based on open data from <a href="http://electionforecast.co.uk/">electionforecast.co.uk</a> and is updated regularly.</p>
     <p>Click on the chart for detailed information.</p>
     <p>The model used by electionforecast.co.uk combines data provided by YouGov with publicly released polls, historical election results, and data from the UK Census.</p> </div>
-    <div id="selection-info"></div>
+
 
 </div>
 <div>Notes: Electionforecast.co.uk does not publish seat by seat predictions for Northern Ireland's 18 parliamentary seats These are included in 'Others' </div>
@@ -67,24 +70,31 @@ text.axis-label{
   fill:#54A19C;
   stroke:#54A19C;
 }
-.node rect {
+rect.node {
   shape-rendering: crispEdges;
   cursor:pointer;
-  stroke-width:0;
+  stroke-width:1;
 }
-
 .node text {
   font-size:0.9em;
   cursor:pointer;
 
   text-shadow: 0px 0px 8px #FFF1DF;
 }
-
-
 path.link {
   fill: none;
   stroke: #000;
   stroke-opacity: .2;
+  cursor:pointer;
+}
+
+.info-pane{
+  font-family: BentonSans, sans-serif;
+  font-size:0.8em;
+}
+
+.selection-rect{
+  fill-opacity:0;
   cursor:pointer;
 }
 </style>

@@ -24,11 +24,11 @@ function drawSankey(data){
   var margin = {top:30,left:0,bottom:10,right:10};
   var chartHeight = height - (margin.top + margin.bottom);
   var chartWidth = width - (margin.left + margin.right);
-
+  var nodePadding = 20;
   var sankey = d3.sankey()
     .size([chartWidth, chartHeight])
     .nodeWidth(30)
-    .nodePadding(20)
+    .nodePadding(nodePadding)
     .nodes(data.nodes)
     .links(data.links)
     .layout(32);
@@ -71,7 +71,7 @@ function drawSankey(data){
     })
     .style('stop-opacity',1);
 
-  svg.selectAll('text.axis-label').data(['2010','2015'])
+  svg.selectAll('text.axis-label').data(['Current','Predicted'])
     .enter()
       .append('text')
         .attr({
@@ -119,6 +119,16 @@ function drawSankey(data){
       .append('title')
       .text(function(d) { return d.name + " " + d.value; });
 
+  node.append('rect')
+    .attr('height', function(d) { return d.dy + nodePadding; })
+    .attr('y', function(d) {
+        return -nodePadding/2;
+    })
+    .attr('width', sankey.nodeWidth())
+    .attr('class','selection-rect')
+    .append('title')
+    .text(function(d) { return d.name + " " + d.value; });
+
 
   node.append('text')
     .attr({
@@ -129,6 +139,7 @@ function drawSankey(data){
       'transform':null
     })
     .text(function(d) {
+        console.log(d.name);
       var partyCode = party.fullNameToCode[d.name];
       return party.shortNames[partyCode] + ' ('+d.value + ')'; })
     .filter(function(d) { return d.x < width / 2; })
