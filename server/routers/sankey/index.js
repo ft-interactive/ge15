@@ -4,6 +4,7 @@ var app = require('../../util/app');
 var viewLocals = require('../../middleware/view-locals');
 var siteNav = require('../../middleware/site-navigation');
 
+
 function* home(next) {
   yield this.render('sankey-index', {});
   yield next;
@@ -16,6 +17,7 @@ function main() {
     .router()
     // forecast home page
     .get('home', '/', home);
+
 }
 
 module.exports = main;
