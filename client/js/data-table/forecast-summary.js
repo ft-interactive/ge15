@@ -14,12 +14,7 @@ function dataTable(g) {
 
   table.append('tbody')
   .selectAll('tr').data(function(d){
-<<<<<<< HEAD
-    return toArray(d.partychanges,'party','total').sort(function(a,b) {
-=======
-    console.log(d);
     return toArray(d.partychanges,'party','total').sort(function(a,b){
->>>>>>> 7142f22... added selection logic
       var aMag = (a.gain + a.loss);
       var bMag = (b.gain + b.loss);
       if (aMag>bMag) return -1;

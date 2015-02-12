@@ -1,18 +1,5 @@
 'use strict';
 
-<<<<<<< HEAD
-exports.shortNames = {
-  lab:      'Lab',
-  c:        'Con',
-  ld:       'LD',
-  green:    'Grn',
-  ukip:     'Ukip',
-  snp:      'SNP',
-  dup:      'DUP',
-  sf:       'SF',
-  pc:       'PC',
-  alliance: 'A'
-=======
 var invert = require('lodash-node/modern/objects/invert');
 
 var partyShortName = {
@@ -60,5 +47,4 @@ module.exports = {
   colours:partyColours,
   shortNameToCode:invert(partyShortName),
   fullNameToCode:invert(partyFullName)
->>>>>>> 7142f22... added selection logic
 };

@@ -6,8 +6,7 @@ var pathRouters = {
   graphics: require('./graphics'),
   results: require('./results'),
   parties: require('./parties'),
-  projections: require('./projections')
-  forecast: require('./forecast'),
+  projections: require('./projections'),
   sankey: require('./sankey')
 };
 
