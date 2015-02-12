@@ -104,8 +104,8 @@ function drawSankey(data){
       .append('path')
       .attr({
         'class':function(d){ return 'link selected ' + linkClass(d); },
-        'data-from':function(d){ return d.source.name; },
-        'data-to':function(d){ return d.target.name; },
+        'data-from':function(d){ return toClass(d.source.name); },
+        'data-to':function(d){ return toClass(d.target.name); },
         'd':path
       })
     .style('stroke-width', function(d) { return Math.max(1, d.dy); });
