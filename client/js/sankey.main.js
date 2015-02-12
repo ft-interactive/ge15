@@ -217,6 +217,12 @@ function createSummary(data){
   var listItems = d3.select('#selection-info').selectAll('div').data(links);
   listItems.exit().remove();
   listItems.enter().append('div');
+
+  var target = false;
+  if(data.length > 1 ){
+    target = (data[0].target !== data[1].target);
+  }
+
   listItems.text(function(d){return linkDescription(d,target); });
 }
 
