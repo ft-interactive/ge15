@@ -249,9 +249,9 @@ gulp.task('watch', ['dev', 'sass', 'vendor'], function() {
     .on('start', function(a) {
       setTimeout(function() {
         livereload.changed(a);
-        if (process.argv.indexOf('--open') > -1) {
-          require('opn')('http://0.0.0.0:' + (process.env.PORT || 3000));
-        }
+        gutil.log('Serving at ' + 
+          gutil.colors.underline('http://localhost:' + (process.env.PORT || 3000) + '/')
+        );
       }, 1100);
     });
   }
