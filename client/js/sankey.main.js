@@ -101,6 +101,7 @@ function drawSankey(data){
         'd':path
       })
       .style('stroke-width', function(d) { return Math.max(1, d.dy); });
+//      .style('stroke', function(d){ return 'url(#'+gradientName(d)+')'; });
 
   var node = svg.append('g').selectAll('.node')
       .data(data.nodes)
@@ -171,7 +172,6 @@ function drawSankey(data){
 }
 
 function createSummary(data){
-  console.log('summary');
 
   function linkDescription(l, target){
     var seats = 'seats';

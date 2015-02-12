@@ -9,6 +9,15 @@ module.exports = function createSankeyData(data){
     return d;
   });
 
+  //pad the data so we include NI
+  var extraRows = 650-data.length;
+  for(var i=0; i<extraRows; i++){
+    data.push({
+      current:'Other',
+      forecast:'Other'
+    });
+  }
+
   data.forEach(function(d){
     if(!links[d.current + '->' + d.forecast]) links[d.current + '->' + d.forecast] = 0;
     links[d.current + '->' + d.forecast] ++;
@@ -36,7 +45,7 @@ module.exports = function createSankeyData(data){
       });
     }
   }
-
+  console.log(sankeyData)
   return sankeyData;
 };
 
