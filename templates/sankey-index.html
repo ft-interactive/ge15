@@ -8,7 +8,7 @@
 {% block article_body %}
 <div class="o-grid-row" data-o-grid-colspan="12">
   <h1 class="article-header__headline">Seat flow</h1>
-  <div data-o-grid-colspan="12 M6 L6">
+  <div id="sankeyHolder" data-o-grid-colspan="12 M6 L6">
     <div id="sankey"></div>
   </div>
   <div id="sankey-description" class="" data-o-grid-colspan="12 M6 L6">
@@ -45,9 +45,11 @@ svg{
   font-family: BentonSans, sans-serif;
 }
 .article-header__headline{
-  text-align: center;
+  /*text-align: center;*/
   margin-bottom: 0;
   margin-top: -0.6em;
+  border-bottom: 1px solid #a7a59b;
+  margin: -0.6em 5px 0.2em 5px;
 }
 
 text.axis-label{
@@ -114,8 +116,13 @@ path.link {
   cursor:pointer;
 }
 
-#sankey{
+#sankeyHolder{
   margin-top: 3px;
+  float: right;
+}
+
+#sankey-description{
+  float: left;
 }
 
 .seatNum{
