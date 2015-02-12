@@ -82,7 +82,7 @@ function drawSankey(data){
           },
           'transform':function(d,i){
             var xPos = (width-margin.right)*i;
-            var yPos = margin.top - 4;
+            var yPos = margin.top - 8;
             return 'translate('+xPos+','+yPos+')';
           }
         }).text(function(d){ return d; });

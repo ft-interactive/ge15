@@ -36,7 +36,7 @@ var partyColours = {
   'ld':'#ffc660',
   'ukip':'#ca6dbf',
   'green':'#65a68c',
-  'snp':'#f2e24d',
+  'snp':'#777',
   'other':'#cccccc',
   'pc':'#54A19C'
 };
