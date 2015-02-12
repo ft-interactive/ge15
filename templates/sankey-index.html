@@ -18,7 +18,7 @@
   </div>
 </div>
 <div class="notes">
-    <p>The model used by electionforecast.co.uk combines data provided by YouGov with publicly released polls, historical election results, and data from the UK Census.</p> </div>
+    <p>The model used by electionforecast.co.uk combines data provided by YouGov with publicly released polls, historical election results, and data from the UK Census.</p>
     <p>Electionforecast.co.uk does not publish seat by seat predictions for Northern Ireland's 18 parliamentary seats These are included in &lquot;Others&rquot;</p>
 </div>
 {% endblock %}
@@ -120,8 +120,18 @@ path.link {
 }
 
 #selection-info > div:first-child {
-  border-top: 1px solid #a7a59b ;
+  border-top: 1px solid #a7a59b;
   padding-top: 6px;;
+}
+
+.notes {
+  font-family: BentonSans, sans-serif;
+  color:#74736c;
+  font-size: 0.7em;
+  border-top: 1px solid #a7a59b;
+  margin-top: 2em;
+  padding-top: 1em;
+  max-width: 100%;  
 }
 
 /* o-grid stuff from */
@@ -1004,7 +1014,13 @@ head:after {
 @media (min-width: 30.625em) {
   .article-header__headline {
     margin-bottom: 0.3em;
-    margin-top: -0.4em; } }
+    margin-top: -0.4em;
+  }
+  .notes{
+    max-width:670px;
+  }
+  
+  }
 
 </style>
 {% endblock %}
