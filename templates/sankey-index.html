@@ -26,7 +26,7 @@
       </ul>
       Or select parties on the chart for detailed information.</p>
   </div>
-  <div id="selection-info" class="info-pane"></div>
+  <div id="selection-info" data-o-grid-colspan="12 M6 L6" class="info-pane"></div>
 </div>
 
 <div class="notes">
@@ -130,6 +130,7 @@ path.link:hover{
 .info-pane{
   font-family: BentonSans, sans-serif;
   font-size:0.9em;
+  display: none;
 }
 
 .selection-rect{
@@ -170,7 +171,8 @@ path.link:hover{
 #selection-info{
   font-family: BentonSans, sans-serif;
   line-height: 1.6em;
-  padding-left: 3%;
+  padding-left: 1em;
+  margin-top: 2.8em;
 }
 
 #selection-info > div:first-child {
@@ -1082,6 +1084,33 @@ head:after {
 @media (max-width: 45.625em) {
   #sankey-description{
     padding-left: 5px;
+  }
+  
+  #selection-info{
+    display: none;
+  }
+  .info-pane{
+    display: block;
+    line-height: 1.6em;
+    margin-bottom: 1em;
+    border-top: 1px solid #A7A59A;
+    padding-top: 0.4em;
+    margin-top: 0.5em;
+}
+
+@media (min-width: 45.625em) {
+}
+
+@media (min-width: 60.625em) {
+  #selection-info{
+    margin-top: 2.8em;
+  }
+
+}
+
+@media (max-width: 60.625em) {
+  #selection-info{
+    margin-top: 4.8em;
   }
 
 }
