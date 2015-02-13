@@ -10,24 +10,25 @@
   <h1 class="article-header__headline">Seat flow</h1>
   <div id="sankeyHolder" data-o-grid-colspan="12 M6 L6">
     <div id="sankey"></div>
+    <div><p>This graphic shows a predicted redistribution of parliamentary seats. It is based on open data from <a href="http://electionforecast.co.uk/">electionforecast.co.uk</a> and is updated regularly.</p></div>
   </div>
   <div id="sankey-description" class="" data-o-grid-colspan="12 M6 L6">
-    <p>This graphic shows a predicted redistribution of parliamentary seats. It is based on open data from <a href="http://electionforecast.co.uk/">electionforecast.co.uk</a> and is updated regularly.</p>
-    <p id="inputs">
+      <p id="inputs">
       Highlight key flows:
+      <a href="#" data-party="Liberal_Democrats" data-direction="from" class="chart-preset">Lib Dem losses</a>.
+      <a href="#" data-party="SNP" data-direction="to" class="chart-preset">SNP gains</a>.
       <a href="#" data-party="Labour" data-direction="to" class="chart-preset">Labour gains</a> or
       <a href="#" data-party="Labour" data-direction="from" class="chart-preset">losses</a>.
       <a href="#" data-party="Conservatives" data-direction="to" class="chart-preset">Conservative gains</a> or
       <a href="#" data-party="Conservatives" data-direction="from" class="chart-preset">losses</a>.
-      <a href="#" data-party="Liberal_Democrats" data-direction="from" class="chart-preset">Lib Dem losses</a>.
-      <a href="#" data-party="SNP" data-direction="to" class="chart-preset">SNP gains</a>.
-      Or other parties on the chart for detailed information.</p>
-    <div id="selection-info" class="info-pane"></div>
+      Or select parties on the chart for detailed information.</p>
   </div>
+  <div id="selection-info" class="info-pane"></div>
 </div>
+
 <div class="notes">
-    <p>The model used by electionforecast.co.uk combines data provided by YouGov with publicly released polls, historical election results, and data from the UK Census.</p>
-    <p>Electionforecast.co.uk does not publish seat by seat predictions for Northern Ireland's 18 parliamentary seats These are included in &lquot;Others&rquot;</p>
+    <p>The model used by <a href="http://electionforecast.co.uk">electionforecast.co.uk</a> combines data provided by YouGov with publicly released polls, historical election results, and data from the UK Census.</p>
+    <p>Electionforecast.co.uk does not publish seat by seat predictions for Northern Ireland's 18 parliamentary seats these are included in &#8220;Others&#8221;</p>
 </div>
 {% endblock %}
 
@@ -99,11 +100,28 @@ rect.node {
 
   text-shadow: 0px 0px 8px #FFF1DF;
 }
+
+tspan.seat-count{
+  font-weight:bold;
+}
+
+rect.node{
+  fill-opacity:1;
+}
+
+rect.node:hover{
+  fill-opacity:0.6;
+}
+
 path.link {
   fill: none;
   stroke: #74736c;
   stroke-opacity: .2;
   cursor:pointer;
+}
+
+path.link:hover{
+  stroke-opacity: .5;
 }
 
 .info-pane{
@@ -131,12 +149,13 @@ path.link {
 
 #selection-info{
   font-family: BentonSans, sans-serif;
-  line-height: 1.6em
+  line-height: 1.6em;
+  padding-left: 3%;
 }
 
 #selection-info > div:first-child {
   border-top: 1px solid #a7a59b;
-  padding-top: 6px;;
+  padding-top: 6px;
 }
 
 .notes {

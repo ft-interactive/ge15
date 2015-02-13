@@ -117,14 +117,7 @@ function drawSankey(data){
       .attr('class', 'node')
       .attr('transform', function(d) { return 'translate(' + d.x + ',' + d.y + ')'; });
 
-  node.append('rect')
-    .attr('height', function(d) { return d.dy; })
-    .attr('width', sankey.nodeWidth())
-    .attr('class',function(d){
-      return 'node ' + toClass(d.name);
-    })
-      .append('title')
-      .text(function(d) { return d.name + " " + d.value; });
+
 
   node.append('rect')
     .attr('height', function(d) { return d.dy + nodePadding; })
@@ -133,6 +126,15 @@ function drawSankey(data){
     })
     .attr('width', sankey.nodeWidth())
     .attr('class','selection-rect')
+    .append('title')
+    .text(function(d) { return d.name + " " + d.value; });
+
+  node.append('rect')
+    .attr('height', function(d) { return d.dy; })
+    .attr('width', sankey.nodeWidth())
+    .attr('class',function(d){
+      return 'node ' + toClass(d.name);
+    })
     .append('title')
     .text(function(d) { return d.name + " " + d.value; });
 
@@ -145,9 +147,9 @@ function drawSankey(data){
       'text-anchor':'end',
       'transform':null
     })
-    .text(function(d) {
+    .html(function(d) {
       var partyCode = party.fullNameToCode[d.name];
-      return party.shortNames[partyCode] + ': '+d.value ; })
+      return party.shortNames[partyCode] + ': <tspan class="seat-count">'+d.value+'</tspan>' ; })
     .filter(function(d) { return d.x < width / 2; })
     .attr({
       'x':6 + sankey.nodeWidth(),
