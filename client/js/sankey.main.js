@@ -147,7 +147,7 @@ function drawSankey(data){
       'text-anchor':'end',
       'transform':null
     })
-    .html(function(d) {
+    .text(function(d) {
       var partyCode = party.fullNameToCode[d.name];
       return party.shortNames[partyCode] + ': '+d.value+'' ; })
     .filter(function(d) { return d.x < width / 2; })
@@ -198,7 +198,6 @@ function clearSelections(){
 }
 
 function createSummary(data){
-  console.log(data);
   function linkDescription(l, target){
     var seats = 'seats';
     if(l.value === 1){
