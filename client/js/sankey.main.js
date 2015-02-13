@@ -217,7 +217,7 @@ function createSummary(data){
   }
 
   var links = data.sort(function(a,b){return b.value - a.value; });
-  var listItems = d3.select('#selection-info').selectAll('div').data(links);
+  var listItems = d3.selectAll('.info-pane').selectAll('div').data(links);
   listItems.exit().remove();
   listItems.enter().append('div');
 
