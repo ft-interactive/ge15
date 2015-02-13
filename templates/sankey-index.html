@@ -11,8 +11,8 @@
   <div id="sankeyHolder" data-o-grid-colspan="12 M6 L6">
     <div id="sankey"></div>
     <div id="secondary-info" class="info-pane"></div>
-    <div><p>This graphic shows a predicted redistribution of parliamentary seats. It is based on open data from <a href="http://electionforecast.co.uk/">electionforecast.co.uk</a> and is updated regularly.</p></div>
   </div>
+
   <div id="sankey-description" class="" data-o-grid-colspan="12 M6 L6">
       <p id="inputs">
       Highlight key flows:
@@ -28,7 +28,9 @@
   </div>
   <div id="selection-info" data-o-grid-colspan="12 M6 L6" class="info-pane"></div>
 </div>
-
+<div class="description">
+  <p>This graphic shows a predicted redistribution of parliamentary seats. It is based on open data from <a href="http://electionforecast.co.uk/">electionforecast.co.uk</a> and is updated regularly.</p>
+</div>
 <div class="notes">
     <p>The model used by <a href="http://electionforecast.co.uk">electionforecast.co.uk</a> combines data provided by YouGov with publicly released polls, historical election results, and data from the UK Census.</p>
     <p>Electionforecast.co.uk does not publish seat by seat predictions for Northern Ireland's 18 parliamentary seats these are included in &#8220;Others&#8221;</p>
@@ -95,7 +97,7 @@ text.axis-label{
 rect.node {
   shape-rendering: crispEdges;
   cursor:pointer;
-  stroke-width:1;
+  stroke-width:0;
 }
 .node text {
   font-size:0.8em;
@@ -187,6 +189,11 @@ path.link:hover{
   border-top: 1px solid #a7a59b;
   margin-top: 2em;
   padding-top: 1em;
+  max-width:670px;
+}
+
+.description{
+  font-family: BentonSans, sans-serif;
   max-width:670px;
 }
 
@@ -1085,7 +1092,7 @@ head:after {
   #sankey-description{
     padding-left: 5px;
   }
-  
+
   #selection-info{
     display: none;
   }
