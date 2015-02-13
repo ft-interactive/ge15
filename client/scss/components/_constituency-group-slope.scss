@@ -10,7 +10,7 @@
     // o-grid floats the last
     // column right. but in this
     // case we need a fluid tile layout
-    & + &:last-child{
+    & + &:last-child {
       float: left;
     }
   }

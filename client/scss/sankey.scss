@@ -3,12 +3,12 @@ $o-grid-is-silent: false;
 @import "../../bower_components/o-grid/main";
 
 @include oGridRespondTo(S) {
-  .article-header__headline{
+  .article-header__headline {
     margin-bottom: 0.3em;
     margin-top: -0.4em;
   }
 
-  .notes{
-    max-width:100%;
+  .notes {
+    max-width: 100%;
   }
 }
