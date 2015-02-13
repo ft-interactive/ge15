@@ -7,7 +7,7 @@ var pathRouters = {
   results: require('./results'),
   parties: require('./parties'),
   projections: require('./projections'),
-  seats: require('./seats-change')
+  sankey: require('./sankey')
 };
 
 var infoRouter = require('./info');

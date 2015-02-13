@@ -1,7 +1,8 @@
 'use strict';
 
 var app = require('../../util/app');
-var models = require('../../models');
+var viewLocals = require('../../middleware/view-locals');
+var siteNav = require('../../middleware/site-navigation');
 
 function* home(next) {
   yield this.render('sankey-index', {});
@@ -10,10 +11,12 @@ function* home(next) {
 
 function main() {
   return app()
-  .router()
+    .use(siteNav())
+    .use(viewLocals())
+    .router()
+    // forecast home page
+    .get('home', '/', home);
 
-  // forecast home page
-  .get('home', '/', home);
 }
 
 module.exports = main;

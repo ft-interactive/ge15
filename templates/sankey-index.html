@@ -1,8 +1,9 @@
+
 {% extends 'article.html' %}
 
 {% block title %}Parliamentary seat change forecast{% endblock %}
 
-{% block article_header %}
+ {% block article_header %}
 {% endblock %}
 
 {% block article_body %}
@@ -16,12 +17,14 @@
   <div id="sankey-description" class="" data-o-grid-colspan="12 M6 L6">
       <p id="inputs">
       Highlight key flows:
-      <a href="#" data-party="Liberal_Democrats" data-direction="from" class="chart-preset">Lib Dem losses</a>.
-      <a href="#" data-party="SNP" data-direction="to" class="chart-preset">SNP gains</a>.
-      <a href="#" data-party="Labour" data-direction="to" class="chart-preset">Labour gains</a> or
-      <a href="#" data-party="Labour" data-direction="from" class="chart-preset">losses</a>.
-      <a href="#" data-party="Conservatives" data-direction="to" class="chart-preset">Conservative gains</a> or
-      <a href="#" data-party="Conservatives" data-direction="from" class="chart-preset">losses</a>.
+      <ul>
+        <li><a href="#" data-party="Liberal_Democrats" data-direction="from" class="chart-preset">Lib Dem losses</a></li>
+        <li><a href="#" data-party="SNP" data-direction="to" class="chart-preset">SNP gains</a></li>
+        <li><a href="#" data-party="Labour" data-direction="to" class="chart-preset">Labour gains</a></li>
+        <li><a href="#" data-party="Labour" data-direction="from" class="chart-preset">Labour losses</a></li>
+        <li> <a href="#" data-party="Conservatives" data-direction="to" class="chart-preset">Conservative gains</a></li>
+        <li><a href="#" data-party="Conservatives" data-direction="from" class="chart-preset">Conservative losses</a></li>
+      </ul>
       Or select parties on the chart for detailed information.</p>
   </div>
   <div id="selection-info" data-o-grid-colspan="12 M6 L6" class="info-pane"></div>
@@ -50,8 +53,8 @@ svg{
 }
 .article-header__headline{
   /*text-align: center;*/
-  margin-bottom: 0;
-  margin-top: -0.6em;
+  margin-bottom: 0.3em;
+  margin-top: -0.4em;
   border-bottom: 1px solid #a7a59b;
   margin: -0.6em 5px 0.2em 5px;
 }
@@ -136,17 +139,32 @@ path.link:hover{
 .selection-rect{
   fill-opacity:0;
   cursor:pointer;
-
-  text-shadow: 0px 0px 8px #FFF1DF;
 }
 
 #sankeyHolder{
   margin-top: 3px;
-  float: right;
+  /*float: right;*/
 }
 
 #sankey-description{
-  float: left;
+  margin-top: 3px;
+  padding-left: 1em;
+}
+
+#inputs{
+  padding-bottom: 0.5em;
+
+}
+
+#sankey-description > ul{
+    margin: 0 0 0.5em 0.3em;
+    padding: 0;
+    font-family: BentonSans, sans-serif;
+    line-height: 1.5em;
+}
+
+#sankey-description > ul > li{
+  list-style: none;
 }
 
 .seatNum{
@@ -172,7 +190,7 @@ path.link:hover{
   border-top: 1px solid #a7a59b;
   margin-top: 2em;
   padding-top: 1em;
-  max-width: 100%;
+  max-width:670px;
 }
 
 .description{
@@ -1057,15 +1075,23 @@ head:after {
     .o-grid-remove-gutters--XL .o-grid-row,
     .o-grid-remove-gutters--right--XL .o-grid-row {
       margin-right: 0; } }
-@media (min-width: 30.625em) {
+@media (max-width: 30.625em) {
   .article-header__headline {
-    margin-bottom: 0.3em;
-    margin-top: -0.4em;
+    margin-bottom: 0;
+    margin-top: -0.6em;
   }
   .notes{
-    max-width:670px;
+    max-width: 100%;
+  }
+  #sankey-description{
+    padding-left: 5px;
   }
 
+}
+
+@media (max-width: 45.625em) {
+  #sankey-description{
+    padding-left: 5px;
   }
 
   #selection-info{
@@ -1095,6 +1121,7 @@ head:after {
     margin-top: 4.8em;
   }
 
+}
 
 </style>
 {% endblock %}
