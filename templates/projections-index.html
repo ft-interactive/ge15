@@ -1,7 +1,144 @@
+
 {% extends 'article.html' %}
 
+{% block stylesheets   %}
+  <style>
+    #battle-nav{
+      font-family: BentonSans, sans-serif;
+    }
+    #battle-nav-intro{
+      width:32%;
+      color: #74736c;
+      padding-right:1%;
+    }
+    .battle-nav-item{
+      display: inline-block;
+      height: 84px;
+      vertical-align: top;
+      padding-top: 10px;
+      box-sizing: border-box;
+    }
+    .battle-nav-item__link{
+      width: 14%;
+      font-size: 0.75em;
+      text-align: center;
+      border-left: 1px solid #e9decf;
+      padding-left: 1%;
+    }
+
+    .battle-nav-item__link > a > span{
+      display: block;
+    }
+    .battle-nav-item__link > a > img{
+      width: 100%;
+    }
+    .snp{
+      max-width: 33px;
+    }
+    .labcon{
+      max-width: 67px;
+    }
+    .ukip{
+      max-width: 40px;
+    }
+    .libdem{
+      max-width: 51px;
+    }
+
+  /* o-grid css */
+
+@media (max-width: 30.625em) {
+  #battle-nav-intro{
+      width:100%;
+      padding-bottom: 8px;
+    }
+    .battle-nav-item{
+      display: block;
+      width: 100%;
+      border-bottom: 1px solid #e9decf;
+      height: inherit;
+      vertical-align: top;
+      padding-top: 0;
+    }
+    .battle-nav-item__link{
+      font-size: 0.9em;
+      text-align: left;
+      padding-top: 8px;
+      line-height: 4px;
+      width: 100%;
+      border-left: none;
+    }
+
+    .battle-nav-item__link > span{
+      display: inline-block;
+      height: 30px;
+      vertical-align: middle;
+      margin-left: 8px;
+    }
+    .battle-nav-item__logo{
+      width: 68px;
+      display: inline-block;
+      text-align: center;
+    }
+    .snp{
+      max-width: 29px;
+    }
+    .labcon{
+      max-width: 68px;
+    }
+    .ukip{
+      max-width: 35px;
+    }
+    .libdem{
+      max-width: 45px;
+    }
+
+}
+  </style>
+{% endblock %}
+
 {% block article_body %}
-<div id="slope-groups" class="o-grid-row" style="min-height:800px;"></div>
+  <div id="battle-nav" class="figure constituency-group o-grid-row" data-o-grid-colspan="12">
+    <h2 class="article-body__subhead figure__title">The battlegrounds</h2>
+    <div class="battle-nav-links">
+      <div id="battle-nav-intro" class="battle-nav-item">The FT has chosen four key battlegrounds that will decide the election</div>
+      <a href="#snp">
+        <div class="battle-nav-item battle-nav-item__link">
+          <div class="battle-nav-item__logo">
+            <img class="snp" src="//www.ft.com/ig/static/sites/2014/ge15/snp.png" alt="">
+          </div>
+          <span>SNP target seats</span>
+        </div>
+      </a>
+      <a href="#marginals">
+        <div class="battle-nav-item battle-nav-item__link">
+          <div class="battle-nav-item__logo">
+            <img class="labcon" src="//www.ft.com/ig/static/sites/2014/ge15/lab_con.png" alt="">
+          </div>
+          <span>Lab-Con marginals</span>
+        </div>
+      </a>
+      <a href="#ukip">
+        <div class="battle-nav-item battle-nav-item__link">
+          <div class="battle-nav-item__logo">
+            <img class="ukip" src="//www.ft.com/ig/static/sites/2014/ge15/ukip.png" alt="">
+          </div>
+          <span>Ukip target seats</span>
+        </div>
+      </a>
+      <a href="#libdem">
+        <div class="battle-nav-item battle-nav-item__link">
+          <div class="battle-nav-item__logo">
+            <img class="libdem" src="//www.ft.com/ig/static/sites/2014/ge15/libdem.png" alt="">
+          </div>
+           <span>Lib Dem seats at risk</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div id="slope-groups" class="o-grid-row" style="min-height:800px;"></div>
 {% endblock %}
 
 {% set bundle = 'group-forecast-slopes.js' %}
+
