@@ -5,7 +5,7 @@ var debounce = require('lodash-node/modern/functions/debounce');
 var party = require('./data/party-data.js');
 var sankeyData = require('./sankey/sankey-data.js');
 var latestPredictions = 'http://ig.ft.com/data/electionforecast-co-uk/tsv/prediction-latest';
-
+var nodeWidth = 30;
 
 d3.tsv(latestPredictions, function(d){
   var data = sankeyData(d);
@@ -34,7 +34,7 @@ function drawSankey(data){
   var nodePadding = 20;
   var sankey = d3.sankey()
     .size([chartWidth, chartHeight])
-    .nodeWidth(30)
+    .nodeWidth(nodeWidth)
     .nodePadding(nodePadding)
     .nodes(data.nodes)
     .links(data.links)
@@ -97,10 +97,13 @@ function drawSankey(data){
   svg = svg.append('g')
       .attr('transform','translate('+margin.left+','+margin.top+')');
 
-  svg.append('g').selectAll('.link')
+  var link = svg.append('g').selectAll('.link')
       .data(data.links)
     .enter()
-      .append('path')
+      .append('g')
+        .attr('class','link-container');
+
+  link.append('path')
       .attr({
         'class':function(d){ return 'link selected ' + linkClass(d); },
         'data-from':function(d){ return toClass(d.source.name); },
@@ -108,6 +111,36 @@ function drawSankey(data){
         'd':path
       })
     .style('stroke-width', function(d) { return Math.max(1, d.dy); });
+
+  //start value of each link
+  link.append('text')
+    .attr({
+      'x':nodeWidth +6,
+      'y':function(d) {
+        return d.source.y + d.sy + (d.dy/2);
+      },
+      'class':'source link-label inactive',
+      'dy':'.35em'
+    })
+    .text(function(d){
+      return partyShortName(d.source.name) +': '+ d.value;
+    });
+
+  //end value of each link
+  link.append('text')
+    .attr({
+      'x':chartWidth - (nodeWidth +6),
+      'y':function(d) {
+        return d.target.y + d.ty + (d.dy/2);
+      },
+      'dy':'.35em',
+      'class':'target link-label inactive',
+      'text-anchor':'end'
+    })
+    .text(function(d){
+      return partyShortName(d.target.name) +': '+ d.value;
+    });
+
 
   var node = svg.append('g').selectAll('.node')
       .data(data.nodes)
@@ -144,8 +177,7 @@ function drawSankey(data){
       'transform':null
     })
     .text(function(d) {
-      var partyCode = party.fullNameToCode[d.name];
-      return party.shortNames[partyCode] + ': '+d.value ; })
+      return partyShortName(d.name) + ': '+d.value ; })
     .filter(function(d) { return d.x < width / 2; })
     .attr({
       'x':6 + sankey.nodeWidth(),
@@ -171,6 +203,7 @@ function drawSankey(data){
 }
 
 
+
 function selectLink(selectionString){
   d3.selectAll(selectionString)
     .classed('selected',true)
@@ -178,19 +211,19 @@ function selectLink(selectionString){
     .style('stroke-opacity',1)
     .call(function(d){
       createSummary(d.data());
+      return this;
     });
 }
-
 
 function clearSelections(){
   //unselect all the nodes
   d3.selectAll('rect')
-    .classed('selected', false);
+  .classed('selected', false);
   //unselect all the links
   d3.selectAll('path')
-    .classed('selected', false)
-    .style('stroke', null)
-    .style('stroke-opacity', null);
+  .classed('selected', false)
+  .style('stroke', null)
+  .style('stroke-opacity', null);
 }
 
 function createSummary(data){
@@ -246,28 +279,7 @@ function partyColour(p){
   return party.colours[partyCode];
 }
 
-function toClass(str){ return str.replace(/\s/g,'_'); }
-
-function clearSelections(){
-  //unselect all the nodes
-  d3.selectAll('rect')
-  .classed('selected', false);
-  //unselect all the links
-  d3.selectAll('path')
-  .classed('selected', false)
-  .style('stroke', null)
-  .style('stroke-opacity', null);
-}
-
-function linkClass(d){
-  return toClass(d.source.name + '-to-' +d.target.name);
-}
-
-function gradientName(d){
-  return ( toClass(d.source.name) + '--' + toClass(d.target.name) + '-gradient');
-}
-
-function partyColour(p){
-  var partyCode = party.fullNameToCode[p];
-  return party.colours[partyCode];
+function partyShortName(d){
+  var partyCode = party.fullNameToCode[d];
+  return party.shortNames[partyCode];
 }
