@@ -19,7 +19,13 @@ d3.tsv(latestPredictions, function(d){
     d3.event.preventDefault();
     var party = d3.select(this).attr('data-party');
     var direction = d3.select(this).attr('data-direction');
-    selectLink('[data-' + direction + '=' + party + ']');
+    if(!direction || !party){
+      clearSelections();
+      activateLabels('', '');
+    }else{
+      selectLink('path[data-' + direction + '=' + party + ']', direction);
+      activateLabels(direction, party);
+    }
   });
 });
 
@@ -105,7 +111,7 @@ function drawSankey(data){
 
   link.append('path')
       .attr({
-        'class':function(d){ return 'link selected ' + linkClass(d); },
+        'class':function(d){ return 'link ' + linkClass(d); },
         'data-from':function(d){ return toClass(d.source.name); },
         'data-to':function(d){ return toClass(d.target.name); },
         'd':path
@@ -119,6 +125,8 @@ function drawSankey(data){
       'y':function(d) {
         return d.source.y + d.sy + (d.dy/2);
       },
+      'data-from':function(d){ return toClass(d.source.name); },
+      'data-to':function(d){ return toClass(d.target.name); },
       'class':'source link-label inactive',
       'dy':'.35em'
     })
@@ -133,6 +141,8 @@ function drawSankey(data){
       'y':function(d) {
         return d.target.y + d.ty + (d.dy/2);
       },
+      'data-from':function(d){ return toClass(d.source.name); },
+      'data-to':function(d){ return toClass(d.target.name); },
       'dy':'.35em',
       'class':'target link-label inactive',
       'text-anchor':'end'
@@ -174,26 +184,37 @@ function drawSankey(data){
       'y':function(d) { return d.dy / 2; },
       'dy':'.35em',
       'text-anchor':'end',
-      'transform':null
+      'transform':null,
+      'class':'target node-label',
+      'data-party':function(d){ return toClass(d.name); }
     })
     .text(function(d) {
       return partyShortName(d.name) + ': '+d.value ; })
     .filter(function(d) { return d.x < width / 2; })
     .attr({
       'x':6 + sankey.nodeWidth(),
+      'class':'source node-label',
       'text-anchor':'start'
     });
 
   d3.selectAll('.node').on('click',function(d){
     clearSelections();
     var selectionList = [];
+    var direction = 'to';
+    var party = '';
     d.sourceLinks.forEach(function(link){
       selectionList.push('.'+linkClass(link));
+      direction = 'from';
+      party = link.source.name;
     });
     d.targetLinks.forEach(function(link){
       selectionList.push('.'+linkClass(link));
+      party = link.target.name;
     });
-    selectLink( selectionList.join(', ') );
+    selectLink( selectionList.join(', '), direction);
+
+    activateLabels(direction, party);
+
   });
 
   d3.selectAll('path').on('click',function(d){
@@ -202,7 +223,24 @@ function drawSankey(data){
   });
 }
 
+function activateLabels(direction, party){
 
+  d3.selectAll('text.node-label').classed('inactive', true);
+  d3.selectAll('text.link-label').classed('inactive', true);
+  if(!direction || !party){
+    console.log('default');
+    d3.selectAll('text.node-label').classed('inactive', false);
+    return;
+  }
+  if(direction === 'to'){
+    console.log('.source.link-label[data-'+direction + '="'+toClass(party)+'"]');
+    d3.selectAll('.source.link-label[data-'+direction + '="'+toClass(party)+'"]').classed('inactive',false);
+    d3.selectAll('.target.node-label[data-party="'+toClass(party)+'"]').classed('inactive',false);
+  }else{
+    d3.selectAll('.target.link-label[data-'+direction + '="'+toClass(party)+'"]').classed('inactive',false);
+    d3.selectAll('.source.node-label[data-party="'+toClass(party)+'"]').classed('inactive',false);
+  }
+}
 
 function selectLink(selectionString){
   d3.selectAll(selectionString)
@@ -213,17 +251,23 @@ function selectLink(selectionString){
       createSummary(d.data());
       return this;
     });
+
 }
 
 function clearSelections(){
   //unselect all the nodes
   d3.selectAll('rect')
-  .classed('selected', false);
+    .classed('selected', false);
   //unselect all the links
   d3.selectAll('path')
-  .classed('selected', false)
-  .style('stroke', null)
-  .style('stroke-opacity', null);
+    .classed('selected', false)
+    .style('stroke', null)
+    .style('stroke-opacity', null);
+
+  //de activate link text
+  d3.selectAll('text.line-label').classed('inactive', true);
+  //activate node text
+  d3.selectAll('.node text').classed('inactive', false);
 }
 
 function createSummary(data){
