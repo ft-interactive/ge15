@@ -1,7 +1,7 @@
 
 {% extends 'article.html' %}
 
-{% block title %}Parliamentary seat change forecast{% endblock %}
+{% block title %}Seat Flow: Parliamentary seat change forecast{% endblock %}
 
  {% block article_header %}
 {% endblock %}
@@ -9,11 +9,11 @@
 {% block article_body %}
 <div class="o-grid-row" data-o-grid-colspan="12">
   <h1 class="article-header__headline">Seat flow</h1>
+  <div class="updated"></div>
   <div id="sankeyHolder" data-o-grid-colspan="12 M6 L6">
     <div id="sankey"></div>
     <div id="secondary-info" class="info-pane"></div>
   </div>
-
   <div id="sankey-description" class="" data-o-grid-colspan="12 M6 L6">
       <p id="inputs">
       Highlight key flows:
@@ -25,7 +25,6 @@
         <li> <a href="#" data-party="Conservatives" data-direction="to" class="chart-preset">Conservative gains</a></li>
         <li><a href="#" data-party="Conservatives" data-direction="from" class="chart-preset">Conservative losses</a></li>
       </ul>
-      Or select parties on the chart for detailed information.</p>
   </div>
   <div id="selection-info" data-o-grid-colspan="12 M6 L6" class="info-pane"></div>
 </div>
