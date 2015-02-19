@@ -204,53 +204,76 @@ function drawSankey(data){
       'text-anchor':'start'
     });
 
-  d3.selectAll('.node').on('click',function(d){
-    clearSelections();
-    var selectionList = [];
-    var direction = 'to';
-    var party = '';
-    d.sourceLinks.forEach(function(link){
-      selectionList.push('.'+linkClass(link));
-      direction = 'from';
-      party = link.source.name;
+  d3.selectAll('.node')
+    .on('click',function(d){
+      clearSelections();
+      var selectionList = buildSelectionList(d);
+      selectLink( selectionList.list.join(', ') );
+      activateLabels(selectionList.direction, selectionList.party);
+    })
+    .on('mouseover',function(d){
+      clearHint();
+      pathHint( buildSelectionList(d).list.join(', ') );
+    })
+    .on('mouseout', function(){
+      clearHint();
     });
-    d.targetLinks.forEach(function(link){
-      selectionList.push('.'+linkClass(link));
-      party = link.target.name;
+
+  d3.selectAll('path')
+    .on('click',function(d){
+      clearSelections();
+      selectLink( '.'+linkClass(d) );
+      activateLabels('both', d.source.name, d.target.name);
     });
-    selectLink( selectionList.join(', '), direction);
-
-    activateLabels(direction, party);
-
-  });
-
-  d3.selectAll('path').on('click',function(d){
-    clearSelections();
-    selectLink( '.'+linkClass(d) );
-    activateLabels('both',d.source.name,d.target.name);
-  });
 }
 
-function activateLabels(direction, party, party2){
+function pathHint(selectionString){
+  d3.selectAll(selectionString)
+  .classed('hint', true);
+}
 
+function clearHint(){
+  d3.selectAll('path.link')
+  .classed('hint', false);
+}
+
+function buildSelectionList(d){
+  var selectionList = [];
+  var direction = 'to';
+  var party = '';
+  d.sourceLinks.forEach(function(link){
+    selectionList.push('.'+linkClass(link));
+    direction = 'from';
+    party = link.source.name;
+  });
+  d.targetLinks.forEach(function(link){
+    selectionList.push('.'+linkClass(link));
+    party = link.target.name;
+  });
+  return {list:selectionList, direction:direction, party:party};
+}
+
+function activateLabels(direction, party1, party2){
+  console.log(direction, party1, party2)
   d3.selectAll('text.node-label').classed('inactive', true);
   d3.selectAll('text.link-label').classed('inactive', true);
-  if(!direction || !party){
+  if(!direction || !party1){
     d3.selectAll('text.node-label').classed('inactive', false);
     return;
   }
   if(direction === 'both'){
-    console.log('both');
-    var l = d3.selectAll('.link-label[data-to="'+toClass(party2)+'"][data-from="'+toClass(party)+'"]')
+    d3.selectAll('.link-label[data-to="'+toClass(party2)+'"][data-from="'+toClass(party1)+'"]')
       .classed('inactive',false);
   }else if(direction === 'to'){
-    d3.selectAll('.source.link-label[data-'+direction + '="'+toClass(party)+'"]').classed('inactive',false);
-    d3.selectAll('.target.node-label[data-party="'+toClass(party)+'"]').classed('inactive',false);
+    d3.selectAll('.source.link-label[data-'+direction + '="'+toClass(party1)+'"]').classed('inactive',false);
+    d3.selectAll('.target.node-label[data-party="'+toClass(party1)+'"]').classed('inactive',false);
   }else{
-    d3.selectAll('.target.link-label[data-'+direction + '="'+toClass(party)+'"]').classed('inactive',false);
-    d3.selectAll('.source.node-label[data-party="'+toClass(party)+'"]').classed('inactive',false);
+    d3.selectAll('.target.link-label[data-'+direction + '="'+toClass(party1)+'"]').classed('inactive',false);
+    d3.selectAll('.source.node-label[data-party="'+toClass(party1)+'"]').classed('inactive',false);
   }
 }
+
+
 
 function selectLink(selectionString){
   d3.selectAll(selectionString)
