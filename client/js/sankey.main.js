@@ -227,10 +227,11 @@ function drawSankey(data){
   d3.selectAll('path').on('click',function(d){
     clearSelections();
     selectLink( '.'+linkClass(d) );
+    activateLabels('both',d.source.name,d.target.name);
   });
 }
 
-function activateLabels(direction, party){
+function activateLabels(direction, party, party2){
 
   d3.selectAll('text.node-label').classed('inactive', true);
   d3.selectAll('text.link-label').classed('inactive', true);
@@ -238,7 +239,11 @@ function activateLabels(direction, party){
     d3.selectAll('text.node-label').classed('inactive', false);
     return;
   }
-  if(direction === 'to'){
+  if(direction === 'both'){
+    console.log('both');
+    var l = d3.selectAll('.link-label[data-to="'+toClass(party2)+'"][data-from="'+toClass(party)+'"]')
+      .classed('inactive',false);
+  }else if(direction === 'to'){
     d3.selectAll('.source.link-label[data-'+direction + '="'+toClass(party)+'"]').classed('inactive',false);
     d3.selectAll('.target.node-label[data-party="'+toClass(party)+'"]').classed('inactive',false);
   }else{
@@ -256,7 +261,6 @@ function selectLink(selectionString){
       createSummary(d.data());
       return this;
     });
-
 }
 
 function clearSelections(){
