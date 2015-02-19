@@ -298,7 +298,7 @@ function createSummary(data){
     target = (data[0].target !== data[1].target);
   }
 
-  listItems.html(function(d){return linkDescription(d,target); });
+  listItems.html(function(d){ return linkDescription(d,target); });
 }
 
 function toClass(str){ return str.replace(/\s/g,'_'); }
