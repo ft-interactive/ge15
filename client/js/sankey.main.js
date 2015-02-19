@@ -11,7 +11,6 @@ d3.json('http://ig.ft.com/data/electionforecast-co-uk/updated.json',function(d){
   var updateTime = new Date(d.updated);
   //February 18, 2015 10:34 pm
   var timeFormat = d3.time.format("%B %e, %Y %I:%M %p");
-  console.log(timeFormat(updateTime));//.format(updateTime)
   d3.select('#updated').html( 'updated: ' + timeFormat(updateTime));
 });
 
@@ -236,12 +235,10 @@ function activateLabels(direction, party){
   d3.selectAll('text.node-label').classed('inactive', true);
   d3.selectAll('text.link-label').classed('inactive', true);
   if(!direction || !party){
-    console.log('default');
     d3.selectAll('text.node-label').classed('inactive', false);
     return;
   }
   if(direction === 'to'){
-    console.log('.source.link-label[data-'+direction + '="'+toClass(party)+'"]');
     d3.selectAll('.source.link-label[data-'+direction + '="'+toClass(party)+'"]').classed('inactive',false);
     d3.selectAll('.target.node-label[data-party="'+toClass(party)+'"]').classed('inactive',false);
   }else{
