@@ -4,8 +4,15 @@ d3.sankey = require('./sankey/d3plugin.js');
 var debounce = require('lodash-node/modern/functions/debounce');
 var party = require('./data/party-data.js');
 var sankeyData = require('./sankey/sankey-data.js');
-var latestPredictions = 'http://ig.ft.com/data/electionforecast-co-uk/tsv/prediction-latest';
+var latestPredictions = 'http://www.ft.com/ig/data/electionforecast-co-uk/tsv/prediction-latest';
+var nodeWidth = 30;
 
+d3.json('http://www.ft.com/ig/data/electionforecast-co-uk/updated.json',function(d){
+  var updateTime = new Date(d.updated);
+  //February 18, 2015 10:34 pm
+  var timeFormat = d3.time.format("%B %e, %Y %I:%M %p");
+  d3.select('#updated').html( 'updated: ' + timeFormat(updateTime));
+});
 
 d3.tsv(latestPredictions, function(d){
   var data = sankeyData(d);
@@ -19,7 +26,13 @@ d3.tsv(latestPredictions, function(d){
     d3.event.preventDefault();
     var party = d3.select(this).attr('data-party');
     var direction = d3.select(this).attr('data-direction');
-    selectLink('[data-' + direction + '=' + party + ']');
+    if(!direction || !party){
+      clearSelections();
+      activateLabels('', '');
+    }else{
+      selectLink('path[data-' + direction + '=' + party + ']', direction);
+      activateLabels(direction, party);
+    }
   });
 });
 
@@ -34,7 +47,7 @@ function drawSankey(data){
   var nodePadding = 20;
   var sankey = d3.sankey()
     .size([chartWidth, chartHeight])
-    .nodeWidth(30)
+    .nodeWidth(nodeWidth)
     .nodePadding(nodePadding)
     .nodes(data.nodes)
     .links(data.links)
@@ -97,17 +110,54 @@ function drawSankey(data){
   svg = svg.append('g')
       .attr('transform','translate('+margin.left+','+margin.top+')');
 
-  svg.append('g').selectAll('.link')
+  var link = svg.append('g').selectAll('.link')
       .data(data.links)
     .enter()
-      .append('path')
+      .append('g')
+        .attr('class','link-container');
+
+  link.append('path')
       .attr({
-        'class':function(d){ return 'link selected ' + linkClass(d); },
+        'class':function(d){ return 'link ' + linkClass(d); },
         'data-from':function(d){ return toClass(d.source.name); },
         'data-to':function(d){ return toClass(d.target.name); },
         'd':path
       })
     .style('stroke-width', function(d) { return Math.max(1, d.dy); });
+
+  //start value of each link
+  link.append('text')
+    .attr({
+      'x':nodeWidth +6,
+      'y':function(d) {
+        return d.source.y + d.sy + (d.dy/2);
+      },
+      'data-from':function(d){ return toClass(d.source.name); },
+      'data-to':function(d){ return toClass(d.target.name); },
+      'class':'source link-label inactive',
+      'dy':'.35em'
+    })
+    .text(function(d){
+      return partyShortName(d.source.name) +': '+ d.value;
+    });
+
+  //end value of each link
+  link.append('text')
+    .attr({
+      'x':chartWidth - (nodeWidth +6),
+      'y':function(d) {
+        return d.target.y + d.ty + (d.dy/2);
+      },
+      'data-from':function(d){ return toClass(d.source.name); },
+      'data-to':function(d){ return toClass(d.target.name); },
+      'dy':'.35em',
+      'class':'target link-label inactive',
+      'text-anchor':'end'
+    })
+    .text(function(d){
+      return partyShortName(d.target.name) +': '+ d.value;
+    });
+
 
   var node = svg.append('g').selectAll('.node')
       .data(data.nodes)
@@ -130,7 +180,11 @@ function drawSankey(data){
     .attr('y', function(d) {
         return -nodePadding/2;
     })
-    .attr('width', sankey.nodeWidth())
+    .attr('x', function(d){
+      if(d.x>chartWidth/2) return -chartWidth/2 + sankey.nodeWidth();
+      return 0;
+    })
+    .attr('width', chartWidth/2)
     .attr('class','selection-rect')
     .append('title')
     .text(function(d) { return d.name + " " + d.value; });
@@ -141,34 +195,87 @@ function drawSankey(data){
       'y':function(d) { return d.dy / 2; },
       'dy':'.35em',
       'text-anchor':'end',
-      'transform':null
+      'transform':null,
+      'class':'target node-label',
+      'data-party':function(d){ return toClass(d.name); }
     })
     .text(function(d) {
-      var partyCode = party.fullNameToCode[d.name];
-      return party.shortNames[partyCode] + ': '+d.value ; })
+      return partyShortName(d.name) + ': '+d.value ; })
     .filter(function(d) { return d.x < width / 2; })
     .attr({
       'x':6 + sankey.nodeWidth(),
+      'class':'source node-label',
       'text-anchor':'start'
     });
 
-  d3.selectAll('.node').on('click',function(d){
-    clearSelections();
-    var selectionList = [];
-    d.sourceLinks.forEach(function(link){
-      selectionList.push('.'+linkClass(link));
+  d3.selectAll('.node')
+    .on('click',function(d){
+      clearSelections();
+      var selectionList = buildSelectionList(d);
+      selectLink( selectionList.list.join(', ') );
+      activateLabels(selectionList.direction, selectionList.party);
+    })
+    .on('mouseover',function(d){
+      clearHint();
+      pathHint( buildSelectionList(d).list.join(', ') );
+    })
+    .on('mouseout', function(){
+      clearHint();
     });
-    d.targetLinks.forEach(function(link){
-      selectionList.push('.'+linkClass(link));
-    });
-    selectLink( selectionList.join(', ') );
-  });
 
-  d3.selectAll('path').on('click',function(d){
-    clearSelections();
-    selectLink( '.'+linkClass(d) );
-  });
+  d3.selectAll('path')
+    .on('click',function(d){
+      clearSelections();
+      selectLink( '.'+linkClass(d) );
+      activateLabels('both', d.source.name, d.target.name);
+    });
 }
+
+function pathHint(selectionString){
+  d3.selectAll(selectionString)
+  .classed('hint', true);
+}
+
+function clearHint(){
+  d3.selectAll('path.link')
+  .classed('hint', false);
+}
+
+function buildSelectionList(d){
+  var selectionList = [];
+  var direction = 'to';
+  var party = '';
+  d.sourceLinks.forEach(function(link){
+    selectionList.push('.'+linkClass(link));
+    direction = 'from';
+    party = link.source.name;
+  });
+  d.targetLinks.forEach(function(link){
+    selectionList.push('.'+linkClass(link));
+    party = link.target.name;
+  });
+  return {list:selectionList, direction:direction, party:party};
+}
+
+function activateLabels(direction, party1, party2){
+  d3.selectAll('text.node-label').classed('inactive', true);
+  d3.selectAll('text.link-label').classed('inactive', true);
+  if(!direction || !party1){
+    d3.selectAll('text.node-label').classed('inactive', false);
+    return;
+  }
+  if(direction === 'both'){
+    d3.selectAll('.link-label[data-to="'+toClass(party2)+'"][data-from="'+toClass(party1)+'"]')
+      .classed('inactive',false);
+  }else if(direction === 'to'){
+    d3.selectAll('.source.link-label[data-'+direction + '="'+toClass(party1)+'"]').classed('inactive',false);
+    d3.selectAll('.target.node-label[data-party="'+toClass(party1)+'"]').classed('inactive',false);
+  }else{
+    d3.selectAll('.target.link-label[data-'+direction + '="'+toClass(party1)+'"]').classed('inactive',false);
+    d3.selectAll('.source.node-label[data-party="'+toClass(party1)+'"]').classed('inactive',false);
+  }
+}
+
 
 
 function selectLink(selectionString){
@@ -178,9 +285,9 @@ function selectLink(selectionString){
     .style('stroke-opacity',1)
     .call(function(d){
       createSummary(d.data());
+      return this;
     });
 }
-
 
 function clearSelections(){
   //unselect all the nodes
@@ -191,6 +298,11 @@ function clearSelections(){
     .classed('selected', false)
     .style('stroke', null)
     .style('stroke-opacity', null);
+
+  //de activate link text
+  d3.selectAll('text.line-label').classed('inactive', true);
+  //activate node text
+  d3.selectAll('.node text').classed('inactive', false);
 }
 
 function createSummary(data){
@@ -221,7 +333,7 @@ function createSummary(data){
     target = (data[0].target !== data[1].target);
   }
 
-  listItems.html(function(d){return linkDescription(d,target); });
+  listItems.html(function(d){ return linkDescription(d,target); });
 }
 
 function toClass(str){ return str.replace(/\s/g,'_'); }
@@ -246,28 +358,7 @@ function partyColour(p){
   return party.colours[partyCode];
 }
 
-function toClass(str){ return str.replace(/\s/g,'_'); }
-
-function clearSelections(){
-  //unselect all the nodes
-  d3.selectAll('rect')
-  .classed('selected', false);
-  //unselect all the links
-  d3.selectAll('path')
-  .classed('selected', false)
-  .style('stroke', null)
-  .style('stroke-opacity', null);
-}
-
-function linkClass(d){
-  return toClass(d.source.name + '-to-' +d.target.name);
-}
-
-function gradientName(d){
-  return ( toClass(d.source.name) + '--' + toClass(d.target.name) + '-gradient');
-}
-
-function partyColour(p){
-  var partyCode = party.fullNameToCode[p];
-  return party.colours[partyCode];
+function partyShortName(d){
+  var partyCode = party.fullNameToCode[d];
+  return party.shortNames[partyCode];
 }

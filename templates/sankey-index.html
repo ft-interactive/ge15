@@ -1,7 +1,7 @@
 
 {% extends 'article.html' %}
 
-{% block title %}Parliamentary seat change forecast{% endblock %}
+{% block title %}Seat Flow: Parliamentary seat change forecast{% endblock %}
 
  {% block article_header %}
 {% endblock %}
@@ -11,21 +11,43 @@
   <h1 class="article-header__headline">Seat flow</h1>
   <div id="sankeyHolder" data-o-grid-colspan="12 M6 L6">
     <div id="sankey"></div>
+    <span id="updated"></span>
     <div id="secondary-info" class="info-pane"></div>
   </div>
-
   <div id="sankey-description" class="" data-o-grid-colspan="12 M6 L6">
       <p id="inputs">
       Highlight key flows:
       <ul>
-        <li><a href="#" data-party="Liberal_Democrats" data-direction="from" class="chart-preset">Lib Dem losses</a></li>
-        <li><a href="#" data-party="SNP" data-direction="to" class="chart-preset">SNP gains</a></li>
-        <li><a href="#" data-party="Labour" data-direction="to" class="chart-preset">Labour gains</a></li>
-        <li><a href="#" data-party="Labour" data-direction="from" class="chart-preset">Labour losses</a></li>
-        <li> <a href="#" data-party="Conservatives" data-direction="to" class="chart-preset">Conservative gains</a></li>
-        <li><a href="#" data-party="Conservatives" data-direction="from" class="chart-preset">Conservative losses</a></li>
+        <li class="o-grid-row">
+          <div class="button-holder" data-o-grid-colspan="6">
+            <button data-party="Liberal_Democrats" data-direction="from" class="chart-preset">Lib Dem losses</button>
+          </div>
+        </li>
+        <li class="o-grid-row">
+          <div class="button-holder"  data-o-grid-colspan="6">
+            <button href="#" data-party="SNP" data-direction="to" class="chart-preset">SNP gains</button>
+          </div>
+        </li>
+        <li class="o-grid-row">
+          <div class="button-holder" data-o-grid-colspan="6">
+            <button href="#" data-party="Labour" data-direction="to" class="chart-preset">Labour gains</button>
+          </div>
+          <div class="button-holder"  data-o-grid-colspan="6">
+            <button data-party="Labour" data-direction="from" class="chart-preset">Labour losses</button>
+          </div>
+        </li>
+        <li class="o-grid-row">
+          <div class="button-holder"  data-o-grid-colspan="6">
+            <button href="#" data-party="Conservatives" data-direction="to" class="chart-preset">Conservative gains</button></div>
+          <div class="button-holder"  data-o-grid-colspan="6">
+            <button href="#" data-party="Conservatives" data-direction="from" class="chart-preset">Conservative losses</button></div>
+        </li>
+        <li class="o-grid-row">
+          <div class="button-holder"  data-o-grid-colspan="6">
+            <button href="#" data-party="" data-direction="" class="chart-preset reset">Show the seat totals</button>
+          </div>
+        </li>
       </ul>
-      Or select parties on the chart for detailed information.</p>
   </div>
   <div id="selection-info" data-o-grid-colspan="12 M6 L6" class="info-pane"></div>
 </div>
@@ -48,9 +70,100 @@ if (cutsTheMustard) {
 
 {% block stylesheets %}
 <style>
+button:hover{
+  background-color: rgba(116, 115, 108, 0.14902);
+}
+
+button{
+      width:100%;
+  -webkit-appearance: none;
+  -webkit-background-clip: border-box;
+  -webkit-background-origin: padding-box;
+  -webkit-background-size: auto;
+  -webkit-transition-delay: 0s;
+  -webkit-transition-duration: 0.3s;
+  -webkit-transition-property: background-color;
+  -webkit-transition-timing-function: ease;
+  -webkit-writing-mode: horizontal-tb;
+  align-items: flex-start;
+  background-attachment: scroll;
+  background-clip: border-box;
+  background-color: rgba(116, 115, 108, 0);
+  background-image: none;
+  background-origin: padding-box;
+  background-size: auto;
+  border-bottom-color: rgb(46, 110, 158);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-image-outset: 0px;
+  border-image-repeat: stretch;
+  border-image-slice: 100%;
+  border-image-source: none;
+  border-image-width: 1;
+  border-left-color: rgb(46, 110, 158);
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-right-color: rgb(46, 110, 158);
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-top-color: rgb(46, 110, 158);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  box-sizing: border-box;
+  color: rgb(46, 110, 158);
+  cursor: pointer;
+  display: inline-block;
+  font-family: BentonSans, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  min-height: 24px;
+  letter-spacing: normal;
+  line-height: 20px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
+  outline-color: rgb(46, 110, 158);
+  outline-style: none;
+  outline-width: 0px;
+  padding-bottom: 0px;
+  padding-left: 14px;
+  padding-right: 14px;
+  padding-top: 0px;
+  text-align: center;
+  text-decoration: none;
+  text-indent: 0px;
+  text-rendering: auto;
+  text-shadow: none;
+  text-transform: none;
+  transition-delay: 0s;
+  transition-duration: 0.3s;
+  transition-property: background-color;
+  transition-timing-function: ease;
+  word-spacing: 0px;
+  writing-mode: lr-tb;
+}
+
+#updated{
+  color: rgb(119, 119, 119);
+  display: inline;
+  font-family: BentonSans, sans-serif;
+  font-size: 12px;
+  height: auto;
+  line-height: 18px;
+  width: auto;
+}
+
 svg{
   font-family: BentonSans, sans-serif;
 }
+
 .article-header__headline{
   /*text-align: center;*/
   margin-bottom: 0.3em;
@@ -103,8 +216,16 @@ rect.node {
 .node text {
   font-size:0.8em;
   cursor:pointer;
-
   text-shadow: 0px 0px 8px #FFF1DF;
+}
+
+text.link-label {
+  font-size:0.8em;
+  text-shadow: 0px 0px 8px #FFF1DF;
+}
+
+text.inactive{
+  display:none;
 }
 
 tspan.seat-count{
@@ -126,7 +247,7 @@ path.link {
   cursor:pointer;
 }
 
-path.link:hover{
+path.link.hint, path.link:hover{
   stroke-opacity: .5;
 }
 
@@ -154,6 +275,12 @@ path.link:hover{
 #inputs{
   padding-bottom: 0.5em;
 
+}
+
+.chart-preset.reset:before{
+  opacity:0.5;
+  padding-right:5px;
+  content: url('http://image.webservices.ft.com/v1/images/raw/fticon:refresh?width=6&dpr=2&source=ge15');
 }
 
 #sankey-description > ul{
