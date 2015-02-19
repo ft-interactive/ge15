@@ -9,9 +9,9 @@
 {% block article_body %}
 <div class="o-grid-row" data-o-grid-colspan="12">
   <h1 class="article-header__headline">Seat flow</h1>
-  <div class="updated"></div>
   <div id="sankeyHolder" data-o-grid-colspan="12 M6 L6">
     <div id="sankey"></div>
+    <span id="updated"></span>
     <div id="secondary-info" class="info-pane"></div>
   </div>
   <div id="sankey-description" class="" data-o-grid-colspan="12 M6 L6">
@@ -48,9 +48,21 @@ if (cutsTheMustard) {
 
 {% block stylesheets %}
 <style>
+
+#updated{
+  color: rgb(119, 119, 119);
+  display: inline;
+  font-family: BentonSans, sans-serif;
+  font-size: 12px;
+  height: auto;
+  line-height: 18px;
+  width: auto;
+}
+
 svg{
   font-family: BentonSans, sans-serif;
 }
+
 .article-header__headline{
   /*text-align: center;*/
   margin-bottom: 0.3em;
@@ -162,6 +174,13 @@ path.link:hover{
 #inputs{
   padding-bottom: 0.5em;
 
+}
+
+.chart-preset.reset:after{
+  opacity:0.5;
+  padding-right:5px;
+  padding-left:5px;
+  content: url('http://image.webservices.ft.com/v1/images/raw/fticon:refresh?width=6&dpr=2&source=ge15');
 }
 
 #sankey-description > ul{

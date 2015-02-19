@@ -7,6 +7,14 @@ var sankeyData = require('./sankey/sankey-data.js');
 var latestPredictions = 'http://ig.ft.com/data/electionforecast-co-uk/tsv/prediction-latest';
 var nodeWidth = 30;
 
+d3.json('http://ig.ft.com/data/electionforecast-co-uk/updated.json',function(d){
+  var updateTime = new Date(d.updated);
+  //February 18, 2015 10:34 pm
+  var timeFormat = d3.time.format("%B %e, %Y %I:%M %p");
+  console.log(timeFormat(updateTime));//.format(updateTime)
+  d3.select('#updated').html( 'updated: ' + timeFormat(updateTime));
+});
+
 d3.tsv(latestPredictions, function(d){
   var data = sankeyData(d);
   var resize = debounce(function(e) {
