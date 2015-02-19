@@ -258,7 +258,6 @@ function buildSelectionList(d){
 }
 
 function activateLabels(direction, party1, party2){
-  console.log(direction, party1, party2)
   d3.selectAll('text.node-label').classed('inactive', true);
   d3.selectAll('text.link-label').classed('inactive', true);
   if(!direction || !party1){
