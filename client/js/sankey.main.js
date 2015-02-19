@@ -180,7 +180,11 @@ function drawSankey(data){
     .attr('y', function(d) {
         return -nodePadding/2;
     })
-    .attr('width', sankey.nodeWidth())
+    .attr('x', function(d){
+      if(d.x>chartWidth/2) return -chartWidth/2 + sankey.nodeWidth();
+      return 0;
+    })
+    .attr('width', chartWidth/2)
     .attr('class','selection-rect')
     .append('title')
     .text(function(d) { return d.name + " " + d.value; });
