@@ -18,13 +18,35 @@
       <p id="inputs">
       Highlight key flows:
       <ul>
-        <li><button data-party="Liberal_Democrats" data-direction="from" class="chart-preset">Lib Dem losses</button></li>
-        <li><button href="#" data-party="SNP" data-direction="to" class="chart-preset">SNP gains</button></li>
-        <li><button href="#" data-party="Labour" data-direction="to" class="chart-preset">Labour gains</button></li>
-        <li><button data-party="Labour" data-direction="from" class="chart-preset">Labour losses</button></li>
-        <li><button href="#" data-party="Conservatives" data-direction="to" class="chart-preset">Conservative gains</button></li>
-        <li><button href="#" data-party="Conservatives" data-direction="from" class="chart-preset">Conservative losses</button></li>
-        <li><button href="#" data-party="" data-direction="" class="chart-preset reset">Show the seat totals</button></li>
+        <li class="o-grid-row">
+          <div class="button-holder" data-o-grid-colspan="6">
+            <button data-party="Liberal_Democrats" data-direction="from" class="chart-preset">Lib Dem losses</button>
+          </div>
+        </li>
+        <li class="o-grid-row">
+          <div class="button-holder"  data-o-grid-colspan="6">
+            <button href="#" data-party="SNP" data-direction="to" class="chart-preset">SNP gains</button>
+          </div>
+        </li>
+        <li class="o-grid-row">
+          <div class="button-holder" data-o-grid-colspan="6">
+            <button href="#" data-party="Labour" data-direction="to" class="chart-preset">Labour gains</button>
+          </div>
+          <div class="button-holder"  data-o-grid-colspan="6">
+            <button data-party="Labour" data-direction="from" class="chart-preset">Labour losses</button>
+          </div>
+        </li>
+        <li class="o-grid-row">
+          <div class="button-holder"  data-o-grid-colspan="6">
+            <button href="#" data-party="Conservatives" data-direction="to" class="chart-preset">Conservative gains</button></div>
+          <div class="button-holder"  data-o-grid-colspan="6">
+            <button href="#" data-party="Conservatives" data-direction="from" class="chart-preset">Conservative losses</button></div>
+        </li>
+        <li class="o-grid-row">
+          <div class="button-holder"  data-o-grid-colspan="6">
+            <button href="#" data-party="" data-direction="" class="chart-preset reset">Show the seat totals</button>
+          </div>
+        </li>
       </ul>
   </div>
   <div id="selection-info" data-o-grid-colspan="12 M6 L6" class="info-pane"></div>
@@ -53,6 +75,7 @@ button:hover{
 }
 
 button{
+      width:100%;
   -webkit-appearance: none;
   -webkit-background-clip: border-box;
   -webkit-background-origin: padding-box;
@@ -99,9 +122,9 @@ button{
   font-style: normal;
   font-variant: normal;
   font-weight: normal;
-  height: 24px;
+  min-height: 24px;
   letter-spacing: normal;
-  line-height: 22px;
+  line-height: 20px;
   margin-bottom: 0px;
   margin-left: 0px;
   margin-right: 0px;
