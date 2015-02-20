@@ -1,7 +1,9 @@
 
 {% extends 'article.html' %}
 
-{% block title %}Seat Flow: Parliamentary seat change forecast{% endblock %}
+
+{% block title %}Seat Flow: UK Parliament seat projection{% endblock %}
+
 
  {% block article_header %}
 {% endblock %}
@@ -11,8 +13,6 @@
   <h1 class="article-header__headline">Seat flow</h1>
   <div id="sankeyHolder" data-o-grid-colspan="12 M6 L6">
     <div id="sankey"></div>
-    <span id="updated"></span>
-    <div id="secondary-info" class="info-pane"></div>
   </div>
   <div id="sankey-description" class="" data-o-grid-colspan="12 M6 L6">
       <p id="inputs">
@@ -48,15 +48,14 @@
           </div>
         </li>
       </ul>
+      <div class="description"><b>What would happen if the UK General Election were held&nbsp;tomorrow?</b>
+        <p>This graphic shows a predicted redistribution of parliamentary seats. It is based on open data from <a href="http://electionforecast.co.uk/">electionforecast.co.uk</a> and is updated regularly.</p>
+      </div>
   </div>
-  <div id="selection-info" data-o-grid-colspan="12 M6 L6" class="info-pane"></div>
-</div>
-<div class="description">
-  <p>This graphic shows a predicted redistribution of parliamentary seats. It is based on open data from <a href="http://electionforecast.co.uk/">electionforecast.co.uk</a> and is updated regularly.</p>
 </div>
 <div class="notes">
-    <p>The model used by <a href="http://electionforecast.co.uk">electionforecast.co.uk</a> combines data provided by YouGov with publicly released polls, historical election results, and data from the UK Census.</p>
-    <p>Electionforecast.co.uk does not publish seat by seat predictions for Northern Ireland's 18 parliamentary seats these are included in &#8220;Others&#8221;</p>
+    <p>The model used by electionforecast.co.uk combines data provided by YouGov with publicly released polls, historical election results, and data from the UK Census.</p>
+    <p>electionforecast.co.uk does not publish seat by seat predictions for Northern Ireland's 18 parliamentary seats these are included in &#8220;Others&#8221;</p>
 </div>
 {% endblock %}
 
@@ -150,7 +149,7 @@ button{
   writing-mode: lr-tb;
 }
 
-#updated{
+#svg-source{
   color: rgb(119, 119, 119);
   display: inline;
   font-family: BentonSans, sans-serif;
@@ -270,6 +269,7 @@ path.link.hint, path.link:hover{
 #sankey-description{
   margin-top: 3px;
   padding-left: 1em;
+  font-family: BentonSans, sans-serif;
 }
 
 #inputs{
@@ -321,6 +321,7 @@ path.link.hint, path.link:hover{
 }
 
 .description{
+  padding-top: 1em;
   font-family: BentonSans, sans-serif;
   max-width:670px;
 }

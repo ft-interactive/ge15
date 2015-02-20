@@ -4,14 +4,19 @@ d3.sankey = require('./sankey/d3plugin.js');
 var debounce = require('lodash-node/modern/functions/debounce');
 var party = require('./data/party-data.js');
 var sankeyData = require('./sankey/sankey-data.js');
+var logo = require('./sankey/logo.js');
+
 var latestPredictions = 'http://www.ft.com/ig/data/electionforecast-co-uk/tsv/prediction-latest';
+
 var nodeWidth = 30;
+var updateString = '';
 
 d3.json('http://www.ft.com/ig/data/electionforecast-co-uk/updated.json',function(d){
   var updateTime = new Date(d.updated);
   //February 18, 2015 10:34 pm
   var timeFormat = d3.time.format("%B %e, %Y %I:%M %p");
-  d3.select('#updated').html( 'updated: ' + timeFormat(updateTime));
+  updateString = timeFormat(updateTime);
+  d3.select('#svg-source').text( 'Source: electionforecast.co.uk, ' + updateString );
 });
 
 d3.tsv(latestPredictions, function(d){
@@ -39,9 +44,9 @@ d3.tsv(latestPredictions, function(d){
 function drawSankey(data){
   d3.select('#sankey svg').remove();
   var parentSize = d3.select('#sankey').node().getBoundingClientRect();
-  var height = 500;
+  var height = 540;
   var width = parentSize.width;
-  var margin = {top:30,left:0,bottom:10,right:10};
+  var margin = {top:30,left:0,bottom:40,right:0};
   var chartHeight = height - (margin.top + margin.bottom);
   var chartWidth = width - (margin.left + margin.right);
   var nodePadding = 20;
@@ -167,7 +172,7 @@ function drawSankey(data){
       .attr('transform', function(d) { return 'translate(' + d.x + ',' + d.y + ')'; });
 
   node.append('rect')
-    .attr('height', function(d) { return d.dy; })
+    .attr('height', function(d) { return Math.max(1, d.dy); })
     .attr('width', sankey.nodeWidth())
     .attr('class',function(d){
       return 'node ' + toClass(d.name);
@@ -229,6 +234,16 @@ function drawSankey(data){
       selectLink( '.'+linkClass(d) );
       activateLabels('both', d.source.name, d.target.name);
     });
+
+  var logoGroup = svg.append('g');
+  logoGroup.call(logo);
+  logoGroup.attr('transform','translate(' + (width-32) + ',' + (height - 52) + ')');
+
+  var sourceGroup = svg.append('g');
+  sourceGroup.attr('transform','translate(0,' + (height-34) + ')');
+  sourceGroup.append('text').attr({
+    'id':'svg-source',
+  }).text('Source: electionforecast.co.uk, ' + updateString);
 }
 
 function pathHint(selectionString){
