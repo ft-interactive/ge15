@@ -6,12 +6,12 @@ var party = require('./data/party-data.js');
 var sankeyData = require('./sankey/sankey-data.js');
 var logo = require('./sankey/logo.js');
 
-var latestPredictions = 'http://www.ft.com/ig/data/electionforecast-co-uk/tsv/prediction-latest';
+var latestPredictions = 'http://interactivegraphics.ft-static.com/data/electionforecast-co-uk/tsv/prediction-latest';
 
 var nodeWidth = 30;
 var updateString = '';
 
-d3.json('http://www.ft.com/ig/data/electionforecast-co-uk/updated.json',function(d){
+d3.json('http://interactivegraphics.ft-static.com/data/electionforecast-co-uk/updated.json',function(d){
   var updateTime = new Date(d.updated);
   //February 18, 2015 10:34 pm
   var timeFormat = d3.time.format("%B %e, %Y %I:%M %p");
