@@ -61,6 +61,12 @@
 
 {% block scripts %}
 <script>
+{% autoescape false %}
+var forecast = {{ data }};
+var updateTime = new Date({{ updated }});
+var source = {{ source }};
+{% endautoescape %}
+
 if (cutsTheMustard) {
   addScript('{{ asset("js/sankey.js") }}', false, false);
 }
