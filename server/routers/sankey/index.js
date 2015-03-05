@@ -3,9 +3,15 @@
 var app = require('../../util/app');
 var viewLocals = require('../../middleware/view-locals');
 var siteNav = require('../../middleware/site-navigation');
+var forecastData = require('../data/').forecastData;
 
 function* home(next) {
-  yield this.render('sankey-index', {});
+
+  yield this.render('sankey-index', {
+    data:JSON.stringify(this.forecastData.data),
+    updated:JSON.stringify(this.forecastData.updated),
+    source:JSON.stringify(this.forecastData.source)
+  });
   yield next;
 }
 
@@ -14,9 +20,12 @@ function main() {
     .use(siteNav())
     .use(viewLocals())
     .router()
-    // forecast home page
-    .get('home', '/', home);
+      .get('home', '/', setItem, forecastData, home);
+}
 
+function* setItem(next){
+  this.item = 'prediction';
+  yield next;
 }
 
 module.exports = main;

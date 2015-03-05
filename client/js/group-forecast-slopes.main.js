@@ -13,12 +13,10 @@ doc.graphics.slope = require('./slope-chart/index.js');
 doc.graphics.constituencyLocator = require('./locator-map/constituency-locator.js');
 
 doc.tables.forecastSummary = require('./data-table/forecast-summary.js');
-
-doc.data.processForecastData = require('./data/slope-data.js');
 doc.data.partyShortNames = require('./data/party-data.js').shortNames;
 
 var mapURL = 'https://gist.githubusercontent.com/tomgp/8defaceafdce7a11cc7a/raw/991ac83d5a6905b7946fd49ce8bd71a1c986de4c/simplemap.topojson';
-var dataURL = 'http://bertha.ig.ft.com/view/publish/ig/0AtxzL7xNk41FdHpvYkNPNlBnd1FXaUhFTXFUeG15VWc/basic,resultnow,details,predictions,coordinates';
+var dataURL = '/uk/2015/data/battlegrounds/json';
 
 loaded();
 
@@ -99,7 +97,7 @@ function loaded(){
     });
 
   function gotData(error, data, map){
-    var groups = document.data.processForecastData(data);
+    var groups = data;
     var divs = d3.select('#slope-groups')
       .selectAll('div.group')
       .data(groups)
