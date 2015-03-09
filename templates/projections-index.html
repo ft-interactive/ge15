@@ -156,10 +156,10 @@
           </div>
           <div data-o-grid-colspan="12 S8 M9 L9">
             <div class="o-grid-row">
-                {% for constituency in group.constituencies %}
-                <div class="constituency-group__slope" data-o-grid-colspan="4 M3 L1 XL1">
-                  <div class="constituency-group__slope-graphic" data-constituency="{{constituency.id}}"></div>
-                  <div class="constituency-group__constituency-name">{{constituency.name}}</div>
+              {% for constituency in group.constituencies %}
+              <div class="constituency-group__slope" data-o-grid-colspan="4 M3 L1 XL1">
+                <div class="constituency-group__slope-graphic" data-constituency="{{constituency.id}}" data-order="{{loop.index0}}"></div>
+                <div class="constituency-group__constituency-name">{{constituency.name}}</div>
                 </div>
                 {% endfor %}
             </div>
@@ -169,6 +169,7 @@
     {% endfor %}
 
   </div>
+
 {% endblock %}
 
 {% block scripts %}
