@@ -62,9 +62,9 @@
 {% block scripts %}
 <script>
 {% autoescape false %}
-var forecast = {{ data }};
-var updateTime = new Date({{ updated }});
-var source = {{ source }};
+var forecast = {{ data|json}};
+var updateTime = new Date({{ updated|json }});
+var source = {{ source|json }};
 {% endautoescape %}
 
 if (cutsTheMustard) {
