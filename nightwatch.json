@@ -16,10 +16,10 @@
       "silent": true,
       "screenshots" : {
         "enabled" : true,
-        "path" : "./screenshots"
+        "path" : "./test/browser/screenshots"
       },
-      "username": "${SAUCE_USER}",
-      "access_key": "${SAUCE_KEY}",
+      "username": "${SAUCELABS_USER}",
+      "access_key": "${SAUCELABS_TOKEN}",
       "desiredCapabilities": {
         "browserName": "chrome",
         "version": "37",

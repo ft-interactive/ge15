@@ -9,7 +9,8 @@
     "local": "gulp && NODE_ENV=production npm run start",
     "start": "node --harmony ./app.js",
     "pre-test": "gulp lint sass",
-    "test": "testling && nightwatch",
+    "test": "testling",
+    "smoke-test": "nightwatch",
     "watch": "gulp watch"
   },
   "repository": {

@@ -15,3 +15,5 @@ node-v*
 .idea
 .sass-cache
 .env
+test/browser/reports
+test/browser/screenshots
