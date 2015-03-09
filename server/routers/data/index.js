@@ -2,6 +2,7 @@
 var request = require('koa-request');
 var d3 = require('d3');
 var slopeDataParse = require('./slope-data.js');
+var geoData = require('../../data/geo-data.js');
 
 var app = require('../../util/app');
 
@@ -29,7 +30,13 @@ function main() {
       yield next;
     })
     .get('seat-forecast','/forecast/:item/json', forecastData, ToJSON)
-    .get('battlegrounds','/battlegrounds/json', battlegroundData, ToJSON);
+    .get('battlegrounds','/battlegrounds/json', battlegroundData, ToJSON)
+    .get('simplemap','/simplemap/json', simpleMapData, ToJSON);
+}
+
+function* simpleMapData(next){
+  this.dataObject = geoData.simple;
+  yield next;
 }
 
 function* battlegroundData(next){
@@ -66,7 +73,8 @@ function* ToJSON(next){
 
 module.exports ={
   routes:main,
-  forecastData:forecastData
+  forecastData:forecastData,
+  battlegroundData:battlegroundData
 };
 
 if (!module.parent) main().listen(process.env.PORT || 5000);

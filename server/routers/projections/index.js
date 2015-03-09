@@ -3,12 +3,15 @@
 var app = require('../../util/app');
 var viewLocals = require('../../middleware/view-locals');
 var siteNav = require('../../middleware/site-navigation');
+var battlegroundData = require('../data/').battlegroundData;
 
 function* home(next) {
   yield this.render('projections-index', {
     page: {
       title: 'What if the election were tomorrow?'
-    }
+    },
+    dataString:this.dataObject,
+    data:this.dataObject
   });
   yield next;
 }
@@ -23,7 +26,7 @@ function main() {
         .router()
 
         // forecast home page
-        .get('home', '/', home);
+        .get('home', '/', battlegroundData, home);
 }
 
 module.exports = main;

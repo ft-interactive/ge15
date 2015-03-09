@@ -8,6 +8,7 @@ var constituencyLookup = {};
 var topology = {}
 
 //TODO dynamic simplification?
+var simpleMap = JSON.parse( fs.readFileSync(__dirname + '/geodata/simplemap.topojson','utf-8') );
 topology.high = JSON.parse( fs.readFileSync(__dirname + '/geodata/constituencies-high.topojson','utf-8') );
 topology.medium = JSON.parse( fs.readFileSync(__dirname + '/geodata/constituencies-medium.topojson','utf-8') );
 topology.low = JSON.parse( fs.readFileSync(__dirname + '/geodata/constituencies-low.topojson','utf-8') );
@@ -54,7 +55,7 @@ function constituency(id, detail){
 	if(!constituency.properties) constituency.properties = {};
 	constituency.properties.type = 'primary';
 	constituency.properties.focus = true;
-	
+
 	//its neighbouring constituencies, marked neighbour
 	var neighbourhood = constituencyFeatures[detail]
 		.filter(function(d,i){
@@ -63,7 +64,7 @@ function constituency(id, detail){
 
 	//regional borders,
 	var features = neighbourhood.concat( constituency, regionalBoundaries );
-	
+
 	//TODO land
 
 	return composeGeoJSON( features );
@@ -92,7 +93,7 @@ function all(detail){
 	coast.properties.type = 'coast';
 	coast.properties.focus = true;
 
-	var features = constituencies.concat(coast);
+	//var features = constituencies.concat(coast);
 	return composeGeoJSON( constituencies.concat(coast) );
 }
 
@@ -106,8 +107,9 @@ function composeGeoJSON(features){
 }
 
 module.exports = {
+	simple:simpleMap,
 	constituency:constituency,
 	region:region,
 	nation:nation,
 	uk:all
-}
+};

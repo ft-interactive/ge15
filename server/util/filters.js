@@ -76,3 +76,9 @@ exports.pluck = function(obj, property) {
 exports.json = function(obj) {
   return JSON.stringify(obj, null, 0);
 };
+
+exports.partyAbbreviation = function(str){
+  var lookup = {'c':'Con', 'lab':'Lab', 'ld':'LD', 'snp':'SNP', 'pc':'PC', 'green':'Grn', 'ukip':'UKIP', 'other':'Oth', 'Conservatives':'c', 'Labour':'lab', 'Liberal Democrats':'LD', 'Plaid Cymru':'PC', 'Greens':'Grn', 'Other':'Oth'};
+  if(lookup[str]) return lookup[str];
+  return str;
+};

@@ -1,12 +1,11 @@
 'use strict';
 
 var d3 = require('d3');
-//var parties = require('../../data/parties.js');
-// var partyByAbbrv = makeLookup(d3.values(parties),'abbrv');
 
 var partyLookups = {
   partylist:['Conservatives', 'Labour', 'Liberal Democrats', 'SNP', 'Plaid Cymru', 'Greens', 'UKIP', 'Other'],
-  abbreviations:{'Conservatives':'c', 'Labour':'lab', 'Liberal Democrats':'ld', 'SNP':'snp', 'Plaid Cymru':'pc', 'Greens':'green', 'UKIP':'ukip', 'Other':'other'}
+  abbreviations:{'Conservatives':'c', 'Labour':'lab', 'Liberal Democrats':'ld', 'SNP':'snp', 'Plaid Cymru':'pc', 'Greens':'green', 'UKIP':'ukip', 'Other':'other'},
+  ft_abbreviation:{'c':'Con', 'lab':'Lab', 'ld':'LD', 'snp':'SNP', 'pc':'PC', 'green':'Grn', 'ukip':'UKIP', 'other':'Oth'}
 };
 
 function makeLookup(a, property) {
@@ -121,8 +120,25 @@ function groupOverview(group){
       summary[d.holdernow].hold ++;
     }
   });
-  return summary;
+  var tableData = [];
+  for(var r in summary){
+    if(summary.hasOwnProperty(r) && r !== 'total'){
+      tableData.push({
+        party:r,
+        gain:summary[r].gain,
+        loss:summary[r].loss,
+        hold:summary[r].hold,
+        aggregate:summary[r].gain - summary[r].loss
+      });
+    }
+  }
+  return {
+    total:summary.total,
+    table:tableData.sort(function(a,b){return b.aggregate - a.aggregate})
+  };
 }
+
+
 
 module.exports = function(groups, current, prediction, locations, details){
   //objectify the spreadsheets including sorting out list fields

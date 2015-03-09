@@ -98,6 +98,7 @@
 {% endblock %}
 
 {% block article_body %}
+
   <div id="battle-nav" class="figure constituency-group o-grid-row" data-o-grid-colspan="12">
     <h2 class="article-body__subhead figure__title">The battlegrounds</h2>
     <div class="battle-nav-links">
@@ -137,8 +138,46 @@
     </div>
   </div>
 
-  <div id="slope-groups" class="o-grid-row" style="min-height:800px;"></div>
+  <div id="slope-groups" class="o-grid-row" style="min-height:800px;">
+    {% for group in data %}
+      <div class="figure constituency-group constituency-group--slope o-grid-row" data-o-grid-colspan="12">
+        <h2 class="article-body__subhead figure__title">{{ group.headline }}</h2>
+        <div class="figure__body o-grid-row">
+          <div data-o-grid-colspan="12 S4 M3 L3">
+            <div class="o-grid-row constituency-group__details">
+              <div class="constituency-group__summary-table" data-o-grid-colspan="12 M10 L8">
+                {% set table_data = group.partychanges %}
+                {% include "./result-summary-table.html" %}
+              </div>
+              <div class="constituency-group__locator-map" data-o-grid-colspan="hide M10 L8">
+                <div class="constituency-group__locator-map-ratio" data-group="{{loop.index0}}"></div>
+              </div>
+            </div>
+          </div>
+          <div data-o-grid-colspan="12 S8 M9 L9">
+            <div class="o-grid-row">
+                {% for constituency in group.constituencies %}
+                <div class="constituency-group__slope" data-o-grid-colspan="4 M3 L1 XL1">
+                  <div class="constituency-group__slope-graphic" data-constituency="{{constituency.id}}"></div>
+                  <div class="constituency-group__constituency-name">{{constituency.name}}</div>
+                </div>
+                {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+
+  </div>
 {% endblock %}
 
-{% set bundle = 'group-forecast-slopes.js' %}
-
+{% block scripts %}
+<script>
+{% autoescape false %}
+var battlegrounds = {{ dataString | json }};
+{% endautoescape %}
+if (cutsTheMustard) {
+  addScript('{{ asset("js/group-forecast-slopes.js") }}', false, false);
+}
+</script>
+{% endblock %}
