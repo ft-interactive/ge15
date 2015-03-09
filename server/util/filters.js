@@ -1,3 +1,5 @@
+'use strict';
+
 var S = require('string');
 S.extendPrototype();
 var n = require('numeral')();
@@ -69,4 +71,8 @@ exports.size = function(collection) {
 
 exports.pluck = function(obj, property) {
   return _.pluck(obj, property);
+};
+
+exports.json = function(obj) {
+  return JSON.stringify(obj, null, 0);
 };

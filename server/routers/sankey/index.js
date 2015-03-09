@@ -6,12 +6,7 @@ var siteNav = require('../../middleware/site-navigation');
 var forecastData = require('../data/').forecastData;
 
 function* home(next) {
-
-  yield this.render('sankey-index', {
-    data:JSON.stringify(this.forecastData.data),
-    updated:JSON.stringify(this.forecastData.updated),
-    source:JSON.stringify(this.forecastData.source)
-  });
+  yield this.render('sankey-index', this.dataObject); // jshint ignore:line
   yield next;
 }
 
@@ -24,7 +19,7 @@ function main() {
 }
 
 function* setItem(next){
-  this.item = 'prediction';
+  this.item = 'prediction'; // jshint ignore:line
   yield next;
 }
 
