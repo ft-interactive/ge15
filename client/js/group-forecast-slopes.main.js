@@ -35,7 +35,7 @@ function main(){
     height: 10
   };
   var margin = {
-    top: partyLabel.height / 2,
+    top: partyLabel.height,
     left: dotRadius,
     bottom: partyLabel.height / 2,
     right: partyLabel.width
@@ -79,7 +79,9 @@ function main(){
 
 
   var slopeContainers = d3.selectAll('.constituency-group__slope-graphic').datum( function(){
-    return doc.data.constituencyLookup[this.dataset.constituency];
+      var datum = doc.data.constituencyLookup[this.dataset.constituency];
+    datum.axes = (Number(this.dataset.order) === 0);
+    return datum;
   });
 
   slopeContainers.append('svg').attr({
@@ -91,10 +93,38 @@ function main(){
     .append('g').attr({
       transform: 'translate(' + margin.left + ',' + margin.top + ')'
     })
-    .each(function(d){
+    .each(function(d,i){
+      if(d.axes){
+        var axis = d3.select(this).append('g')
+          .attr({
+            class:'slope-axes'
+          }).selectAll('g').data(['NOW','MAY'])
+            .enter()
+              .append('g')
+              .attr({
+                'transform':function(d,i){
+                  return 'translate('+(i*width)+',0)';
+                },
+                'class':'slope-axis'
+              });
+
+        axis.append('line').attr({
+          class:'axis-line',
+          x1:0, y1:3,
+          x2:0, y2:height
+        });
+        axis.append('text')
+          .attr({
+            'class':'axis-label',
+            'text-anchor':function(d,i){
+              if(i===1) return 'end';
+            }
+          })
+          .text(function(d){return d;});
+      }
       d3.select(this).selectAll('g.slope')
-      .data( layout(d.parties) )
-      .call(SVGSlope);
+        .data( layout(d.parties) )
+        .call(SVGSlope, d.axes);
     });
 
   redrawSlopes();
@@ -121,6 +151,11 @@ function main(){
       var h = slopeHeight + margin.top + margin.bottom;
 
       var svg = d3.select(this);
+      svg.selectAll('g.slope-axis')
+        .attr('transform',function(d,i){
+          return 'translate('+(i*slopeWidth)+',0)';
+        });
+
       svg.selectAll('g.slope').call(SVGSlope.reposition);
       svg.attr({
         width: w,
