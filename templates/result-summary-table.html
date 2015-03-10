@@ -1,0 +1,10 @@
+<table>
+  <thead>
+    <tr><th></th><th> ﻿Gain</th><th> ﻿Loss</th><th> ﻿Hold</th></tr>
+  </thead>
+  <tbody>
+    {% for row in table_data.table %}
+    <tr><th class="{{ row.party }} rowhead">{{ row.party|partyAbbreviation }}</th><td>{{ row.gain }}</td><td>-{{ row.loss }}</td><td>{{ row.hold }}</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
