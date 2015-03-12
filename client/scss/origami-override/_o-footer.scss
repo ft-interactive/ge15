@@ -24,10 +24,3 @@
 .o-footer__pearson {
   background: rgba(0, 0, 0, 0.2);
 }
-
-// temporary fix, should be in next Beta
-.o-footer__copyright {
-  @include oGridRespondTo(M) {
-    line-height: 16px;
-  }
-}
