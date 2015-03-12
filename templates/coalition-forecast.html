@@ -1,0 +1,21 @@
+{% extends 'article.html' %}
+
+{% block article_body %}
+<div id="coalition-forecast" class="o-grid-row">
+  <table>
+      {% for coalition in coalitions %}
+       <tr><td>{{ coalition.name }}</td><td>{{ coalition.probability }}%</td></tr>
+      {% endfor %}
+  <table>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+{% autoescape false %}
+var coalitions = {{coalitions|json}};
+{% endautoescape %}
+</script>
+{% endblock %}
+
+{% set bundle = 'coalition-forecast.js' %}

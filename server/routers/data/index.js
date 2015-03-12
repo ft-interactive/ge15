@@ -3,6 +3,7 @@ var request = require('koa-request');
 var d3 = require('d3');
 var slopeDataParse = require('./slope-data.js');
 var geoData = require('../../data/geo-data.js');
+var coalitionDataParse = require('./coalition-data.js');
 
 var app = require('../../util/app');
 
@@ -19,6 +20,8 @@ var resultNow = 'http://interactivegraphics.ft-static.com/data/ge15-battleground
 var coordinates = 'http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/coordinates.tsv';
 var details = 'http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/details.tsv';
 
+var coalitionProbabilities = 'http://interactivegraphics.ft-static.com/data/coalition-probabilities/example.csv';
+
 function main() {
   return app().router()
     .param('item', function* (item, next ){
@@ -31,11 +34,18 @@ function main() {
     })
     .get('seat-forecast','/forecast/:item/json', forecastData, ToJSON)
     .get('battlegrounds','/battlegrounds/json', battlegroundData, ToJSON)
-    .get('simplemap','/simplemap/json', simpleMapData, ToJSON);
+    .get('simplemap','/simplemap/json', simpleMapData, ToJSON)
+    .get('coalition-forecast','/coalition-forecast/json', coalitionForecastData, ToJSON);
 }
 
 function* simpleMapData(next){
   this.dataObject = geoData.simple;
+  yield next;
+}
+
+function* coalitionForecastData(next){
+  var rawData = yield request( coalitionProbabilities );
+  this.dataObject = coalitionDataParse(rawData.body);
   yield next;
 }
 
@@ -74,7 +84,8 @@ function* ToJSON(next){
 module.exports ={
   routes:main,
   forecastData:forecastData,
-  battlegroundData:battlegroundData
+  battlegroundData:battlegroundData,
+  coalitionForecastData:coalitionForecastData
 };
 
 if (!module.parent) main().listen(process.env.PORT || 5000);
