@@ -34,6 +34,9 @@ var dotenv = require('dotenv');
 var source = require('vinyl-source-stream');
 var rimraf = require('rimraf');
 var glob = require('glob');
+var yargs = require('yargs');
+var Heroku = require('heroku-client');
+var execSync = require('child_process').execSync;
 var dev = false;
 
 process.stdin.setMaxListeners(0);
@@ -249,7 +252,7 @@ gulp.task('watch', ['dev', 'sass', 'vendor'], function() {
     .on('start', function(a) {
       setTimeout(function() {
         livereload.changed(a);
-        gutil.log('Serving at ' + 
+        gutil.log('Serving at ' +
           gutil.colors.underline('http://localhost:' + (process.env.PORT || 3000) + '/')
         );
       }, 1100);
@@ -266,5 +269,85 @@ gulp.task('watch', ['dev', 'sass', 'vendor'], function() {
   bundles.forEach(function(b){
     b.end().on('end', dec);
   });
+
+});
+
+gulp.task('provision', function() {
+
+  var prefix = 'uk-election-2015';
+
+  var argv = yargs.options({
+    prefix: {default: prefix, alias: 'p', type: 'string'},
+    suffix: {default: null, type: 'string'},
+    branch: {default: null, type: 'string', alias: 'b'},
+    commit: {default: null, type: 'string', alias: 'c'},
+    source: {default: process.env.HEROKU_SOURCE || prefix + '-ci', type: 'string', alias: 's'},
+    target: {default: null, type: 'string', alias: 't'},
+    token: {default: process.env.HEROKU_AUTH_TOKEN, type: 'string'},
+    region: {default: process.env.HEROKU_REGION || 'eu', type: 'string', alias: 'r'},
+    org: {default: process.env.HEROKU_ORG, type: 'string', alias: 'o'}
+  })
+  .argv;
+
+  var heroku = new Heroku({
+    token: argv.token
+  });
+
+  var branch = 'foo';//execSync('git symbolic-ref --short -q HEAD').toString();
+  var commit = 'bar';//execSync('git rev-parse --short HEAD').toString();
+
+  var name = (argv.suffix || argv.branch || argv.commit)
+              ? [argv.prefix, argv.branch, argv.commit, argv.suffix].join('-').replace(/--{1,}/g, '-')
+              : argv.target;
+
+  console.log('Provision app named %s', name);
+
+  if (!name) {
+    console.error('The target app must have a name. Use the --target option or specifiy a combination of --suffix, --branch, --commit.');
+    return;
+  }
+
+  if (!argv.org) {
+    console.error('An org name is required. Use the --org option or set the HEROKU_ORG env var.');
+    return;
+  }
+
+  if(!arv.token) {
+    console.error('Heroku auth token is required. Use the --token option or set the HEROKU_AUTH_TOKEN env var.');
+  }
+
+  var copy = {};
+  var dontCopy = {
+    config: ['DOWNSTREAM_APP'],
+    addons: ['logentries', 'database']
+  };
+
+  var source = heroku.apps(argv.source);
+
+  source.configVars().info()
+    .then(function(config) {
+      copy.config = config;
+      return source.addons().list();
+    })
+    .then(function(addons) {
+      copy.addons = addons.filter(function(addon){
+        return dontCopy.addons.indexOf(addon.name) === -1;
+      });
+      return heroku.apps(name).info();
+    })
+    .then(undefined, function(){
+      return heroku.organizations().apps().create({
+        name: name,
+        region: argv.region,
+        organization: argv.org
+      });
+    })
+    .then(function(){
+      return heroku.apps(name).configVars().info();
+    })
+    .then(function(config){
+      var newConfig = _.omit(_.merge({}, config, copy.config), dontCopy.config);
+      return heroku.apps(name).configVars().update(newConfig);
+    });
 
 });
