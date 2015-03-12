@@ -3,6 +3,7 @@ var request = require('koa-request');
 var d3 = require('d3');
 var slopeDataParse = require('./slope-data.js');
 var geoData = require('../../data/geo-data.js');
+var coalitionDataParse = require('./coalition-data.js');
 
 var app = require('../../util/app');
 
@@ -19,6 +20,8 @@ var resultNow = 'http://interactivegraphics.ft-static.com/data/ge15-battleground
 var coordinates = 'http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/coordinates.tsv';
 var details = 'http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/details.tsv';
 
+var coalitionProbabilities = 'http://interactivegraphics.ft-static.com/data/coalition-probabilities/example.csv';
+
 function main() {
   return app().router()
     .param('item', function* (item, next ){
@@ -29,13 +32,20 @@ function main() {
       this.item = item;
       yield next;
     })
-    .get('seat-forecast','/forecast/:item/json', forecastData, ToJSON)
-    .get('battlegrounds','/battlegrounds/json', battlegroundData, ToJSON)
-    .get('simplemap','/simplemap/json', simpleMapData, ToJSON);
+    .get('seat-forecast','/forecast/:item/json', forecastData, dataResponse)
+    .get('battlegrounds','/battlegrounds/json', battlegroundData, dataResponse)
+    .get('simplemap','/simplemap/json', simpleMapData, dataResponse)
+    .get('coalition-forecast','/coalition-forecast/json', coalitionForecastData, dataResponse);
 }
 
 function* simpleMapData(next){
   this.dataObject = geoData.simple;
+  yield next;
+}
+
+function* coalitionForecastData(next){
+  var rawData = yield request( coalitionProbabilities );
+  this.dataObject = coalitionDataParse(rawData.body);
   yield next;
 }
 
@@ -66,15 +76,16 @@ function* forecastData(next){
   yield next;
 }
 
-function* ToJSON(next){
-  this.body = JSON.stringify(this.dataObject);
+function* dataResponse(next){
+  this.body = this.dataObject;
   yield next;
 }
 
 module.exports ={
   routes:main,
   forecastData:forecastData,
-  battlegroundData:battlegroundData
+  battlegroundData:battlegroundData,
+  coalitionForecastData:coalitionForecastData
 };
 
 if (!module.parent) main().listen(process.env.PORT || 5000);
