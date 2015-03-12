@@ -32,10 +32,10 @@ function main() {
       this.item = item;
       yield next;
     })
-    .get('seat-forecast','/forecast/:item/json', forecastData, ToJSON)
-    .get('battlegrounds','/battlegrounds/json', battlegroundData, ToJSON)
-    .get('simplemap','/simplemap/json', simpleMapData, ToJSON)
-    .get('coalition-forecast','/coalition-forecast/json', coalitionForecastData, ToJSON);
+    .get('seat-forecast','/forecast/:item/json', forecastData, dataResponse)
+    .get('battlegrounds','/battlegrounds/json', battlegroundData, dataResponse)
+    .get('simplemap','/simplemap/json', simpleMapData, dataResponse)
+    .get('coalition-forecast','/coalition-forecast/json', coalitionForecastData, dataResponse);
 }
 
 function* simpleMapData(next){
@@ -76,8 +76,8 @@ function* forecastData(next){
   yield next;
 }
 
-function* ToJSON(next){
-  this.body = JSON.stringify(this.dataObject);
+function* dataResponse(next){
+  this.body = this.dataObject;
   yield next;
 }
 
