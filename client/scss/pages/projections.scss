@@ -1,0 +1,108 @@
+@import "o-grid/main";
+@import "o-colors/main";
+
+#battle-nav {
+  font-family: BentonSans, sans-serif;
+}
+
+#battle-nav-intro {
+  width: 32%;
+  color: #74736c;
+  padding-right: 1%;
+}
+
+.battle-nav-item {
+  display: inline-block;
+  height: 84px;
+  vertical-align: top;
+  padding-top: 10px;
+  box-sizing: border-box;
+}
+
+.battle-nav-item__link {
+  width: 14%;
+  font-size: 0.75em;
+  text-align: center;
+  border-left: 1px solid #e9decf;
+  padding-left: 1%;
+}
+
+.battle-nav-item__link > a > span {
+  display: block;
+}
+
+.battle-nav-item__link > a > img {
+  width: 100%;
+}
+
+.snp{
+  max-width: 33px;
+}
+
+.labcon{
+  max-width: 67px;
+}
+
+.ukip{
+  max-width: 40px;
+}
+
+.libdem{
+  max-width: 51px;
+}
+
+@media (max-width: 30.625em) {
+
+  #battle-nav-intro{
+    width: 100%;
+    padding-bottom: 8px;
+  }
+
+  .battle-nav-item{
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid #e9decf;
+    height: inherit;
+    vertical-align: top;
+    padding-top: 0;
+  }
+
+  .battle-nav-item__link{
+    font-size: 0.9em;
+    text-align: left;
+    padding-top: 8px;
+    line-height: 4px;
+    width: 100%;
+    border-left: none;
+  }
+
+  .battle-nav-item__link > span{
+    display: inline-block;
+    height: 30px;
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  .battle-nav-item__logo{
+    width: 68px;
+    display: inline-block;
+    text-align: center;
+  }
+
+  .snp{
+    max-width: 29px;
+  }
+
+  .labcon{
+    max-width: 68px;
+  }
+
+  .ukip{
+    max-width: 35px;
+  }
+
+  .libdem{
+    max-width: 45px;
+  }
+
+}

@@ -26,10 +26,28 @@
         <link rel="stylesheet" href="//build.origami.ft.com/bundles/css?modules=o-fonts" />
         <!--[if gt IE 8]><!-->
         <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+        {% if stylesheet %}
+          {% if Array.isArray(stylesheet) %}
+            {% for s in stylesheet %}
+              <link rel="stylesheet" href="{{ asset("css/" + s) }}" />
+            {% endfor %}
+          {% else %}
+            <link rel="stylesheet" href="{{ asset("css/" + stylesheet) }}" />
+          {% endif %}
+        {% endif %}
         {% block stylesheets %}{% endblock %}
         <!--<![endif]-->
         <!--[if lte IE 8]>
         <link rel="stylesheet" href="{{ asset('css/main-oldie.css') }}" />
+        {% if oldIEstylesheet %}
+          {% if Array.isArray(oldIEstylesheet) %}
+            {% for s in oldIEstylesheet %}
+              <link rel="stylesheet" href="{{ asset("css/" + s) }}" />
+            {% endfor %}
+          {% else %}
+            <link rel="stylesheet" href="{{ asset("css/" + oldIEstylesheet) }}" />
+          {% endif %}
+        {% endif %}
         {% block oldIEstylesheets %}{% endblock %}
         <![endif]-->
         {% endspaceless %}
