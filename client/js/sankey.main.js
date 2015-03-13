@@ -60,7 +60,7 @@ function drawSankey(data){
     .attr({
       width:width,
       height:height,
-      id:'sankey-graphic'
+      class: 'sankey'
     });
 
   var gradients = svg.append('defs').selectAll('linearGradient').data(data.links)
@@ -347,7 +347,7 @@ function createSummary(data){
   listItems.html(function(d){ return linkDescription(d,target); });
 }
 
-function toClass(str){ return str.replace(/\s/g,'_'); }
+function toClass(str){ return str.replace(/\s/g,'-').toLowerCase(); }
 
 function linkClass(d){
   return toClass(d.source.name + '-to-' +d.target.name);

@@ -63,7 +63,7 @@ gulp.task('sass', function() {
   var style = dev ? 'expanded' : 'compressed';
   return sass('client/scss/', {
           sourcemap: false,
-          loadPath: 'bower_components',
+          loadPath: ['bower_components', '.'],
           precision: 5,
           quiet: dev,
           debugInfo: dev,
@@ -202,7 +202,7 @@ gulp.task('clean', function(cb) {
 });
 
 gulp.task('jshint', function(cb) {
-  gulp.src('client/**/*.js')
+  gulp.src('client/js/**/*.js')
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'))
     .pipe(jshint.reporter('fail'))
@@ -213,6 +213,7 @@ gulp.task('jshint', function(cb) {
 function customFailReporter() {
   return es.map(function(file, cb) {
     var error;
+
     if (file.scsslint.errors) {
       error = new gutil.PluginError('gulp-scss-lint', {
         message: 'ScssLint failed for: ' + file.relative,
@@ -227,12 +228,9 @@ function customFailReporter() {
 gulp.task('scsslint', function(cb) {
   gulp.src('client/scss/**/*.scss')
     .pipe(scsslint())
-    .pipe(scsslint.failReporter())
+    .pipe(customFailReporter())
     .on('error', cb)
-    .on('end', cb)
-    // Fail the build if errors or warnings
-    // TODO: write a custom reporter that only fails on errors
-    // .pipe(scsslint.failReporter());
+    .on('end', cb);
 });
 
 gulp.task('lint', ['jshint', 'scsslint']);

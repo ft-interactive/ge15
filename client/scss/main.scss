@@ -1,23 +1,31 @@
-@import "var";
-@import "mixins";
-@import "o-assets/main";
 @import "origami-config";
-
+@import "origami-override/silence";
+@import "o-assets/main";
+@import "origami-override/o-assets";
 @import "o-fonts/main";
 @import "o-colors/main";
 @import "o-ft-icons/main";
 @import "o-header/main";
 @import "o-footer/main";
+@import "o-buttons/main";
 
 
+/*
+Third-party SASS libraries
+*/
 //http://davidtheclark.github.io/scut/
 @import "scut/dist/scut";
-
 // https://github.com/Piderman/SASS-positioning-mixin
 @import "position/dist/position";
 
+
+@import "var";
+@import "mixins";
+
+// Style overrides for each Origami module
 @import "origami-override/o-fonts";
 @import "origami-override/o-grid";
+@import "origami-override/o-buttons";
 @import "origami-override/o-header";
 @import "origami-override/o-footer";
 
@@ -37,6 +45,8 @@
 @import "graphics/slope";
 @import "graphics/locator";
 
+// Styles that trump others (via !important and specificity)
+// also generic utility classes
 @import "trumps/clear";
 @import "trumps/fauxlink";
 @import "trumps/text";
