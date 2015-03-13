@@ -25,6 +25,7 @@ var revNapkin = require('gulp-rev-napkin');
 
 var sass = require('gulp-ruby-sass');
 var scsslint = require('gulp-scss-lint');
+var es = require('event-stream');
 var uglify = require('gulp-uglify');
 var gutil = require('gulp-util');
 
@@ -67,7 +68,7 @@ gulp.task('sass', function() {
           quiet: dev,
           debugInfo: dev,
           style: style
-        }).on('error', function (err) { console.log(err.message); })
+        }).on('error', function (err) { console.log(err.message); if (!dev) throw err; })
         .pipe(autoprefixer({
           browsers: ['> 5%', 'iOS >= 4', 'IE >= 7', 'FF ESR', 'last 2 versions'],
           cascade: dev,
@@ -209,11 +210,26 @@ gulp.task('jshint', function(cb) {
     .on('finish', cb);
 });
 
+function customFailReporter() {
+  return es.map(function(file, cb) {
+    var error;
+    if (file.scsslint.errors) {
+      error = new gutil.PluginError('gulp-scss-lint', {
+        message: 'ScssLint failed for: ' + file.relative,
+        showStack: false
+      });
+    }
+
+    cb(error, file);
+  });
+}
+
 gulp.task('scsslint', function(cb) {
   gulp.src('client/scss/**/*.scss')
     .pipe(scsslint())
+    .pipe(scsslint.failReporter())
     .on('error', cb)
-    .on('end', cb);
+    .on('end', cb)
     // Fail the build if errors or warnings
     // TODO: write a custom reporter that only fails on errors
     // .pipe(scsslint.failReporter());
@@ -249,7 +265,7 @@ gulp.task('watch', ['dev', 'sass', 'vendor'], function() {
     .on('start', function(a) {
       setTimeout(function() {
         livereload.changed(a);
-        gutil.log('Serving at ' + 
+        gutil.log('Serving at ' +
           gutil.colors.underline('http://localhost:' + (process.env.PORT || 3000) + '/')
         );
       }, 1100);
