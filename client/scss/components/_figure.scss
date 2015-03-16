@@ -19,12 +19,12 @@
 
 
   &__title {
-    border-bottom: 2px solid oColorsGetPaletteColor(pink-tint2);
+    border-bottom: $line-width--m solid $line-color;
     margin-bottom: 1em;
   }
 
   &__subtitle {
-
+    color: oColorsGetPaletteColor(pink-tint5);
   }
 
   &__body {
@@ -33,7 +33,7 @@
 
   &__footer {
     @include oColorsFor(muted, text);
-    border-top: 1px solid oColorsGetPaletteColor(pink-tint2);
+    border-top: $line-width--s solid $line-color;
     font-size: 0.8em;
     padding: 0;
   }

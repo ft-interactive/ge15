@@ -10,9 +10,13 @@ $text-sizes: (
   small:   14px
 );
 
+$font-heading: oFontsGetFontFamilyWithFallbacks(BentonSans);
+$font-body: oFontsGetFontFamilyWithFallbacks(BentonSans);
+$font-article-headline: oFontsGetFontFamilyWithFallbacks(MillerDisplay);
+$font-article-body: oFontsGetFontFamilyWithFallbacks(BentonSans);
+
 $nav-bg-color: mix(#e9decf, #f6e9d8, 20%);
 $nav-text-color: #5f584d;
-
 
 $conservative: #6da8e1;
 $liberal-democrat: #ffc660;
@@ -38,3 +42,8 @@ $sdlp-dark: #9cb157;
 
 $other: #cccccc;
 $other-dark: #999999;
+
+$line-color: oColorsGetPaletteColor(pink-tint2);
+$line-width--s: 1px;
+$line-width--m: 1px;
+$line-width--l: 1px;

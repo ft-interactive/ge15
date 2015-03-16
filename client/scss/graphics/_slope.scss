@@ -1,119 +1,112 @@
-.slope {
-  stroke-width: 1.2;
-  @include oGridRespondTo(S) {
-    stroke-width: 1.7;
-  }
-  @include oGridRespondTo(M) {
-    stroke-width: 2;
-  }
-}
+.slope-chart {
 
-.axis-line {
-  stroke-width: 1;
-  stroke: #000000;
-  stroke-opacity: 0.3;
-}
-
-.axis-label {
-  fill-opacity: 0.5;
-  font-size: 10px;
-}
-/*.slope {
-  stroke-width: 1.2;
-  @include oGridRespondTo(S) {
-    stroke-width: 1.7;
-  }
-  @include oGridRespondTo(M) {
-    stroke-width: 2;
-  }
-}*/
-
-
-
-.end-point,
-.start-point {
-  stroke-opacity: 0;
-}
-
-.c {
-  fill: $conservative;
-  stroke: $conservative;
-}
-
-.lab {
-  fill: $labour;
-  stroke: $labour;
-}
-
-.ld {
-  fill: $liberal-democrat;
-  stroke: $liberal-democrat;
-}
-
-.ukip {
-  fill: $ukip;
-  stroke: $ukip;
-}
-
-.snp {
-  fill: $snp;
-  stroke: $snp;
-}
-
-.pc {
-  fill: $plaid-cymru;
-  stroke: $plaid-cymru;
-}
-
-.green {
-  fill: $green;
-  stroke: $green;
-}
-
-.other {
-  fill: $other;
-  stroke: $other;
-}
-
-.slope-label {
-  stroke: none;
-  font-size: 10px;
-  font-weight: bold;
-
-  @include oGridRespondTo(M) {
-    font-size: 12px;
+  .slope {
+    stroke-width: 1.2;
+    @include oGridRespondTo(S) {
+      stroke-width: 1.7;
+    }
+    @include oGridRespondTo(M) {
+      stroke-width: 2;
+    }
   }
 
-
-  &.c {
-    fill: $conservative-dark;
+  .axis-line {
+    stroke-width: 1;
+    stroke: $line-color;
+    shape-rendering: crispEdges;
   }
 
-  &.lab {
-    fill: $labour-dark;
+  .axis-label {
+    fill-opacity: 0.5;
+    font-size: 10px;
+    text-rendering: geometricPrecision;
   }
 
-  &.ld {
-    fill: $liberal-democrat-dark;
+  .end-point,
+  .start-point {
+    stroke-opacity: 0;
   }
 
-  &.ukip {
-    fill: $ukip-dark;
+  .c {
+    fill: $conservative;
+    stroke: $conservative;
   }
 
-  &.snp {
-    fill: $snp-dark;
+  .lab {
+    fill: $labour;
+    stroke: $labour;
   }
 
-  &.pc {
-    fill: $plaid-cymru-dark;
+  .ld {
+    fill: $liberal-democrat;
+    stroke: $liberal-democrat;
   }
 
-  &.green {
-    fill: $green-dark;
+  .ukip {
+    fill: $ukip;
+    stroke: $ukip;
   }
 
-  &.other {
-    fill: $other-dark;
+  .snp {
+    fill: $snp;
+    stroke: $snp;
   }
+
+  .pc {
+    fill: $plaid-cymru;
+    stroke: $plaid-cymru;
+  }
+
+  .green {
+    fill: $green;
+    stroke: $green;
+  }
+
+  .other {
+    fill: $other;
+    stroke: $other;
+  }
+
+  .slope-label {
+    stroke: none;
+    font-size: 10px;
+    font-weight: bold;
+
+    @include oGridRespondTo(M) {
+      font-size: 12px;
+    }
+
+    &.c {
+      fill: $conservative-dark;
+    }
+
+    &.lab {
+      fill: $labour-dark;
+    }
+
+    &.ld {
+      fill: $liberal-democrat-dark;
+    }
+
+    &.ukip {
+      fill: $ukip-dark;
+    }
+
+    &.snp {
+      fill: $snp-dark;
+    }
+
+    &.pc {
+      fill: $plaid-cymru-dark;
+    }
+
+    &.green {
+      fill: $green-dark;
+    }
+
+    &.other {
+      fill: $other-dark;
+    }
+  }
+
 }

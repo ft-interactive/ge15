@@ -98,7 +98,7 @@ function main(){
         var axis = d3.select(this).append('g')
           .attr({
             class:'slope-axes'
-          }).selectAll('g').data(['NOW','MAY'])
+          }).selectAll('g').data(['Now','May'])
             .enter()
               .append('g')
               .attr({
@@ -115,10 +115,7 @@ function main(){
         });
         axis.append('text')
           .attr({
-            'class':'axis-label',
-            'text-anchor':function(d,i){
-              if(i===1) return 'end';
-            }
+            'class':'axis-label'
           })
           .text(function(d){return d;});
       }

@@ -31,17 +31,18 @@ function locatorMap() {
 
     var svg = g.append('svg')
       .attr({
-        width:width,
-        height:height
+        width: width,
+        height: height,
+        class: 'constituency-locator'
       });
 
     if(map) {
-      svg.selectAll('.subunit')
+      svg.selectAll('.constituency-locator__subunit')
         .data(topojson.feature(map, map.objects.subunits).features)
         .enter()
         .append('path')
         .attr('class', function(d) {
-          return 'subunit region-' + d.id.toLowerCase();
+          return 'constituency-locator__subunit region-' + d.id.toLowerCase();
         })
         .attr('d', path);
     }
@@ -53,7 +54,7 @@ function locatorMap() {
         .append('circle')
         .attr({
           class: function(d) {
-            return 'constituency-point ' + (d.holderpredicted);
+            return 'constituency-locator__point ' + (d.holderpredicted);
           },
           'r': 3,
           transform: function(d) {

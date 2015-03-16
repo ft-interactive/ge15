@@ -1,0 +1,30 @@
+.battle-nav {
+  font-family: $font-body;
+
+  &__item {
+    border: 0 solid $line-color; // tint 2
+    border-bottom-width: $line-width--s;
+    @include oGridRespondTo(M) {
+      border-bottom-width: 0;
+      border-left-width: $line-width--s;
+      text-align: center;
+    }
+  }
+
+  &__logo {
+
+    line-height: 60px;
+    width: 90px;
+    display: inline-block;
+    text-align: center;
+
+    @include oGridRespondTo(M) {
+      display: block;
+      width: auto;
+    }
+
+    & > img {
+      vertical-align: middle;
+    }
+  }
+}

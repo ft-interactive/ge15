@@ -1,15 +1,53 @@
-.subunit.region-sct,
-.subunit.region-wls,
-.subunit.region-nir,
-.subunit.region-eng {
-  fill: rgba(0, 0, 0, 0.05);
-}
+.constituency-locator {
 
-.subunit.region-irl {
-  fill: rgba(0, 0, 0, 0.02);
-}
+  &__subunit {
+    &.region-sct,
+    &.region-wls,
+    &.region-nir,
+    &.region-eng {
+      fill: rgba(0, 0, 0, 0.05);
+    }
 
-.constituency-point {
-  fill-opacity: 0.7;
-  stroke: none;
+    &.region-irl {
+      fill: rgba(0, 0, 0, 0.02);
+    }
+  }
+
+  &__point {
+    fill-opacity: 0.7;
+    stroke: none;
+    shape-rendering: geometricPrecision;
+  }
+
+  .c {
+    fill: $conservative;
+  }
+
+  .lab {
+    fill: $labour;
+  }
+
+  .ld {
+    fill: $liberal-democrat;
+  }
+
+  .ukip {
+    fill: $ukip;
+  }
+
+  .snp {
+    fill: $snp;
+  }
+
+  .pc {
+    fill: $plaid-cymru;
+  }
+
+  .green {
+    fill: $green;
+  }
+
+  .other {
+    fill: $other;
+  }
 }

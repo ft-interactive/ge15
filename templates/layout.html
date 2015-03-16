@@ -22,17 +22,8 @@
         {% block meta %}{% endblock %}
 
         {% include "./favicon.html" %}
-        {% spaceless %}
-        <link rel="stylesheet" href="//build.origami.ft.com/bundles/css?modules=o-fonts" />
-        <!--[if gt IE 8]><!-->
-        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
-        {% block stylesheets %}{% endblock %}
-        <!--<![endif]-->
-        <!--[if lte IE 8]>
-        <link rel="stylesheet" href="{{ asset('css/main-oldie.css') }}" />
-        {% block oldIEstylesheets %}{% endblock %}
-        <![endif]-->
-        {% endspaceless %}
+
+        {% include "./stylesheets.html" %}
 
         <meta name="format-detection" content="telephone=no" />
 
