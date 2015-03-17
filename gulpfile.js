@@ -242,7 +242,7 @@ gulp.task('dev', function(cb) {
 
 gulp.task('watch', ['dev', 'sass', 'vendor'], function() {
 
-  gulp.watch('./public/**/*.*').on('change', livereload.changed);
+  gulp.watch('./{public,templates}/**/*.*').on('change', livereload.changed);
   gulp.watch('./client/scss/**/*.scss', ['sass']);
 
   var bundles = getBundles().map(function (d) {
@@ -257,8 +257,8 @@ gulp.task('watch', ['dev', 'sass', 'vendor'], function() {
       nodeArgs: ['--harmony'],
       quiet: true,
       delay: 0.1,
-      watch: ['server', 'templates', 'app.js'],
-      ext: 'js,json,html'
+      watch: ['server', 'app.js'],
+      ext: 'js,json'
     })
     .on('start', function(a) {
       setTimeout(function() {
