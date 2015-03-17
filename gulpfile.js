@@ -174,7 +174,7 @@ gulp.task('bundles', function(cb) {
 gulp.task('js', ['bundles', 'vendor']);
 
 gulp.task('rev', ['clean', 'compress'], function () {
-  return gulp.src(['public/css/*.css', 'public/js/**/*.js'], {base: 'assets'})
+  return gulp.src(['public/css/**/*.css', 'public/js/**/*.js'], {base: 'assets'})
         .pipe(gulp.dest('public'))  // copy original assets to build dir
         .pipe(rev())
         .pipe(revReplace({replaceInExtensions: ['.css']}))
