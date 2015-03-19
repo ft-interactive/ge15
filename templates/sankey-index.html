@@ -69,7 +69,7 @@
 {% block scripts %}
 <script>
 {% autoescape false %}
-var forecast = {{ data|json}};
+var forecast = {{ data|json }};
 var updateTime = new Date({{ updated|json }});
 var source = {{ source|json }};
 {% endautoescape %}

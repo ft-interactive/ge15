@@ -142,19 +142,19 @@ function groupOverview(group){
 
 module.exports = function(groups, current, prediction, locations, details){
   //objectify the spreadsheets including sorting out list fields
-  current = makeLookup( d3.tsv.parse(current), 'id' );
-  prediction = makeLookup( d3.tsv.parse(prediction), 'id' );
-  locations = makeLookup( d3.tsv.parse(locations), 'id' );
-  details = makeLookup( d3.tsv.parse(details), 'ons_id' );
+  current = makeLookup(current, 'id' );
+  prediction = makeLookup(prediction, 'id' );
+  locations = makeLookup(locations, 'id' );
+  details = makeLookup(details, 'ons_id' );
 
-  groups = d3.tsv.parse(groups).map(function(d){
+  groups = groups.map(function(d) {
     d.constituencies = d['constituencies..list'].split(',');
     d.headline = d.bucket;
     delete d.bucket;
     delete d['constituencies..list'];
 
     d.constituencies = d.constituencies.map(function(e){
-      var constituencyID = e;
+      var constituencyID = e.trim();
       var predicted = prediction[constituencyID];
       var forecastWinner = predictedWinner(predicted);
       var currentHolder = current[constituencyID].winner.toLowerCase();

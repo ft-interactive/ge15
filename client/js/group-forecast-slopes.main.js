@@ -3,9 +3,9 @@
 /* global battlegrounds */
 
 var d3 = require('d3');
-var debounce = require('lodash-node/modern/functions/debounce');
+var debounce = require('lodash/function/debounce');
 
-var mapData = '/uk/2015/data/simplemap/json';
+var mapData = '/uk/2015/data/simplemap.json';
 
 var doc = document;
 
