@@ -12,10 +12,9 @@ function getPartyList(str){
 
 var coalitionOrder = ['Labour majority', 'Labour/Left Minority', 'Labour/SNP', 'Labour/SNP/Left Minority', 'All left', 'Labour/SNP/Lib Dem', 'Labour/Lib Dem', 'Labour/Lib Dem/Left Minority', 'Conservative/Lib Dem', 'Conservative/Lib Dem/DUP', 'Conservative/DUP', 'Conservative/DUP/UKIP', 'Conservative majority'];
 
-module.exports = function parse(sheet){
+module.exports = function transform(data) {
   var major = [];
-  var coalitions = d3.csv.parse(sheet)
-    .map(function(d){
+  var coalitions = data.map(function(d){
       d.Scenario = d.Scenario.replace('Tory','Conservative');
       d.Scenario = d.Scenario.replace(/\s*\/\s*/g,'/');
       d.Scenario = d.Scenario.replace(/\s*\+\s*/g,'/');

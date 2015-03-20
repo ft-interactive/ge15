@@ -4,7 +4,7 @@
 
 var d3 = require('d3');
 d3.sankey = require('./sankey/d3plugin.js');
-var debounce = require('lodash-node/modern/functions/debounce');
+var debounce = require('lodash/function/debounce');
 var party = require('./data/party-data.js');
 var sankeyData = require('./sankey/sankey-data.js');
 var logo = require('./sankey/logo.js');

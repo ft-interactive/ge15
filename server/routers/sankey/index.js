@@ -6,7 +6,8 @@ var siteNav = require('../../middleware/site-navigation');
 var forecastData = require('../data/').forecastData;
 
 function* home(next) {
-  yield this.render('sankey-index', this.dataObject); // jshint ignore:line
+  var forecast = yield forecastData('prediction');
+  yield this.render('sankey-index', forecast); // jshint ignore:line
   yield next;
 }
 
@@ -15,12 +16,7 @@ function main() {
     .use(siteNav())
     .use(viewLocals())
     .router()
-      .get('home', '/', setItem, forecastData, home);
-}
-
-function* setItem(next){
-  this.item = 'prediction'; // jshint ignore:line
-  yield next;
+      .get('home', '/', home);
 }
 
 module.exports = main;

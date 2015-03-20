@@ -1,11 +1,19 @@
 'use strict';
-var request = require('koa-request');
+
 var d3 = require('d3');
+var _ = require('lodash');
+
 var slopeDataParse = require('./slope-data.js');
 var geoData = require('../../data/geo-data.js');
 var coalitionDataParse = require('./coalition-data.js');
-
+var request = require('request-promise');
 var app = require('../../util/app');
+
+var csv = _.ary(d3.tsv.parse.bind(d3), 1);
+var tsv = _.ary(d3.tsv.parse.bind(d3), 1);
+var requestTSV = function(uri) {
+  return request({uri: uri, transform: tsv});
+};
 
 var forecast = {
   seats:'http://interactivegraphics.ft-static.com/data/electionforecast-co-uk/tsv/seats-latest',
@@ -15,70 +23,71 @@ var forecast = {
   updated:'http://interactivegraphics.ft-static.com/data/electionforecast-co-uk/updated.json'
 };
 
-var battlegrounds = 'http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/battlegrounds.tsv';
-var resultNow = 'http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/resultnow.tsv';
-var coordinates = 'http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/coordinates.tsv';
-var details = 'http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/details.tsv';
-
 var coalitionProbabilities = 'http://interactivegraphics.ft-static.com/data/coalition-probabilities/example.csv';
 
 function main() {
-  return app().router()
-    .param('item', function* (item, next ){
-      if( !forecast.hasOwnProperty(item) ){
-        this.status = 404;
-        return;
-      }
-      this.item = item;
-      yield next;
-    })
-    .get('seat-forecast','/forecast/:item/json', forecastData, dataResponse)
-    .get('battlegrounds','/battlegrounds/json', battlegroundData, dataResponse)
-    .get('simplemap','/simplemap/json', simpleMapData, dataResponse)
-    .get('coalition-forecast','/coalition-forecast/json', coalitionForecastData, dataResponse);
+  return app()
+    .router()
+      .get('seat-forecast','/forecast/:item.json', function* (next) {
+        this.assert(forecast.hasOwnProperty(this.params.item), 404, 'Not Found');
+        this.body = yield forecastData(this.params.item);
+        yield next;
+      })
+      .get('battlegrounds','/battlegrounds.json', function* (next) {
+        this.body = yield battlegroundData();
+        yield next;
+      })
+      .get('simplemap','/simplemap.json', function* (next) {
+        this.body = geoData.simple;
+        yield next;
+      })
+      .get('coalition-forecast','/coalition-forecast.json', function* (next) {
+        this.body = coalitionForecastData();
+        yield next;
+      });
 }
 
-function* simpleMapData(next){
-  this.dataObject = geoData.simple;
-  yield next;
+function coalitionForecastData() {
+  return request({
+    uri: coalitionProbabilities,
+    transform: csv
+  })
+  .then(coalitionDataParse);
 }
 
-function* coalitionForecastData(next){
-  var rawData = yield request( coalitionProbabilities );
-  this.dataObject = coalitionDataParse(rawData.body);
-  yield next;
+
+var battlegroundSpreadsheets = [
+  'http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/battlegrounds.tsv',
+  'http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/resultnow.tsv',
+  forecast.prediction,
+  'http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/coordinates.tsv',
+  'http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/details.tsv'
+];
+
+function battlegroundData() {
+  var promises = battlegroundSpreadsheets.map(requestTSV);
+  return Promise.all(promises)
+                .then(_.spread(slopeDataParse));
 }
 
-function* battlegroundData(next){
-  var groups = yield request( battlegrounds );
-  var current = yield request( resultNow );
-  var locations = yield request( coordinates );
-  var constituencyDetails = yield request( details );
-  var prediction = yield request( forecast.prediction );
+function forecastData(item) {
 
-  this.dataObject = slopeDataParse(groups.body, current.body, prediction.body, locations.body, constituencyDetails.body);
-  yield next;
-}
-
-function* forecastData(next){
-
-  var spreadsheet = yield request( forecast[this.item] );
-  var timestamp = yield request( forecast.updated );
-
-  this.dataObject = {
-    data:d3.tsv.parse(spreadsheet.body),
-    updated:JSON.parse(timestamp.body).updated,
-    source:{
-      name:'electionforecast.co.uk',
-      link:'http://www.electionforecast.co.uk'
-    }
+  var source = {
+    name:'electionforecast.co.uk',
+    link:'http://www.electionforecast.co.uk'
   };
-  yield next;
-}
 
-function* dataResponse(next){
-  this.body = this.dataObject;
-  yield next;
+  return Promise.all([
+    request({uri: forecast[item], transform: tsv}),
+    request({uri: forecast.updated, json: true})
+  ])
+  .then(_.spread(function(data, updated) {
+    return {
+      data: data,
+      updated: updated.updated,
+      source: source
+    };
+  }));
 }
 
 module.exports ={

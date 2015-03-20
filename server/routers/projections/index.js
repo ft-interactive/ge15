@@ -6,12 +6,12 @@ var siteNav = require('../../middleware/site-navigation');
 var battlegroundData = require('../data/').battlegroundData;
 
 function* home(next) {
+  var battlegrounds = yield battlegroundData();
   yield this.render('projections-index', {
     page: {
       title: 'What if the election were tomorrow?'
     },
-    dataString:this.dataObject,
-    data:this.dataObject
+    groups: battlegrounds
   });
   yield next;
 }
@@ -26,7 +26,7 @@ function main() {
         .router()
 
         // forecast home page
-        .get('home', '/', battlegroundData, home);
+        .get('home', '/', home);
 }
 
 module.exports = main;

@@ -6,8 +6,8 @@ var siteNav = require('../../middleware/site-navigation');
 var coalitionData = require('../data/').coalitionForecastData;
 
 function* home(next) {
-  console.log(this.dataObject);
-  yield this.render('coalition-forecast', this.dataObject); // jshint ignore:line
+  var data = yield coalitionData();
+  yield this.render('coalition-forecast', data); // jshint ignore:line
   yield next;
 }
 
@@ -16,12 +16,7 @@ function main() {
   .use(siteNav())
   .use(viewLocals())
   .router()
-  .get('home', '/', coalitionData, home);
-}
-
-function* setItem(next){
-  this.item = 'prediction'; // jshint ignore:line
-  yield next;
+    .get('home', '/', home);
 }
 
 module.exports = main;

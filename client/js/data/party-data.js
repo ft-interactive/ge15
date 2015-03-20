@@ -1,6 +1,6 @@
 'use strict';
 
-var invert = require('lodash-node/modern/objects/invert');
+var invert = require('lodash/object/invert');
 
 var partyShortName = {
   'lab':'Lab',

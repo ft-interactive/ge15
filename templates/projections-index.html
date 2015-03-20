@@ -37,7 +37,7 @@
   </div>
 
   <div id="slope-groups" class="o-grid-row" style="min-height:800px;">
-    {% for group in data %}
+    {% for group in groups %}
       <div class="figure constituency-group constituency-group--slope o-grid-row" data-o-grid-colspan="12">
         <h2 class="article-body__subhead figure__title">{{ group.headline }}</h2>
         <div class="figure__body o-grid-row">
@@ -73,7 +73,7 @@
 {% block scripts %}
 <script>
 {% autoescape false %}
-var battlegrounds = {{ dataString | json }};
+var battlegrounds = {{ groups | json }};
 {% endautoescape %}
 if (cutsTheMustard) {
   addScript('{{ asset("js/group-forecast-slopes.js") }}', false, false);
