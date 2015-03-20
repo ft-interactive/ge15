@@ -15,25 +15,26 @@ var coalitionOrder = ['Labour majority', 'Labour/Left Minority', 'Labour/SNP', '
 module.exports = function transform(data) {
   var major = [];
   var coalitions = data.map(function(d){
-      d.Scenario = d.Scenario.replace('Tory','Conservative');
-      d.Scenario = d.Scenario.replace(/\s*\/\s*/g,'/');
-      d.Scenario = d.Scenario.replace(/\s*\+\s*/g,'/');
-      d.Scenario = d.Scenario.replace('min','Minority');
-      d.Scenario = d.Scenario.replace('LD','Lib Dem');
-      d.occurrence = parseFloat(d.occurrence);
-      var c = {
-        name:d.Scenario,
-        parties:getPartyList(d.Scenario),
-        probability:Number(d.occurrence)
-      };
-      return c;
-    })
-    .sort(function(a, b){
-      return coalitionOrder.indexOf(a.name)-coalitionOrder.indexOf(b.name);
-    });
+    d.Scenario = d.Scenario.replace('Tory','Conservative');
+    d.Scenario = d.Scenario.replace(/\s*\/\s*/g,'/');
+    d.Scenario = d.Scenario.replace(/\s*\+\s*/g,'/');
+    d.Scenario = d.Scenario.replace('min','Minority');
+    d.Scenario = d.Scenario.replace('LD','Lib Dem');
+    d.occurrence = parseFloat(d.occurrence);
+    var c = {
+      name:d.Scenario,
+      parties:getPartyList(d.Scenario),
+      probability:Number(d.occurrence)
+    };
+    return c;
+  })
+  .sort(function(a, b){
+    return coalitionOrder.indexOf(a.name)-coalitionOrder.indexOf(b.name);
+  });
 
   return {
     coalitions:coalitions,
-    majorParties:major
+    majorParties:major,
+    update:new Date()
   };
 };

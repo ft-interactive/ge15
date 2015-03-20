@@ -9,7 +9,7 @@ var coalitionDataParse = require('./coalition-data.js');
 var request = require('request-promise');
 var app = require('../../util/app');
 
-var csv = _.ary(d3.tsv.parse.bind(d3), 1);
+var csv = _.ary(d3.csv.parse.bind(d3), 1);
 var tsv = _.ary(d3.tsv.parse.bind(d3), 1);
 var requestTSV = function(uri) {
   return request({uri: uri, transform: tsv});

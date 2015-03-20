@@ -16,7 +16,7 @@ function main() {
   .use(siteNav())
   .use(viewLocals())
   .router()
-    .get('home', '/', home);
+  .get('home', '/', home);
 }
 
 module.exports = main;

@@ -1,12 +1,41 @@
 {% extends 'article.html' %}
 
+{% block title %}Coalition probabilities{% endblock %}
+
 {% block article_body %}
 <div id="coalition-forecast" class="o-grid-row">
-  <table>
-      {% for coalition in coalitions %}
-       <tr><td>{{ coalition.name }}</td><td>{{ coalition.probability }}%</td></tr>
-      {% endfor %}
-  <table>
+  <h1 class="article-header__headline">Probable Coalitions</h1>
+  <div class="description">
+    <p>
+       The likelihood of given parties being in the next government according to analysis by Populus/Hanover.<div class="timestamp">Updated {{ updated|ftdate }}</div></p>
+
+
+  </div>
+  <div data-o-grid-colspan="12 L6">
+    <div class="description">
+      <p>
+        Which of the main parties is most likely to form a government after the next election?
+      </p>
+    </div>
+    <div id="main-visualisation"></div>
+  </div>
+  <div id="secondary-visualisation" data-o-grid-colspan="12 L6">
+    <div class="description"><p>And what chance do the smaller parties have of participating in government after May 7<sup>th</sup>?</p></div>
+    <div id="sub-visualisation"></div>
+  </div>
+  <div class="o-grid-row">
+    <div class="coalition-probablities-holder" data-o-grid-colspan="12 M6">
+      <div class="description">A full break down of probable coalitions.</div>
+      <table class="coalition-probabilities">
+            <thead><tr><th>Coalition</th> <th>Probability</th></tr></thead>
+            <tbody>
+          {% for coalition in coalitions %}
+           <tr><td>{{ coalition.name }}</td><td>{{ coalition.probability }}%</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 {% endblock %}
 
@@ -15,7 +44,8 @@
 {% autoescape false %}
 var coalitions = {{coalitions|json}};
 {% endautoescape %}
+if (cutsTheMustard) {
+  addScript('{{ asset("js/coalition-forecast.js") }}', false, false);
+}
 </script>
 {% endblock %}
-
-{% set bundle = 'coalition-forecast.js' %}
