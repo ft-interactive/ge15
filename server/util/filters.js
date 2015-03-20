@@ -4,6 +4,7 @@ var S = require('string');
 S.extendPrototype();
 var n = require('numeral')();
 var _ = require('lodash');
+var d3 = require('d3');
 
 exports.times = function(val, num) {
   return S(val).times(num).s;
@@ -78,7 +79,12 @@ exports.json = function(obj) {
 };
 
 exports.partyAbbreviation = function(str){
-  var lookup = {'c':'Con', 'lab':'Lab', 'ld':'LD', 'snp':'SNP', 'pc':'PC', 'green':'Grn', 'ukip':'UKIP', 'other':'Oth', 'Conservatives':'c', 'Labour':'lab', 'Liberal Democrats':'LD', 'Plaid Cymru':'PC', 'Greens':'Grn', 'Other':'Oth'};
+  var lookup = {'c':'Con', 'lab':'Lab', 'ld':'LD', 'snp':'SNP', 'pc':'PC', 'green':'Grn', 'ukip':'Ukip', 'other':'Oth', 'Conservatives':'c', 'Labour':'lab', 'Liberal Democrats':'LD', 'Plaid Cymru':'PC', 'Greens':'Grn', 'Other':'Oth'};
   if(lookup[str]) return lookup[str];
   return str;
+};
+
+exports.ftdate = function(date){
+  //var format = d3.time.format("%B %e, %Y %I:%M %p");
+  return 'date'//format(date);
 };
