@@ -26,7 +26,8 @@
     "o-dom": "~1.0.0",
     "o-header": "~3.0.0",
     "o-footer": "~3.0.0",
-    "o-buttons": "~1.8.1"
+    "o-buttons": "~1.8.1",
+    "uk-political-parties": "https://github.com/ft-interactive/uk-political-parties.git#master"
   },
   "resolutions": {
     "sass-mq": "~3.1.0",

@@ -5,8 +5,14 @@ var d3 = require('d3');
 
 function getPartyList(str){
   var listString = str.replace(' majority','');
-  listString = listString.replace('Left Minority','PC/Green');
-  listString = listString.replace('All left','Labour/PC/Green/SNP'); //TODO does this need any more parties? find out
+  listString = listString.replace('UKIP','ukip');
+  listString = listString.replace('SNP','snp');
+  listString = listString.replace('DUP','dup');
+  listString = listString.replace('Labour','lab');
+  listString = listString.replace('Lib Dem','ld');
+  listString = listString.replace('Conservative','c');
+  listString = listString.replace('Left Minority','pc/green');
+  listString = listString.replace('All left','lab/pc/green/snp'); //TODO does this need any more parties? find out
   return listString.split('/');
 }
 
