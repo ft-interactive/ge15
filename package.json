@@ -68,7 +68,7 @@
     "swig": "kavanagh/swig",
     "thunkify": "^2.1.2",
     "topojson": "^1.6.18",
-    "uk-political-parties": "git://github.com/ft-interactive/uk-political-parties"
+    "uk-political-parties": "git://github.com/ft-interactive/uk-political-parties#master"
   },
   "devDependencies": {
     "browserify": "^6.3.3",
