@@ -3,13 +3,10 @@
 /* global coalitions */
 
 var d3 = require('d3');
-var partyExtended = {
-  'SNP':'SNP','Lib Dem':'Lib Dem','UKIP':'Ukip','DUP':'DUP','Green':'Green','PC':'Plaid Cymru'
-};
+var parties = require('uk-political-parties');
 
-console.log('coalition here!', coalitions);
-var primaryPieParties = ['Labour','Conservative'];
-var secondaryPartyPies = ['SNP', 'Lib Dem','UKIP','DUP','Green','PC'];
+var primaryPieParties = ['lab','c'];
+var secondaryPartyPies = ['snp', 'ld','ukip','dup','green','pc'];
 
 var margin = { top: 0, right: 0, bottom: 0, left: 0 },
   width = 600 - margin.left - margin.right,
@@ -25,7 +22,6 @@ var pieData = pieLayout(coalitions);
 var partyCumulativeProbabilities = {};
 
 coalitions.forEach(function(c){
-  console.log(c);
   c.parties.forEach(function(p){
     if(!partyCumulativeProbabilities[p]) partyCumulativeProbabilities[p] = 0;
     partyCumulativeProbabilities[p] += c.probability;
@@ -37,12 +33,12 @@ var headline = d3.select('#main-visualisation').append('div')
   .attr({'class':'pie-headline o-grid-row'});
 
 headline.append('div')
-  .attr({'class':'conservative','data-o-grid-colspan':'6'})
-    .text('Conservative ' + d3.round(partyCumulativeProbabilities['Conservative'], 1)+'%');
+  .attr({'class':parties.className('c'),'data-o-grid-colspan':'6'})
+    .text(parties.fullName('c') + ' ' + d3.round(partyCumulativeProbabilities['c'], 1)+'%');
 
 headline.append('div')
-  .attr({'class':'labour','data-o-grid-colspan':'6'})
-    .text('Labour ' + d3.round(partyCumulativeProbabilities['Labour'], 1) +'%');
+  .attr({'class':parties.className('lab'),'data-o-grid-colspan':'6'})
+    .text(parties.fullName('lab') + ' ' + d3.round(partyCumulativeProbabilities['lab'], 1) +'%');
 
 
 //MAIN PIE CHART
@@ -76,7 +72,7 @@ d3.select('#sub-visualisation')
     container.append('div').attr('class',function(d){
         return d.toLowerCase() + ' sub-pie-header';
       }).html(function(d){
-        return partyExtended[d] +' <b>' + d3.round(partyCumulativeProbabilities[d],1)+ '%</b>';
+        return parties.shortName(d) +' <b>' + d3.round(partyCumulativeProbabilities[d],1)+ '%</b>';
       });
     container.append('svg')
       .attr({
@@ -98,7 +94,7 @@ d3.select('#sub-visualisation')
 
 function pie(selection, opts){
   var options = {
-    parties:['Labour','Conservative'],
+    parties:['lab','c'],
     labelThreshold:7,
     radius:100,
     labelOffset:5,
@@ -127,7 +123,7 @@ function pie(selection, opts){
         var classString = 'pie-segment ';
         d.data.parties.forEach(function(p){
           if(options.parties.indexOf(p)>-1){
-            classString += ' ' + p.toLowerCase();
+            classString += ' ' +parties.className(p);
           }
         });
         return classString;
@@ -161,7 +157,6 @@ function pie(selection, opts){
 function segmentLabel(g){
   var lineHeight = 1;
   g.each(function(t){
-    console.log(t.data.probability + '%', t.data.name.split(/\/(.+)/));
     var lines = t.data.name.split(/\/(.+)/).filter(function(s){ return (s!=='')});
     lines[0] = t.data.probability + '% ' +lines[0];
     if(lines[1]) lines[1] = '/' + lines[1];
@@ -173,7 +168,7 @@ function segmentLabel(g){
             dy:function(d,i){return (i*lineHeight) + 'em'; },
             x:0
           })
-          .text( function(s,i){ console.log(s); return s; } );
+          .text( function(s,i){ return s; } );
   });
 }
 
