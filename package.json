@@ -25,10 +25,12 @@
   "dependencies": {
     "co": "^3.1.0",
     "d3": "^3.4.13",
+    "debug": "^2.1.3",
     "dsv": "0.0.3",
     "haikro": "^1.11.0",
     "js-yaml": "^3.2.3",
     "jsdom": "1.3.1",
+    "json-stringify-safe": "^5.0.0",
     "koa": "^0.13.0",
     "koa-cash": "^1.0.1",
     "koa-compose": "^2.3.0",
@@ -54,7 +56,7 @@
     "lru-cache": "^2.5.0",
     "mime-db": "^1.2.0",
     "ms": "^0.6.2",
-    "mz": "^1.0.2",
+    "mz": "^1.3.0",
     "numeral": "^1.5.3",
     "pg": "^4.1.1",
     "pg-hstore": "^2.3.1",
@@ -68,7 +70,8 @@
     "swig": "kavanagh/swig",
     "thunkify": "^2.1.2",
     "topojson": "^1.6.18",
-    "uk-political-parties": "git://github.com/ft-interactive/uk-political-parties#master"
+    "uk-political-parties": "git://github.com/ft-interactive/uk-political-parties#master",
+    "wreck": "^5.2.0"
   },
   "devDependencies": {
     "browserify": "^6.3.3",

@@ -8,14 +8,6 @@ var partyLookups = {
   ft_abbreviation:{'c':'Con', 'lab':'Lab', 'ld':'LD', 'snp':'SNP', 'pc':'PC', 'green':'Grn', 'ukip':'UKIP', 'other':'Oth'}
 };
 
-function makeLookup(a, property) {
-  var o = {};
-  a.forEach(function(d) {
-    o[d[property]] = d;
-  });
-  return o;
-}
-
 function predictedWinner(record){
   var maxValue = 0;
   var winningParty = '';
@@ -141,20 +133,22 @@ function groupOverview(group){
 
 
 module.exports = function(groups, current, prediction, locations, details){
-  //objectify the spreadsheets including sorting out list fields
-  current = makeLookup(current, 'id' );
-  prediction = makeLookup(prediction, 'id' );
-  locations = makeLookup(locations, 'id' );
-  details = makeLookup(details, 'ons_id' );
 
-  groups = groups.map(function(d) {
-    d.constituencies = d['constituencies..list'].split(',');
-    d.headline = d.bucket;
-    delete d.bucket;
-    delete d['constituencies..list'];
+  return groups.map(function(d) {
+    var remap = false;
+    if (d['constituencies..list']) {
+      d.constituencies = d['constituencies..list'].split(',');
+      delete d['constituencies..list'];
+      remap = true;
+    }
+
+    if (d.bucket) {
+      d.headline = d.bucket;
+      delete d.bucket;
+    }
 
     d.constituencies = d.constituencies.map(function(e){
-      var constituencyID = e.trim();
+      var constituencyID = remap ? e.trim() : e.id;
       var predicted = prediction[constituencyID];
       var forecastWinner = predictedWinner(predicted);
       var currentHolder = current[constituencyID].winner.toLowerCase();
@@ -176,5 +170,4 @@ module.exports = function(groups, current, prediction, locations, details){
     return d;
   });
 
-  return groups;
 };
