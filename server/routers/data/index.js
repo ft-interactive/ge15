@@ -6,14 +6,12 @@ var _ = require('lodash');
 var slopeDataParse = require('./slope-data.js');
 var geoData = require('../../data/geo-data.js');
 var coalitionDataParse = require('./coalition-data.js');
-var request = require('request-promise');
+var request = require('../../util/request-cache');
 var app = require('../../util/app');
 
 var csv = _.ary(d3.csv.parse.bind(d3), 1);
 var tsv = _.ary(d3.tsv.parse.bind(d3), 1);
-var requestTSV = function(uri) {
-  return request({uri: uri, transform: tsv});
-};
+var maxAge = 1000 * 60; // 1 minute
 
 var forecast = {
   seats:'http://interactivegraphics.ft-static.com/data/electionforecast-co-uk/tsv/seats-latest',
@@ -42,7 +40,7 @@ function main() {
         yield next;
       })
       .get('coalition-forecast','/coalition-forecast.json', function* (next) {
-        this.body = coalitionForecastData();
+        this.body = yield coalitionForecastData();
         yield next;
       });
 }
@@ -50,24 +48,44 @@ function main() {
 function coalitionForecastData() {
   return request({
     uri: coalitionProbabilities,
-    transform: csv
-  })
-  .then(coalitionDataParse);
+    transform: _.flow(csv, coalitionDataParse),
+    maxAge: maxAge
+  });
 }
 
-
+var indexById = _.flow(tsv, _.partial(_.indexBy, _, 'id'));
+var indexByONSid = _.flow(tsv, _.partial(_.indexBy, _, 'ons_id'));
 var battlegroundSpreadsheets = [
-  'http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/battlegrounds.tsv',
-  'http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/resultnow.tsv',
-  forecast.prediction,
-  'http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/coordinates.tsv',
-  'http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/details.tsv'
+  ['http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/battlegrounds.tsv', tsv],
+  ['http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/resultnow.tsv', indexById],
+  [forecast.prediction, indexById],
+  ['http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/coordinates.tsv', indexById],
+  ['http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/details.tsv', indexByONSid]
 ];
 
+function endpointToRequest(endpoint) {
+  return request({uri: endpoint[0], transform: endpoint[1], maxAge: maxAge});
+}
+
+var battlegroundDataCache = {
+  response: null,
+  expiry: null
+};
+
 function battlegroundData() {
-  var promises = battlegroundSpreadsheets.map(requestTSV);
+
+  if (battlegroundDataCache.expiry > Date.now()) {
+    return Promise.resolve(battlegroundDataCache.response);
+  }
+
+  var promises = battlegroundSpreadsheets.map(endpointToRequest);
   return Promise.all(promises)
-                .then(_.spread(slopeDataParse));
+                .then(_.spread(slopeDataParse))
+                .then(function(response) {
+                  battlegroundDataCache.response = response;
+                  battlegroundDataCache.expiry = Date.now() + 5000;
+                  return response;
+                });
 }
 
 function forecastData(item) {
@@ -78,8 +96,8 @@ function forecastData(item) {
   };
 
   return Promise.all([
-    request({uri: forecast[item], transform: tsv}),
-    request({uri: forecast.updated, json: true})
+    request({uri: forecast[item], transform: tsv, maxAge: maxAge}),
+    request({uri: forecast.updated, json: true, maxAge: maxAge})
   ])
   .then(_.spread(function(data, updated) {
     return {
