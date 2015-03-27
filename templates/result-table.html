@@ -1,0 +1,20 @@
+<div class="result-table grid-table o-grid-row">
+  <div class="grid-table-header o-grid-row">
+    <div data-o-grid-colspan="3">&nbsp;</div>
+    <div data-o-grid-colspan="7" class="bar-column" data-party="none" data-seats="326" data-label="Majority (326)" data-high="350">
+      <div data-o-grid-colspan="2" class="col-header">Seats</div>
+      <div class="visualisation" data-o-grid-colspan="10"></div>
+    </div><div data-o-grid-colspan="2" class="col-header">Change</div>
+  </div>
+    {% for row in table_data %}
+    <div class="grid-table-data o-grid-row">
+      <div data-o-grid-colspan="3" class="{{ row.Party | partyClassName }} rowhead">{{ row.Party | partyFullName }}</div>
+      <div data-o-grid-colspan="7" class="bar-column" data-party="{{row.Party}}" data-seats="{{row.Seats}}" data-high="{{row.Hi}}" data-low="{{row.Lo}}">
+        <div data-o-grid-colspan="2">{{ row.Seats }}</div>
+        <div class="visualisation" data-o-grid-colspan="10"></div>
+      </div>
+      <div data-o-grid-colspan="2" class="numeric-column">{{ row.Swing | change }}</div>
+    </div>
+    {% endfor %}
+  </tbody>
+</div>

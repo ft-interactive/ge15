@@ -1,0 +1,60 @@
+@import "graphics/party-elements";
+
+.result-table {
+  width: 100%;
+}
+
+.numeric-column {
+/*  text-align:right; */
+}
+
+.visualisation {
+  display: inline-block;
+}
+
+.rowhead {
+  text-align: right;
+}
+
+.fixed-size-value {
+  display: inline-block;
+  width: 50px;
+  text-align: right;
+  padding-right: 10px;
+}
+
+.grid-table-data {
+  font-size: 0.9em;
+}
+
+.none {
+    fill: none;
+}
+
+/*SVG stuff*/
+
+.bar-label {
+  font-size: 10;
+}
+
+.bar-marker {
+  stroke: none;
+  fill: #000000;
+  fill-opacity: 0.05;
+}
+
+[data-seats],
+.numeric-column {
+  font-weight: bold;
+}
+
+.col-header {
+  font-weight: 200;
+  font-size: 1.2em;
+}
+
+.overview p {
+  text-align: center;
+  margin: auto;
+  font-size: 1.1em;
+}

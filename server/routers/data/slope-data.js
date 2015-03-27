@@ -1,20 +1,17 @@
 'use strict';
 
-var d3 = require('d3');
+var parties = require('uk-political-parties');
 
-var partyLookups = {
-  partylist:['Conservatives', 'Labour', 'Liberal Democrats', 'SNP', 'Plaid Cymru', 'Greens', 'UKIP', 'Other'],
-  abbreviations:{'Conservatives':'c', 'Labour':'lab', 'Liberal Democrats':'ld', 'SNP':'snp', 'Plaid Cymru':'pc', 'Greens':'green', 'UKIP':'ukip', 'Other':'other'},
-  ft_abbreviation:{'c':'Con', 'lab':'Lab', 'ld':'LD', 'snp':'SNP', 'pc':'PC', 'green':'Grn', 'ukip':'UKIP', 'other':'Oth'}
-};
+var partylist = ['c', 'lab', 'ld', 'snp', 'pc', 'green', 'ukip', 'other'];
 
 function predictedWinner(record){
   var maxValue = 0;
   var winningParty = '';
-  partyLookups.partylist.forEach(function(p){
-    maxValue = Math.max(Number(record[p]), maxValue);
-    if(maxValue === Number(record[p])){
-      winningParty = partyLookups.abbreviations[p];
+  partylist.forEach(function(p){
+    var value = Number(record[parties.fullName(p)]);
+    maxValue = Math.max(value, maxValue);
+    if(maxValue === value){
+      winningParty = p;
     }
   });
   return winningParty;
@@ -53,8 +50,8 @@ function resultNormalise(r) {
 function predictionNormalise(r){
   var abbreviated = {};
   for(var item in r){
-    if(r.hasOwnProperty(item) && partyLookups.abbreviations[item]){
-      abbreviated[ partyLookups.abbreviations[item] ] = r[item];
+    if(r.hasOwnProperty(item) && parties.fullNameToCode(item)){
+      abbreviated[ parties.fullNameToCode(item) ] = r[item];
     }
   }
   return abbreviated;

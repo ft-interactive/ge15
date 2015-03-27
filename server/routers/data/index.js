@@ -96,8 +96,8 @@ function forecastData(item) {
   };
 
   return Promise.all([
-    request({uri: forecast[item], transform: tsv, maxAge: maxAge}),
-    request({uri: forecast.updated, json: true, maxAge: maxAge})
+    request({uri: forecast[item], transform: tsv, maxAge: 0}),
+    request({uri: forecast.updated, json: true, maxAge: 0})
   ])
   .then(_.spread(function(data, updated) {
     return {

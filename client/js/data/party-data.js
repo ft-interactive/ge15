@@ -1,5 +1,5 @@
 'use strict';
-
+//DEPRECATED! use uk-political-parties node module ... https://github.com/ft-interactive/uk-political-parties
 var invert = require('lodash/object/invert');
 
 var partyShortName = {

@@ -4,7 +4,8 @@ var S = require('string');
 S.extendPrototype();
 var n = require('numeral')();
 var _ = require('lodash');
-var d3 = require('d3');
+var parties = require('uk-political-parties');
+var debug = require('debug')('filters');
 
 exports.times = function(val, num) {
   return S(val).times(num).s;
@@ -74,17 +75,34 @@ exports.pluck = function(obj, property) {
   return _.pluck(obj, property);
 };
 
+exports.sortBy = function(array, property){
+  debug(array, property);
+  return _.sortBy(array, property);
+};
+
 exports.json = function(obj) {
   return JSON.stringify(obj, null, 0);
 };
 
 exports.partyAbbreviation = function(str){
-  var lookup = {'c':'Con', 'lab':'Lab', 'ld':'LD', 'snp':'SNP', 'pc':'PC', 'green':'Grn', 'ukip':'Ukip', 'other':'Oth', 'Conservatives':'c', 'Labour':'lab', 'Liberal Democrats':'LD', 'Plaid Cymru':'PC', 'Greens':'Grn', 'Other':'Oth'};
-  if(lookup[str]) return lookup[str];
-  return str;
+  return parties.shortName(str);
+};
+
+exports.partyClassName = function(str){
+  return parties.className(str);
+};
+
+exports.partyFullName = function(str){
+  debug('party -- ', str);
+  return parties.fullName(str);
 };
 
 exports.ftdate = function(date){
   //var format = d3.time.format("%B %e, %Y %I:%M %p");
-  return 'date'//format(date);
+  return 'date';//format(date);
+};
+
+exports.change = function(value){
+  if(value>0) return '+'+value;
+  return value;
 };

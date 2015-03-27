@@ -1,8 +1,5 @@
 'use strict';
 
-var d3 = require('d3');
-
-
 function getPartyList(str){
   var listString = str.replace(' majority','');
   listString = listString.replace('UKIP','ukip');
