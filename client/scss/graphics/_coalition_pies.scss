@@ -1,19 +1,6 @@
-.article-header__headline {
-  /*text-align:  center;*/
-  margin-bottom: 0.3em;
-  margin-top: -0.4em;
-  border-bottom: 1px solid #a7a59b;
-  margin: -0.6em 5px 0.2em 0;
-}
-
 .timestamp {
     display: none;
     opacity: 0.5;
-}
-
-[data-o-grid-colspan] {
-  padding-left: 0;
-  padding-right: 0px;
 }
 
 #main-visualisation {
@@ -85,7 +72,6 @@ text {
 }
 
 .pie-headline {
-  width: 600px;
   font-weight: bold;
   font-size: 1em;
 
@@ -111,7 +97,6 @@ sup {
 }
 
 .coalition-probabilities {
-  font-size: 0.8em;
   border-spacing: 0;
   width: 100%;
   th {
@@ -132,22 +117,12 @@ sup {
 }
 
 @include oGridRespondTo($from: S) {
-  [data-o-grid-colspan] {
-    padding-right: 20px;
-  }
 
   .pie-headline {
     font-size: 1.2em;
   }
   text {
     font-size: 0.8em;
-  }
-
-}
-
-@include oGridRespondTo($from: S, $until: M) {
-  .coalition-probabilities {
-    width: 80%;
   }
 
 }

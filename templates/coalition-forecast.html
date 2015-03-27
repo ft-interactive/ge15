@@ -1,39 +1,39 @@
 {% extends 'article.html' %}
 
-{% block title %}Coalition probabilities{% endblock %}
+{% set stylesheet = 'pages/probable-coalitions.css' %}
+
 
 {% block article_body %}
 <div id="coalition-forecast" class="o-grid-row">
-  <h1 class="article-header__headline">Probable Coalitions</h1>
-  <div class="description">
-    <p>
-       The likelihood of given parties being in the next government according to analysis by Populus/Hanover.<div class="timestamp">Updated {{ updated|ftdate }}</div></p>
-
-
-  </div>
   <div data-o-grid-colspan="12 L6">
-    <div class="description">
-      <p>
-        Which of the main parties is most likely to form a government after the next election?
-      </p>
-    </div>
+    <p>Which of the main parties is most likely to form a government after the next&nbsp;election?</p>
     <div id="main-visualisation"></div>
   </div>
   <div id="secondary-visualisation" data-o-grid-colspan="12 L6">
-    <div class="description"><p>And what chance do the smaller parties have of participating in government after May 7<sup>th</sup>?</p></div>
+    <p>And what chance do the smaller parties have of participating in government after May&nbsp;7<sup>th</sup>?</p>
     <div id="sub-visualisation"></div>
   </div>
-  <div class="o-grid-row">
-    <div class="coalition-probablities-holder" data-o-grid-colspan="12 M6">
-      <div class="description">A full break down of probable coalitions.</div>
+</div>
+<div class="o-grid-row">
+  <div class="figure" data-o-grid-colspan="center 12 M10 L6">
+    <div class="figure__subtitle">A full break down of probable coalitions.</div>
+    <div class="figure__body coalition-probablities-holder">
       <table class="coalition-probabilities">
-            <thead><tr><th>Coalition</th> <th>Probability</th></tr></thead>
+            <thead>
+              <tr>
+                <th>Coalition</th>
+                <th>Probability</th>
+                </tr>
+            </thead>
             <tbody>
           {% for coalition in coalitions %}
            <tr><td>{{ coalition.name }}</td><td>{{ coalition.probability }}%</td></tr>
           {% endfor %}
         </tbody>
       </table>
+    </div>
+    <div class="figure__footer">
+      <p>According to analysis by Populus/Hanover.</p>
     </div>
   </div>
 </div>

@@ -5,14 +5,14 @@
 
   font-family: $font-article-body;
 
-  & > * {
-    margin: 0 auto;
-  }
+/*   & > * {
+  margin: 0 auto;
+} */
 
-  & > .o-grid-row {
-    margin-left: auto;
-    margin-right: auto;
-  }
+/*   & > .o-grid-row {
+  margin-left: auto;
+  margin-right: auto;
+} */
 
   p {
     margin-top: 0;
@@ -20,15 +20,8 @@
     padding-bottom: 1em;
     font-size: 1em;
     line-height: 1.5;
-    max-width: $copy-width-medium;
-    @include oGridRespondTo($until: S) {
-      line-height: 1.4;
-    }
-  }
-
-  & > *,
-  & > p {
     max-width: $copy-width-large;
+
     @include oGridRespondTo($until: L) {
       max-width: $copy-width-medium;
     }
@@ -37,6 +30,7 @@
     }
     @include oGridRespondTo($until: S) {
       max-width: $copy-width-x-small;
+      line-height: 1.4;
     }
   }
 

@@ -19,10 +19,10 @@ function* home(next) {
     return d;
   });
 
-
-  yield this.render('projections-index', {
+  yield this.render('projections-index', { // jshint ignore:line
     page: {
-      title: 'The four key general election battles'
+      title: 'The four key general election battles',
+      summary: 'Using data from a team of academics this page shows a projected election result for the country as a whole and for individual constituencies in key battlegrounds.'
     },
     groups: battlegrounds,
     overview: forecast

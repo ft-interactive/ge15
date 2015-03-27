@@ -7,11 +7,8 @@
 #}
 {% set stylesheet = 'pages/seatmoves.css' %}
 
-{% block article_header %}{% endblock %}
-
 {% block article_body %}
 <div class="o-grid-row" data-o-grid-colspan="12">
-  <h1 class="article-header__headline">Seat Moves</h1>
   <div id="sankey" data-o-grid-colspan="12 M6 L6"></div>
   <div id="sankey-description" class="" data-o-grid-colspan="12 M6 L6">
       <p id="inputs">
@@ -60,7 +57,7 @@
       </div>
   </div>
 </div>
-<div class="notes">
+<div class="notes o-grid-row" data-o-grid-colspan="12 center">
     <p>The model used by electionforecast.co.uk combines data provided by YouGov with publicly released polls, historical election results, and data from the UK Census.</p>
     <p>electionforecast.co.uk does not publish seat by seat predictions for Northern Ireland's 18 parliamentary seats these are included in &#8220;Others&#8221;</p>
 </div>
@@ -69,8 +66,8 @@
 {% block scripts %}
 <script>
 {% autoescape false %}
-var forecast = {{ data|json }};
-var updateTime = new Date({{ updated|json }});
+var forecast = {{ forecast.data|json }};
+var updateTime = new Date({{ forecast.updated|json }});
 var source = {{ source|json }};
 {% endautoescape %}
 

@@ -7,7 +7,12 @@ var forecastData = require('../data/').forecastData;
 
 function* home(next) {
   var forecast = yield forecastData('prediction');
-  yield this.render('sankey-index', forecast); // jshint ignore:line
+  yield this.render('sankey-index', { // jshint ignore:line
+    forecast: forecast,
+    page: {
+      title: 'Seat Moves'
+    }
+  });
   yield next;
 }
 

@@ -20,19 +20,21 @@
 
   &__title {
     border-bottom: $line-width--m solid $line-color;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
   }
 
   &__subtitle {
     color: oColorsGetPaletteColor(pink-tint5);
+    margin-bottom: 0.25em;
   }
 
   &__body {
+    margin-top: 0.5em;
     font-size: 1em;
   }
 
   &__footer {
-    @include oColorsFor(muted, text);
+    color: oColorsGetPaletteColor(pink-tint4);
     border-top: $line-width--s solid $line-color;
     font-size: 0.8em;
     padding: 0;

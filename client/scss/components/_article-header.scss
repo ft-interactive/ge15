@@ -11,13 +11,25 @@
     margin: 0;
     font-family: $font-article-headline;
     font-weight: normal;
-    font-size: 2.8em;
+    font-size: 2.4em;
     line-height: 1.15;
 
     &--large {
-
+      font-size: 2.86em;
     }
 
+
+  }
+
+  &__summary {
+    margin: 0.25em auto 0.25em 0;
+    font-size: 1.25em;
+    max-width: 690px;
+    line-height: 1.15;
+  }
+
+  &--center &__summary {
+    margin-left: auto;
   }
 
   &__byline,
