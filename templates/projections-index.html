@@ -4,7 +4,16 @@
 {% set stylesheet = 'pages/projections.css' %}
 
 {% block article_body %}
-
+<div class="overview o-grid-row" data-o-grid-colspan="6">
+  <p>Using data from a team of academics this page shows a projected election result for the country as a whole and for individual constituencies in key battlegrounds.</p>
+</div>
+<div class="overview o-grid-row" data-o-grid-colspan="6">
+  {% set table_data = overview %}
+  {% include "./result-table.html" %}
+</div>
+<div class="overview o-grid-row" data-o-grid-colspan="6">
+</div>
+</div>
   <div class="figure o-grid-row" data-o-grid-colspan="12">
     <h2 class="article-body__subhead figure__title">The battlegrounds</h2>
     <nav class="battle-nav figure__body o-grid-row">
@@ -40,9 +49,11 @@
     {% for group in groups %}
       <div class="figure constituency-group constituency-group--slope o-grid-row" data-o-grid-colspan="12">
         <h2 class="article-body__subhead figure__title">{{ group.headline }}</h2>
+        <div class="o-grid-row" data-o-grid-colspan="12"><p>{{ group.description }}</p></div>
         <div class="figure__body o-grid-row">
           <div data-o-grid-colspan="12 S4 M3 L3">
             <div class="o-grid-row constituency-group__details">
+
               <div class="constituency-group__summary-table" data-o-grid-colspan="12 M10 L8">
                 {% set table_data = group.partychanges %}
                 {% include "./result-summary-table.html" %}
@@ -53,8 +64,8 @@
             </div>
           </div>
           <div data-o-grid-colspan="12 S8 M9 L9">
-            <div class="o-grid-row">
-              {% for constituency in group.constituencies %}
+            <div class="o-grid-row" >
+              {% for constituency in group.constituencies | sortBy('name') %}
               <div class="constituency-group__slope" data-o-grid-colspan="4 M3 L1 XL1">
                 <div class="constituency-group__slope-graphic" data-constituency="{{constituency.id}}" data-order="{{loop.index0}}"></div>
                 <div class="constituency-group__constituency-name">{{constituency.name}}</div>
@@ -67,7 +78,9 @@
     {% endfor %}
 
   </div>
-
+<div>
+  <p>Data source <a href="http://www.electionforecast.co.uk">electionforecast.co.uk</a></p>
+</div>
 {% endblock %}
 
 {% block scripts %}

@@ -1,0 +1,79 @@
+@import "var";
+
+/*lines*/
+.conservative-edge {
+  stroke: $conservative-dark;
+}
+
+.labour-edge {
+  stroke: $labour-dark;
+}
+
+.lib-dem-edge {
+  stroke: $liberal-democrat-dark;
+}
+
+.ukip-edge {
+  stroke: $ukip-dark;
+}
+
+.snp-edge {
+  stroke: $snp-dark;
+}
+
+.pc-edge {
+  stroke: $plaid-cymru-dark;
+}
+
+.green-edge {
+  stroke: $green-dark;
+}
+
+.other-party-edge {
+  stroke: $other-dark;
+}
+
+
+
+/*blocks*/
+.conservative-area {
+  stroke: $conservative;
+  fill: $conservative;
+}
+
+.labour-area {
+  stroke: $labour;
+  fill: $labour;
+}
+
+.lib-dem-area {
+  stroke: $liberal-democrat;
+  fill: $liberal-democrat;
+}
+
+.ukip-area {
+  stroke: $ukip;
+  fill: $ukip;
+}
+
+.snp-area {
+  stroke: $snp;
+  fill: $snp;
+}
+
+.pc-area {
+  stroke: $plaid-cymru;
+  fill: $plaid-cymru;
+}
+
+.green-area {
+  stroke: $green;
+  fill: $green;
+}
+
+.other-party-area,
+.dup-area,
+.sdlp-area {
+  stroke: $other;
+  fill: $other;
+}

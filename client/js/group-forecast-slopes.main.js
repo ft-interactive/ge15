@@ -4,6 +4,7 @@
 
 var d3 = require('d3');
 var debounce = require('lodash/function/debounce');
+var parties = require('uk-political-parties');
 
 var mapData = '/uk/2015/data/simplemap.json';
 
@@ -12,9 +13,9 @@ var doc = document;
 doc.graphics = {};
 doc.graphics.slope = require('./slope-chart/index.js');
 doc.graphics.constituencyLocator = require('./locator-map/constituency-locator.js');
+doc.graphics.tableDecorator = require('./table/projections-decorator.js');
 
 doc.data = {};
-doc.data.partyShortNames = require('./data/party-data.js').shortNames;
 doc.data.constituencyLookup = {};
 
 battlegrounds.forEach( function(battle){
@@ -59,20 +60,20 @@ function main(){
     .width(slopeWidth)
     .radius(dotRadius)
     .endClass(function(d){
-      return ' end-point ' + d.data.party;
+      return ' end-point ' + parties.className(d.data.party);
     })
     .startClass(function(d){
-      return d.data.party + ' start-point';
+      return parties.className(d.data.party) + ' start-point';
     })
     .slopeClass(function(d){
-      return d.data.party + ' slope';
+      return parties.className(d.data.party) + ' slope';
     })
     .labelClass(function(d){
-      return d.data.party + ' slope-label';
+      return parties.className(d.data.party) + ' slope-label';
     })
     .label(function(d,i){
       if( d.data.winner ){
-        return document.data.partyShortNames[d.data.party];
+        return parties.shortName(d.data.party);
       }
     })
     .scale(slopeScale);
@@ -161,9 +162,12 @@ function main(){
     });
   }
 
+  //decorate the results table
+  d3.select('.result-table')
+    .call(doc.graphics.tableDecorator);
+
   //load and draw the map
   d3.json(mapData,function(map){
-    console.log(map);
     d3.selectAll('.constituency-group__locator-map-ratio').datum( function(){
       return battlegrounds[this.dataset.group];
     }).each(function(g,i){
