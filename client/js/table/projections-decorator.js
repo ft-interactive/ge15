@@ -95,11 +95,3 @@ module.exports = function(parent){
     return parent;
   }
 };
-
-
-
-
-function valueDisplay(parent){
-  console.log('value',  parent);
-  return parent;
-}
