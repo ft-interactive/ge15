@@ -8,7 +8,7 @@ function predictedWinner(record){
   var maxValue = 0;
   var winningParty = '';
   partylist.forEach(function(p){
-    var value = Number(record[parties.fullName(p)]);
+    var value = Number(record[parties.electionForecastName(p)]);
     maxValue = Math.max(value, maxValue);
     if(maxValue === value){
       winningParty = p;
@@ -50,8 +50,8 @@ function resultNormalise(r) {
 function predictionNormalise(r){
   var abbreviated = {};
   for(var item in r){
-    if(r.hasOwnProperty(item) && parties.fullNameToCode(item)){
-      abbreviated[ parties.fullNameToCode(item) ] = r[item];
+    if(r.hasOwnProperty(item) && parties.electionForecastToCode(item)){
+      abbreviated[ parties.electionForecastToCode(item) ] = r[item];
     }
   }
   return abbreviated;
