@@ -11,7 +11,7 @@ function* home(next) {
     coalitions: data.coalitions,
     updated: data.updated,
     page: {
-      title: 'Probable Coalitions',
+      title: 'Probable coalitions',
       summary: 'The likelihood of parties being in the next government.'
     }
   });
