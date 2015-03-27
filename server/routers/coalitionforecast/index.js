@@ -7,7 +7,14 @@ var coalitionData = require('../data/').coalitionForecastData;
 
 function* home(next) {
   var data = yield coalitionData();
-  yield this.render('coalition-forecast', data); // jshint ignore:line
+  yield this.render('coalition-forecast', { // jshint ignore:line
+    coalitions: data.coalitions,
+    updated: data.updated,
+    page: {
+      title: 'Probable Coalitions',
+      summary: 'The likelihood of parties being in the next government.'
+    }
+  });
   yield next;
 }
 

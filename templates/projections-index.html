@@ -3,21 +3,17 @@
 
 {% set stylesheet = 'pages/projections.css' %}
 
-{% block article_body %}
-<div class="overview o-grid-row" data-o-grid-colspan="6">
-  <p>Using data from a team of academics this page shows a projected election result for the country as a whole and for individual constituencies in key battlegrounds.</p>
-</div>
-<div class="overview o-grid-row" data-o-grid-colspan="6">
-  {% set table_data = overview %}
-  {% include "./result-table.html" %}
-</div>
-<div class="overview o-grid-row" data-o-grid-colspan="6">
-</div>
-</div>
-  <div class="figure o-grid-row" data-o-grid-colspan="12">
+{% set view.article = {center: true} %}
+{% set table_data = overview %}
 
-    <nav class="battle-nav figure__body o-grid-row">
-      <p class="figure__subtitle" data-o-grid-colspan="12 M3 L3">As the UK&rsquo;s two-party system fragments, four distinct types of contest will decide control of Parliament on May 7.</p>
+{% block article_body %}
+
+  {% include "./result-table.html" %}
+
+  <div class="figure o-grid-row">
+    <h2 class="article-body__subhead figure__title">The battlegrounds</h2>
+    <p class="figure__subtitle" data-o-grid-colspan="12 M3 L3">As the UK&rsquo;s two-party system fragments, four distinct types of contest will decide control of Parliament on May&nbsp;7.</p>
+    <nav class="battle-nav figure__body clearfix">
       <a href="#snp" class="battle-nav__item fauxlink" data-o-grid-colspan="12 M2">
         <span class="battle-nav__logo">
           <img class="snp" src="//www.ft.com/ig/static/sites/2014/ge15/snp.png" alt="">
@@ -45,12 +41,12 @@
     </nav>
   </div>
 
-  <div id="slope-groups" class="o-grid-row" style="min-height:800px;">
+  <div id="slope-groups" style="min-height:800px;">
     {% for group in groups %}
-      <div class="figure constituency-group constituency-group--slope o-grid-row" data-o-grid-colspan="12">
+      <div class="figure constituency-group constituency-group--slope o-grid-row">
         <h2 class="article-body__subhead figure__title">{{ group.headline }}</h2>
-        <div class="o-grid-row" data-o-grid-colspan="12"><p>{{ group.description }}</p></div>
-        <div class="figure__body o-grid-row">
+        <div><p>{{ group.description }}</p></div>
+        <div class="figure__body">
           <div data-o-grid-colspan="12 S4 M3 L3">
             <div class="o-grid-row constituency-group__details">
 
@@ -76,11 +72,10 @@
         </div>
       </div>
     {% endfor %}
-
   </div>
-<div>
-  <p>Data source <a href="http://www.electionforecast.co.uk">electionforecast.co.uk</a></p>
-</div>
+  <div class="o-grid-row">
+    <p>Data source <a href="http://www.electionforecast.co.uk">electionforecast.co.uk</a></p>
+  </div>
 {% endblock %}
 
 {% block scripts %}

@@ -1,5 +1,3 @@
-@import "graphics/party-elements";
-
 .result-table {
   width: 100%;
 }
@@ -24,7 +22,7 @@
 }
 
 .grid-table-data {
-  font-size: 0.9em;
+//  font-size: 0.9em;
 }
 
 .none {
@@ -50,11 +48,4 @@
 
 .col-header {
   font-weight: 200;
-  font-size: 1.2em;
-}
-
-.overview p {
-  text-align: center;
-  margin: auto;
-  font-size: 1.1em;
 }

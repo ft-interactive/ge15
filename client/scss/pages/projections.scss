@@ -1,7 +1,9 @@
 @import "o-grid/main";
+@import "o-fonts/main";
 @import "o-colors/main";
 
 @import "var";
-@import "components/battle-nav";
 
+@import "graphics/party-elements";
+@import "components/battle-nav";
 @import "components/results-table";

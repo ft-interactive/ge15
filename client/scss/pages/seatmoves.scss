@@ -15,15 +15,6 @@
 svg {
   font-family: $font-body;
 }
-
-.article-header__headline {
-  border-bottom: 1px solid oColorsGetPaletteColor(pink-tint4);
-  margin: -0.6em 5px 0;
-  @include oGridRespondTo(S) {
-    margin-bottom: 0.3em;
-  }
-}
-
 .conservatives {
   fill: $conservative;
   stroke: $conservative;
@@ -169,11 +160,6 @@ svg {
   font-size: 0.7em;
   border-top: 1px solid oColorsGetPaletteColor(pink-tint4);
   margin-top: 2em;
-  padding-top: 1em;
-  max-width: 670px;
-}
-
-.description {
   padding-top: 1em;
   max-width: 670px;
 }
