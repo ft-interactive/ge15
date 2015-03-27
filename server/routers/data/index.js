@@ -58,7 +58,7 @@ var indexByONSid = _.flow(tsv, _.partial(_.indexBy, _, 'ons_id'));
 var battlegroundSpreadsheets = [
   ['http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/battlegrounds.tsv', tsv],
   ['http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/resultnow.tsv', indexById],
-  [forecast.prediction, indexById],
+  [forecast.prediction + '?vkey', indexById],
   ['http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/coordinates.tsv', indexById],
   ['http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/details.tsv', indexByONSid]
 ];
