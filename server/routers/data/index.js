@@ -14,10 +14,10 @@ var tsv = _.ary(d3.tsv.parse.bind(d3), 1);
 var maxAge = 1000 * 60; // 1 minute
 
 var forecast = {
-  seats:'http://interactivegraphics.ft-static.com/data/electionforecast-co-uk/tsv/seats-latest',
-  votes:'http://interactivegraphics.ft-static.com/data/electionforecast-co-uk/tsv/votes-latest',
-  probability:'http://interactivegraphics.ft-static.com/data/electionforecast-co-uk/tsv/probability-latest',
-  prediction:'http://interactivegraphics.ft-static.com/data/electionforecast-co-uk/tsv/prediction-latest',
+  seats:'http://interactivegraphics.ft-static.com/data/electionforecast-co-uk/tsv/seats-latest.tsv',
+  votes:'http://interactivegraphics.ft-static.com/data/electionforecast-co-uk/tsv/votes-latest.tsv',
+  probability:'http://interactivegraphics.ft-static.com/data/electionforecast-co-uk/tsv/probability-latest.tsv',
+  prediction:'http://interactivegraphics.ft-static.com/data/electionforecast-co-uk/tsv/prediction-latest.tsv',
   updated:'http://interactivegraphics.ft-static.com/data/electionforecast-co-uk/updated.json'
 };
 
