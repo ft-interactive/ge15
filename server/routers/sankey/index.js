@@ -10,7 +10,8 @@ function* home(next) {
   yield this.render('sankey-index', { // jshint ignore:line
     forecast: forecast,
     page: {
-      title: 'Seat Moves'
+      title: 'Win, lose or hold',
+      summary: 'Predicted seat changes'
     }
   });
   yield next;
