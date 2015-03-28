@@ -1,4 +1,9 @@
 .constituency-group {
+
+  &__slopes {
+    padding-top: 1em;
+  }
+
   &__slope {
     max-width: 110px;
     min-width: 90px;
@@ -6,36 +11,14 @@
     @include oGridRespondTo(S) {
       margin-bottom: 0.75em;
     }
-
-    // o-grid floats the last
-    // column right. but in this
-    // case we need a fluid tile layout
-    & + &:last-child {
-      float: left;
-    }
   }
 
   &__details {
-    p {
-      @include oGridRemoveGutters();
-      line-height: 1.15;
-      @include oGridRespondTo(S) {
-        @include oGridRemoveGutters('left');
-      }
-    }
-    &.o-grid-row {
-      margin-left: auto;
-      margin-right: auto;
-    }
+    padding-top: 1em;
+    padding-bottom: 0;
   }
 
   &__locator-map {
-    @include oGridRemoveGutters('left');
-    margin-bottom: 0.5em;
-    float: left !important; // override o-grid behaviour
-    @include oGridRespondTo(L) {
-      float: right !important; // override o-grid behaviour
-    }
     &-ratio {
       line-height: 0;
       position: relative;
@@ -78,9 +61,6 @@
 }
 
 .constituency-group__summary-table {
-  @include oGridRemoveGutters('left');
-  float: right;
-  margin-bottom: 0.5em;
 
   @include oGridRespondTo(S) {
     padding-right: 10px;
