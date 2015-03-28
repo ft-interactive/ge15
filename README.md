@@ -1,4 +1,4 @@
-# UK 2015 election site [![Codeship Status for ft-interactive/ge15](https://codeship.com/projects/6ffe5620-6440-0132-ff8b-6e8486426495/status)](https://codeship.com/projects/52531)
+# UK 2015 election site [![Codeship Status for ft-interactive/ge15](https://codeship.com/projects/ccdfeaa0-b78b-0132-419f-769425029524/status)](https://codeship.com/projects/71281)
 
 ## Initial setup
 
@@ -102,11 +102,11 @@ $ npm run local
 
 ## Build and Deploy
 
-You cannot use Heroku's git interface for deployment, you also cannot deploy directly to production. Instead we use [Haikro](https://github.com/matthew-andrews/haikro) to make the slug on the [CI server (Codeship)](https://codeship.com/projects/52531) and the deploy to Heroku.
+You cannot use Heroku's git interface for deployment, you also cannot deploy directly to production. Instead we use [Haikro](https://github.com/matthew-andrews/haikro) to make the slug on the [CI server (Codeship)](https://codeship.com/projects/71281) and the deploy to Heroku.
 
 ### Codeship (Continuous Integration / CI)
 
-[Codeship](https://codeship.com/projects/52531) watches for git commits on ANY branch and builds the app. The build will pass or fail. The result will be reported on the "election-2015" slack channel.
+[Codeship](https://codeship.com/projects/71281) watches for git commits on ANY branch and builds the app. The build will pass or fail. The result will be reported on the "election-2015" slack channel.
 
 All successful build on the master branch will get deployed to the [CI instance of the app](http://uk-election-2015-ci.herokuapp.com/). When what you see in this app is good enough to go live then you need to promote to the CI app to Production:
 
