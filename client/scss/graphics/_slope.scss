@@ -62,6 +62,7 @@
     stroke: $green;
   }
 
+  .other-party, /* TODO: factor out all this party stuff so we're always referencing _party_elements.scss */
   .other {
     fill: $other;
     stroke: $other;

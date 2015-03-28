@@ -81,8 +81,8 @@ function main(){
 
   var slopeContainers = d3.selectAll('.constituency-group__slope-graphic').datum( function(){
       var datum = doc.data.constituencyLookup[this.dataset.constituency];
-    datum.axes = (Number(this.dataset.order) === 0);
-    return datum;
+      datum.axes = (Number(this.dataset.order) === 0);
+      return datum;
   });
 
   slopeContainers.append('svg').attr({
@@ -118,7 +118,7 @@ function main(){
           .attr({
             'class':'axis-label'
           })
-          .text(function(d){return d;});
+          .text(function(d){ return d; });
       }
       d3.select(this).selectAll('g.slope')
         .data( layout(d.parties) )
