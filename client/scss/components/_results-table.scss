@@ -1,5 +1,11 @@
 .result-table {
   width: 100%;
+  @include oGridRespondTo($until: M) {
+    font-size: 0.9em;
+  }
+  @include oGridRespondTo($until: L) {
+    font-size: 0.95em;
+  }
 }
 
 .numeric-column {
@@ -32,7 +38,11 @@
 /*SVG stuff*/
 
 .bar-label {
-  font-size: 10;
+  font-size: 0.8em;
+}
+
+.party-bar {
+  stroke: none;
 }
 
 .bar-marker {
