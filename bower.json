@@ -13,7 +13,7 @@
   "dependencies": {
     "o-colors": "~2.4.4",
     "sass-mq": "~3.1.0",
-    "o-fonts": "~1.6.4",
+    "o-fonts": "~1.6.7",
     "scut": "~1.0.1",
     "position": "~0.2.14",
     "headroom.js": "https://github.com/WickyNilliams/headroom.js.git#^v0.7.0",
