@@ -53,19 +53,31 @@ function coalitionForecastData() {
   });
 }
 
+function mapArticleURLbyID(rows) {
+  return _.reduce(rows,function(o, d){
+    if (d.articleurl) {
+      o[d.id] = d.articleurl;
+    }
+    return o;
+  }, {});
+}
+
 var indexById = _.flow(tsv, _.partial(_.indexBy, _, 'id'));
 var indexByONSid = _.flow(tsv, _.partial(_.indexBy, _, 'ons_id'));
 var battlegroundSpreadsheets = [
-  ['http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/battlegrounds.tsv', tsv],
-  ['http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/resultnow.tsv', indexById],
-  [forecast.prediction + '?vkey', indexById],
-  ['http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/coordinates.tsv', indexById],
-  ['http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/details.tsv', indexByONSid]
+  {uri: 'http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/battlegrounds.tsv',
+            transform: tsv, maxAge: maxAge},
+  {uri: 'http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/resultnow.tsv',
+            transform: indexById, maxAge: maxAge},
+  {uri: forecast.prediction + '?vkey',
+            transform: indexById, maxAge: maxAge},
+  {uri: 'http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/coordinates.tsv',
+            transform: indexById, maxAge: maxAge},
+  {uri: 'http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/details.tsv',
+            transform: indexByONSid, maxAge: maxAge},
+  {uri: 'http://bertha.ig.ft.com/view/publish/gss/0Ak6OnV5xs-BudHhZMTFlTTdITjFLS01IZnRvUlpIcWc/ConstituencyStories',
+            transform: _.flow(JSON.parse, mapArticleURLbyID), maxAge: maxAge}
 ];
-
-function endpointToRequest(endpoint) {
-  return request({uri: endpoint[0], transform: endpoint[1], maxAge: maxAge});
-}
 
 var battlegroundDataCache = {
   response: null,
@@ -78,7 +90,7 @@ function battlegroundData() {
     return Promise.resolve(battlegroundDataCache.response);
   }
 
-  var promises = battlegroundSpreadsheets.map(endpointToRequest);
+  var promises = battlegroundSpreadsheets.map(request.bind(request));
   return Promise.all(promises)
                 .then(_.spread(slopeDataParse))
                 .then(function(response) {

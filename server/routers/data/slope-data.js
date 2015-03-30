@@ -129,7 +129,7 @@ function groupOverview(group){
 
 
 
-module.exports = function(groups, current, prediction, locations, details){
+module.exports = function(groups, current, prediction, locations, details, articles){
 
   return groups.map(function(d) {
     var remap = false;
@@ -156,6 +156,7 @@ module.exports = function(groups, current, prediction, locations, details){
         region:details[constituencyID].region_name,
         holdernow:currentHolder,
         holderpredicted:forecastWinner,
+        article: articles[constituencyID],
         coords: [
           locations[constituencyID].lon,
           locations[constituencyID].lat ],
