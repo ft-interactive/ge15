@@ -21,8 +21,8 @@ function* home(next) {
 
   yield this.render('projections-index', { // jshint ignore:line
     page: {
-      title: 'The four key general election battles',
-      summary: 'Using data from a team of academics this page shows a projected election result for the country as a whole and for individual constituencies in key battlegrounds.'
+      title: 'The 4 key UK general election battles',
+      summary: 'Four different types of local contest will shape the most uncertain UK general election in memory'
     },
     groups: battlegrounds,
     overview: forecast
