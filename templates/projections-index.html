@@ -10,40 +10,39 @@
 
   {% include "./result-table.html" %}
 
-  <div class="figure o-grid-row">
-    <h2 class="article-body__subhead figure__title">The battlegrounds</h2>
-    <p class="figure__subtitle o-grid-remove-gutters--left" data-o-grid-colspan="12 M3 L3">As the UK&rsquo;s two-party system fragments, four distinct types of contest will decide control of Parliament on May&nbsp;7.</p>
-    <nav class="battle-nav figure__body clearfix">
-      <a href="#scotland" class="battle-nav__item fauxlink" data-o-grid-colspan="12 M2">
-        <span class="battle-nav__logo">
-          <img class="snp" src="//www.ft.com/ig/static/sites/2014/ge15/snp.png" alt="">
-        </span>
-        <span class="fauxlink__target">SNP target&nbsp;seats</span>
-      </a>
-      <a href="#marginals" class="battle-nav__item fauxlink" data-o-grid-colspan="12 M2">
-        <span class="battle-nav__logo">
-          <img class="labcon" src="//www.ft.com/ig/static/sites/2014/ge15/lab_con.png" alt="">
-        </span>
-        <span class="fauxlink__target">Lab-Con marginals</span>
-      </a>
-      <a href="#ukip" class="battle-nav__item fauxlink" data-o-grid-colspan="12 M2">
-        <span class="battle-nav__logo">
-          <img class="ukip" src="//www.ft.com/ig/static/sites/2014/ge15/ukip.png" alt="">
-        </span>
-        <span class="fauxlink__target">Ukip target&nbsp;seats</span>
-      </a>
-      <a href="#libdem" class="battle-nav__item fauxlink" data-o-grid-colspan="12 M2">
-        <span class="battle-nav__logo">
-          <img class="libdem" src="//www.ft.com/ig/static/sites/2014/ge15/libdem.png" alt="">
-        </span>
-        <span class="fauxlink__target">Lib&nbsp;Dem seats at&nbsp;risk</span>
-      </a>
-    </nav>
+  <div class="o-grid-row article-body__copy">
+    <p>Using the latest available data from <a href="http://electionforecast.co.uk/">ElectionForecast.co.uk</a>, team of researchers using polling data to forecast the May 7 general election, this graphic shows the likely national outcome.</p>
+    <p>With the UK&rsquo;s traditional two-party system fragmenting, this election will resemble four very different contests in various parts of the country. </p>
+    <p>Using the ElectionForecast.co.uk&rsquo;s <a href="http://electionforecast.co.uk/tables/predicted_vote_by_seat.html">constituency-level projections</a>, to take a closer look at the likely outcome in these four types of local races: SNP and Ukip targets, Tory-Labour marginals and seats the Liberal Democrats are at risk of losing.</p>
+    <p>Each constituency&rsquo;s miniature chart shows the result of 2010 general election (or any subsequent by-election) and compares this to the current projection of the outcome.</p>
   </div>
 
-
-
-
+  <nav class="battle-nav o-grid-row">
+    <a href="#scotland" class="battle-nav__item fauxlink">
+      <span class="battle-nav__logo">
+        <img class="snp" src="//www.ft.com/ig/static/sites/2014/ge15/snp.png" alt="">
+      </span>
+      <span class="fauxlink__target">SNP target&nbsp;seats</span>
+    </a>
+    <a href="#marginals" class="battle-nav__item fauxlink">
+      <span class="battle-nav__logo">
+        <img class="labcon" src="//www.ft.com/ig/static/sites/2014/ge15/lab_con.png" alt="">
+      </span>
+      <span class="fauxlink__target">Lab-Con marginals</span>
+    </a>
+    <a href="#ukip" class="battle-nav__item fauxlink">
+      <span class="battle-nav__logo">
+        <img class="ukip" src="//www.ft.com/ig/static/sites/2014/ge15/ukip.png" alt="">
+      </span>
+      <span class="fauxlink__target">Ukip target&nbsp;seats</span>
+    </a>
+    <a href="#libdem" class="battle-nav__item fauxlink">
+      <span class="battle-nav__logo">
+        <img class="libdem" src="//www.ft.com/ig/static/sites/2014/ge15/libdem.png" alt="">
+      </span>
+      <span class="fauxlink__target">Lib&nbsp;Dem seats at&nbsp;risk</span>
+    </a>
+  </nav>
 
   <div id="slope-groups" style="min-height:800px;">
     {% for group in groups %}
@@ -76,7 +75,13 @@
                 {% for constituency in group.constituencies | sortBy('name') %}
                 <div class="constituency-group__slope" data-o-grid-colspan="4 M3 L1 XL1">
                   <div class="constituency-group__slope-graphic" data-constituency="{{constituency.id}}" data-order="{{loop.index0}}"></div>
-                  <div class="constituency-group__constituency-name">{{constituency.name}}</div>
+                  <div class="constituency-group__constituency-name">
+                  {% if constituency.article %}
+                    <a href="{{constituency.article}}">{{constituency.name}}</a>
+                  {% else %}
+                    {{constituency.name}}
+                  {% endif %}
+                  </div>
                 </div>
                 {% endfor %}
               </div>

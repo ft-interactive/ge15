@@ -1,7 +1,10 @@
 .constituency-group {
 
-  &__slopes {
+  & &__slopes {
     padding-top: 1em;
+    @include oGridRespondTo($until:S) {
+      padding-left: 10px;
+    }
   }
 
   &__slope {

@@ -39,6 +39,7 @@ function cachedRequest(options) {
     options = { uri: options };
   }
 
+  options = _.assign({}, options);
   options.uri = options.uri || options.url;
   options.method = options.method ? options.method.toUpperCase() : 'GET';
   options.headers = options.headers || {};
@@ -104,7 +105,7 @@ function cachedRequest(options) {
 
   debug('Requesting from origin', key);
 
-  return r(options).then(function(response, a, b) {
+  return r(options).then(function(response) {
 
     response.body = transform(response.body, response);
 

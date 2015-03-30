@@ -1,5 +1,7 @@
 .result-table {
   width: 100%;
+  margin-bottom: 2em;
+
   @include oGridRespondTo($until: M) {
     font-size: 0.9em;
   }
