@@ -16,11 +16,13 @@
     shape-rendering: crispEdges;
   }
 
-  .axis-label {
-    fill-opacity: 0.5;
-    font-size: 10px;
-    text-rendering: geometricPrecision;
-  }
+   .axis-label {
+      fill-opacity: 0;
+    }
+
+
+
+
 
   .end-point,
   .start-point {
@@ -110,4 +112,10 @@
     }
   }
 
+}
+
+.constituency-group__slope-graphic[data-order="0"] .axis-label {
+  fill-opacity: 0.5;
+  font-size: 10px;
+  text-rendering: geometricPrecision;
 }
