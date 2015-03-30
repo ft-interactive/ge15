@@ -28,12 +28,15 @@
     line-height: 1.15;
   }
 
-  &--center &__summary {
-    margin-left: auto;
+  &__standfirst {
+
   }
 
+
+
   &__byline,
-  &__dateline {
+  &__dateline,
+  &__date-modified {
     @include oColorsFor(muted, text);
     margin-top: 0;
     margin-bottom: 0;
@@ -47,8 +50,15 @@
 
   }
 
-  &__standfirst {
+  &__date-modified {
+    margin: 1em auto 1em 0;
+    font-size: 0.75em;
+  }
 
+  &--center &__summary,
+  &--center &__standfirst,
+  &--center &__date-modified {
+    margin-left: auto;
   }
 
 }

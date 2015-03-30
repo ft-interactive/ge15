@@ -7,10 +7,12 @@ var battlegroundData = require('../data/').battlegroundData;
 var forecastData = require('../data/').forecastData;
 var parties = require('uk-political-parties');
 var debug = require('debug')('projections-index');
+var filters = require('../../util/filters');
 
 function* home(next) {
   var battlegrounds = yield battlegroundData();
   var forecast = yield forecastData('seats');
+  var updated = forecast.updated;
 
   debug(forecast);
 
@@ -22,7 +24,8 @@ function* home(next) {
   yield this.render('projections-index', { // jshint ignore:line
     page: {
       title: 'The 4 key UK general election battles',
-      summary: 'Four different types of local contest will shape the most uncertain UK general election in memory'
+      summary: 'Four different types of local contest will shape the most uncertain UK general election in memory',
+      dateModified: updated instanceof Date ? 'Updated daily. Last updated ' + filters.ftdate(updated) : ''
     },
     groups: battlegrounds,
     overview: forecast
