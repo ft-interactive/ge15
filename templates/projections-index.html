@@ -14,7 +14,7 @@
     <h2 class="article-body__subhead figure__title">The battlegrounds</h2>
     <p class="figure__subtitle o-grid-remove-gutters--left" data-o-grid-colspan="12 M3 L3">As the UK&rsquo;s two-party system fragments, four distinct types of contest will decide control of Parliament on May&nbsp;7.</p>
     <nav class="battle-nav figure__body clearfix">
-      <a href="#snp" class="battle-nav__item fauxlink" data-o-grid-colspan="12 M2">
+      <a href="#scotland" class="battle-nav__item fauxlink" data-o-grid-colspan="12 M2">
         <span class="battle-nav__logo">
           <img class="snp" src="//www.ft.com/ig/static/sites/2014/ge15/snp.png" alt="">
         </span>
@@ -48,9 +48,7 @@
   <div id="slope-groups" style="min-height:800px;">
     {% for group in groups %}
       <div class="figure constituency-group constituency-group--slope o-grid-row">
-        <h2 class="article-body__subhead figure__title">{{ group.headline }}</h2>
-
-
+        <h2 id="{{ group.slug }}" class="article-body__subhead figure__title">{{ group.headline }}</h2>
 
         <div class="figure__body">
           <div class="o-grid-row">
@@ -65,7 +63,6 @@
             </div>
 
           </div>
-
 
           <div class="o-grid-row">
 
