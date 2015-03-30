@@ -1,2 +1,15 @@
-<script>var cutsTheMustard = ('getComputedStyle' in window);if (cutsTheMustard) {document.documentElement.className = document.documentElement.className.replace(/\bcore\b/g, 'enhanced');}</script>
-<style>.core .o--if-js { display: none !important; }.enhanced .o--if-no-js { display: none !important; }</style>
+<script>
+var cutsTheMustard = ('getComputedStyle' in window);
+
+if (cutsTheMustard) {
+  document.documentElement.className = document.documentElement.className.replace(/\bcore\b/g, 'enhanced');
+}
+</script>
+<style>
+.core .o--if-js {
+  display: none !important;
+}
+.enhanced .o--if-no-js {
+  display: none !important;
+}
+</style>
