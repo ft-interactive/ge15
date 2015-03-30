@@ -37,7 +37,7 @@
   &__constituency-name {
     height: 36px;
     max-width: 90%;
-    line-height: 1.05;
+    line-height: 1.15;
     font-size: 0.6em;
     color: lighten(oColorsGetColorFor(body, text), 10%);
     @include oGridRespondTo(S) {
@@ -47,6 +47,10 @@
     @include oGridRespondTo(M) {
       height: 34px;
       color: lighten(oColorsGetColorFor(body, text), 25%);
+    }
+
+    a {
+      text-decoration: underline;
     }
   }
 
