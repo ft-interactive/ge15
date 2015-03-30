@@ -114,7 +114,7 @@ function forecastData(item) {
   .then(_.spread(function(data, updated) {
     return {
       data: data,
-      updated: updated.updated,
+      updated: new Date(updated.updated),
       source: source
     };
   }));

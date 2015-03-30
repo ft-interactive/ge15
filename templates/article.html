@@ -3,14 +3,17 @@
 {% set view.layout.classes = ['one', 'two', 'three'] %}
 
 {% block content %}
-<article class="article" itemscope itemtype="http://schema.org/Article">
+<article class="article" itemscope itemtype="http://schema.org/NewsArticle">
   <header class="article-header {%if view.article.center%}article-header--center {% endif %}o-grid-row" data-o-grid-colspan="12">
     {% block article_header %}
     {% if page.title %}
     <h1 class="article-header__headline" itemprop="name">{{ page.title }}</h1>
     {% endif %}
     {% if page.summary %}
-    <p class="article-header__summary" itemprop="name">{{ page.summary }}</p>
+    <p class="article-header__summary" itemprop="description">{{ page.summary }}</p>
+    {% endif %}
+    {% if page.dateModified %}
+    <p class="article-header__date-modified" itemprop="dateModified">{{ page.dateModified }}</p>
     {% endif %}
     {% endblock %}
   </header>

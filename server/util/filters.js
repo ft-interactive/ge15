@@ -6,6 +6,7 @@ var n = require('numeral')();
 var _ = require('lodash');
 var parties = require('uk-political-parties');
 var debug = require('debug')('filters');
+var d3 = require('d3');
 
 exports.times = function(val, num) {
   return S(val).times(num).s;
@@ -97,9 +98,11 @@ exports.partyFullName = function(str){
   return parties.fullName(str);
 };
 
-exports.ftdate = function(date){
-  //var format = d3.time.format("%B %e, %Y %I:%M %p");
-  return 'date';//format(date);
+exports.ftdate = function(date) {
+  var format = d3.time.format("%B %e, %Y %I:%M %p");
+  return format(date).replace(/(AM|PM)$/, function($1){
+    return $1 ? $1.toLowerCase() : '';
+  });
 };
 
 exports.change = function(value){
