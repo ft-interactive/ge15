@@ -1,14 +1,25 @@
 .battle-nav {
 
+  max-width: 850px;
+  margin: 0 auto;
+  font-size: 0.9em;
+
+  @include oGridRespondTo(M) {
+    display: table;
+  }
+
   &__item {
     border: 0 solid $line-color; // tint 2
     border-bottom-width: $line-width--s;
+    display: block;
     @include oGridRespondTo(M) {
       border-bottom-width: 0;
-      border-left-width: $line-width--s;
       text-align: center;
-      padding-left: 5px;
-      padding-right: 5px;
+      padding: 0 25px;
+      display: table-cell;
+      &:not(:first-child) {
+        border-left-width: $line-width--s;
+      }
     }
   }
 
