@@ -20,7 +20,7 @@
 
 </div>
 
-  <nav class="battle-nav o-grid-row">
+  <nav class="battle-nav o-grid-row" data-o-grid-colspan="12">
     <a href="#scotland" class="battle-nav__item fauxlink">
       <span class="battle-nav__logo">
         <img class="snp" src="//www.ft.com/ig/static/sites/2014/ge15/snp.png" alt="">
@@ -47,9 +47,9 @@
     </a>
   </nav>
 
-  <div id="slope-groups" style="min-height:800px;">
+  <div id="slope-groups" style="min-height:800px;" class="o-grid-row">
     {% for group in groups %}
-      <div class="figure constituency-group constituency-group--slope o-grid-row">
+      <div class="figure constituency-group constituency-group--slope" data-o-grid-colspan="12">
         <h2 id="{{ group.slug }}" class="article-body__subhead figure__title">{{ group.headline }}</h2>
 
         <div class="figure__body">
@@ -98,9 +98,6 @@
     {% endfor %}
   </div>
 
-  <div class="o-grid-row">
-    <p>Data source <a href="http://www.electionforecast.co.uk">electionforecast.co.uk</a></p>
-  </div>
 {% endblock %}
 
 {% block scripts %}

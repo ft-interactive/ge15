@@ -45,7 +45,7 @@ function main(){
   var slopeWidth = width - (margin.left + margin.right);
 
   var slopeScale = d3.scale.linear()
-    .domain([0,70])
+    .domain([0,76])
     .range([slopeHeight,0]);
 
   var layout = graphics.slope.layout()
