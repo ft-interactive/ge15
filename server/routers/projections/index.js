@@ -25,7 +25,7 @@ function* home(next) {
     page: {
       title: 'The 4 key UK general election battles',
       summary: 'Four different types of local contest will shape the most uncertain UK general election in memory',
-      dateModified: updated instanceof Date ? 'Updated daily. Last updated ' + filters.ftdate(updated) : ''
+      dateModified: updated instanceof Date ? 'Last updated ' + filters.ftdate(updated) : ''
     },
     groups: battlegrounds,
     overview: forecast
