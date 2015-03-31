@@ -8,15 +8,19 @@ var forecastData = require('../data/').forecastData;
 var parties = require('uk-political-parties');
 var debug = require('debug')('projections-index');
 var filters = require('../../util/filters');
+var _ = require('lodash');
 
 function* home(next) {
-  var battlegrounds = yield battlegroundData();
-  var forecast = yield forecastData('seats');
-  var updated = forecast.updated;
 
-  debug(forecast);
+  var data = _.zipObject(['battlegrounds', 'forecast'], yield Promise.all([
+      battlegroundData(),
+      forecastData('seats')
+  ]));
+  var updated = data.forecast.updated;
 
-  forecast = forecast.data.map(function(d){
+  debug(data.forecast);
+
+  data.forecast = data.forecast.data.map(function(d){
     d.Party = parties.electionForecastToCode(d.Party);
     return d;
   });
@@ -27,8 +31,8 @@ function* home(next) {
       summary: 'Four different types of local contest will shape the most uncertain UK general election in memory',
       dateModified: updated instanceof Date ? 'Updated daily. Last updated ' + filters.ftdate(updated) : ''
     },
-    groups: battlegrounds,
-    overview: forecast
+    groups: data.battlegrounds,
+    overview: data.forecast
   });
   yield next;
 }

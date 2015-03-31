@@ -123,7 +123,9 @@ function groupOverview(group){
   }
   return {
     total:summary.total,
-    table:tableData.sort(function(a,b){return b.aggregate - a.aggregate})
+    table:tableData.sort(function(a,b){
+      return b.aggregate - a.aggregate
+    })
   };
 }
 
@@ -132,30 +134,20 @@ function groupOverview(group){
 module.exports = function(groups, current, prediction, locations, details, articles){
 
   return groups.map(function(d) {
-    var remap = false;
-    if (d['constituencies..list']) {
-      d.constituencies = d['constituencies..list'].split(',');
-      delete d['constituencies..list'];
-      remap = true;
-    }
 
-    if (d.bucket) {
-      d.headline = d.bucket;
-      delete d.bucket;
-    }
-
-    d.constituencies = d.constituencies.map(function(e){
+    d.constituencies = d.constituencies.map(function(e) {
+      var remap = typeof e === 'string';
       var constituencyID = remap ? e.trim() : e.id;
       var predicted = prediction[constituencyID];
       var forecastWinner = predictedWinner(predicted);
       var currentHolder = current[constituencyID].winner.toLowerCase();
 
       e = {
-        id:constituencyID,
-        name:details[constituencyID].ft_name,
-        region:details[constituencyID].region_name,
-        holdernow:currentHolder,
-        holderpredicted:forecastWinner,
+        id: constituencyID,
+        name: details[constituencyID].ft_name,
+        region: details[constituencyID].region_name,
+        holdernow: currentHolder,
+        holderpredicted: forecastWinner,
         article: articles[constituencyID],
         coords: [
           locations[constituencyID].lon,
@@ -164,8 +156,11 @@ module.exports = function(groups, current, prediction, locations, details, artic
       };
       return e;
     });
+
     d.partychanges = groupOverview( d.constituencies );
+
     return d;
+
   });
 
 };

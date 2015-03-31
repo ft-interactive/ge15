@@ -11,46 +11,26 @@
   {% include "./result-table.html" %}
 
   <div class="o-grid-row article-body__copy">
-
-<p>Using the latest data from <a href="http://electionforecast.co.uk">ElectionForecast.co.uk</a>, a team of researchers using polling data to forecast the May 7 general election, this graphic shows the likely national outcome.</p>
-
-<p>With the UK&rsquo;s traditional two-party system fragmenting, this election outcome will be determined in four different types of local battle.</p>
-
-<p>Each constituency&rsquo;s miniature chart compares the result of 2010 general election (or any subsequent by-election) to the current <a href="http://www.electionforecast.co.uk/tables/predicted_vote_by_seat.html">constituency-level projection</a> from ElectionForecast.co.uk.</p>
-
-</div>
+    <p>Using the latest data from <a href="http://electionforecast.co.uk">ElectionForecast.co.uk</a>, a team of researchers using polling data to forecast the May 7 general election, this graphic shows the likely national outcome.</p>
+    <p>With the UK&rsquo;s traditional two-party system fragmenting, this election outcome will be determined in four different types of local battle.</p>
+    <p>Each constituency&rsquo;s miniature chart compares the result of 2010 general election (or any subsequent by-election) to the current <a href="http://www.electionforecast.co.uk/tables/predicted_vote_by_seat.html">constituency-level projection</a> from ElectionForecast.co.uk.</p>
+  </div>
 
   <nav class="battle-nav o-grid-row" data-o-grid-colspan="12">
-    <a href="#scotland" class="battle-nav__item fauxlink">
+    {% for group in groups %}
+    <a href="#{{ group.slug }}" class="battle-nav__item fauxlink">
       <span class="battle-nav__logo">
-        <img class="snp" src="//www.ft.com/ig/static/sites/2014/ge15/snp.png" alt="">
+        <img class="snp" src="{{ group.image }}">
       </span>
-      <span class="fauxlink__target">SNP target&nbsp;seats</span>
+      <span class="fauxlink__target">{{ group.name }}</span>
     </a>
-    <a href="#marginals" class="battle-nav__item fauxlink">
-      <span class="battle-nav__logo">
-        <img class="labcon" src="//www.ft.com/ig/static/sites/2014/ge15/lab_con.png" alt="">
-      </span>
-      <span class="fauxlink__target">Lab-Con marginals</span>
-    </a>
-    <a href="#ukip" class="battle-nav__item fauxlink">
-      <span class="battle-nav__logo">
-        <img class="ukip" src="//www.ft.com/ig/static/sites/2014/ge15/ukip.png" alt="">
-      </span>
-      <span class="fauxlink__target">Ukip target&nbsp;seats</span>
-    </a>
-    <a href="#libdem" class="battle-nav__item fauxlink">
-      <span class="battle-nav__logo">
-        <img class="libdem" src="//www.ft.com/ig/static/sites/2014/ge15/libdem.png" alt="">
-      </span>
-      <span class="fauxlink__target">Lib&nbsp;Dem seats at&nbsp;risk</span>
-    </a>
+    {% endfor %}
   </nav>
 
   <div id="slope-groups" style="min-height:800px;" class="o-grid-row">
     {% for group in groups %}
       <div class="figure constituency-group constituency-group--slope" data-o-grid-colspan="12">
-        <h2 id="{{ group.slug }}" class="article-body__subhead figure__title">{{ group.headline }}</h2>
+        <h2 id="{{ group.slug }}" class="article-body__subhead figure__title">{{ group.name }}</h2>
 
         <div class="figure__body">
           <div class="o-grid-row">
@@ -61,7 +41,8 @@
             </div>
 
             <div data-o-grid-colspan="12 S8 M9 L9" class="constituency-group__details">
-              <p>{{ group.description }}</p>
+              {{ group.description | safe }}
+              {%  if group.articleurl %}<p><a href="{{ group.articleurl }}">Related article »</a></p>{% endif %}
             </div>
 
           </div>
