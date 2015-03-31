@@ -5,9 +5,11 @@
 var d3 = require('d3');
 d3.sankey = require('./sankey/d3plugin.js');
 var debounce = require('lodash/function/debounce');
-var party = require('./data/party-data.js');
+var parties = require('uk-political-parties');
+
 var sankeyData = require('./sankey/sankey-data.js');
 var logo = require('./sankey/logo.js');
+
 
 var nodeWidth = 30;
 var updateString = '';
@@ -15,6 +17,9 @@ var updateString = '';
 var timeFormat = d3.time.format("%B %e, %Y %I:%M %p");
 updateString = timeFormat(updateTime);
 var data = sankeyData(forecast);
+
+var partyColour = parties.converter('colour','electionForecast');
+var partyShortName = parties.converter('short','electionForecast');
 
 var resize = debounce(function(e) {
   drawSankey(data);
@@ -201,7 +206,7 @@ function drawSankey(data){
       'data-party':function(d){ return toClass(d.name); }
     })
     .text(function(d) {
-      return partyShortName(d.name) + ': '+d.value ; })
+      return partyShortName(d.name) + ': '+d.value ; }) //TODO
     .filter(function(d) { return d.x < width / 2; })
     .attr({
       'x':6 + sankey.nodeWidth(),
@@ -362,14 +367,4 @@ function selectedStrokeStyle(d){
 
 function gradientName(d){
   return ( toClass(d.source.name) + '--' + toClass(d.target.name) + '-gradient');
-}
-
-function partyColour(p){
-  var partyCode = party.fullNameToCode[p];
-  return party.colours[partyCode];
-}
-
-function partyShortName(d){
-  var partyCode = party.fullNameToCode[d];
-  return party.shortNames[partyCode];
 }
