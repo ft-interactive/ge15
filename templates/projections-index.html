@@ -3,57 +3,78 @@
 
 {% set stylesheet = 'pages/projections.css' %}
 
-{% set view.article = {center: true} %}
 {% set table_data = overview %}
+
+{% block dateModified %}
+<p class="article-header__date-modified" itemprop="dateModified">Data updated continuously. Projections last changed {{ page.dateModified | date('F j, G:i a') }}</p>
+{% endblock %}
 
 {% block article_body %}
 
-  {% include "./result-table.html" %}
+<div class="o-grid-row">
 
-  <div class="o-grid-row article-body__copy">
-    <p>Using the latest data from <a href="http://electionforecast.co.uk">ElectionForecast.co.uk</a>, a team of researchers using polling data to forecast the May 7 general election, this graphic shows the likely national outcome.</p>
-    <p>With the UK&rsquo;s traditional two-party system fragmenting, this election outcome will be determined in four different types of local battle.</p>
-    <p>Each constituency&rsquo;s miniature chart compares the result of 2010 general election (or any subsequent by-election) to the current <a href="http://www.electionforecast.co.uk/tables/predicted_vote_by_seat.html">constituency-level projection</a> from ElectionForecast.co.uk.</p>
+  <div class="figure" data-o-grid-colspan="12">
+    <h2 class="article-body__subhead figure__title">National seat projections</h2>
+    <div class="figure__body o-grid-row">
+      <div data-o-grid-colspan="12 M7 L8">
+      {% include "./result-table.html" %}
+      </div>
+      <div data-o-grid-colspan="12 M5 L4">
+        <p>Using the latest data from <a href="http://electionforecast.co.uk">ElectionForecast.co.uk</a>, a team of researchers using polling data to predict the May&nbsp;7 general election, this graphic shows the likely national outcome.</p>
+        <p><a href="http://www.ft.com/indepth/uk-general-election">More election coverage »</a></p>
+      </div>
+    </div>
   </div>
 
-  <nav class="battle-nav o-grid-row" data-o-grid-colspan="12">
-    {% for group in groups %}
-    <a href="#{{ group.slug }}" class="battle-nav__item fauxlink">
-      <span class="battle-nav__logo">
-        <img class="snp" src="{{ group.image }}">
-      </span>
-      <span class="fauxlink__target">{{ group.name }}</span>
-    </a>
-    {% endfor %}
-  </nav>
+  <div class="figure" data-o-grid-colspan="12">
+    <h2 class="article-body__subhead figure__title">The key constituency battles</h2>
+    <div class="figure__body o-grid-row">
+      <div data-o-grid-colspan="12 M7 L7">
+        <nav class="battle-nav">
+          {% for group in groups %}
+          <a href="#{{ group.slug }}" class="battle-nav__item fauxlink">
+            <span class="battle-nav__logo">
+              <img class="snp" src="{{ group.image }}">
+            </span>
+            <span class="fauxlink__target">{{ group.name }}</span>
+          </a>
+          {% endfor %}
+        </nav>
 
-  <div id="slope-groups" style="min-height:800px;" class="o-grid-row">
+      </div>
+      <div data-o-grid-colspan="12 M5 L4 Loffset1">
+        <p>With the UK&rsquo;s traditional two-party system fragmenting, this election outcome will be determined in four different types of local battle.</p>
+        <p>Each constituency&rsquo;s miniature chart compares the result of 2010 general election (or any subsequent by-election) to the current <a href="http://www.electionforecast.co.uk/tables/predicted_vote_by_seat.html">constituency-level projection</a> from ElectionForecast.co.uk.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="slope-groups" style="min-height:800px;">
     {% for group in groups %}
       <div class="figure constituency-group constituency-group--slope" data-o-grid-colspan="12">
-        <h2 id="{{ group.slug }}" class="article-body__subhead figure__title">{{ group.name }}</h2>
+        <h3 id="{{ group.slug }}" class="article-body__subhead figure__title" data-o-grid-colspan="12 M9 Moffset3 L10 Loffset2">{{ group.name }}</h3>
 
         <div class="figure__body">
           <div class="o-grid-row">
 
-            <div class="constituency-group__summary-table" data-o-grid-colspan="12 S4 M3 L2 Loffset1">
+            <div class="constituency-group__summary-table" data-o-grid-colspan="12 S4 M3 L2">
               {% set table_data = group.partychanges %}
               {% include "./result-summary-table.html" %}
             </div>
 
-            <div data-o-grid-colspan="12 S8 M9 L9" class="constituency-group__details">
+            <div data-o-grid-colspan="12 S8 M9 L10" class="constituency-group__details">
               {{ group.description | safe }}
-              {%  if group.articleurl %}<p><a href="{{ group.articleurl }}">Related article »</a></p>{% endif %}
             </div>
 
           </div>
 
           <div class="o-grid-row">
 
-            <div class="constituency-group__locator-map" data-o-grid-colspan="hide S4 M3 L2 Loffset1">
+            <div class="constituency-group__locator-map" data-o-grid-colspan="hide S4 M3 L2">
               <div class="constituency-group__locator-map-ratio" data-group="{{loop.index0}}"></div>
             </div>
 
-            <div data-o-grid-colspan="12 S8 M9 L9">
+            <div data-o-grid-colspan="12 S8 M9 L10">
 
               <div class="o-grid-row constituency-group__slopes" >
                 {% for constituency in group.constituencies | sortBy('name') %}
@@ -78,6 +99,8 @@
       </div>
     {% endfor %}
   </div>
+
+</div>
 
 {% endblock %}
 

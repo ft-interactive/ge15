@@ -1,7 +1,7 @@
 .article-body {
   /* @include oColorsFor(body, text); */
   // use slightly darker body text than Origami suggests
-  color: #222222;
+  color: $color-article-body;
 
   font-family: $font-article-body;
 
@@ -52,16 +52,6 @@
 
     font-family: $font-heading;
     font-weight: 200;
-
-    &h2 { font-size: 1.38em;  }
-
-    &h3 { font-size: 1.3em; }
-
-    &h4 { font-size: 1.22em; }
-
-    &h5,
-    &h6 { font-size: 1.105em; }
-
   }
 
   &__copy > p {
@@ -69,3 +59,14 @@
     margin-right: auto;
   }
 }
+
+// scss-lint:disable QualifyingElement
+h2.article-body__subhead { font-size: 1.33em;  }
+
+h3.article-body__subhead { font-size: 1.2em; }
+
+h4.article-body__subhead { font-size: 1.15em; }
+
+h5.article-body__subhead,
+h6.article-body__subhead { font-size: 1.105em; }
+// scss-lint:enable QualifyingElement

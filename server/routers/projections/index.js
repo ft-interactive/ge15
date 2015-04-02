@@ -16,11 +16,10 @@ function* home(next) {
       battlegroundData(),
       forecastData('seats')
   ]));
-  var updated = data.forecast.updated;
 
   debug(data.forecast);
 
-  data.forecast = data.forecast.data.map(function(d){
+  data.forecast.data = data.forecast.data.map(function(d){
     d.Party = parties.electionForecastToCode(d.Party);
     return d;
   });
@@ -29,10 +28,10 @@ function* home(next) {
     page: {
       title: 'The 4 key UK general election battles',
       summary: 'Four different types of local contest will shape the most uncertain UK general election in memory',
-      dateModified: updated instanceof Date ? 'Updated daily. Last updated ' + filters.ftdate(updated) : ''
+      dateModified: data.forecast.updated
     },
     groups: data.battlegrounds,
-    overview: data.forecast
+    overview: data.forecast.data
   });
   yield next;
 }
