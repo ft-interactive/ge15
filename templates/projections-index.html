@@ -5,6 +5,15 @@
 
 {% set table_data = overview %}
 
+{% block summary %}
+<p class="article-header__summary" itemprop="description">{{ page.summary }}</p>
+<!--<ul class="article-header__summary-list">
+  <li>A hung parliament is likely</li>
+  <li>Few viable coalitions but multiple ad hoc alliances possible</li>
+  <li>Four key election battles will decide the outcome</li>
+</ul>-->
+{% endblock %}
+
 {% block dateModified %}
 <p class="article-header__date-modified" itemprop="dateModified">Data updated continuously. Projections last changed {{ page.dateModified | date('F j, G:i a') }}</p>
 {% endblock %}
@@ -20,7 +29,7 @@
       {% include "./result-table.html" %}
       </div>
       <div data-o-grid-colspan="12 M5 L4">
-        <p>Using the latest data from <a href="http://electionforecast.co.uk">ElectionForecast.co.uk</a>, a team of researchers using polling data to predict the May&nbsp;7 general election, this graphic shows the likely national outcome.</p>
+        <p>Based on the latest data from <a href="http://electionforecast.co.uk">ElectionForecast.co.uk</a>, a team of university researchers using polling data to predict how seats will be distributed in the May 7 general election, this graphic shows the likely national outcome.</p>
         <p><a href="http://www.ft.com/indepth/uk-general-election">More election coverage »</a></p>
       </div>
     </div>
@@ -43,7 +52,7 @@
 
       </div>
       <div data-o-grid-colspan="12 M5 L4 Loffset1">
-        <p>With the UK&rsquo;s traditional two-party system fragmenting, this election outcome will be determined in four different types of local battle.</p>
+        <p>With the UK&rsquo;s traditional party system fragmenting, the outcome of this election will be determined by the sum of four different battles.</p>
         <p>Each constituency&rsquo;s miniature chart compares the result of 2010 general election (or any subsequent by-election) to the current <a href="http://www.electionforecast.co.uk/tables/predicted_vote_by_seat.html">constituency-level projection</a> from ElectionForecast.co.uk.</p>
       </div>
     </div>
