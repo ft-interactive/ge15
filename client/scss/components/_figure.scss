@@ -1,7 +1,7 @@
 .figure {
 
-  margin-top: 1em;
-  margin-bottom: 1em;
+  margin-top: 0;
+  margin-bottom: 1.5em;
   font-family: $font-body;
   font-size: round($copy-size-large * 0.8);
 
@@ -21,6 +21,7 @@
   &__title {
     border-bottom: $line-width--m solid $line-color;
     margin-bottom: 0.5em;
+    margin-top: 0;
   }
 
   &__subtitle {

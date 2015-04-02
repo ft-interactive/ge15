@@ -1,7 +1,6 @@
 .constituency-group {
 
   & &__slopes {
-    padding-top: 1em;
     @include oGridRespondTo($until:S) {
       padding-left: 10px;
     }
@@ -17,7 +16,7 @@
   }
 
   &__details {
-    padding-top: 1em;
+    padding-top: 0;
     padding-bottom: 0;
   }
 
@@ -26,6 +25,7 @@
       line-height: 0;
       position: relative;
       padding-top: 139%;
+      margin-top: -2em;
     }
     svg {
       @include absolute(fill);
@@ -65,6 +65,14 @@
       overflow: hidden;
     }
   }
+
+  .article-body__subhead {
+    border: 0;
+    padding-left: 0;
+    font-weight: bold;
+    font-size: 1.1em;
+    color: $color-article-body;
+  }
 }
 
 .constituency-group__summary-table {
@@ -78,6 +86,7 @@
     width: 100%;
     color: oColorsGetPaletteColor(grey-tint5);
     font-size: 12px;
+    margin-bottom: 2em;
   }
   th,
   td {
@@ -99,7 +108,7 @@
   .rowhead {
     font-weight: bold;
     position: relative;
-    padding-right: 14px;
+    padding-right: 16px;
     text-align: right;
     &:before {
       content: " ";
@@ -107,7 +116,7 @@
       position: absolute;
       width: 8px;
       height: 100%;
-      right: 0;
+      right: 3px;
       top: 0;
     }
   }

@@ -1,44 +1,27 @@
 .battle-nav {
 
   max-width: 850px;
-  margin: 0 auto;
+  margin: -0.8em auto 1.5em;
   font-size: 0.9em;
 
-  @include oGridRespondTo(M) {
-    display: table;
-    table-layout: fixed;
-  }
-
   &__item {
-    border: 0 solid $line-color; // tint 2
+    border: 0 dotted $line-color-dark;
     border-bottom-width: $line-width--s;
     display: block;
-    @include oGridRespondTo(M) {
-      border-bottom-width: 0;
-      text-align: center;
-      padding: 0 25px;
-      display: table-cell;
-      width: 100%;
-      &:not(:first-child) {
-        border-left-width: $line-width--s;
-      }
-    }
   }
 
   &__logo {
 
-    line-height: 60px;
-    width: 90px;
+    line-height: 50px;
+    width: 78px;
     display: inline-block;
     text-align: center;
-
-    @include oGridRespondTo(M) {
-      display: block;
-      width: auto;
-    }
+    margin-right: 10px;
 
     & > img {
       vertical-align: middle;
+      height: 34px;
+      width: auto;
     }
   }
 }

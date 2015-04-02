@@ -14,6 +14,7 @@ $font-heading: oFontsGetFontFamilyWithFallbacks(BentonSans);
 $font-body: oFontsGetFontFamilyWithFallbacks(BentonSans);
 $font-article-headline: oFontsGetFontFamilyWithFallbacks(MillerDisplay);
 $font-article-body: oFontsGetFontFamilyWithFallbacks(BentonSans);
+$color-article-body: #222222;
 
 $nav-bg-color: mix(#e9decf, #f6e9d8, 20%);
 $nav-text-color: #5f584d;
@@ -44,6 +45,7 @@ $other: #cec6b9;
 $other-dark: #a7a59b;
 
 $line-color: oColorsGetPaletteColor(pink-tint2);
+$line-color-dark: oColorsGetPaletteColor(pink-tint3);
 $line-width--s: 1px;
 $line-width--m: 1px;
 $line-width--l: 1px;

@@ -3,9 +3,10 @@
 var mount = require('koa-mount');
 
 var pathRouters = {
-  graphics: require('./graphics'),
-  results: require('./results'),
-  parties: require('./parties'),
+  // Fixme: is there a memory leak in these routers?
+  // graphics: require('./graphics'),
+  // results: require('./results'),
+  // parties: require('./parties'),
   projections: require('./projections'),
   seatmoves: require('./sankey'),
   'coalition-forecast': require('./coalitionforecast'),
