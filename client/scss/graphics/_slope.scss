@@ -11,7 +11,7 @@
   }
 
   .axis-line {
-    stroke-opacity:0;
+    stroke-opacity: 0;
   }
 
   .axis-label {
@@ -108,7 +108,7 @@
 
 }
 
-.constituency-group__slope-graphic[data-order="0"] .axis-line{
+.constituency-group__slope-graphic[data-order="0"] .axis-line {
   stroke-opacity: 1;
   stroke-width: 1;
   stroke: $line-color;
