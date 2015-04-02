@@ -11,18 +11,12 @@
   }
 
   .axis-line {
-    stroke-width: 1;
-    stroke: $line-color;
-    shape-rendering: crispEdges;
+    stroke-opacity:0;
   }
 
-   .axis-label {
-      fill-opacity: 0;
-    }
-
-
-
-
+  .axis-label {
+    fill-opacity: 0;
+  }
 
   .end-point,
   .start-point {
@@ -112,6 +106,13 @@
     }
   }
 
+}
+
+.constituency-group__slope-graphic[data-order="0"] .axis-line{
+  stroke-opacity: 1;
+  stroke-width: 1;
+  stroke: $line-color;
+  shape-rendering: crispEdges;
 }
 
 .constituency-group__slope-graphic[data-order="0"] .axis-label {

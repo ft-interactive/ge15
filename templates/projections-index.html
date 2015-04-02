@@ -104,6 +104,7 @@
 <script>
 {% autoescape false %}
 var battlegrounds = {{ groups | json }};
+var coalitions = {{ coalitions | json }};
 {% endautoescape %}
 if (cutsTheMustard) {
   addScript('{{ asset("js/group-forecast-slopes.js") }}', false, false);
