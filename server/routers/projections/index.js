@@ -26,8 +26,8 @@ function* home(next) {
 
   yield this.render('projections-index', { // jshint ignore:line
     page: {
-      title: 'The 4 key UK general election battles',
-      summary: 'Four different types of local contest will shape the most uncertain UK general election in memory',
+      title: 'The key UK general election battles',
+      summary: 'Four contests will decide the most uncertain UK election for decades',
       dateModified: data.forecast.updated
     },
     groups: data.battlegrounds,
