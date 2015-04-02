@@ -65,8 +65,8 @@ function mapArticleURLbyID(rows) {
 var indexById = _.flow(tsv, _.partial(_.indexBy, _, 'id'));
 var indexByONSid = _.flow(tsv, _.partial(_.indexBy, _, 'ons_id'));
 var battlegroundSpreadsheets = [
-  {uri: 'http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/battlegrounds.tsv',
-            transform: tsv, maxAge: maxAge},
+  {uri: 'http://spottiswood.herokuapp.com/view/publish/gss/0Ak6OnV5xs-BudHhZMTFlTTdITjFLS01IZnRvUlpIcWc/ConstituencyGroups?exp=60',
+            transform: JSON.parse, maxAge: maxAge},
   {uri: 'http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/resultnow.tsv',
             transform: indexById, maxAge: maxAge},
   {uri: forecast.prediction + '?vkey',
@@ -75,7 +75,7 @@ var battlegroundSpreadsheets = [
             transform: indexById, maxAge: maxAge},
   {uri: 'http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/details.tsv',
             transform: indexByONSid, maxAge: maxAge},
-  {uri: 'http://bertha.ig.ft.com/view/publish/gss/0Ak6OnV5xs-BudHhZMTFlTTdITjFLS01IZnRvUlpIcWc/ConstituencyStories',
+  {uri: 'http://spottiswood.herokuapp.com/view/publish/gss/0Ak6OnV5xs-BudHhZMTFlTTdITjFLS01IZnRvUlpIcWc/ConstituencyStories?exp=60',
             transform: _.flow(JSON.parse, mapArticleURLbyID), maxAge: maxAge}
 ];
 

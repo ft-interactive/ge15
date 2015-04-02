@@ -68,8 +68,10 @@ function cachedRequest(options) {
     if (hasExpired) {
       debug('In the cache but stale', key);
       if (cachedResponse.headers.etag) {
+        debug('Has etag', key);
         options.headers['if-none-match'] = cachedResponse.headers.etag;
       } else if(cachedResponse.headers['last-modified']) {
+        debug('Has last-modified', key);
         options.headers['if-modified-since'] = cachedResponse.headers['last-modified'];
       }
     } else if (cachedResponse.reason) {
@@ -130,7 +132,7 @@ function cachedRequest(options) {
 
     var store = {
       headers: headers,
-      body: hasExpired && response.statusCode === 304 ? cachedResponse.body : response.body,
+      body: response.body,
       statusCode: response.statusCode,
       expires: expires
     };
@@ -141,17 +143,11 @@ function cachedRequest(options) {
     return store.body;
 
   }, function(response) {
-    var reason = _.pick(response, [
-      'statusCode',
-      'name',
-      'message',
-      'cause'
-    ]);
 
-    // TODO: expiry logic for errors needs more thought.
-    //       this might suffice for now
     var expires;
     var cacheControlExpire;
+    var resolve = false;
+    var del = false;
 
     if (response.headers) {
       cacheControlExpire = expireFromHeaders(response.headers);
@@ -160,16 +156,46 @@ function cachedRequest(options) {
       expires = !isNaN(options.maxAge) ? future(options.maxAge) : future(10000);
     }
 
+    if (!expires) {
+      del = true;
+    }
+
     var store = {
       statusCode: response.statusCode,
-      expires: expires,
-      headers: {},
-      reason: reason
+      expires: expires
     };
 
-    debug('Store ERROR in cache', key);
-    cache.set(key, store);
-    return Promise.reject(response);
+    if (hasExpired && response.statusCode === 304) {
+      store.headers = cachedResponse.headers;
+      store.body = cachedResponse.body;
+      resolve = true;
+    } else {
+      store.headers = {};
+      store.reason = _.pick(response, [
+        'statusCode',
+        'name',
+        'message',
+        'cause'
+      ]);
+    }
+
+    cachedResponse = null;
+    var msg = (resolve ? '304' : 'ERROR') + ' in cache';
+
+    if (del) {
+      debug('Del ' + msg, key);
+      cache.del(key);
+    } else {
+      debug('Store ' + msg, key);
+      cache.set(key, store);
+    }
+
+    if (resolve) {
+      return Promise.resolve(store.body);
+    } else {
+      return Promise.reject(response);
+    }
+
   });
 
 }
