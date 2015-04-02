@@ -7,7 +7,8 @@
   stroke: $labour-dark;
 }
 
-.lib-dem-edge {
+.lib-dem-edge,
+.ap-edge {
   stroke: $liberal-democrat-dark;
 }
 
@@ -27,6 +28,19 @@
   stroke: $green-dark;
 }
 
+.sdlp-edge {
+  stroke: $sdlp-dark;
+}
+
+.sinn-fein-edge {
+  stroke: $sinn-fein-dark;
+}
+
+.dup-edge,
+.uup-edge {
+  stroke: $dup-dark;
+}
+
 .other-party-edge {
   stroke: $other-dark;
 }
@@ -44,7 +58,8 @@
   fill: $labour;
 }
 
-.lib-dem-area {
+.lib-dem-area, 
+.ap-area {
   stroke: $liberal-democrat;
   fill: $liberal-democrat;
 }
@@ -69,9 +84,23 @@
   fill: $green;
 }
 
-.other-party-area,
 .dup-area,
+.uup-area {
+  stroke: $dup;
+  fill: $dup;
+}
+
 .sdlp-area {
+  stroke: $sdlp;
+  fill: $sdlp;
+}
+
+.sinn-fein-area {
+  stroke: $sinn-fein;
+  fill: $sinn-fein;
+}
+
+.other-party-area {
   stroke: $other;
   fill: $other;
 }
