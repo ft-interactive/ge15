@@ -1,5 +1,6 @@
 /*lines*/
-.conservative-edge {
+.conservative-edge,
+.uup-edge {
   stroke: $conservative-dark;
 }
 
@@ -36,8 +37,7 @@
   stroke: $sinn-fein-dark;
 }
 
-.dup-edge,
-.uup-edge {
+.dup-edge {
   stroke: $dup-dark;
 }
 
@@ -48,7 +48,8 @@
 
 
 /*blocks*/
-.conservative-area {
+.conservative-area,
+.uup-area {
   stroke: $conservative;
   fill: $conservative;
 }
@@ -84,8 +85,7 @@
   fill: $green;
 }
 
-.dup-area,
-.uup-area {
+.dup-area {
   stroke: $dup;
   fill: $dup;
 }
