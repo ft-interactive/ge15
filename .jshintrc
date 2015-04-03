@@ -5,7 +5,7 @@
     "immed": true,
     "newcap": true,
     "noarg": true,
-    "nonbsp": true,
+    "nonbsp": false,
     "undef": true,
     "unused": "vars",
     "strict": true,

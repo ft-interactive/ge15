@@ -36,9 +36,11 @@
 
   &__footer {
     color: oColorsGetPaletteColor(pink-tint4);
-    border-top: $line-width--s solid $line-color;
     font-size: 0.8em;
     padding: 0;
+    &--ruled {
+      border-top: $line-width--s solid $line-color;
+    }
   }
 
 }

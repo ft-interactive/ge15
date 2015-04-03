@@ -31,11 +31,12 @@ function main() {
 
   if (!app.isProd) app.debug();
 
-  app.use(favicon(path.resolve(__dirname, '../favicon.ico')));
+  app.use(favicon(path.resolve(__dirname, '../public/favicon.ico')));
   app.use(conditional());
   app.use(etag());
   app.use(serve(path.resolve(__dirname, '../public'), {
-    maxage: app.isProd ? ms('30 days') : 0
+    maxage: app.isProd ? ms('30 days') : 0,
+    gzip: true
   }));
   app.use(requestId());
   app.use(responseTime());
