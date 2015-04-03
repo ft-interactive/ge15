@@ -28,6 +28,7 @@ var scsslint = require('gulp-scss-lint');
 var es = require('event-stream');
 var uglify = require('gulp-uglify');
 var gutil = require('gulp-util');
+var imagemin = require('gulp-imagemin');
 
 var browserify = require('browserify');
 var watchify = require('watchify');
@@ -43,7 +44,7 @@ process.stdout.setMaxListeners(0);
 dotenv.load();
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-gulp.task('default', ['lint', 'rev']);
+gulp.task('default', ['lint', 'images', 'rev']);
 
 var vendorBundle = [
   {file:'./bower_components/headroom.js/dist/headroom.js', expose:'headroom.js'},
@@ -56,7 +57,6 @@ var vendorBundle = [
 
 
 // TODO:
-// svg minification
 // CDNify urls in js and css
 
 gulp.task('sass', function() {
@@ -70,7 +70,7 @@ gulp.task('sass', function() {
           style: style
         }).on('error', function (err) { console.log(err.message); if (!dev) throw err; })
         .pipe(autoprefixer({
-          browsers: ['> 5%', 'iOS >= 4', 'IE >= 7', 'FF ESR', 'last 2 versions'],
+          browsers: ['> 5%', 'iOS >= 6', 'IE >= 7', 'FF ESR', 'last 2 versions'],
           cascade: dev,
           remove: true
         }))
@@ -235,15 +235,25 @@ gulp.task('scsslint', function(cb) {
 
 gulp.task('lint', ['jshint', 'scsslint']);
 
+gulp.task('images', function(){
+  return gulp.src('client/images/*')
+        .pipe(imagemin({
+            progressive: true,
+            svgoPlugins: [{removeViewBox: false}]
+        }))
+        .pipe(gulp.dest('public/images'));
+});
+
 gulp.task('dev', function(cb) {
   dev = true;
   cb();
 });
 
-gulp.task('watch', ['dev', 'sass', 'vendor'], function() {
+gulp.task('watch', ['dev', 'sass', 'vendor', 'images'], function() {
 
   gulp.watch('./{public,templates}/**/*.*').on('change', livereload.changed);
   gulp.watch('./client/scss/**/*.scss', ['sass']);
+  gulp.watch('./client/images/**/*.{svg,png,jpg}', ['images']);
 
   var bundles = getBundles().map(function (d) {
     return createBrowserify(d.file, d.bundle, true);
