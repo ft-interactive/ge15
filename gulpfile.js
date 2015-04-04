@@ -44,7 +44,7 @@ process.stdout.setMaxListeners(0);
 dotenv.load();
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-gulp.task('default', ['lint', 'images', 'rev']);
+gulp.task('default', ['lint', 'rev', 'images']);
 
 var vendorBundle = [
   {file:'./bower_components/headroom.js/dist/headroom.js', expose:'headroom.js'},
@@ -173,7 +173,7 @@ gulp.task('bundles', function(cb) {
 
 gulp.task('js', ['bundles', 'vendor']);
 
-gulp.task('rev', ['clean', 'compress'], function () {
+gulp.task('rev', ['compress'], function () {
   return gulp.src(['public/css/**/*.css', 'public/js/**/*.js'], {base: 'assets'})
         .pipe(gulp.dest('public'))  // copy original assets to build dir
         .pipe(rev())
@@ -235,7 +235,7 @@ gulp.task('scsslint', function(cb) {
 
 gulp.task('lint', ['jshint', 'scsslint']);
 
-gulp.task('images', function(){
+gulp.task('images', ['clean'], function(cb){
   return gulp.src('client/images/*')
         .pipe(imagemin({
             progressive: true,
