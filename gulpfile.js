@@ -44,7 +44,7 @@ process.stdout.setMaxListeners(0);
 dotenv.load();
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-gulp.task('default', ['lint', 'rev', 'images']);
+gulp.task('default', ['lint', 'clean', 'rev', 'images']);
 
 var vendorBundle = [
   {file:'./bower_components/headroom.js/dist/headroom.js', expose:'headroom.js'},
@@ -184,7 +184,7 @@ gulp.task('rev', ['compress'], function () {
         .pipe(gulp.dest('public')); // write manifest to build dir
 });
 
-gulp.task('compress', ['clean', 'sass', 'js'], function() {
+gulp.task('compress', ['sass', 'js'], function() {
   var css = filter('css/*.css');
   var js = filter('js/**/*.js');
   return gulp.src('public/**')
@@ -198,7 +198,8 @@ gulp.task('compress', ['clean', 'sass', 'js'], function() {
 });
 
 gulp.task('clean', function(cb) {
-  rimraf('public', cb);
+  rimraf.sync('public');
+  cb();
 });
 
 gulp.task('jshint', function(cb) {
@@ -235,8 +236,8 @@ gulp.task('scsslint', function(cb) {
 
 gulp.task('lint', ['jshint', 'scsslint']);
 
-gulp.task('images', ['clean'], function(cb){
-  return gulp.src('client/images/*')
+gulp.task('images', function(cb){
+  return gulp.src('client/images/**/*')
         .pipe(imagemin({
             progressive: true,
             svgoPlugins: [{removeViewBox: false}]
