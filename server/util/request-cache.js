@@ -9,7 +9,7 @@ var debug = require('debug')('request-cache');
 var lru = require('lru-cache');
 
 var cache = lru({
-  max: 1e8,
+  max: 1e7,
   length: function(n) {
     // content-length isn't strictly the size of what's actually stored in memory
     // but its the quickest things to calculate.
