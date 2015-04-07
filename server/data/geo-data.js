@@ -8,10 +8,10 @@ var constituencyLookup = {};
 var topology = {}
 
 //TODO dynamic simplification?
-var simpleMap = JSON.parse( fs.readFileSync(__dirname + '/geodata/simplemap.topojson','utf-8') );
-topology.high = JSON.parse( fs.readFileSync(__dirname + '/geodata/constituencies-high.topojson','utf-8') );
-topology.medium = JSON.parse( fs.readFileSync(__dirname + '/geodata/constituencies-medium.topojson','utf-8') );
-topology.low = JSON.parse( fs.readFileSync(__dirname + '/geodata/constituencies-low.topojson','utf-8') );
+var simpleMap = require('geodata/simplemap.json');
+topology.high = require('geodata/constituencies-high.json');
+topology.medium = require('geodata/constituencies-medium.json');
+topology.low = require('geodata/constituencies-low.json');
 
 var neighborhoods = topojson.neighbors( topology.high.objects.constituencies.geometries );
 var constituencyFeatures = {

@@ -4,7 +4,7 @@ var d3 = require('d3');
 var _ = require('lodash');
 
 var slopeDataParse = require('./slope-data.js');
-var geoData = require('../../data/geo-data.js');
+var geo = require('../../data/geodata/simplemap.json');
 var coalitionDataParse = require('./coalition-data.js');
 var request = require('../../util/request-cache');
 var app = require('../../util/app');
@@ -36,7 +36,7 @@ function main() {
         yield next;
       })
       .get('simplemap','/simplemap.json', function* (next) {
-        this.body = geoData.simple;
+        this.body = geo;
         yield next;
       })
       .get('coalition-forecast','/coalition-forecast.json', function* (next) {
