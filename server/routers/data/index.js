@@ -36,6 +36,8 @@ function main() {
         yield next;
       })
       .get('simplemap','/simplemap.json', function* (next) {
+        this.set('Cache-Control', 'max-age=3600, s-maxage=3600, stale-while-revalidate=28800, stale-if-error=86400');
+        this.set('Surrogate-Control', 'max-age=3600');
         this.body = geo;
         yield next;
       })

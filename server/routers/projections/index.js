@@ -41,7 +41,7 @@ function* home(next) {
   // allow CDN to store stale if backend is erroring for 1 day
   this.set('Cache-Control', 'max-age=300, s-maxage=300, stale-while-revalidate=28800, stale-if-error=86400');
   // allow CDN to store the response for 15mins
-  this.set('Surrogate-Control', 'max-age=900')
+  this.set('Surrogate-Control', 'max-age=900');
 
   yield this.render('projections-index', { // jshint ignore:line
     page: {
