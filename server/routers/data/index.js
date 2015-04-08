@@ -4,7 +4,6 @@ var d3 = require('d3');
 var _ = require('lodash');
 
 var slopeDataParse = require('./slope-data.js');
-var geo = require('../../data/geodata/simplemap.json');
 var coalitionDataParse = require('./coalition-data.js');
 var request = require('../../util/request-cache');
 var app = require('../../util/app');
@@ -33,12 +32,6 @@ function main() {
       })
       .get('battlegrounds','/battlegrounds.json', function* (next) {
         this.body = yield battlegroundData();
-        yield next;
-      })
-      .get('simplemap','/simplemap.json', function* (next) {
-        this.set('Cache-Control', 'max-age=3600, s-maxage=3600, stale-while-revalidate=28800, stale-if-error=86400');
-        this.set('Surrogate-Control', 'max-age=3600');
-        this.body = geo;
         yield next;
       })
       .get('coalition-forecast','/coalition-forecast.json', function* (next) {

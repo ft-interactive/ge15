@@ -6,7 +6,7 @@ var d3 = require('d3');
 var debounce = require('lodash/function/debounce');
 var parties = require('uk-political-parties');
 
-var mapData = '/uk/2015/data/simplemap.json';
+var mapData = 'http://interactivegraphics.ft-static.com/data/geo/uk/simplemap.json';
 
 var doc = document;
 
