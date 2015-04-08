@@ -14,7 +14,6 @@ var conditional = require('koa-conditional-get');
 var etag = require('koa-etag');
 var serve = require('koa-static');
 var htmlMinifier = require('koa-html-minifier');
-var livereload = require('koa-livereload');
 var printRequestId = require('./middleware/print-request-id');
 var ms = require('ms');
 var path = require('path');
@@ -54,7 +53,7 @@ function main() {
       minifyCSS: true
     }));
   } else {
-    app.use(livereload());
+    app.use(require('koa-livereload')());
   }
 
   routers(app);
