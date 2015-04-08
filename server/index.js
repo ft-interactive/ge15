@@ -31,7 +31,7 @@ function main() {
 
   if (!app.isProd) app.debug();
 
-  app.use(favicon(path.resolve(__dirname, '../public/favicon.ico')));
+  app.use(favicon(path.resolve(__dirname, '../public/images/favicon.ico')));
   app.use(conditional());
   app.use(etag());
   app.use(serve(path.resolve(__dirname, '../public'), {
