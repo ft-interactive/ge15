@@ -1,79 +1,25 @@
 'use strict';
 
-var koa = require('koa');
-var router = require('koa-router');
-var views = require('koa-views');
-var _ = require('lodash');
-var swig = require('swig');
-var filters = require('./filters');
-var prod = process.env.NODE_ENV === 'production';
-
-var defaultOptions = {
+const koa = require('koa');
+const router = require('koa-router');
+const _ = require('lodash');
+const templates = require('../middleware/swig');
+const prod = process.env.NODE_ENV === 'production';
+const defaultOptions = {
   views: true,
-  router: false,
-  isProd: prod
+  router: false
 };
-
-Object.keys(filters).forEach(function(name) {
-  if (!_.isFunction(filters[name])) return;
-  swig.setFilter(name, filters[name]);
-});
-
-var baseurl = {
-  static: '', // TODO: use cdn host if production
-  site: '',
-  ft: '//www.ft.com'
-};
-
-var flags = {
-  tracking: prod
-};
-
-var assets;
-var getAsset;
-
-if (prod) {
-  assets = require('../../public/rev-manifest.json');
-  console.log('Load asset paths', assets);
-  getAsset = function(name) {
-    if (!assets[name]) return '';
-    return baseurl.static + '/' + assets[name];
-  };
-} else {
-  getAsset = function(name) {
-    return baseurl.static + '/' + name;
-  };
-}
-
-function getNow() {
-  return Date.now();
-}
-
-swig.setDefaults({
-  cache: prod ? 'memory' : false,
-  locals: {
-    baseurl: baseurl,
-    asset: getAsset,
-    now: getNow,
-    flags: flags
-  }
-});
 
 module.exports = function(options) {
 
   options = _.merge(_.cloneDeep(defaultOptions), options);
 
-  var app = koa();
+  const app = koa();
 
-  app.isProd = options.isProd;
+  app.isProd = prod;
 
   if (options.views) {
-    app.use(views('../../templates', {
-      cache: app.isProd ? 'memory' : false,
-      map: {
-        html: 'swig'
-      }
-    }));
+    app.use(templates.middleware);
   }
 
   app.router = function() {
