@@ -10,7 +10,9 @@ var app = require('../../util/app');
 
 var csv = _.ary(d3.csv.parse.bind(d3), 1);
 var tsv = _.ary(d3.tsv.parse.bind(d3), 1);
-var maxAge = 1000 * 60; // 1 minute
+var shortMaxAge = 1000 * 60; // 1 minute
+var fiveMins = 1000 * 60 * 5;
+var longMaxAge = 1000 * 60 * 60 * 8; // 8 hours
 
 var forecast = {
   seats:'http://interactivegraphics.ft-static.com/data/electionforecast-co-uk/tsv/seats-latest.tsv',
@@ -44,7 +46,7 @@ function coalitionForecastData() {
   return request({
     uri: coalitionProbabilities,
     transform: _.flow(csv, coalitionDataParse),
-    maxAge: maxAge
+    maxAge: shortMaxAge
   });
 }
 
@@ -61,17 +63,17 @@ var indexById = _.flow(tsv, _.partial(_.indexBy, _, 'id'));
 var indexByONSid = _.flow(tsv, _.partial(_.indexBy, _, 'ons_id'));
 var battlegroundSpreadsheets = [
   {uri: 'http://spottiswood.herokuapp.com/view/publish/gss/0Ak6OnV5xs-BudHhZMTFlTTdITjFLS01IZnRvUlpIcWc/ConstituencyGroups?exp=60',
-            transform: JSON.parse, maxAge: maxAge},
+            transform: JSON.parse, maxAge: fiveMins},
   {uri: 'http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/resultnow.tsv',
-            transform: indexById, maxAge: maxAge},
+            transform: indexById, maxAge: longMaxAge},
   {uri: forecast.prediction + '?vkey',
-            transform: indexById, maxAge: maxAge},
+            transform: indexById, maxAge: fiveMins},
   {uri: 'http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/coordinates.tsv',
-            transform: indexById, maxAge: maxAge},
+            transform: indexById, maxAge: longMaxAge},
   {uri: 'http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/details.tsv',
-            transform: indexByONSid, maxAge: maxAge},
+            transform: indexByONSid, maxAge: longMaxAge},
   {uri: 'http://spottiswood.herokuapp.com/view/publish/gss/0Ak6OnV5xs-BudHhZMTFlTTdITjFLS01IZnRvUlpIcWc/ConstituencyStories?exp=60',
-            transform: _.flow(JSON.parse, mapArticleURLbyID), maxAge: maxAge}
+            transform: _.flow(JSON.parse, mapArticleURLbyID), maxAge: fiveMins}
 ];
 
 var battlegroundDataCache = {
@@ -103,8 +105,8 @@ function forecastData(item) {
   };
 
   return Promise.all([
-    request({uri: forecast[item], transform: tsv, maxAge: 0}),
-    request({uri: forecast.updated, json: true, maxAge: 0})
+    request({uri: forecast[item], transform: tsv, maxAge: shortMaxAge}),
+    request({uri: forecast.updated, json: true, maxAge: shortMaxAge})
   ])
   .then(_.spread(function(data, updated) {
     return {
