@@ -8,6 +8,13 @@ function* gtg(next) {
   yield next;
 }
 
+
+function* india(next) {
+  this.redirect('http://india-2014.herokuapp.com/india/general-election-2014/');
+  this.status = 301;
+  yield next;
+}
+
 function* home(next) {
   this.redirect('/uk/2015/projections/');
   this.status = 302;
@@ -17,6 +24,7 @@ function* home(next) {
 function main() {
   return app().router()
           .get('/', home)
+          .get(/^\/india\/*/, india)
           .get('/__gtg', gtg);
 }
 
