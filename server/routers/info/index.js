@@ -25,6 +25,8 @@ function main() {
   return app().router()
           .get('/', home)
           .get(/^\/india\/*/, india)
+          .get('/:country', home)
+          .get('/:country/:year/', home)
           .get('/__gtg', gtg);
 }
 
