@@ -1,7 +1,6 @@
 'use strict'
 
 var d3 = require('d3');
-var jsdom = require('jsdom').jsdom;
 var decorators = require('./decorators.js');
 var thunkify = require('thunkify');
 
