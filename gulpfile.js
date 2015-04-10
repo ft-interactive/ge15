@@ -252,10 +252,6 @@ gulp.task('dev', function(cb) {
 
 gulp.task('watch', ['dev', 'sass', 'vendor', 'images'], function() {
 
-  gulp.watch('./{public,templates}/**/*.*').on('change', livereload.changed);
-  gulp.watch('./client/scss/**/*.scss', ['sass']);
-  gulp.watch('./client/images/**/*.{svg,png,jpg}', ['images']);
-
   var bundles = getBundles().map(function (d) {
     return createBrowserify(d.file, d.bundle, true);
   });
@@ -291,5 +287,9 @@ gulp.task('watch', ['dev', 'sass', 'vendor', 'images'], function() {
   bundles.forEach(function(b){
     b.end().on('end', dec);
   });
+
+  gulp.watch('./{public,templates}/**/*.*').on('change', livereload.changed);
+  gulp.watch('./client/scss/**/*.scss', ['sass']);
+  gulp.watch('./client/images/**/*.{svg,png,jpg}', ['images']);
 
 });
