@@ -123,5 +123,3 @@ module.exports ={
   battlegroundData:battlegroundData,
   coalitionForecastData:coalitionForecastData
 };
-
-if (!module.parent) main().listen(process.env.PORT || 5000);

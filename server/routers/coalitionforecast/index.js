@@ -27,4 +27,3 @@ function main() {
 }
 
 module.exports = main;
-if (!module.parent) main().listen(process.env.PORT || 5000);
