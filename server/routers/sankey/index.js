@@ -5,14 +5,39 @@ var viewLocals = require('../../middleware/view-locals');
 var siteNav = require('../../middleware/site-navigation');
 var forecastData = require('../data/').forecastData;
 
+var forecast;
+var expiry;
+var fetching;
+
+var page = {
+  title: 'Win, lose or hold',
+  summary: 'Predicted seat changes'
+};
+
 function* home(next) {
-  var forecast = yield forecastData('prediction');
+
+
+  if (!forecast || (!fetching && Date.now() > expiry)) {
+
+    fetching = true;
+
+    var res = yield forecastData('prediction');
+
+    expiry = Date.now() + (1000 * 60);
+    fetching = false;
+    forecast = res;
+  }
+
+  // store in browser cache for 5mins
+  // allow CDN to store stale page for 8 hours
+  // allow CDN to store stale if backend is erroring for 1 day
+  this.set('Cache-Control', 'max-age=300, s-maxage=300, stale-while-revalidate=28800, stale-if-error=86400');
+  // allow CDN to store the response for 15mins
+  this.set('Surrogate-Control', 'max-age=900');
+
   yield this.render('sankey-index', { // jshint ignore:line
     forecast: forecast,
-    page: {
-      title: 'Win, lose or hold',
-      summary: 'Predicted seat changes'
-    }
+    page: page
   });
   yield next;
 }
