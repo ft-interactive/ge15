@@ -15,14 +15,14 @@ var fiveMins = 1000 * 60 * 5;
 var longMaxAge = 1000 * 60 * 60 * 8; // 8 hours
 
 var forecast = {
-  seats:'http://interactivegraphics.ft-static.com/data/electionforecast-co-uk/tsv/seats-latest.tsv',
-  votes:'http://interactivegraphics.ft-static.com/data/electionforecast-co-uk/tsv/votes-latest.tsv',
-  probability:'http://interactivegraphics.ft-static.com/data/electionforecast-co-uk/tsv/probability-latest.tsv',
-  prediction:'http://interactivegraphics.ft-static.com/data/electionforecast-co-uk/tsv/prediction-latest.tsv',
-  updated:'http://interactivegraphics.ft-static.com/data/electionforecast-co-uk/updated.json'
+  seats:'http://interactive.ftdata.co.uk/data/electionforecast-co-uk/tsv/seats-latest.tsv',
+  votes:'http://interactive.ftdata.co.uk/data/electionforecast-co-uk/tsv/votes-latest.tsv',
+  probability:'http://interactive.ftdata.co.uk/data/electionforecast-co-uk/tsv/probability-latest.tsv',
+  prediction:'http://interactive.ftdata.co.uk/data/electionforecast-co-uk/tsv/prediction-latest.tsv',
+  updated:'http://interactive.ftdata.co.uk/data/electionforecast-co-uk/updated.json'
 };
 
-var coalitionProbabilities = 'http://interactivegraphics.ft-static.com/data/coalition-probabilities/example.csv';
+var coalitionProbabilities = 'http://interactive.ftdata.co.uk/data/coalition-probabilities/example.csv';
 
 function main() {
   return app()
@@ -64,13 +64,13 @@ var indexByONSid = _.flow(tsv, _.partial(_.indexBy, _, 'ons_id'));
 var battlegroundSpreadsheets = [
   {uri: 'http://spottiswood.herokuapp.com/view/publish/gss/0Ak6OnV5xs-BudHhZMTFlTTdITjFLS01IZnRvUlpIcWc/ConstituencyGroups?exp=60',
             transform: JSON.parse, maxAge: fiveMins},
-  {uri: 'http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/resultnow.tsv',
+  {uri: 'http://interactive.ftdata.co.uk/data/ge15-battlegrounds/resultnow.tsv',
             transform: indexById, maxAge: longMaxAge},
   {uri: forecast.prediction + '?vkey',
             transform: indexById, maxAge: fiveMins},
-  {uri: 'http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/coordinates.tsv',
+  {uri: 'http://interactive.ftdata.co.uk/data/ge15-battlegrounds/coordinates.tsv',
             transform: indexById, maxAge: longMaxAge},
-  {uri: 'http://interactivegraphics.ft-static.com/data/ge15-battlegrounds/details.tsv',
+  {uri: 'http://interactive.ftdata.co.uk/data/ge15-battlegrounds/details.tsv',
             transform: indexByONSid, maxAge: longMaxAge},
   {uri: 'http://spottiswood.herokuapp.com/view/publish/gss/0Ak6OnV5xs-BudHhZMTFlTTdITjFLS01IZnRvUlpIcWc/ConstituencyStories?exp=60',
             transform: _.flow(JSON.parse, mapArticleURLbyID), maxAge: fiveMins}
