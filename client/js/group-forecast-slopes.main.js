@@ -15,6 +15,7 @@ doc.graphics.slope = require('./slope-chart/index.js');
 doc.graphics.constituencyLocator = require('./locator-map/constituency-locator.js');
 doc.graphics.resultTableDecorator = require('./table/projections-decorator.js');
 doc.graphics.coalitionsTableDecorator = require('./table/coalitions-decorator.js');
+doc.graphics.pollTracker = require('./polltracker/index.js');
 
 doc.data = {};
 doc.data.constituencyLookup = {};
@@ -170,6 +171,24 @@ function main(){
   //decorate the coalition table
   d3.select('.coalition-table')
     .call(doc.graphics.coalitionsTableDecorator);
+
+  //create polltracker
+  d3.csv('http://interactivegraphics.ft-static.com/data/uk-polling-data/long.csv',
+    function(error, data){
+
+      var pollViz = doc.graphics.pollTracker();
+      
+      pollViz
+        .data(data)
+        .dateDomain([new Date(2014,10,1), new Date()])
+        .valueDomain([0,40]);
+
+      d3.select('.poll-visualisation')
+        .call(pollViz);
+
+    });
+
+
 
   //load and draw the map
   d3.json(mapData,function(map){
