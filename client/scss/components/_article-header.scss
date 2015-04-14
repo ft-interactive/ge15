@@ -1,5 +1,4 @@
 .article-header {
-  margin-bottom: 1em;
 
   &--center {
     text-align: center;
@@ -18,11 +17,10 @@
       font-size: 2.86em;
     }
 
-
   }
 
   &__summary {
-    margin: 0.25em auto 0.25em 0;
+    margin: 0.25em auto 0 0;
     font-size: 1.25em;
     max-width: 690px;
     line-height: 1.15;
@@ -49,7 +47,7 @@
   }
 
   &__date-modified {
-    margin: 1em auto 1em 0;
+    margin: 1em auto 0 0;
     font-size: 0.75em;
   }
 
