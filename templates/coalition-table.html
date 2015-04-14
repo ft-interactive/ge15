@@ -10,9 +10,9 @@
 
   {% for row in coalition_table_data %}
     {% if row.totalSeats > 325 %}
-        {% set viability = "viable-coalition" %}
+        {% set viability = "coalition-table__viable" %}
     {% else %}
-      {% set viability = "non-viable-coalition" %}
+        {% set viability = "coalition-table__not-viable" %}
     {% endif %}
   <div class="grid-table-data o-grid-row {{viability}}">
     <div data-o-grid-colspan="4 S3" class="rowhead">
