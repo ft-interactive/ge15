@@ -112,7 +112,11 @@ function cachedRequest(options) {
 
   debug('Requesting from origin', key);
 
+  var timer = Date.now();
+
   return r(options).then(function(response) {
+
+    console.log('remote=' + options.uri, 'time=' + (Date.now() - timer), 'status=' + response.statusCode);
 
     response.body = transform(response.body, response);
 
@@ -151,6 +155,7 @@ function cachedRequest(options) {
 
   }, function(response) {
 
+    var complete = Date.now() - timer;
     var cacheControlExpire;
     var resolve = false;
     var del = false;
@@ -162,9 +167,11 @@ function cachedRequest(options) {
       store.statusCode = response.statusCode;
       store.expires = !isNaN(options.maxAge) ? Math.min(cacheControlExpire, future(options.maxAge)) : cacheControlExpire,
       resolve = true;
+      console.log('remote=' + options.uri, 'time=' + complete, 'status=' + response.statusCode, 'reason=notModified');
     } else if (hasExpired && options.failStale) {
       store = cachedResponse;
       resolve = true;
+      console.log('remote=' + options.uri, 'time=' + complete, 'status=' + response.statusCode, 'reason=failStale');
       debug('Fail stale', key, response.statusCode, response.message);
     } else {
       store = {
@@ -179,6 +186,7 @@ function cachedRequest(options) {
           'cause'
         ])
       };
+      console.error('remote=' + options.uri, 'time=' + complete, 'status=' + response.statusCode, 'reason=error', 'detail=' + JSON.stringify(store.reason));
     }
 
     if (!store.expires) {
