@@ -1,20 +1,21 @@
 'use strict';
 var d3 = require('d3');
 var _groupBy = require('lodash-node/modern/collections/groupby');
+var parties = require('uk-political-parties');
 
 module.exports = function(data){
-  console.log('POLLS!');
-  var dateFormat = d3.time.format("%Y-%m-%d");
+  var dateFormat = d3.time.format("%d/%m/%y");
   var dateDomain = [ dateFormat.parse("2014-10-01"), new Date() ];
   var valueDomain = [ 0, 100 ];
   var processedData = {};
+  var pollPointRadius = 3;
 
   function pollTracker(parent){
     console.log('polls from ', dateDomain, 'between ', valueDomain);
     if(processedData === {}) { return undefined; }
 
     var bounds = parent.node().getBoundingClientRect(),
-      margin = { top:5, left:30, bottom:30, right:60 },
+      margin = { top:15, left:30, bottom:30, right:60 },
       plotWidth = bounds.width - (margin.left + margin.right),
       plotHeight = bounds.height - (margin.top + margin.bottom);
 
@@ -65,22 +66,79 @@ module.exports = function(data){
 
     plot.append('g').attr('class','y axis').call(yAxis);
 
+    console.log(processedData);
+    var groups = plot.selectAll("g.group")
+      .data(Object.keys(processedData.pointsData), function(d) { return d; });
+
+    groups.enter().append("g")
+      .attr('class', function(d){ return 'party-poll-group ' + d });
+
+    groups.exit().remove();
+
+    var points = groups.selectAll("circle")
+      .data(function(d) {
+        console.log(d);
+        return processedData.pointsData[d];
+      });
+
+    points.enter().append("circle")
+      .attr({
+        'class':function(d){ return 'poll-visualisation__point ' + parties.className(d.party)+'-area'}
+      });
+
+    points.exit()
+      .attr({
+        r:0
+      })
+      .remove();
+
+    points
+      .attr({
+        cx:function(d){ return timeScale(d.date) },
+        cy:function(d){ return valueScale(d.val) },
+        r:pollPointRadius
+      });
+
+    var borders = plot.selectAll('path.poll-visualisation__line-border')
+      .data( Object.keys(processedData.linesData), function(d){ return d; } );
+
+    borders.enter().append('path').attr('class','poll-visualisation__line-border');
+    borders.exit().remove();
+    borders.attr('d', function(d) { return line( processedData.linesData[d] ); });
+
+    var pollOfPollLines = plot.selectAll('path.poll-visualisation__line')
+      .data( Object.keys(processedData.linesData), function(d){ return d; } );
+
+    pollOfPollLines.enter().append('path')
+      .attr('class',function(d){ return 'poll-visualisation__line ' + parties.className(d)+'-edge' });
+
+    pollOfPollLines.exit().remove();
+
+    pollOfPollLines.attr('d', function(d) { return line( processedData.linesData[d] ); });
+
   }
 
 
+  pollTracker.pollPointRadius = function(r){
+    if(!r) return pollPointRadius;
+    pollPointRadius = r;
+    return pollTracker;
+  };
 
   pollTracker.data = function(rawData){
+
     if(!rawData){ return processedData; }
-      rawData = rawData.map(function (d){
+
+    rawData = rawData.map(function (d){
       return{
         date: dateFormat.parse(d.datetext),
         party: d.variable,
         val: +d.value,
         filter: d.shape
       };
-    }).reverse();
+    });
 
-    var split = _groupBy(data, function(d){
+    var split = _groupBy(rawData, function(d){
       return d.filter;
     });
 

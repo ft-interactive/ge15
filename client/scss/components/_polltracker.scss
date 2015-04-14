@@ -1,5 +1,4 @@
 .poll-visualisation {
-  border: 1px solid #000000;
   position: relative;
   width: 100%;
   padding-top: 67%;
@@ -12,4 +11,32 @@
   right: 0;
   bottom: 0;
   left: 0;
+}
+
+.poll-visualisation__point {
+  fill-opacity:0.2;
+  stroke-opacity:0.2;
+}
+
+.poll-visualisation__line-border {
+  fill: none;
+  stroke: #fff1e0; //TODO change to a variable
+  stroke-width: 3;
+}
+
+.poll-visualisation__line {
+  fill: none;
+  stroke-width: 2;
+}
+
+.poll-visualisation
+.axis{
+  stroke-width: 1px;
+  fill: none;
+  stroke: #74736c;
+  text {
+    fill: #74736c;
+    stroke: none;
+    font-size: 12;
+  }
 }
