@@ -22,6 +22,8 @@ var cache = lru({
       len = Buffer.byteLength(n);
     } else if (Buffer.isBuffer(n)) {
       len = n.length;
+    } else if ('lock' in n) {
+      len = 2; // could the lock objects at 2 bytes
     } else {
       len = Buffer.byteLength(stringify(n));
     }
@@ -39,7 +41,7 @@ function cachedRequest(options) {
     options = { uri: options };
   }
 
-  options = _.assign({}, options);
+  options = _.assign({failStale: true, timeout: 10000}, options);
   options.uri = options.uri || options.url;
   options.method = options.method ? options.method.toUpperCase() : 'GET';
   options.headers = options.headers || {};
@@ -61,9 +63,9 @@ function cachedRequest(options) {
   var cachedResponse = cache.get(key);
   var hasExpired = false;
 
-  if (cachedResponse) {
+  if (cachedResponse && !cachedResponse.lock) {
 
-    hasExpired = cachedResponse.expires < Date.now();
+    hasExpired = !cachedResponse.waiting && Date.now() > cachedResponse.expires;
 
     if (hasExpired) {
       debug('In the cache but stale', key);
@@ -92,6 +94,9 @@ function cachedRequest(options) {
       return Promise.resolve(cachedResponse.body);
     }
 
+    cachedResponse.waiting = true;
+  } else if (!cachedResponse) {
+    cache.set(key, {waiting: true, lock: true});
   }
 
   options.resolveWithFullResponse = true;
@@ -139,54 +144,57 @@ function cachedRequest(options) {
 
     cachedResponse = null;
     debug('Store in cache', key);
+    store.waiting = false;
+    delete store.lock;
     cache.set(key, store);
     return store.body;
 
   }, function(response) {
 
-    var expires;
     var cacheControlExpire;
     var resolve = false;
     var del = false;
+    var store;
 
-    if (response.headers) {
-      cacheControlExpire = expireFromHeaders(response.headers);
-      expires = !isNaN(options.maxAge) ? Math.min(cacheControlExpire, future(options.maxAge)) : cacheControlExpire;
+    if (hasExpired && response.statusCode === 304) {
+      cacheControlExpire = expireFromHeaders(cachedResponse.headers);
+      store = cachedResponse;
+      store.statusCode = response.statusCode;
+      store.expires = !isNaN(options.maxAge) ? Math.min(cacheControlExpire, future(options.maxAge)) : cacheControlExpire,
+      resolve = true;
+    } else if (hasExpired && options.failStale) {
+      store = cachedResponse;
+      resolve = true;
+      debug('Fail stale', key, response.statusCode, response.message);
     } else {
-      expires = !isNaN(options.maxAge) ? future(options.maxAge) : future(10000);
+      store = {
+        statusCode: response.statusCode,
+        expires: 0,
+        headers: {},
+        body: null,
+        reason: _.pick(response, [
+          'statusCode',
+          'name',
+          'message',
+          'cause'
+        ])
+      };
     }
 
-    if (!expires) {
+    if (!store.expires) {
       del = true;
     }
 
-    var store = {
-      statusCode: response.statusCode,
-      expires: expires
-    };
-
-    if (hasExpired && response.statusCode === 304) {
-      store.headers = cachedResponse.headers;
-      store.body = cachedResponse.body;
-      resolve = true;
-    } else {
-      store.headers = {};
-      store.reason = _.pick(response, [
-        'statusCode',
-        'name',
-        'message',
-        'cause'
-      ]);
-    }
-
     cachedResponse = null;
-    var msg = (resolve ? '304' : 'ERROR') + ' in cache';
+    var msg = ' ' + (resolve ? '304' : 'ERROR') + ' in cache';
 
     if (del) {
-      debug('Del ' + msg, key);
+      debug('Del' + msg, key);
       cache.del(key);
     } else {
-      debug('Store ' + msg, key);
+      debug('Store' + msg, key);
+      store.waiting = false;
+      delete store.lock;
       cache.set(key, store);
     }
 
