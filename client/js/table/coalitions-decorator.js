@@ -15,14 +15,14 @@ module.exports = function(parent){
   });
 
   data = data.map(function(d){
-    var parties = [];
+    var partiesArray = [];
     if(d.seats && d.parties){
-      parties = _zipObject(d.parties.split(','), d.seats.split(',').map( Number ));
+      partiesArray = _zipObject(d.parties.split(','), d.seats.split(',').map( Number ));
     }
     return {
       label: d.label,
       total: Number(d.seatstotal),
-      parties: parties
+      parties: partiesArray
     };
   });
 
