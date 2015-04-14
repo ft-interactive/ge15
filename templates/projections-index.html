@@ -3,7 +3,9 @@
 
 {% set stylesheet = 'pages/projections.css' %}
 
-{% set table_data = overview %}
+{% set result_table_data = overview %}
+{% set coalition_table_data = coalitions %}
+
 
 {% block summary %}
 <p class="article-header__summary" itemprop="description">{{ page.summary }}</p>
@@ -34,6 +36,19 @@
       </div>
     </div>
   </div>
+
+  <div class="figure" data-o-grid-colspan="12">
+    <h2 class="article-body__subhead figure__title">Possible Coalitions</h2>
+    <div class="figure__body o-grid-row">
+      <div data-o-grid-colspan="12 M7 L8">
+        {% include "./coalition-table.html" %}
+      </div>
+      <div data-o-grid-colspan="12 M5 L4">
+        <p>Given the above forecasts only certain groups of parties will be able to form a majority. this table shows whetehr the most likely groupings of parties will be possible</p>
+      </div>
+    </div>
+  </div>
+
 
   <div class="figure" data-o-grid-colspan="12">
     <h2 class="article-body__subhead figure__title">Polling averages</h2>
@@ -84,6 +99,7 @@
       <div class="figure constituency-group constituency-group--slope" data-o-grid-colspan="12">
         <h3 id="{{ group.slug }}" class="article-body__subhead figure__title" data-o-grid-colspan="12 M9 Moffset3 L10 Loffset2">{{ group.name }}</h3>
 
+
         <div class="figure__body">
           <div class="o-grid-row">
 
@@ -94,8 +110,8 @@
 
             <div data-o-grid-colspan="12 S8 M9 L10" class="constituency-group__details">
               {{ group.description | safe }}
-            </div>
 
+            </div>
           </div>
 
           <div class="o-grid-row">

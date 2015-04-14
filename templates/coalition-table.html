@@ -1,0 +1,31 @@
+<div class="figure coalition-table grid-table">
+  <div class="grid-table-header o-grid-row">
+    <div data-o-grid-colspan="4 S3">&nbsp;</div>
+    <div data-o-grid-colspan="6 S7" class="stacked-bar-column" data-party="none" data-seatstotal="326" data-label="Majority (326)" data-high="350">
+      <div data-o-grid-colspan="2 M1" class="col-header">Seats</div>
+      <div class="visualisation" data-o-grid-colspan="10 M11"></div>
+    </div>
+    <div data-o-grid-colspan="2" class="col-header">Majority</div>
+  </div>
+
+  {% for row in coalition_table_data %}
+    {% if row.totalSeats > 325 %}
+        {% set viability = "coalition-table__viable" %}
+    {% else %}
+        {% set viability = "coalition-table__not-viable" %}
+    {% endif %}
+  <div class="grid-table-data o-grid-row {{viability}}">
+    <div data-o-grid-colspan="4 S3" class="rowhead">
+      {% for member in row.parties %}{{ member.party | partyAbbreviation }}{% if !loop.last %},{% endif %} {% endfor %}
+    </div>
+
+    <div data-o-grid-colspan="6 S7" class="stacked-bar-column" data-seatstotal="{{row.totalSeats}}" data-parties="{% for member in row.parties %}{{ member.party }}{% if !loop.last %},{% endif %}{% endfor %}" data-seats="{% for member in row.parties %}{{ member.seats }}{% if !loop.last %},{% endif %}{% endfor %}">
+      <div data-o-grid-colspan="2 M1" class="{{viability}}">{{ row.totalSeats }}</div>
+      <div class="visualisation" data-o-grid-colspan="10 M11"></div>
+    </div>
+
+    <div data-o-grid-colspan="2" class="numeric-column {{viability}}">{{ row.totalSeats - 325 | change}}</div>
+  </div>
+  {% endfor %}
+
+</div>

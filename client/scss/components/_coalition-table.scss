@@ -1,0 +1,14 @@
+.coalition-table {
+  width: 100%;
+  margin-bottom: 2em;
+  font-size: 0.9em;
+}
+
+.coalition-table__not-viable {
+    color: #a7a59b;
+    font-weight: normal;
+}
+
+.coalition-table__viable {
+  font-weight: bold;
+}
