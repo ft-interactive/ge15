@@ -13,7 +13,8 @@ var doc = document;
 doc.graphics = {};
 doc.graphics.slope = require('./slope-chart/index.js');
 doc.graphics.constituencyLocator = require('./locator-map/constituency-locator.js');
-doc.graphics.tableDecorator = require('./table/projections-decorator.js');
+doc.graphics.resultTableDecorator = require('./table/projections-decorator.js');
+doc.graphics.coalitionsTableDecorator = require('./table/coalitions-decorator.js');
 
 doc.data = {};
 doc.data.constituencyLookup = {};
@@ -164,7 +165,11 @@ function main(){
 
   //decorate the results table
   d3.select('.result-table')
-    .call(doc.graphics.tableDecorator);
+    .call(doc.graphics.resultTableDecorator);
+
+  //decorate the coalition table
+  d3.select('.coalition-table')
+    .call(doc.graphics.coalitionsTableDecorator);
 
   //load and draw the map
   d3.json(mapData,function(map){

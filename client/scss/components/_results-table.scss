@@ -1,13 +1,13 @@
 .result-table {
   width: 100%;
   margin-bottom: 2em;
-
-  @include oGridRespondTo($until: M) {
-    font-size: 0.9em;
-  }
-  @include oGridRespondTo($until: L) {
-    font-size: 0.95em;
-  }
+  font-size: 0.9em;
+/*   @include oGridRespondTo(\$until: M) {
+  font-size: 0.9em;
+}
+@include oGridRespondTo(\$until: L) {
+  font-size: 0.95em;
+} */
 }
 
 .numeric-column {

@@ -15,7 +15,6 @@ module.exports = function(parent){
 
   var domain = [0, Math.max(330, d3.max(data, function(d){ return d.high; }))];
   var cellSize = d3.select('div.bar-column .visualisation').node().getBoundingClientRect();
-  console.log(domain);
 
   var barWidth = cellSize.width;
   var barHeight = 20;
@@ -33,7 +32,7 @@ module.exports = function(parent){
         transform:'translate('+margin.left+','+margin.top+')'
       });
 
-  d3.selectAll('g.result-cell-bar')
+  parent.selectAll('g.result-cell-bar')
     .call(markers,[326])
     .call(bar)
     .call(label);
@@ -81,16 +80,16 @@ module.exports = function(parent){
       });
 
     parent.selectAll('.party-bar')
-    .attr({
-      width:function(d){ return barScale(d.seats); },
-      height:barHeight,
-      'class':function(d){
-        if(d.party === 'none'){
-          return 'none';
+      .attr({
+        width:function(d){ return barScale(d.seats); },
+        height:barHeight,
+        'class':function(d){
+          if(d.party === 'none'){
+            return 'none';
+          }
+          return parties.className(d.party) + '-area party-bar';
         }
-        return parties.className(d.party) + '-area party-bar';
-      }
-    });
+      });
 
     return parent;
   }
