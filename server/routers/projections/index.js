@@ -12,6 +12,12 @@ var _ = require('lodash');
 var data;
 var expiry;
 var fetching;
+var page = {
+  title: 'The key UK general election battles',
+  summary: 'Four contests will decide the most uncertain UK election for decades',
+  dateModified: null
+};
+
 
 function* home(next) {
 
@@ -26,36 +32,32 @@ function* home(next) {
 
     debug(res.forecast);
 
-    res.forecast.data = res.forecast.data.map(function(d) {
+    var overview = _.clone(res.forecast.data, true).map(function(d) {
       d.Party = parties.electionForecastToCode(d.Party);
       return d;
     });
 
-    res.coalitions.data = coalitionSum(res.coalitions.coalitions, res.forecast.data);
+    var coalitions = coalitionSum(res.coalitions.coalitions, overview);
 
     expiry = Date.now() + (1000 * 60);
     fetching = false;
-    data = res;
+    page.dateModified = res.forecast.updated || page.dateModified;
+    data = { // jshint ignore:line
+      page: page,
+      groups: res.battlegrounds,
+      overview: overview,
+      coalitions: coalitions
+    };
   }
 
   // store in browser cache for 5mins
   // allow CDN to store stale page for 8 hours
   // allow CDN to store stale if backend is erroring for 1 day
-  this.set('Cache-Control', 'max-age=300, s-maxage=300, stale-while-revalidate=28800, stale-if-error=86400');
+  this.set('Cache-Control', 'max-age=300, s-maxage=300, stale-while-revalidate=28800, stale-if-error=86400'); // jshint ignore:line
   // allow CDN to store the response for 15mins
-  this.set('Surrogate-Control', 'max-age=900');
+  this.set('Surrogate-Control', 'max-age=900'); // jshint ignore:line
 
-
-  yield this.render('projections-index', { // jshint ignore:line
-    page: {
-      title: 'The key UK general election battles',
-      summary: 'Four contests will decide the most uncertain UK election for decades',
-      dateModified: data.forecast.updated
-    },
-    groups: data.battlegrounds,
-    overview: data.forecast.data,
-    coalitions: data.coalitions.data
-  });
+  yield this.render('projections-index', data); // jshint ignore:line
   yield next;
 }
 
@@ -72,22 +74,40 @@ function main() {
         .get('home', '/', home);
 }
 
-function coalitionSum(coalitions, results){
-  var resultLookup = _.indexBy(results, 'Party');
-  return coalitions.map(function(d){
-    var coalition = {
-      parties:[],
-      totalSeats:0,
-      probablity:d.probability
-    };
+function coalitionSum(coalitions, results) {
 
-    d.parties.forEach(function(d,i){
-      coalition.totalSeats += Number( resultLookup[d].Seats );
-      coalition.parties.push({
-        party:d,
-        seats:resultLookup[d].Seats
-      });
-    });
+  if (!results || !results.length || !coalitions || !coalitions.length) {
+    console.error('Unable to calculate coalitions');
+    console.log('Results');
+    console.dir(results);
+    console.log('Coalitions');
+    console.dir(coalitions);
+    return null;
+  }
+
+  var resultLookup = _.indexBy(results, 'Party');
+
+  function partyTotal(d) {
+    var result = this[d]; // jshint ignore:line
+    if (!result) {
+      console.error('Error looking up result', d);
+      return;
+    }
+    return {
+      party: d,
+      seats: Number(result.Seats)
+    };
+  }
+
+  function sumTotal(total, party) {
+    total += party.seats;
+    return total;
+  }
+
+  return coalitions.map(function(d) {
+    var coalition = {probablity: Number(d.probability)};
+    coalition.parties = d.parties.map(partyTotal, resultLookup).filter(Boolean);
+    coalition.totalSeats = coalition.parties.reduce(sumTotal, 0);
     return coalition;
   });
 }

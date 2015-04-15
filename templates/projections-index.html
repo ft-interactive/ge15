@@ -24,6 +24,7 @@
 
 <div class="o-grid-row">
 
+  {% if overview && overview.length %}
   <div class="figure" data-o-grid-colspan="12">
     <h2 class="article-body__subhead figure__title">National seat projections</h2>
     <div class="figure__body o-grid-row">
@@ -36,7 +37,9 @@
       </div>
     </div>
   </div>
+  {% endif %}
 
+  {% if coalitions && coalitions.length %}
   <div class="figure" data-o-grid-colspan="12">
     <h2 class="article-body__subhead figure__title">Possible coalitions</h2>
     <div class="figure__body o-grid-row">
@@ -52,6 +55,7 @@
       </div>
     </div>
   </div>
+  {% endif %}
 
 
   <div class="figure" data-o-grid-colspan="12">
@@ -102,7 +106,6 @@
     {% for group in groups %}
       <div class="figure constituency-group constituency-group--slope" data-o-grid-colspan="12">
         <h3 id="{{ group.slug }}" class="article-body__subhead figure__title" data-o-grid-colspan="12 M9 Moffset3 L10 Loffset2">{{ group.name }}</h3>
-
 
         <div class="figure__body">
           <div class="o-grid-row">
