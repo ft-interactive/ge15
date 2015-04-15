@@ -104,12 +104,21 @@ function coalitionSum(coalitions, results) {
     return total;
   }
 
-  return coalitions.map(function(d) {
+  function removeSinglePartyGovt(d){
+    return d.parties.length > 1;
+  }
+
+  function createCoalition(d) {
     var coalition = {probablity: Number(d.probability)};
-    coalition.parties = d.parties.map(partyTotal, resultLookup).filter(Boolean);
+    coalition.parties = _.sortByOrder(d.parties.map(partyTotal, resultLookup).filter(Boolean), ['seats', 'party'], [true, true]);
     coalition.totalSeats = coalition.parties.reduce(sumTotal, 0);
     return coalition;
-  });
+  }
+
+  coalitions = coalitions.map(createCoalition)
+                            .filter(removeSinglePartyGovt);
+
+  return _.sortByOrder(coalitions, ['totalSeats'], [false]);
 }
 
 module.exports = main;
