@@ -47,7 +47,7 @@
         {% include "./coalition-table.html" %}
       </div>
       <div data-o-grid-colspan="12 M5 L4">
-        <p>According to this projection, a coalition government is certain. Only a few party combinations would provide a majority.</p>
+        <p>According to this projection a hung parliament is likely. Few viable coalitions exist but multiple ad hoc alliances are possible.</p>
         <p><a href="http://www.ft.com/cms/s/0/49bd976a-d79d-11e4-849b-00144feab7de.html">If no coalition can form a majority</a>, a &ldquo;confidence and supply&rdquo; deal with smaller parties could allow a minority Tory or Labour government pass its Queen&rsquo;s Speech and its Budget. All other issues would then be decided on a vote-by-vote basis.</p>
         <div class="figure__footer">
           <p>Although 326 seats is a majority in the House of Commons, Sinn F&eacute;in MPs do not take their seats, so the number of seats needed to win a vote will be lower, most likely 323.</p>
@@ -56,7 +56,6 @@
     </div>
   </div>
   {% endif %}
-
 
   <div class="figure" data-o-grid-colspan="12">
     <h2 class="article-body__subhead figure__title">Polling averages</h2>
@@ -78,21 +77,17 @@
     </div>
   </div>
 
-
   <div class="figure" data-o-grid-colspan="12">
     <h2 class="article-body__subhead figure__title">The key constituency battles</h2>
     <div class="figure__body o-grid-row">
       <div data-o-grid-colspan="12 M7 L7">
-        <nav class="battle-nav">
+        <ul class="battle-nav">
           {% for group in groups %}
-          <a href="#{{ group.slug }}" class="battle-nav__item fauxlink">
-            <span class="battle-nav__logo">
-              <img class="snp" src="{{ group.image }}">
-            </span>
+          <li><a href="#{{ group.slug }}" class="battle-nav__item fauxlink">
             <span class="fauxlink__target">{{ group.name }}</span>
-          </a>
+          </a></li>
           {% endfor %}
-        </nav>
+        </ul>
 
       </div>
       <div data-o-grid-colspan="12 M5 L4 Loffset1">
