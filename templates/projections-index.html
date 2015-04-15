@@ -81,13 +81,16 @@
     <h2 class="article-body__subhead figure__title">The key constituency battles</h2>
     <div class="figure__body o-grid-row">
       <div data-o-grid-colspan="12 M7 L7">
-        <ul class="battle-nav">
+        <nav class="battle-nav">
           {% for group in groups %}
-          <li><a href="#{{ group.slug }}" class="battle-nav__item fauxlink">
+          <a href="#{{ group.slug }}" class="battle-nav__item fauxlink">
+            <span class="battle-nav__logo">
+              <img class="snp" src="{{ group.image }}">
+            </span>
             <span class="fauxlink__target">{{ group.name }}</span>
-          </a></li>
+          </a>
           {% endfor %}
-        </ul>
+        </nav>
 
       </div>
       <div data-o-grid-colspan="12 M5 L4 Loffset1">
