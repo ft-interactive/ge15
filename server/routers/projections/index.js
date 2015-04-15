@@ -34,10 +34,18 @@ function* home(next) {
 
     var overview = _.clone(res.forecast.data, true).map(function(d) {
       d.Party = parties.electionForecastToCode(d.Party);
+      d.Seats = Number(d.Seats);
       return d;
     });
 
-    var coalitions = coalitionSum(res.coalitions.coalitions, overview);
+    var largestParty = overview.reduce(function(largest, d){
+      if (d.Seats > largest) {
+        largest = d.Seats;
+      }
+      return largest;
+    },0);
+
+    var coalitions = coalitionSum(res.coalitions.coalitions, overview, largestParty);
 
     expiry = Date.now() + (1000 * 60);
     fetching = false;
@@ -74,7 +82,7 @@ function main() {
         .get('home', '/', home);
 }
 
-function coalitionSum(coalitions, results) {
+function coalitionSum(coalitions, results, threshold) {
 
   if (!results || !results.length || !coalitions || !coalitions.length) {
     console.error('Unable to calculate coalitions');
@@ -104,6 +112,10 @@ function coalitionSum(coalitions, results) {
     return total;
   }
 
+  function gtThreshold(d) {
+    return d.totalSeats > threshold;
+  }
+
   function removeSinglePartyGovt(d){
     return d.parties.length > 1;
   }
@@ -116,7 +128,8 @@ function coalitionSum(coalitions, results) {
   }
 
   coalitions = coalitions.map(createCoalition)
-                            .filter(removeSinglePartyGovt);
+                            .filter(removeSinglePartyGovt)
+                            .filter(gtThreshold);
 
   return _.sortByOrder(coalitions, ['totalSeats'], [false]);
 }
