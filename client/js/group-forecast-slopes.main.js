@@ -100,7 +100,7 @@ function main(){
         var axis = d3.select(this).append('g')
           .attr({
             class:'slope-axes'
-          }).selectAll('g').data(['Now','May 7'])
+          }).selectAll('g').data(['Last vote','Polling'])
             .enter()
               .append('g')
               .attr({
