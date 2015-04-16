@@ -1,21 +1,32 @@
 'use strict';
 var d3 = require('d3');
-var _groupBy = require('lodash-node/modern/collections/groupby');
+var _indexBy = require('lodash-node/modern/collections/indexby');
 var parties = require('uk-political-parties');
 
 module.exports = function(data){
-  var dateFormat = d3.time.format("%d/%m/%y");
+  var dateFormat = d3.time.format("%Y-%m-%d");
   var dateDomain = [ dateFormat.parse("2014-10-01"), new Date() ];
   var valueDomain = [ 0, 100 ];
   var processedData = {};
   var pollPointRadius = 3;
+  var transitionDuration = 4000;
 
   function pollTracker(parent){
     console.log('polls from ', dateDomain, 'between ', valueDomain);
     if(processedData === {}) { return undefined; }
 
+    function byDateDomain(d){
+      return (d.date.getTime() > dateDomain[0].getTime() &&
+      d.date.getTime() < dateDomain[1].getTime());
+    }
+
+    var filteredData = {
+      lines:processedData.lines.filter(byDateDomain),
+      polls:processedData.polls.filter(byDateDomain)
+    };
+
     var bounds = parent.node().getBoundingClientRect(),
-      margin = { top:15, left:30, bottom:30, right:60 },
+      margin = { top:15, left:30, bottom:30, right:90 },
       plotWidth = bounds.width - (margin.left + margin.right),
       plotHeight = bounds.height - (margin.top + margin.bottom);
 
@@ -27,7 +38,7 @@ module.exports = function(data){
       .domain(valueDomain)
       .range([plotHeight, 0]);
 
-    var plotEnter =parent.selectAll('svg').data([processedData])
+    var plotEnter =parent.selectAll('svg').data([filteredData])
       .enter()
         .append('svg')
           .attr({
@@ -56,10 +67,12 @@ module.exports = function(data){
       .ticks(5)
       .tickSize(5);
 
-    var line = d3.svg.line()
-      .interpolate("linear")
-      .x( function(d) { return timeScale( d.date ); })
-      .y( function(d) { return valueScale( d.val ); });
+    function lineInterpolator(party){
+      return d3.svg.line()
+        .interpolate("linear")
+        .x( function(d) { return timeScale( d.date ); })
+        .y( function(d) { return valueScale( d.rs[party].v ); });
+    }
 
     plotEnter.append('g').attr({
       'class':'x axis',
@@ -68,57 +81,91 @@ module.exports = function(data){
 
     plotEnter.append('g').attr('class','y axis');
 
-    plot.select('.x.axis').call(xAxis);
-    plot.select('.y.axis').call(yAxis);
-
-    var groups = plotEnter.selectAll("g.party-poll-group")
-      .data(Object.keys(processedData.pointsData), function(d) { return d; });
-
-    groups.enter().append("g")
-      .attr('class', function(d){ return 'party-poll-group ' + d });
-
-    groups.exit().remove();
-
-    var points = d3.selectAll('.party-poll-group').selectAll("circle")
-      .data(function(d) {
-        return processedData.pointsData[d];
-      });
-
-    points.enter().append("circle")
-      .attr({
-        'class':function(d){ return 'poll-visualisation__point ' + parties.className(d.party)+'-area'},
-        cx:function(d){ return timeScale(d.date) },
-        cy:function(d){ return valueScale(d.val) },
-        r:pollPointRadius
-      });
-
-    points.exit()
-      .remove();
-
-    points
+    plot.select('.x.axis')
       .transition()
+      .duration(transitionDuration)
+        .call(xAxis);
+
+    plot.select('.y.axis')
+      .transition()
+      .duration(transitionDuration)
+        .call(yAxis);
+
+    var polls = plot.append('g').attr('class','poll-visualisation__points');
+
+
+    var pollDataJoin = polls.selectAll('poll-visualisation__poll')
+      .data(filteredData.polls);
+
+    pollDataJoin.enter().append("g")
       .attr({
-        cx:function(d){ return timeScale(d.date) },
-        cy:function(d){ return valueScale(d.val) }
-      });
+        'class':'poll-visualisation__poll',
+        'transform':function(d){
+          return 'translate(' + timeScale(d.date) + ', 0)';
+        }
+      })
+      .call(plotPoll);
 
-    // var borders = plot.selectAll('path.poll-visualisation__line-border')
-    //   .data( Object.keys(processedData.linesData), function(d){ return d; } );
-    //
-    // borders.enter().append('path').attr('class','poll-visualisation__line-border');
-    // borders.exit().remove();
-    // borders.attr('d', function(d) { return line( processedData.linesData[d] ); });
+    pollDataJoin.exit().remove();
 
+    var partyList = Object.keys( filteredData.lines[0].rs );
     var pollOfPollLines = plot.selectAll('path.poll-visualisation__line')
-      .data( Object.keys(processedData.linesData), function(d){ return d; } );
+      .data( partyList );
 
     pollOfPollLines.enter().append('path')
-      .attr('class',function(d){ return 'poll-visualisation__line ' + parties.className(d)+'-edge' });
+      .attr('class',function(d){ return 'poll-visualisation__line ' + parties.className(d)+'-edge' })
+      .attr('d', function(d) { return lineInterpolator(d)( filteredData.lines ); });
+
     pollOfPollLines.exit().remove();
-    pollOfPollLines.attr('d', function(d) { return line( processedData.linesData[d] ); });
+    pollOfPollLines.transition()
+      .duration( transitionDuration )
+      .attr('d', function(d) { return lineInterpolator(d)( filteredData.lines ); });
 
+
+    var labels = plot.selectAll('text.poll-visualisation__label')
+      .data( partyList, function(d){ return d; } );
+
+    labels.enter().append('text')
+      .attr({
+        'class':function(d){
+          return parties.className(d) + '-area';
+        },
+        x:plotWidth,
+        y:function(d){
+          console.log(d);
+          return valueScale(filteredData.lines[0].rs[d].v);
+        }
+      }).text(function(d){
+        return parties.shortName(d) + ' ' + d3.round(filteredData.lines[0].rs[d].v,1) + '%';
+      });
+
+    labels.exit().remove();
+    labels.transition().duration(transitionDuration)
+      .attr('y',function(d){
+        return valueScale(filteredData.lines[0].rs[d].v);
+      });
+
+    function plotPoll(parent){
+      var dataJoin = parent.selectAll('circle.poll-visualisation__point').data(function(d){
+        return d.rs;
+      });
+
+      dataJoin
+        .enter().append('circle').attr('class','poll-visualisation__point');
+
+      dataJoin.exit().remove();
+
+      dataJoin.transition().duration(transitionDuration)
+        .attr({
+          cx:0,
+          cy:function(d){
+            return valueScale(d.v);
+          },
+          r:pollPointRadius,
+          'class':function(d){ return 'poll-visualisation__point ' + parties.className(d.p)+'-area' }
+        });
+      }
   }
-
 
 
 
@@ -129,27 +176,20 @@ module.exports = function(data){
   };
 
   pollTracker.data = function(rawData){
-
     if(!rawData){ return processedData; }
 
-    rawData = rawData.map(function (d){
-      return{
-        date: dateFormat.parse(d.datetext),
-        party: d.variable,
-        val: +d.value,
-        filter: d.shape
-      };
+    rawData.polls = rawData.polls.map(function(d){
+      d.date = dateFormat.parse(d.dt);
+      return d;
     });
 
-    var split = _groupBy(rawData, function(d){
-      return d.filter;
+    rawData.lines = rawData.lines.map(function(d){
+      d.date = dateFormat.parse(d.dt);
+      d.rs = _indexBy(d.rs,'p');
+      return d;
     });
 
-    processedData = {
-      pointsData:_groupBy(split['points'], 'party'),
-      linesData:_groupBy(split['lines'], 'party')
-    };
-
+    processedData = rawData;
     return pollTracker;
   };
 

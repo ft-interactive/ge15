@@ -173,26 +173,22 @@ function main(){
     .call(doc.graphics.coalitionsTableDecorator);
 
   //create polltracker
-  d3.csv('http://interactivegraphics.ft-static.com/data/uk-polling-data/long.csv',
-    function(error, data){
+  d3.json('http://interactivegraphics.ft-static.com/data/uk-polling-data/polltracker.json',function(error, data){
+    var pollViz = doc.graphics.pollTracker();
 
-      var pollViz = doc.graphics.pollTracker();
+    pollViz
+      .data(data)
+      .dateDomain([new Date(2014,10,1), new Date()])
+      .valueDomain([0,40]);
 
-      pollViz
-        .data(data)
-        .dateDomain([new Date(2014,10,1), new Date()])
-        .valueDomain([0,40]);
+    d3.select('.poll-visualisation')
+      .call(pollViz);
 
-      d3.select('.poll-visualisation')
-        .call(pollViz);
+    pollViz.dateDomain([new Date(2013, 10, 1), new Date()]);
+    d3.select('.poll-visualisation')
+      .call(pollViz);
 
-      pollViz
-        .dateDomain([new Date(2013,10,1), new Date()]);
-
-      d3.select('.poll-visualisation')
-        .call(pollViz);
-
-    });
+  });
 
 
 
