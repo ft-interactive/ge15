@@ -27,19 +27,21 @@ module.exports = function(data){
       .domain(valueDomain)
       .range([plotHeight, 0]);
 
-    var plot = parent.selectAll('svg').data([processedData])
+    var plotEnter =parent.selectAll('svg').data([processedData])
       .enter()
-      .append('svg')
-        .attr({
-          width:Math.floor(bounds.width),
-          height:Math.floor(bounds.height),
-          'class':'poll-visualisation__graphic'
-        })
-      .append('g')
-        .attr({
-          'class':'poll-visualisation__plot',
-          'transform':'translate('+margin.left+','+margin.top+')'
-        });
+        .append('svg')
+          .attr({
+            width:Math.floor(bounds.width),
+            height:Math.floor(bounds.height),
+            'class':'poll-visualisation__graphic'
+          })
+        .append('g')
+          .attr({
+            'class':'poll-visualisation__plot',
+            'transform':'translate('+margin.left+','+margin.top+')'
+          });
+
+    var plot = d3.select('.poll-visualisation__plot');
 
     var xAxis = d3.svg.axis()
       .scale(timeScale)
@@ -59,15 +61,17 @@ module.exports = function(data){
       .x( function(d) { return timeScale( d.date ); })
       .y( function(d) { return valueScale( d.val ); });
 
-    plot.append('g').attr({
+    plotEnter.append('g').attr({
       'class':'x axis',
       'transform':'translate(0,'+ plotHeight +')'
-    }).call(xAxis);
+    });
 
-    plot.append('g').attr('class','y axis').call(yAxis);
+    plotEnter.append('g').attr('class','y axis');
 
-    console.log(processedData);
-    var groups = plot.selectAll("g.group")
+    plot.select('.x.axis').call(xAxis);
+    plot.select('.y.axis').call(yAxis);
+
+    var groups = plotEnter.selectAll("g.party-poll-group")
       .data(Object.keys(processedData.pointsData), function(d) { return d; });
 
     groups.enter().append("g")
@@ -75,48 +79,47 @@ module.exports = function(data){
 
     groups.exit().remove();
 
-    var points = groups.selectAll("circle")
+    var points = d3.selectAll('.party-poll-group').selectAll("circle")
       .data(function(d) {
-        console.log(d);
         return processedData.pointsData[d];
       });
 
     points.enter().append("circle")
       .attr({
-        'class':function(d){ return 'poll-visualisation__point ' + parties.className(d.party)+'-area'}
-      });
-
-    points.exit()
-      .attr({
-        r:0
-      })
-      .remove();
-
-    points
-      .attr({
+        'class':function(d){ return 'poll-visualisation__point ' + parties.className(d.party)+'-area'},
         cx:function(d){ return timeScale(d.date) },
         cy:function(d){ return valueScale(d.val) },
         r:pollPointRadius
       });
 
-    var borders = plot.selectAll('path.poll-visualisation__line-border')
-      .data( Object.keys(processedData.linesData), function(d){ return d; } );
+    points.exit()
+      .remove();
 
-    borders.enter().append('path').attr('class','poll-visualisation__line-border');
-    borders.exit().remove();
-    borders.attr('d', function(d) { return line( processedData.linesData[d] ); });
+    points
+      .transition()
+      .attr({
+        cx:function(d){ return timeScale(d.date) },
+        cy:function(d){ return valueScale(d.val) }
+      });
+
+    // var borders = plot.selectAll('path.poll-visualisation__line-border')
+    //   .data( Object.keys(processedData.linesData), function(d){ return d; } );
+    //
+    // borders.enter().append('path').attr('class','poll-visualisation__line-border');
+    // borders.exit().remove();
+    // borders.attr('d', function(d) { return line( processedData.linesData[d] ); });
 
     var pollOfPollLines = plot.selectAll('path.poll-visualisation__line')
       .data( Object.keys(processedData.linesData), function(d){ return d; } );
 
     pollOfPollLines.enter().append('path')
       .attr('class',function(d){ return 'poll-visualisation__line ' + parties.className(d)+'-edge' });
-
     pollOfPollLines.exit().remove();
-
     pollOfPollLines.attr('d', function(d) { return line( processedData.linesData[d] ); });
 
   }
+
+
 
 
   pollTracker.pollPointRadius = function(r){
