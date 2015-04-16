@@ -29,7 +29,7 @@
 
         <script>{% spaceless %}
         if(cutsTheMustard){
-          addScript('//cdn.polyfill.io/v1/polyfill.min.js?features=default,Promise,fetch', false, false);
+          addScript('https://cdn.polyfill.io/v1/polyfill.min.js?features=default,Promise,fetch', false, false);
           addScript('{{ asset("js/vendor.js") }}', false, false);
           addScript('{{ asset("js/common.js") }}', false, false);
         }else{
