@@ -34,6 +34,7 @@
     "o-assets": "^0.4.0",
     "o-dom": "~1.0.0",
     "o-hierarchical-nav": "^2.0.0",
-    "o-grid": "~3.1.0"
+    "o-grid": "~3.1.0",
+    "o-layers": ">=0.2.0 <2"
   }
 }
