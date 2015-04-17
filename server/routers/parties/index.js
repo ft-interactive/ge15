@@ -1,34 +1,26 @@
-var app = require('../../util/app');
-var models = require('../../models');
-var Party = models.Party;
+'use strict';
 
-function values(d) {
-  return d.dataValues;
-}
-
-var partiesOrderBy = [[{raw: "upper(replace(shortname, ' ', ''))"}, 'ASC']];
+const app = require('../../util/app');
+const viewLocals = require('../../middleware/view-locals');
+const siteNav = require('../../middleware/site-navigation');
+const data = require('../../data');
 
 function* home(next) {
-  this.locals.parties = yield Party.findAll({order: partiesOrderBy}).map(values);
-  yield this.render('party-index', {});
-  yield next;
-}
-
-function* party(next) {
-  this.locals.party = yield Party.find({where: {slug: this.params.party}});
-  this.assert(this.locals.party, 404, 'Party not found.');
-  yield this.render('party', {});
+  var parties = yield data.parties();
+  yield this.render('party-index', {parties: parties});
   yield next;
 }
 
 function main() {
   return app()
+        .use(siteNav())
+
+        .use(viewLocals())
+
         .router()
 
         // parties home page
-        .get('home', '/', home)
-        .get('party', '/:party', party);
+        .get('home', '/', home);
 }
 
 module.exports = main;
-if (!module.parent) main().listen(process.env.PORT || 5000);

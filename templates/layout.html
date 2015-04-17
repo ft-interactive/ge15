@@ -9,7 +9,6 @@
         <meta name="copyright" content="Financial Times" />
         <meta name="robots" content="index,follow" />
         <meta name="author" content="FT Interactive Graphics" />
-
         {% include "./add-script.html" %}
 
         {# start chartbeat timer #}
@@ -81,6 +80,5 @@
             var _sf_async_config={};_sf_async_config.uid = 14181;_sf_async_config.domain = 'ft.com';_sf_async_config.useCanonical = true;_sf_async_config.sections = 'Books';_sf_async_config.authors = 'Interactive';(function(){function loadChartbeat() {window._sf_endpt=(new Date()).getTime();var e = document.createElement('script');e.setAttribute('src', '//static.chartbeat.com/js/chartbeat.js');document.body.appendChild(e);}var oldonload = window.onload;window.onload = (typeof window.onload != 'function') ? loadChartbeat : function() { oldonload(); loadChartbeat(); };})();
         </script>
         {% endif %}
-
     </body>
 </html>

@@ -1,0 +1,7 @@
+#!/usr/local/bin/node --harmony
+
+'use strict';
+
+require('../db/create').create_database(function(){
+  console.log('\tDatabase created! You can query it using the CLI\n\n\t$ npm run db\n');
+});

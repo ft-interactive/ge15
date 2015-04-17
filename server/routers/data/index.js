@@ -15,7 +15,7 @@ const fiveMins = 1000 * 60 * 5;
 const longMaxAge = 1000 * 60 * 60 * 8; // 8 hours
 
 var forecast = {
-  seats:'http://interactive.ftdata.co.uk/data/electionforecast-co-uk/tsv/seats-latest.tsv',
+    seats:'http://interactive.ftdata.co.uk/data/electionforecast-co-uk/tsv/seats-latest.tsv',
   votes:'http://interactive.ftdata.co.uk/data/electionforecast-co-uk/tsv/votes-latest.tsv',
   probability:'http://interactive.ftdata.co.uk/data/electionforecast-co-uk/tsv/probability-latest.tsv',
   prediction:'http://interactive.ftdata.co.uk/data/electionforecast-co-uk/tsv/prediction-latest.tsv',

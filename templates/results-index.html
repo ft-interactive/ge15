@@ -1,36 +1,131 @@
 {% extends 'article.html' %}
 
-{% block title %}Areas{% endblock %}
+{% block title %}#GE2015 - Full Results{% endblock %}
 
 {% block article_header %}
-<h1 class="article-header__headline">Results</h1>
-<p class="article-header__byline">Luke Kavanagh</p>
-<p class="article-header__dateline">Today</p>
+<h1 class="article-header__headline">Election Results</h1>
 {% endblock %}
 
 {% block article_body %}
-<p>Casting off stifling uniforms is something of a theme of Sir Stephen’s life. <a href="#">For most of his career</a>, he was a high-flying diplomat — culminating in a spell as Britain’s ambassador to the European Union in the 1990s and then as Tony Blair’s chief adviser on Europe. After retiring from the civil service in 2004, he became the senior policy adviser to Cormac Murphy-O’Connor, who was then Catholic archbishop of Westminster. But, in his early sixties, Sir Stephen decided that he no longer believed in God. Around the same time, he told his wife and adult son that he was gay. He is now a prominent advocate for gay rights and, in his own words, “a recovering Catholic”. In retirement, he has also shed his diplomatic neutrality and become a vocal advocate of continued British membership of the EU.</p>
-<h2 class="article-body__subhead">This is a subhead</h2>
-<p>Taken together, this all sounds like a major mid-life crisis. But the man sitting opposite me seems, physically and temperamentally, little changed from the calm diplomat I first met in Downing Street in 2000, when he briefed me about Britain’s negotiating position ahead of an EU summit in Nice. Now a young-looking 68, with closely-cropped grey hair and the same professorial spectacles, he remains the consummate mandarin — quick-witted and able to assess every angle of a question rapidly and with dry humour. Yet, behind the civil-service reserve, there was always more than met the eye to Sir Stephen Wall. Tony Blair wrote in his memoir, “Stephen was very professional and proficient . . . but underneath you could tell he was a riot of strong emotions, opinions and insights.”</p>
-{% include "./group-slope.html" %}
-<p>Taken together, this all sounds like a major mid-life crisis. But the man sitting opposite me seems, physically and temperamentally, little changed from the calm diplomat I first met in Downing Street in 2000, when he briefed me about Britain’s negotiating position ahead of an EU summit in Nice. Now a young-looking 68, with closely-cropped grey hair and the same professorial spectacles, he remains the consummate mandarin — quick-witted and able to assess every angle of a question rapidly and with dry humour.</p>
-<figure class="figure o-grid-row" data-o-grid-colspan="12">
-  <h3 class="article-body__subhead figure__title">This is a figure title</h3>
-  <div class="figure__body">
-  <p>Taken together, this all sounds like a major mid-life crisis. But the man sitting opposite me seems, physically and temperamentally, little changed from the calm diplomat I first met in Downing Street in 2000, when he briefed me about Britain’s negotiating position ahead of an EU summit in Nice. Now a young-looking 68, with closely-cropped grey hair and the same professorial spectacles.</p><p>he remains the consummate mandarin — quick-witted and able to assess every angle of a question rapidly and with dry humour. Yet, behind the civil-service reserve, there was always more than met the eye to Sir Stephen Wall. Tony Blair wrote in his memoir, “Stephen was very professional and proficient . . . but underneath you could tell he was a riot of strong emotions, opinions and insights.”</p>
+<div class="o-grid-row">
+  <div data-o-grid-colspan="12 M6 L8">
+    <h2>National</h2>
   </div>
-  <div class="figure__footer">
-    <p>Some footer<p>
+  <div data-o-grid-colspan="12 M6 L4">
+    <h2>Local</h2>
+    <form id="seat-search-js" method="GET" action="postcode">
+      <input type="search" name="postcode" placeholder="Postcode search">
+      <button type="submit">Search</button>
+    </form>
+    <button id="use-mylocation-js">Use my location</button>
+    <div id="seat-search-results-js"></div>
   </div>
-</figure>
-<h3 class="article-body__subhead">This is a subhead</h3>
-<p>One of the more appealing traits of British civil servants is that they tend to be quite frugal. And the restaurant Sir Stephen has selected, Brasserie Zédel, is certainly not an extravagant choice, though it is fittingly European. Just off Piccadilly Circus, it is a huge, bustling basement decorated in 19th-century fin-de-siècle style with marble pillars, large mirrors, loads of gilt and tables pushed close together. All of the signs are in French (“toilette”, etc), which is arguably slightly pretentious but the couple next to us are speaking in French and this adds a touch of authenticity.</p>
-{% endblock %}
-
-{% block scripts %}
+</div>
 <script>
-  if (cutsTheMustard) {
-    addScript('{{ asset("js/group-forecast-slopes.js") }}', false, false);
+
+  function showSeat(seat) {
+    var el = document.getElementById('seat-search-results-js');
+    var html = '<h3>'+ seat.name +'</h3><p>Region: '+seat.region_name+'</p><p>Party:'+ seat.elections.last.winner.party+'</p>';
+    html += '<table><thead><tr><th>Party</th><th>%</th></tr></thead><tbody>';
+    console.dir( seat.elections.last);
+    for (var i = 0; i < seat.elections.last.results.length; i++) {
+      html += '<tr><td>' + seat.elections.last.results[i].party + '</td><td>' +seat.elections.last.results[i].votes_pc + '%</td></tr>'
+    }
+    html += '</tbody></table>';
+    el.innerHTML = html;
+    console.dir(seat);
   }
+
+  function showError(err) {
+    var message;
+
+    if (err === 'location') {
+      message = 'Couldn\'t get your location.';
+    } else if (err === 'postcode') {
+      message = 'There was a problem searching for a postcode.';
+    } else if (!err) {
+      message = 'Couldn\'t find the seat';
+    } else {
+      message = err;
+    }
+
+    var el = document.getElementById('seat-search-results-js');
+    el.innerHTML = message;
+  }
+
+  function clear() {
+    document.getElementById('seat-search-results-js').innerHTML = '';
+  }
+
+  function lookup_onsuccess(response) {
+
+    if (response.status !== 200) {
+      throw response;
+    }
+
+    return response.json().then(function(json){
+      showSeat(json.seat);
+    });
+  }
+
+  function get_lookup_error_handler(type) {
+    return function (response) {
+
+      // TODO: give different message to this if user is offline
+      // TODO: handle when reach some kind of backend API rate limit
+
+      if (response instanceof Error || response.status === 500) {
+        console.error(response);
+        showError(type);
+        return;
+      }
+
+      return response.json().then(function(json) {
+        showError(json.error);
+      }).catch(function(){
+        showError(type);
+      });
+    }
+  }
+
+  // TODO: only show button is geolocation API not available
+  locbtn = document.getElementById('use-mylocation-js');
+
+  if ('geolocation' in navigator) {
+    locbtn.addEventListener('click', function(event) {
+
+      function geoloc_onsuccess(position) {
+        document.getElementById('seat-search-js').elements.postcode.value = '';
+        var points = [position.coords.longitude, position.coords.latitude].join(',')
+        var url = '/uk/2015/api/lookup/point/' + points;
+        fetch(url).then(lookup_onsuccess).catch(get_lookup_error_handler('location'));
+      }
+
+      function geoloc_onerror(err) {
+        showError('location');
+      }
+
+      navigator.geolocation.getCurrentPosition(geoloc_onsuccess, geoloc_onerror);
+    });
+  } else {
+    locbtn.style.display = 'none';
+  }
+
+
+  document.getElementById('seat-search-js').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    var postcode = event.target.elements.postcode.value;
+
+    if (!postcode) {
+      clear();
+      return;
+    }
+
+    var offlineErrorMessage = 'Cannot connect to the internet to find postcode.';
+    var url = '/uk/2015/api/lookup/postcode/' + postcode.trim();
+
+    fetch(url).then(lookup_onsuccess).catch(get_lookup_error_handler('postcode'));
+  });
 </script>
 {% endblock %}

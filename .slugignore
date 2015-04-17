@@ -3,6 +3,7 @@
 .DS_Store
 schema.md
 LICENSE
+./db/source
 ./bower_components
 ./client
 ./test

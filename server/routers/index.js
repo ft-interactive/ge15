@@ -5,12 +5,14 @@ const mount = require('koa-mount');
 var pathRouters = {
   // Fixme: is there a memory leak in these routers?
   // graphics: require('./graphics'),
-  // results: require('./results'),
-  // parties: require('./parties'),
+  results: require('./results'),
+  parties: require('./parties'),
   projections: require('./projections'),
   seatmoves: require('./sankey'),
   'coalition-calculator': require('./coalitioncalculator'),
-  data: require('./data').routes
+  data: require('./data').routes,
+  'coalition-forecast': require('./coalitionforecast'),
+  api: require('./api')
 };
 
 const infoRouter = require('./info');

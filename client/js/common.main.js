@@ -1,5 +1,11 @@
 'use strict';
 
+var oErrors = require('o-errors');
+
+oErrors.init({
+    sentryEndpoint: process.env.SENTRY_DSN_FRONTEND,
+});
+
 var header = require('./header.js');
 
 require('./ready.js').then(main);

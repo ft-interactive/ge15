@@ -37,7 +37,7 @@ exports.divide = function(val, num) {
 };
 
 exports.format = function(val, format) {
-  return n.value(val).format(format);
+  return n.set(val).format(format);
 };
 
 exports.unformat = function(val, format) {

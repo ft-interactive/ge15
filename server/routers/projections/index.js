@@ -9,6 +9,9 @@ const coalitionForecastData = require('../data/').coalitionForecastData;
 const parties = require('uk-political-parties');
 const debug = require('debug')('projections-index');
 const _ = require('lodash');
+const service = require('../../service');
+const validElectionNames = ['last', 'ge15-projection', 'ge15'];
+
 var data;
 var expiry;
 var fetching;
@@ -128,6 +131,19 @@ function* widget(next) {
   yield next;
 }
 
+function* cartogram(next) {
+
+  this.assert(validElectionNames.indexOf(this.params.election) !== -1, 404);
+  var seats = yield service.cartogram(this.params.election);
+
+  // this.set('Cache-Control', 'public, max-age=3600, stale-while-revalidate=28800, stale-if-error=86400'); // jshint ignore:line
+  // this.set('Surrogate-Control', 'max-age=900'); // jshint ignore:line
+  var startRender = Date.now();
+  yield this.render('cartogram', {seats: seats}); // jshint ignore:line
+  console.log('projections-cartogram op=render time=' + (Date.now() - startRender) + ' request_id=' + this.id);
+  yield next;
+}
+
 function main() {
   return app()
 
@@ -140,7 +156,9 @@ function main() {
         // forecast home page
         .get('home', '/', home)
 
-        .get('ftcom', '/seats-projection-widget', widget);
+        .get('ftcom', '/seats-projection-widget', widget)
+
+        .get('cartogram', '/cartogram/:election', cartogram);
 }
 
 function coalitionSum(coalitions, results, threshold) {

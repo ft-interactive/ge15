@@ -1,13 +1,17 @@
-var dsv = require('dsv');
-var fs = require('fs');
-var slugify = require('speakingurl');
+'use strict';
 
-var csv = dsv(',');
-var file = fs.readFileSync(__dirname + '/parties.csv');
+const db = require('./db');
 
-var data ={};
-csv.parse(file.toString()).forEach(function(d,i){
-  data[d.name] = d;
-});
+var parties;
 
-module.exports = data;
+function refresh() {
+  parties = Promise.resolve(db.parties().find());
+}
+
+refresh();
+setInterval(refresh, 1000 * 120);
+
+module.exports = function(election) {
+  refresh();
+  return parties;
+};
