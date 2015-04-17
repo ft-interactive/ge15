@@ -94,8 +94,15 @@ exports.partyClassName = function(str){
 };
 
 exports.partyFullName = function(str){
-  debug('party -- ', str);
   return parties.fullName(str);
+};
+
+exports.partyShortName = function(str){
+  return parties.shortName(str);
+};
+
+exports.partyColor = function(str){
+  return parties.colour(str);
 };
 
 exports.ftdate = function(date) {
