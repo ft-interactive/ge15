@@ -177,16 +177,17 @@ function main(){
     var pollViz = doc.graphics.pollTracker();
 
     pollViz
-      .data(data)
-      .dateDomain([new Date(2014,10,1), new Date()])
-      .valueDomain([0,40]);
+      .parties(['lab','c','ld'])
+      .data(data);
+      //.dateDomain([new Date(2014,10,1), new Date()])
+      //.valueDomain([0,40]);
 
     d3.select('.poll-visualisation')
       .call(pollViz);
 
-    pollViz.dateDomain([new Date(2013, 10, 1), new Date()]);
-    d3.select('.poll-visualisation')
-      .call(pollViz);
+    // pollViz.dateDomain([new Date(2013, 10, 1), new Date()]);
+    // d3.select('.poll-visualisation')
+    //   .call(pollViz);
 
   });
 

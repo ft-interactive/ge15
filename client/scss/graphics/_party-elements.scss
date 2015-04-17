@@ -1,3 +1,51 @@
+/*text*/
+.conservative-text,
+.uup-text {
+  fill: $conservative-dark;
+}
+
+.labour-text {
+  fill: $labour-dark;
+}
+
+.lib-dem-text,
+.ap-text {
+  fill: $liberal-democrat-dark;
+}
+
+.ukip-text {
+  fill: $ukip-dark;
+}
+
+.snp-text {
+  fill: $snp-dark;
+}
+
+.pc-text {
+  fill: $plaid-cymru-dark;
+}
+
+.green-text {
+  fill: $green-dark;
+}
+
+.dup-text {
+  fill: $dup-dark;
+}
+
+.sdlp-text {
+  fill: $sdlp-dark;
+}
+
+.sinn-fein-text {
+  fill: $sinn-fein-dark;
+}
+
+.other-party-text {
+  fill: $other-dark;
+}
+
+
 /*lines*/
 .conservative-edge,
 .uup-edge {
@@ -59,7 +107,7 @@
   fill: $labour;
 }
 
-.lib-dem-area, 
+.lib-dem-area,
 .ap-area {
   stroke: $liberal-democrat;
   fill: $liberal-democrat;

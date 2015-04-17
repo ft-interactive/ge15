@@ -5,19 +5,30 @@ var parties = require('uk-political-parties');
 
 module.exports = function(data){
   var dateFormat = d3.time.format("%Y-%m-%d");
-  var dateDomain = [ dateFormat.parse("2014-10-01"), new Date() ];
-  var valueDomain = [ 0, 100 ];
+
+  var config = {
+    dateDomain:null,
+    valueDomain:null,
+    pollPointRadius:3,
+    transitionDuration:4000,
+    parties:['lab', 'c', 'ukip', 'ld', 'green']
+  };
+
   var processedData = {};
-  var pollPointRadius = 3;
-  var transitionDuration = 4000;
+
 
   function pollTracker(parent){
-    console.log('polls from ', dateDomain, 'between ', valueDomain);
     if(processedData === {}) { return undefined; }
-
+    if(!config.dateDomain){
+      config.dateDomain = d3.extent(processedData.polls, function(d){ return d.date; });
+    }
+    if(!config.valueDomain){
+      var max = d3.max(processedData.polls, function(d){ return d.max; });
+      config.valueDomain = [0, max];
+    }
     function byDateDomain(d){
-      return (d.date.getTime() > dateDomain[0].getTime() &&
-      d.date.getTime() < dateDomain[1].getTime());
+      return (d.date.getTime() > config.dateDomain[0].getTime() &&
+      d.date.getTime() < config.dateDomain[1].getTime());
     }
 
     var filteredData = {
@@ -31,12 +42,12 @@ module.exports = function(data){
       plotHeight = bounds.height - (margin.top + margin.bottom);
 
     var timeScale = d3.time.scale()
-      .domain(dateDomain)
+      .domain(config.dateDomain)
       .range([0, plotWidth]);
 
     var valueScale = d3.scale.linear()
-      .domain(valueDomain)
-      .range([plotHeight, 0]);
+      .domain(config.valueDomain)
+      .range([plotHeight, 0]).nice();
 
     var plotEnter =parent.selectAll('svg').data([filteredData])
       .enter()
@@ -83,12 +94,12 @@ module.exports = function(data){
 
     plot.select('.x.axis')
       .transition()
-      .duration(transitionDuration)
+      .duration(config.transitionDuration)
         .call(xAxis);
 
     plot.select('.y.axis')
       .transition()
-      .duration(transitionDuration)
+      .duration(config.transitionDuration)
         .call(yAxis);
 
     var polls = plot.append('g').attr('class','poll-visualisation__points');
@@ -108,9 +119,8 @@ module.exports = function(data){
 
     pollDataJoin.exit().remove();
 
-    var partyList = Object.keys( filteredData.lines[0].rs );
     var pollOfPollLines = plot.selectAll('path.poll-visualisation__line')
-      .data( partyList );
+      .data( config.parties );
 
     pollOfPollLines.enter().append('path')
       .attr('class',function(d){ return 'poll-visualisation__line ' + parties.className(d)+'-edge' })
@@ -118,21 +128,20 @@ module.exports = function(data){
 
     pollOfPollLines.exit().remove();
     pollOfPollLines.transition()
-      .duration( transitionDuration )
+      .duration( config.transitionDuration )
       .attr('d', function(d) { return lineInterpolator(d)( filteredData.lines ); });
 
 
     var labels = plot.selectAll('text.poll-visualisation__label')
-      .data( partyList, function(d){ return d; } );
+      .data( config.parties, function(d){ return d; } );
 
     labels.enter().append('text')
       .attr({
         'class':function(d){
-          return parties.className(d) + '-area';
+          return parties.className(d) + '-text';
         },
         x:plotWidth,
         y:function(d){
-          console.log(d);
           return valueScale(filteredData.lines[0].rs[d].v);
         }
       }).text(function(d){
@@ -140,14 +149,14 @@ module.exports = function(data){
       });
 
     labels.exit().remove();
-    labels.transition().duration(transitionDuration)
+    labels.transition().duration( config.transitionDuration)
       .attr('y',function(d){
         return valueScale(filteredData.lines[0].rs[d].v);
       });
 
     function plotPoll(parent){
       var dataJoin = parent.selectAll('circle.poll-visualisation__point').data(function(d){
-        return d.rs;
+        return d.rs.filter(function(e){ return (config.parties.indexOf(e.p) > -1) });
       });
 
       dataJoin
@@ -155,23 +164,28 @@ module.exports = function(data){
 
       dataJoin.exit().remove();
 
-      dataJoin.transition().duration(transitionDuration)
+      dataJoin.transition().duration(config.transitionDuration)
         .attr({
           cx:0,
           cy:function(d){
             return valueScale(d.v);
           },
-          r:pollPointRadius,
+          r:config.pollPointRadius,
           'class':function(d){ return 'poll-visualisation__point ' + parties.className(d.p)+'-area' }
         });
       }
   }
 
 
-
   pollTracker.pollPointRadius = function(r){
-    if(!r) return pollPointRadius;
-    pollPointRadius = r;
+    if(!r) return config.pollPointRadius;
+    config.pollPointRadius = r;
+    return pollTracker;
+  };
+
+  pollTracker.parties = function(a){
+    if(!a) return config.parties;
+    config.parties = a;
     return pollTracker;
   };
 
@@ -180,6 +194,7 @@ module.exports = function(data){
 
     rawData.polls = rawData.polls.map(function(d){
       d.date = dateFormat.parse(d.dt);
+      d.max = d3.max(d.rs, function(e){ return e.v; });
       return d;
     });
 
@@ -194,14 +209,14 @@ module.exports = function(data){
   };
 
   pollTracker.dateDomain = function(a){
-    if(!a) return dateDomain;
-    dateDomain = a;
+    if(!a) return config.dateDomain;
+    config.dateDomain = a;
     return pollTracker;
   };
 
   pollTracker.valueDomain = function(a){
-    if(!a) return valueDomain;
-    valueDomain = a;
+    if(!a) return config.valueDomain;
+    config.valueDomain = a;
     return pollTracker;
   };
 
