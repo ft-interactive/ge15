@@ -69,6 +69,30 @@ function* home(next) {
   yield next;
 }
 
+function* widget(next) {
+  var overview;
+  var updated;
+
+  if (data && data.overview) {
+    updated = data.page.dateModified;
+    overview = data.overview;
+  } else {
+
+    var res = yield forecastData('seats');
+    updated = res.updated;
+    overview = _.clone(res.data, true).map(function(d) {
+      d.Party = parties.electionForecastToCode(d.Party);
+      d.Seats = Number(d.Seats);
+      return d;
+    });
+
+  }
+
+  this.set('Surrogate-Control', 'max-age=900'); // jshint ignore:line
+  yield this.render('projections-widget', {parties: overview, updated: updated}); // jshint ignore:line
+  yield next;
+}
+
 function main() {
   return app()
 
@@ -79,7 +103,9 @@ function main() {
         .router()
 
         // forecast home page
-        .get('home', '/', home);
+        .get('home', '/', home)
+
+        .get('ftcom', '/ftcom-homepage-widget', widget);
 }
 
 function coalitionSum(coalitions, results, threshold) {
