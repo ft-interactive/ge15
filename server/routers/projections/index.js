@@ -88,6 +88,7 @@ function* widget(next) {
 
   }
 
+  this.set('Cache-Control', 'max-age=3600, stale-while-revalidate=28800, stale-if-error=86400'); // jshint ignore:line
   this.set('Surrogate-Control', 'max-age=900'); // jshint ignore:line
   yield this.render('projections-widget', {parties: overview, updated: updated}); // jshint ignore:line
   yield next;
@@ -105,7 +106,7 @@ function main() {
         // forecast home page
         .get('home', '/', home)
 
-        .get('ftcom', '/ftcom-homepage-widget', widget);
+        .get('ftcom', '/seats-projection-widget', widget);
 }
 
 function coalitionSum(coalitions, results, threshold) {
