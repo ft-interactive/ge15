@@ -106,7 +106,7 @@ function main() {
         // forecast home page
         .get('home', '/', home)
 
-        .get('ftcom', '/ftcom-homepage-widget', widget);
+        .get('ftcom', '/seats-projection-widget', widget);
 }
 
 function coalitionSum(coalitions, results, threshold) {
