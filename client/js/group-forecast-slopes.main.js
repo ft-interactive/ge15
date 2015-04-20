@@ -177,9 +177,9 @@ function main(){
     var pollViz = doc.graphics.pollTracker();
 
     pollViz
-      .parties(['lab','c','ld'])
-      .data(data);
-      //.dateDomain([new Date(2014,10,1), new Date()])
+      //.parties(['lab','c','ld'])
+      .data(data)
+      .dateDomain([new Date(2014,10,1), new Date()]);
       //.valueDomain([0,40]);
 
     d3.select('.poll-visualisation')

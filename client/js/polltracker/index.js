@@ -5,7 +5,11 @@ var parties = require('uk-political-parties');
 
 module.exports = function(data){
   var dateFormat = d3.time.format("%Y-%m-%d");
+/*
+<a class="tracker controll" href="#" data-parties="lab,c,ld" data-valuemin="">thing</a>
 
+d3.select()
+*/
   var config = {
     dateDomain:null,
     valueDomain:null,
