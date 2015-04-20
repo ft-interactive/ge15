@@ -61,7 +61,7 @@ function* home(next) {
   // store in browser cache for 5mins
   // allow CDN to store stale page for 8 hours
   // allow CDN to store stale if backend is erroring for 1 day
-  this.set('Cache-Control', 'max-age=300, s-maxage=300, stale-while-revalidate=28800, stale-if-error=86400'); // jshint ignore:line
+  this.set('Cache-Control', 'public, max-age=300, stale-while-revalidate=28800, stale-if-error=86400'); // jshint ignore:line
   // allow CDN to store the response for 15mins
   this.set('Surrogate-Control', 'max-age=900'); // jshint ignore:line
 
@@ -88,7 +88,7 @@ function* widget(next) {
 
   }
 
-  this.set('Cache-Control', 'max-age=3600, stale-while-revalidate=28800, stale-if-error=86400'); // jshint ignore:line
+  this.set('Cache-Control', 'public, max-age=3600, stale-while-revalidate=28800, stale-if-error=86400'); // jshint ignore:line
   this.set('Surrogate-Control', 'max-age=900'); // jshint ignore:line
   yield this.render('projections-widget', {parties: overview, updated: updated}); // jshint ignore:line
   yield next;
