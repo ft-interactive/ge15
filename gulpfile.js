@@ -240,7 +240,8 @@ gulp.task('images', function(cb){
   return gulp.src('client/images/**/*')
         .pipe(imagemin({
             progressive: true,
-            svgoPlugins: [{removeViewBox: false}]
+            multipass: false,
+            svgoPlugins: [{removeViewBox: false},{removeUselessDefs: false}]
         }))
         .pipe(gulp.dest('public/images'));
 });
