@@ -18,7 +18,7 @@ function* india(next) {
 function* home(next) {
   this.set('Cache-Control', 'public, max-age=3600, stale-while-revalidate=28800, stale-if-error=86400'); // jshint ignore:line
   this.set('Surrogate-Control', 'max-age=900'); // jshint ignore:line
-  this.redirect('/uk/2015/projections/'); // jshint ignore:line
+  this.redirect('/uk/2015/projections'); // jshint ignore:line
   this.status = 302;
   yield next;
 }
