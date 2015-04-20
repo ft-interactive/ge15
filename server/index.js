@@ -30,6 +30,10 @@ function main() {
 
   if (!app.isProd) app.debug();
 
+  app.use(function*(next) {
+    this.set('Timing-Allow-Origin', '*');
+    yield next;
+  });
   app.use(favicon(path.resolve(__dirname, '../public/images/favicon.ico')));
   app.use(conditional());
   app.use(etag());
