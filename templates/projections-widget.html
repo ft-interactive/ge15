@@ -3,29 +3,28 @@
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    </head>
     <style>
     @font-face {
-      font-family: BentonSans;
+      font-family: 'BentonSans';
       font-weight: bold;
       font-style: normal;
       src: url("//build.origami.ft.com/files/o-fonts-assets@0.2.2/bentonsans-bold.eot");
       src: url("//build.origami.ft.com/files/o-fonts-assets@0.2.2/bentonsans-bold.eot?#iefix") format("embedded-opentype"), url("//build.origami.ft.com/files/o-fonts-assets@0.2.2/bentonsans-bold.woff") format("woff"), url("//build.origami.ft.com/files/o-fonts-assets@0.2.2/bentonsans-bold.ttf") format("truetype"); }
     @font-face {
-      font-family: BentonSans;
+      font-family: 'BentonSans';
       font-weight: normal;
       font-style: normal;
       src: url("//build.origami.ft.com/files/o-fonts-assets@0.2.2/bentonsans-normal.eot");
       src: url("//build.origami.ft.com/files/o-fonts-assets@0.2.2/bentonsans-normal.eot?#iefix") format("embedded-opentype"), url("//build.origami.ft.com/files/o-fonts-assets@0.2.2/bentonsans-normal.woff") format("woff"), url("//build.origami.ft.com/files/o-fonts-assets@0.2.2/bentonsans-normal.ttf") format("truetype"); }
 
-html {
-  box-sizing: border-box;
-}
-*, *:before, *:after {
-  box-sizing: inherit;
-}
+    html {
+      box-sizing: border-box;
+    }
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
 
-    html, body {background-color: #fff1e0;margin:0;font-family: BentonSans, sans-serif;}
+    html, body {background-color: #fff1e0;margin:0;font-family: 'BentonSans', sans-serif;}
 
     a {text-decoration: none;}
 
@@ -83,6 +82,7 @@ html {
       font-weight: normal;
     }
     </style>
+    </head>
     <body>
       <a class="table-link" href="http://elections.ft.com/uk/2015/projections/" target="_top">
       <table>
@@ -97,7 +97,7 @@ html {
               data-lo="{{ row.Lo }}"
               data-swing="{{ row.Swing | change }}">
               <span class="party-name {%if row.Seats < 200 %}visually-hidden{% endif %}">{{ row.Party | partyShortName }}</span>
-              <span class="party-seats {%if row.Seats < 27 %}visually-hidden"{% endif %}">{{row.Seats}}</span></td>
+              <span class="party-seats {%if row.Seats < 27 %}visually-hidden{% endif %}">{{row.Seats}}</span></td>
         {% endfor %}
         </tr>
         </tbody>

@@ -49,8 +49,6 @@ function main() {
   if (app.isProd) {
     app.use(htmlMinifier({
       collapseWhitespace: true,
-      minifyJS: true,
-      minifyCSS: true
     }));
   } else {
     app.use(require('koa-livereload')());
