@@ -26,9 +26,7 @@ function* home(next) {
 function main() {
   return app().router()
           .get('/', home)
-          .get(/^\/india\/*/, india)
-          .get('/:country', home)
-          .get('/:country/:year/', home)
+          .get('/india/general-election-2014', india)
           .get('/__gtg', gtg);
 }
 
