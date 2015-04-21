@@ -20,9 +20,9 @@ function* home(next) {
   if (!forecast || (!fetching && Date.now() > expiry)) {
 
     fetching = true;
-
+    var start = Date.now();
     var res = yield forecastData('prediction');
-
+    console.log('seat-moves op=data time=' + (Date.now() - start) + ' request_id=' + this.id);
     expiry = Date.now() + (1000 * 60);
     fetching = false;
     forecast = res;
@@ -35,10 +35,15 @@ function* home(next) {
   // allow CDN to store the response for 15mins
   this.set('Surrogate-Control', 'max-age=900');
 
+  var startRender = Date.now();
+
   yield this.render('sankey-index', { // jshint ignore:line
     forecast: forecast,
     page: page
   });
+
+  console.log('seat-moves op=render time=' + (Date.now() - startRender) + ' request_id=' + this.id);
+
   yield next;
 }
 

@@ -24,11 +24,15 @@ function* home(next) {
   if (!data || (!fetching && Date.now() > expiry)) {
     fetching = true;
 
+    var start = Date.now();
+
     var res = _.zipObject(['battlegrounds', 'forecast','coalitions'], yield Promise.all([
         battlegroundData(),
         forecastData('seats'),
         coalitionForecastData()
     ]));
+
+    console.log('projections-index op=data time=' + (Date.now() - start) + ' request_id=' + this.id);
 
     debug(res.forecast);
 
@@ -64,8 +68,9 @@ function* home(next) {
   this.set('Cache-Control', 'public, max-age=300, stale-while-revalidate=28800, stale-if-error=86400'); // jshint ignore:line
   // allow CDN to store the response for 15mins
   this.set('Surrogate-Control', 'max-age=900'); // jshint ignore:line
-
+  var startRender = Date.now();
   yield this.render('projections-index', data); // jshint ignore:line
+  console.log('projections-index op=render time=' + (Date.now() - startRender) + ' request_id=' + this.id);
   yield next;
 }
 
@@ -78,7 +83,9 @@ function* widget(next) {
     overview = data.overview;
   } else {
 
+    var start = Date.now();
     var res = yield forecastData('seats');
+    console.log('projections-widget op=data time=' + (Date.now() - start) + ' request_id=' + this.id);
     updated = res.updated;
     overview = _.clone(res.data, true).map(function(d) {
       d.Party = parties.electionForecastToCode(d.Party);
@@ -90,7 +97,9 @@ function* widget(next) {
 
   this.set('Cache-Control', 'public, max-age=3600, stale-while-revalidate=28800, stale-if-error=86400'); // jshint ignore:line
   this.set('Surrogate-Control', 'max-age=900'); // jshint ignore:line
+  var startRender = Date.now();
   yield this.render('projections-widget', {parties: overview, updated: updated}); // jshint ignore:line
+  console.log('projections-widget op=render time=' + (Date.now() - startRender) + ' request_id=' + this.id);
   yield next;
 }
 
