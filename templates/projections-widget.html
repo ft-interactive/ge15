@@ -4,8 +4,6 @@
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-{% endif %}
-
     <style>
 
     @font-face {
@@ -29,58 +27,65 @@
     }
 
     html, body {background-color: #fff1e0;margin:0;font-family: 'BentonSans', sans-serif;}
+    </style>
+{% endif %}
 
-    a {text-decoration: none;}
+    <style>
 
-    table {border-spacing: 0px; border-collapse: separate;width:100%;margin-bottom: 8px;table-layout: fixed;}
+    .projections-widget a {text-decoration: none;}
 
-    td {
+    .projections-widget table {border-spacing: 0px; border-collapse: separate;width:100%;margin-bottom: 8px;table-layout: fixed;}
+
+    .projections-widget td {
       padding: 5px 7px 5px 4px;
       text-align:right;
       -webkit-font-smoothing: antialiased;
     }
-    .source,
-    .note {
+
+    .projections-widget .source,
+    .projections-widget .note {
       font-size: 10px;
       position: relative;
       top: -7px;
     }
-    .source {
+    .projections-widget .source {
       opacity: 0.6;
       margin: 0;
       display: inline;
     }
 
-    .source a, .source a:visited, .source a:hover{
+    .projections-widget .source a,
+    .projections-widget .source a:visited,
+    .projections-widget .source a:hover{
       color: #2e6e9e;
     }
 
-    .note {
+    .projections-widget .note {
       opacity: 0.8;
       margin: 0;
       display: inline;
     }
 
-    .visually-hidden {
+    .projections-widget .visually-hidden {
       position:absolute;
       left: -1000px;
     }
 
-    .party-name {
+    .projections-widget .party-name {
       color: white;
       opacity: 0.9;
       font-size: 14px;
       font-weight: normal;
     }
 
-    .party-seats {
+    .projections-widget .party-seats {
       opacity: 0.9;
       color: white;
       font-size: 17px;
       font-weight: bold;
     }
 
-    h1 {
+    .projections-widget h1 {
       margin: 0;
       font-size: 16px;
       font-weight: normal;
@@ -90,28 +95,29 @@
     </head>
     <body>
       {% endif %}
-      <a class="table-link" href="http://elections.ft.com/uk/2015/projections/" target="_top">
-      <table>
-        <tbody>
-        <tr>
-        {% for row in parties %}
-        <td style="background-color:{{ row.Party | partyColor }};width:{{ (row.Seats/650) * 100 }}%;"
-              title="{{ row.Party | partyFullName }} {{ row.Seats}} seats"
-              data-party="{{ row.Party }}"
-              data-seats="{{ row.Seats }}"
-              data-hi="{{ row.Hi }}"
-              data-lo="{{ row.Lo }}"
-              data-swing="{{ row.Swing | change }}">
-              <span class="party-name {%if row.Seats < 200 %}visually-hidden{% endif %}">{{ row.Party | partyShortName }}</span>
-              <span class="party-seats {%if row.Seats < 27 %}visually-hidden{% endif %}">{{row.Seats}}</span></td>
-        {% endfor %}
-        </tr>
-        </tbody>
-      </table>
-      </a>
-      {# <p class="note">326 seats are needed for a majority.</p> #}
-      <p class="source">Source: <a target="_blank" href="http://electionforecast.co.uk/">electionforecast.co.uk</a>. Last changed on {{ updated | date('F j, G:i a')}}.</p>
-
+      <div class="projections-widget">
+        <a class="table-link" href="http://elections.ft.com/uk/2015/projections/" target="_top">
+        <table>
+          <tbody>
+          <tr>
+          {% for row in parties %}
+          <td style="background-color:{{ row.Party | partyColor }};width:{{ (row.Seats/650) * 100 }}%;"
+                title="{{ row.Party | partyFullName }} {{ row.Seats}} seats"
+                data-party="{{ row.Party }}"
+                data-seats="{{ row.Seats }}"
+                data-hi="{{ row.Hi }}"
+                data-lo="{{ row.Lo }}"
+                data-swing="{{ row.Swing | change }}">
+                <span class="party-name {%if row.Seats < 200 %}visually-hidden{% endif %}">{{ row.Party | partyShortName }}</span>
+                <span class="party-seats {%if row.Seats < 27 %}visually-hidden{% endif %}">{{row.Seats}}</span></td>
+          {% endfor %}
+          </tr>
+          </tbody>
+        </table>
+        </a>
+        {# <p class="note">326 seats are needed for a majority.</p> #}
+        <p class="source">Source: <a target="_blank" href="http://electionforecast.co.uk/">electionforecast.co.uk</a>. Last changed on {{ updated | date('F j, G:i a')}}.</p>
+      </div>
 {% if not view.layout.fragment %}
     </body>
 </html>
