@@ -6,7 +6,7 @@ You only need to do steps 1-5 the first time you install.
 
 ### 1. Get the correct version of node
 
-Ensure you have version 0.11.13 of Node.js.
+Ensure you have version 0.11.15 of Node.js.
 
 As this is an unstable version, it's recommended that you do not simply upgrade node but use a version manager to switch to the required version.
 
@@ -14,9 +14,9 @@ The [n](https://github.com/tj/n) package is perfect for this.
 
 ```shell
 $ sudo npm install -g n
-$ sudo n 0.11.13
+$ sudo n 0.11.15
 $ node --version
-v0.11.13
+v0.11.15
 ```
 
 ### 2. Install gulp
@@ -37,24 +37,17 @@ $ git clone https://github.com/ft-interactive/ge15.git && cd ge15 && npm install
 
 The npm install will also kick of the bower install process.
 
-### 4. Get a database
+### ~~4. Get a database~~
 
-a. Ensure you have [postgres installed](http://postgresapp.com/)
-b. [configure your path to allow use of the command line](http://postgresapp.com/documentation/cli-tools.html) utilities.
-c. create a local database (called ge15): `$ createdb -Eutf8 ge15`
-d. Now fill it with some data:
-
-```shell
-$ DATABASE_URL=postgres://`whoami`@localhost:5432/ge15 node --harmony server/data/load
-```
+~~a. Ensure you have [postgres installed](http://postgresapp.com/)~~
+~~b. [configure your path to allow use of the command line](http://postgresapp.com/documentation/cli-tools.html) utilities.~~
+~~c. create a local database (called ge15): `$ createdb -Eutf8 ge15`~~
+~~d. Now fill it with some data:~~
 
 ### 5. Create a `.env` file
 
-To begin with you just need to point the app at your database.
+~~To begin with you just need to point the app at your database.~~
 
-```shell
-$ echo "DATABASE_URL=postgres://`whoami`@localhost:5432/ge15" > .env
-```
 
 ## Coding (on local, in dev mode)
 
