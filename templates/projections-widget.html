@@ -1,9 +1,13 @@
+{% if not view.layout.fragment %}
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+{% endif %}
+
     <style>
+
     @font-face {
       font-family: 'BentonSans';
       font-weight: bold;
@@ -82,8 +86,10 @@
       font-weight: normal;
     }
     </style>
+    {% if not view.layout.fragment %}
     </head>
     <body>
+      {% endif %}
       <a class="table-link" href="http://elections.ft.com/uk/2015/projections/" target="_top">
       <table>
         <tbody>
@@ -105,5 +111,8 @@
       </a>
       {# <p class="note">326 seats are needed for a majority.</p> #}
       <p class="source">Source: <a target="_blank" href="http://electionforecast.co.uk/">electionforecast.co.uk</a>. Last changed on {{ updated | date('F j, G:i a')}}.</p>
+
+{% if not view.layout.fragment %}
     </body>
 </html>
+{% endif %}
