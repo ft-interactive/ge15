@@ -37,7 +37,7 @@
     .projections-widget table {border-spacing: 0px; border-collapse: separate;width:100%;margin-bottom: 8px;table-layout: fixed;}
 
     .projections-widget td {
-      padding: 5px 7px 5px 4px;
+      padding: 5px 7px 5px 2px;
       text-align:right;
       -webkit-font-smoothing: antialiased;
     }
@@ -109,7 +109,7 @@
                 data-lo="{{ row.Lo }}"
                 data-swing="{{ row.Swing | change }}">
                 <span class="party-name {%if row.Seats < 200 %}visually-hidden{% endif %}">{{ row.Party | partyShortName }}</span>
-                <span class="party-seats {%if row.Seats < 27 %}visually-hidden{% endif %}">{{row.Seats}}</span></td>
+                <span class="party-seats {%if row.Seats < 20 %}visually-hidden{% endif %}">{{row.Seats}}</span></td>
           {% endfor %}
           </tr>
           </tbody>
