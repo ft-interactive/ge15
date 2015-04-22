@@ -50,11 +50,11 @@ function main() {
     yield next;
   });
 
-  if (app.isProd) {
-    app.use(htmlMinifier({
-      collapseWhitespace: true,
-    }));
-  } else {
+  app.use(htmlMinifier({
+    collapseWhitespace: true,
+  }));
+
+  if (!app.isProd) {
     app.use(require('koa-livereload')());
   }
 
