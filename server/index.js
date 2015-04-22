@@ -41,7 +41,7 @@ function main() {
     maxage: app.isProd ? ms('30 days') : 0,
     gzip: true
   }));
-  app.use(requestId());
+  app.use(requestId('X-Request-ID'));
   app.use(responseTime());
   app.use(printRequestId());
   app.use(function*(next){
