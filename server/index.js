@@ -52,6 +52,8 @@ function main() {
 
   app.use(htmlMinifier({
     collapseWhitespace: true,
+    minifyJS: true,
+    minifyCSS: true
   }));
 
   if (!app.isProd) {
