@@ -1,8 +1,8 @@
 'use strict';
 var d3 = require('d3');
 var parties = require('uk-political-parties');
-var _zipObject= require('lodash-node/modern/arrays/zipObject');
-var _pairs = require('lodash-node/modern/objects/pairs');
+var _zipObject= require('lodash/array/zipObject');
+var _pairs = require('lodash/object/pairs');
 
 module.exports = function(parent){
 

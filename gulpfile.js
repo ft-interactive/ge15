@@ -52,7 +52,8 @@ var vendorBundle = [
   {file:'./bower_components/o-hoverable/main.js', expose:'o-hoverable'},
   {file:'./bower_components/o-date/main.js', expose:'o-date'},
   {file:'./bower_components/topojson/topojson.js', expose:'topojson'},
-  'd3'
+  'd3',
+  'uk-political-parties'
 ];
 
 
@@ -91,8 +92,6 @@ function createBrowserify(entry, bundle, watch) {
   }
 
   var e = _.assign({}, process.env, {_: 'purge'});
-
-  b.transform('debowerify');
 
   b.external(vendorBundle.map(function (v) {
     if (typeof v === 'string') return v;
@@ -133,7 +132,6 @@ gulp.task('vendor', function(cb) {
   browserify({
     debug: dev
   })
-  .transform('debowerify')
   .require(vendorBundle)
   .bundle()
   .on('error', cb)
