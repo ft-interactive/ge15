@@ -11,7 +11,10 @@ var fetching;
 
 var page = {
   title: 'Win, lose or hold',
-  summary: 'Predicted seat changes'
+  summary: 'Predicted seat changes',
+  meta: {
+    image: 'http://im.ft-static.com/content/images/c73d9d3a-a4a0-4679-baac-60dfd4a169cc.img'
+  }
 };
 
 function* home(next) {

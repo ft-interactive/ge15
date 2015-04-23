@@ -15,6 +15,9 @@ var fetching;
 var page = {
   title: 'The key UK general election battles',
   summary: 'Four contests will decide the most uncertain UK election for decades',
+  meta: {
+    image: 'http://im.ft-static.com/content/images/2fa65b42-d4a4-11e4-a87e-00144feab7de.img'
+  },
   dateModified: null
 };
 
