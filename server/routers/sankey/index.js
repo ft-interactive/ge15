@@ -1,9 +1,9 @@
 'use strict';
 
-var app = require('../../util/app');
-var viewLocals = require('../../middleware/view-locals');
-var siteNav = require('../../middleware/site-navigation');
-var forecastData = require('../data/').forecastData;
+const app = require('../../util/app');
+const viewLocals = require('../../middleware/view-locals');
+const siteNav = require('../../middleware/site-navigation');
+const forecastData = require('../data/').forecastData;
 
 var forecast;
 var expiry;

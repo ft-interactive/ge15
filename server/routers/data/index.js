@@ -1,18 +1,18 @@
 'use strict';
 
-var d3 = require('d3');
-var _ = require('lodash');
+const d3 = require('d3');
+const _ = require('lodash');
 
-var slopeDataParse = require('./slope-data.js');
-var coalitionDataParse = require('./coalition-data.js');
-var request = require('../../util/request-cache');
-var app = require('../../util/app');
+const slopeDataParse = require('./slope-data.js');
+const coalitionDataParse = require('./coalition-data.js');
+const request = require('../../util/request-cache');
+const app = require('../../util/app');
 
-var csv = _.ary(d3.csv.parse.bind(d3), 1);
-var tsv = _.ary(d3.tsv.parse.bind(d3), 1);
-var shortMaxAge = 1000 * 60; // 1 minute
-var fiveMins = 1000 * 60 * 5;
-var longMaxAge = 1000 * 60 * 60 * 8; // 8 hours
+const csv = _.ary(d3.csv.parse.bind(d3), 1);
+const tsv = _.ary(d3.tsv.parse.bind(d3), 1);
+const shortMaxAge = 1000 * 60; // 1 minute
+const fiveMins = 1000 * 60 * 5;
+const longMaxAge = 1000 * 60 * 60 * 8; // 8 hours
 
 var forecast = {
   seats:'http://interactive.ftdata.co.uk/data/electionforecast-co-uk/tsv/seats-latest.tsv',

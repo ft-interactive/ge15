@@ -1,6 +1,6 @@
 'use strict';
 
-var parties = require('uk-political-parties');
+const parties = require('uk-political-parties');
 
 var partylist = ['c', 'lab', 'ld', 'snp', 'pc', 'green', 'ukip', 'other'];
 

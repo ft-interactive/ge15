@@ -1,14 +1,14 @@
 'use strict';
 
-var app = require('../../util/app');
-var viewLocals = require('../../middleware/view-locals');
-var siteNav = require('../../middleware/site-navigation');
-var battlegroundData = require('../data/').battlegroundData;
-var forecastData = require('../data/').forecastData;
-var coalitionForecastData = require('../data/').coalitionForecastData;
-var parties = require('uk-political-parties');
-var debug = require('debug')('projections-index');
-var _ = require('lodash');
+const app = require('../../util/app');
+const viewLocals = require('../../middleware/view-locals');
+const siteNav = require('../../middleware/site-navigation');
+const battlegroundData = require('../data/').battlegroundData;
+const forecastData = require('../data/').forecastData;
+const coalitionForecastData = require('../data/').coalitionForecastData;
+const parties = require('uk-political-parties');
+const debug = require('debug')('projections-index');
+const _ = require('lodash');
 var data;
 var expiry;
 var fetching;

@@ -1,12 +1,12 @@
 'use strict';
 
-var S = require('string');
+const S = require('string');
 S.extendPrototype();
-var n = require('numeral')();
-var _ = require('lodash');
-var parties = require('uk-political-parties');
-var debug = require('debug')('filters');
-var d3 = require('d3');
+const n = require('numeral')();
+const _ = require('lodash');
+const parties = require('uk-political-parties');
+const debug = require('debug')('filters');
+const d3 = require('d3');
 
 exports.times = function(val, num) {
   return S(val).times(num).s;

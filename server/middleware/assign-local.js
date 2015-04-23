@@ -1,6 +1,6 @@
 'use strict';
 
-var _ = require('lodash');
+const _ = require('lodash');
 
 module.exports = function (property, data) {
   // TODO: let data be a generator/yieldable

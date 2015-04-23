@@ -1,12 +1,12 @@
  'use strict';
 
-var r = require('request-promise');
-var errors = require('request-promise/errors');
-var wreck = require('wreck');
-var _ = require('lodash');
-var stringify = require('json-stringify-safe');
-var debug = require('debug')('request-cache');
-var lru = require('lru-cache');
+const r = require('request-promise');
+const errors = require('request-promise/errors');
+const wreck = require('wreck');
+const _ = require('lodash');
+const stringify = require('json-stringify-safe');
+const debug = require('debug')('request-cache');
+const lru = require('lru-cache');
 
 var cache = lru({
   max: 1e7,

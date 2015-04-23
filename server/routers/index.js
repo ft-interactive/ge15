@@ -1,6 +1,6 @@
 'use strict';
 
-var mount = require('koa-mount');
+const mount = require('koa-mount');
 
 var pathRouters = {
   // Fixme: is there a memory leak in these routers?
@@ -13,8 +13,8 @@ var pathRouters = {
   data: require('./data').routes
 };
 
-var infoRouter = require('./info');
-var prefix = '/uk/2015';
+const infoRouter = require('./info');
+const prefix = '/uk/2015';
 
 module.exports = function(app) {
   var router;
