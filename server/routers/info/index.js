@@ -8,6 +8,10 @@ function* gtg(next) {
   yield next;
 }
 
+function* robots(next) {
+  this.body = 'User-agent: *\nAllow: /';
+  yield next;
+}
 
 function* india(next) {
   this.redirect('http://india-2014.herokuapp.com/india/general-election-2014/');
@@ -27,6 +31,7 @@ function main() {
   return app().router()
           .get('/', home)
           .get('/india/general-election-2014', india)
+          .get('/robots.txt', robots)
           .get('/__gtg', gtg);
 }
 
