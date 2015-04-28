@@ -1,0 +1,120 @@
+@import "o-grid/main";
+@import "o-fonts/main";
+@import "o-colors/main";
+
+@import "var";
+
+@import "graphics/party-elements";
+
+
+.interactive-input {
+  cursor: pointer;
+  cursor: hand;
+}
+
+.slider-input__label {
+    fill: #ffffff;
+    stroke: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: normal;
+}
+.slider-input__label {
+  font-family: BentonSans, sans-serif;
+  font-weight: bold;
+}
+
+.slider-input__label.hidden {
+  fill: none;
+  stroke: none;
+}
+
+.slider-input__label__seats {
+  font-weight: bold;
+}
+
+.slider-input__label__party {
+  font-weight: 200;
+  font-size: 14px;
+}
+
+.party-grouping {
+  user-select: none;
+  font-family: BentonSans, sans-serif;
+  font-weight: 200;
+  font-size: 14px;
+  fill-opacity: 0.3;
+  stroke: none;
+}
+
+.party-grouping .borderless {
+  stroke: none;
+}
+
+.party-grouping__bar-stack,
+.slider-input__bar {
+  shape-rendering: crispEdges;
+}
+
+.party-grouping.viable {
+  font-family: BentonSans, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  fill-opacity: 1;
+  stroke-opacity: 1;
+}
+
+.hidden-resource {
+  display: none;
+}
+
+.coalition-display__majority-marker {
+  user-select: none;
+  stroke: #000000;
+  stroke-width: 1;
+  stroke-opacity: 0.5;
+  stroke-dasharray: '15, 10, 5';
+}
+
+.axis-label {
+  user-select: none;
+  font-family: BentonSans, sans-serif;
+  font-size: 14px;
+}
+
+.preset-adjustment {
+  background: oColorsGetPaletteColor(pink-tint2);
+  border-radius: 10px;
+  padding-top: 2px;
+  padding-bottom: 4px;
+  padding-left: 7px;
+  padding-right: 7px;
+  font-size: 0.875em;
+}
+
+.preset-adjustment.selected {
+  background: #2e6e9e;
+  color: oColorsGetPaletteColor(pink-tint2);
+}
+
+.notes {
+  color: oColorsGetPaletteColor(pink-tint5);
+  font-size: 0.7em;
+  border-top: 1px solid oColorsGetPaletteColor(pink-tint4);
+  margin-top: 2em;
+  padding-top: 1em;
+  max-width: 670px;
+}
+
+.scenarios {
+  padding-bottom: 24px;
+  max-width: 670px;
+}
+
+.seats-input {
+  padding-bottom: 16px;
+}
