@@ -7,7 +7,7 @@
 {% endblock %}
 {% block article_body %}
   <div class="scenarios" data-o-grid-colspan="12 M10 center">
-    <p></p><a href="http://elections.ft.com/uk/2015/projections">Current polls suggest</a> that the <a href="http://www.ft.com/indepth/uk-general-election">UK General Election</a> on May 7 will result in a hung parliament. A coalition government, or a minority government backed by a &ldquo;supply-and-confidence&rdquo; deal with other parties, will likely come to power. This graphic shows the scenarios possible based on the <a href="#" class="preset-adjustment selected"
+    <p></p><a href="http://elections.ft.com/uk/2015/projections">Polls suggest</a> that the <a href="http://www.ft.com/indepth/uk-general-election">UK general election</a> on May 7 will result in a hung parliament. A coalition, or a minority government backed by a &ldquo;supply-and-confidence&rdquo; deal with other parties, is likely to come to power. This graphic shows the scenarios possible based on the <a href="#" class="preset-adjustment selected"
     {% for party in efdata.data %}
     data-{{ party.Party }}="{{party.Seats}}"
     {% endfor %}>current&nbsp;projection</a> from <a href="http://www.electionforecast.co.uk">ElectionForecast.co.uk</a>. Compare this to the <a href="#" class="preset-adjustment"
@@ -42,7 +42,7 @@
   <div class="coalition-display js" data-o-grid-colspan="12 M10 L8 center"></div>
 
   <div class="notes o-grid-row" data-o-grid-colspan="12 M10 L8 center">
-    <p>Although 326 seats is a majority in the 650-seat House of Commons, Sinn F&eacute;in MPs do not take their seats and the Speaker and Deputy Speakers do not vote, so the number of seats needed to win a vote will be lower, most likely 323.</p>
+    <p>Although 326 seats is a majority in the 650-seat House of Commons, Sinn F&eacute;in MPs do not take their seats and the Speaker and Deputy Speakers do not vote, so the number of seats needed to win a vote will be lower, probably 323.</p>
   </div>
 
 {% include "./coalition-slider-handle.svg" %}
