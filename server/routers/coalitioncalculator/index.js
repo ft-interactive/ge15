@@ -10,7 +10,9 @@ var data, expiry, fetching;
 
 var page = {
   title: 'Coalition calculator',
-  //summary: 'Adjust to number of parliamentary seats the major parties hold to see which alliances might be viable in the wake of the UK General Election.',
+  meta: {
+    image: 'http://im.ft-static.com/content/images/18f47148-eda6-11e4-a894-00144feab7de.img'
+  },
   dateModified: null
 };
 
