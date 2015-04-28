@@ -46,6 +46,42 @@ require('./ready.js').then(function(){
   //draw the input based on the model
 });
 
+function checksum(o){
+  var sum = 0;
+  for(var key in o){
+    if(o.hasOwnProperty(key)){
+      sum += o[key];
+    }
+  }
+  return (sum === 650);
+}
+
+function readHash(){
+  if(window.location.hash) {
+    var userData = {};
+    window.location.hash.split(',').forEach(function(d){
+      d = d.split(':');
+      userData[ d[0].replace('#','') ] = parseInt(d[1]);
+    });
+    console.log(userData);
+    if(!checksum(userData)){ console.warn('user parties don\'t add up'); return; }
+    for(var p in voteDistribution){
+      if(userData[voteDistribution[p].party] !== undefined){
+        voteDistribution[p].seats = +userData[voteDistribution[p].party];
+      }else{
+        console.warn('party mismatch, make sure all parties are defined in the preset-adjustment' + voteDistribution[p].party);
+      }
+    }
+    deselect();
+  }
+}
+
+function writeHash(){
+  history.replaceState('', '', '#' + voteDistribution.map(function(d){
+    return d.party + ':' + d.seats;
+  }).join(','));
+}
+
 function deselect(){
     d3.selectAll('.preset-adjustment.selected').classed('selected',false);
 }
@@ -102,7 +138,7 @@ function getElementCoords(el){
 }
 
 function setUp(){
-
+  readHash();
   var sliderDim = d3.select('.seats-input').node().getBoundingClientRect();
   var coalitionsDim = d3.select('.coalition-display').node().getBoundingClientRect();
 
@@ -117,10 +153,12 @@ function setUp(){
   controllableParties = d3.select('.seats-input')
     .node()
     .dataset.parties.split(',');
+
   //sort vote distribution by controllable parties
+  var partyOrder = ['ld','c','lab','snp','dup','pc','ukip','sdlp','green','other'];
+
   voteDistribution = voteDistribution.sort(function(a,b){
-    if(controllableParties.indexOf(a.party) < 0 || controllableParties.indexOf(b.party) < 0){ return -1; }
-    return controllableParties.indexOf(a.party) - controllableParties.indexOf(b.party);
+    return partyOrder.indexOf(a.party) - partyOrder.indexOf(b.party);
   });
 
   voteDistribution = scaledDistribution(voteDistribution, sliderScale);
@@ -170,6 +208,7 @@ function setUp(){
     voteDistribution = scaledDistribution(voteDistribution, sliderScale);
     drawSliderInput();
     drawCoalitions();
+    writeHash();
     return false;
   });
 }
@@ -200,7 +239,6 @@ function drawSliderInput(){
 
   drag.on('drag', function(d,i) {
     deselect();
-
     var newPos = constrain(d3.event.x , d.p1, d.p2);
     //set the data to reflect this position
     voteDistribution[partyPosition[d.p1]].endPos = newPos;
@@ -212,13 +250,14 @@ function drawSliderInput(){
     });
     d3.select('#slider').call(drawSliderBars);
     drawCoalitions();
+    writeHash();
   });
 
 //bars
   d3.select('#slider').call(drawSliderBars);
 
 //handles
-  d3.select('#slider')
+  var handleEnter = d3.select('#slider')
     .selectAll('.slider-input__handle').data( handlesData(controllableParties) )
     .enter()
     .append('g')
@@ -229,11 +268,28 @@ function drawSliderInput(){
       'transform':function(d){
         return 'translate(' + getPartyData(d.p1).endPos + ',0)';
       }
-    }).call(drag)
+    }).call(drag);
+
+
+
+  handleEnter
     .append('use')
     .attr({
       'xlink:href':'#slider-handle-graphic',
       'class':'interactive-input',
+      'transform':'translate(-'+handleWidth/2+',' + (barHeight) +')'
+    });
+
+  handleEnter
+    .append('rect')
+    .attr({
+      'x':0,
+      'y':0,
+      'width':handleWidth,
+      'height':barHeight*2,
+      'class':'interactive-input',
+      'fill':'#000',
+      'fill-opacity':0,
       'transform':'translate(-'+handleWidth/2+',' + (barHeight) +')'
     });
 
@@ -357,7 +413,7 @@ function drawCoalitions(){
 
   var markerGroup = d3.select('.coalition-display svg').attr({
     height:chartHeight
-  }).selectAll('.coalition-display__majority-marker').data([{value:majority,label:'Majority('+majority+')'}])
+  }).selectAll('.coalition-display__majority-marker').data([{value:majority,label:'Majority ('+majority+')'}])
     .enter();
 
   markerGroup.append('line')
@@ -366,6 +422,7 @@ function drawCoalitions(){
       y1:0,
       x2:markerScale,
       y2:chartHeight,
+      'shape-rendering':'crispEdges',
       'class':'coalition-display__majority-marker'
     });
 
