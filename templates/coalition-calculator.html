@@ -7,7 +7,7 @@
 {% endblock %}
 {% block article_body %}
   <div class="scenarios" data-o-grid-colspan="12 M10 center">
-    <p></p><a href="http://elections.ft.com/uk/2015/projections">Polls suggest</a> that the <a href="http://www.ft.com/indepth/uk-general-election">UK general election</a> on May 7 will result in a hung parliament. A coalition, or a minority government backed by a &ldquo;supply-and-confidence&rdquo; deal with other parties, is likely to come to power. This graphic shows the scenarios possible based on the <a href="#" class="preset-adjustment selected"
+    <p></p><a href="http://elections.ft.com/uk/2015/projections">Polls suggest</a> that the <a href="http://www.ft.com/indepth/uk-general-election">UK general election</a> on May 7 will result in a hung parliament. A coalition, or a minority government backed by a &ldquo;confidence and supply&rdquo; deal with other parties, is likely to come to power. This graphic shows the scenarios possible based on the <a href="#" class="preset-adjustment selected"
     {% for party in efdata.data %}
     data-{{ party.Party }}="{{party.Seats}}"
     {% endfor %}>current&nbsp;projection</a> from <a href="http://www.electionforecast.co.uk">ElectionForecast.co.uk</a>. Compare this to the <a href="#" class="preset-adjustment"
