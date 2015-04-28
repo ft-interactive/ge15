@@ -9,7 +9,7 @@ var pathRouters = {
   // parties: require('./parties'),
   projections: require('./projections'),
   seatmoves: require('./sankey'),
-  'coalition-forecast': require('./coalitionforecast'),
+  'coalition-calculator': require('./coalitioncalculator'),
   data: require('./data').routes
 };
 

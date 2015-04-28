@@ -10,9 +10,11 @@
       {% if page.title %}
       <h1 class="article-header__headline" itemprop="name">{{ page.title | safe }}</h1>
       {% endif %}
-      {% if page.summary %}
-      <p class="article-header__summary" itemprop="description">{{ page.summary }}</p>
-      {% endif %}
+      {% block summary %}
+        {% if page.summary %}
+        <p class="article-header__summary" itemprop="description">{{ page.summary }}</p>
+        {% endif %}
+      {% endblock %}
         {% block dateModified %}
           {% if page.dateModified %}
           <p class="article-header__date-modified" itemprop="dateModified">Updated {{ page.dateModified | date('F j, Y G:i a') }}</p>
