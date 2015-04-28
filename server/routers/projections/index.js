@@ -37,10 +37,22 @@ function* home(next) {
 
     console.log('projections-index op=data time=' + (Date.now() - start) + ' request_id=' + this.id);
 
+
     debug(res.forecast);
 
+    var context = this;
+
     var overview = _.clone(res.forecast.data, true).map(function(d) {
+      var oldValue = d.Party;
       d.Party = parties.electionForecastToCode(d.Party);
+      if(!d.Party){
+        console.error('Party problem (projections)');
+        console.dir(oldValue);
+        console.dir(res.forecast.data);
+        console.dir(d);
+        context.throw(500);
+        return;
+      }
       d.Seats = Number(d.Seats);
       return d;
     });
@@ -90,8 +102,18 @@ function* widget(next) {
     var res = yield forecastData('seats');
     console.log('projections-widget op=data time=' + (Date.now() - start) + ' request_id=' + this.id);
     updated = res.updated;
+    var context = this;
     overview = _.clone(res.data, true).map(function(d) {
+      var oldValue = d.Party;
       d.Party = parties.electionForecastToCode(d.Party);
+      if(!d.Party){
+        console.error('Party problem (homepage)');
+        console.dir(oldValue);
+        console.dir(res.data);
+        console.dir(d);
+        context.throw(500);
+        return;
+      }
       d.Seats = Number(d.Seats);
       return d;
     });
