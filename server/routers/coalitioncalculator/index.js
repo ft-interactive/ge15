@@ -23,7 +23,7 @@ function* home(next) {
     fetching = true;
     var res = yield forecastData('seats');
     data = _.clone(res, true);
-    data.data.map(function(d) {
+    data.data = data.data.map(function(d) {
       return {
         Party: parties.electionForecastToCode(d.Party),
         Lo: Number(d.Lo),
