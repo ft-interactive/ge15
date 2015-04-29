@@ -5,7 +5,7 @@ var parties = require('uk-political-parties');
 var viewLocals = require('../../middleware/view-locals');
 var siteNav = require('../../middleware/site-navigation');
 var forecastData = require('../data/').forecastData;
-
+var _ = require('lodash');
 var data, expiry, fetching;
 
 var page = {
@@ -21,15 +21,17 @@ function* home(next) {
 
   if (!data || (!fetching && Date.now() > expiry)) {
     fetching = true;
-    data = yield forecastData('seats');
-    data.data = data.data.map(function(d){
-      d.Party = parties.electionForecastToCode(d.Party);
-      d.Lo = +d.Lo;
-      d.Hi = +d.Hi;
-      d.Swing = +d.Swing;
-      d.Seats = +d.Seats;
-      d.SeatsCurrent = d.Seats - d.Swing;
-      return d;
+    var res = yield forecastData('seats');
+    data = _.clone(res, true);
+    data.data.map(function(d) {
+      return {
+        Party: parties.electionForecastToCode(d.Party),
+        Lo: Number(d.Lo),
+        Hi: Number(d.Hi),
+        Swing: Number(d.Swing),
+        Seats: Number(d.Seats),
+        SeatsCurrent: Number(d.Seats) - Number(d.Swing)
+      };
     });
     expiry = Date.now() + (1000 * 60);
     fetching = false;
