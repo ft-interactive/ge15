@@ -7,7 +7,7 @@ var parties = require('uk-political-parties');
 var debounce = require('lodash/function/debounce');
 
 var sliderMargin = { top:5, left:0, bottom:0, right:0 };
-var coalitionsMargin = {top:1, left:135, bottom:20, right:50};
+var coalitionsMargin = {top:1, left:160, bottom:20, right:50};
 var voteDistribution = [];
 var sliderScale = d3.scale.linear().clamp(true);
 var coalitionScale = d3.scale.linear();
@@ -31,6 +31,7 @@ var coalitions = [
   ['green','sdlp','snp','lab'],
   ['green','pc','snp','lab'],
   ['green','pc','ld','lab'],
+  ['green','sdlp','pc','snp','lab'],
   ['c','lab']
 ];
 
