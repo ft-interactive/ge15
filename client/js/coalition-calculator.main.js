@@ -31,6 +31,7 @@ var coalitions = [
   ['green','sdlp','snp','lab'],
   ['green','pc','snp','lab'],
   ['green','pc','ld','lab'],
+  ['green','sdlp','pc','snp','lab'],
   ['c','lab']
 ];
 
