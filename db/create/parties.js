@@ -29,10 +29,11 @@ function historicalElectionResults(filename) {
   var index = _.indexBy(history, 'id');
 
   return function(party) {
-    var partyHistory = index[party.id];
+
+    var party_history = index[party.id];
 
     party.elections.last = model.factory.PartyNationalResult({
-      seats: partyHistory.last_seats,
+      seats: party_history ? party_history.last_seats : 0
     });
 
     return party;
