@@ -3,10 +3,10 @@
 const app = require('../../util/app');
 const viewLocals = require('../../middleware/view-locals');
 const siteNav = require('../../middleware/site-navigation');
-const data = require('../../data');
+const service = require('../../service');
 
 function* home(next) {
-  var parties = yield data.parties();
+  var parties = yield service.parties();
   yield this.render('party-index', {parties: parties});
   yield next;
 }
