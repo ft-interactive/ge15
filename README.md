@@ -2,21 +2,17 @@
 
 ## Initial setup
 
-You only need to do steps 1-5 the first time you install.
+You only need to do steps 1-4 the first time you install.
 
-### 1. Get the correct version of node
+### 1. You need io.js
 
-Ensure you have version 0.11.15 of Node.js.
-
-As this is an unstable version, it's recommended that you do not simply upgrade node but use a version manager to switch to the required version.
-
-The [n](https://github.com/tj/n) package is perfect for this.
+Ensure you have the latest version of io.js, we're not using node anymore. It's recommended that you use a node version manager when running locally. The [n](https://github.com/tj/n) package is perfect for this.
 
 ```shell
 $ sudo npm install -g n
-$ sudo n 0.11.15
+$ sudo n io latest
 $ node --version
-v0.11.15
+v1.8.1
 ```
 
 ### 2. Install gulp
@@ -37,29 +33,23 @@ $ git clone https://github.com/ft-interactive/ge15.git && cd ge15 && npm install
 
 The npm install will also kick of the bower install process.
 
-### ~~4. Get a database~~
+### 4. Create a `.env` file
 
-~~a. Ensure you have [postgres installed](http://postgresapp.com/)~~
-~~b. [configure your path to allow use of the command line](http://postgresapp.com/documentation/cli-tools.html) utilities.~~
-~~c. create a local database (called ge15): `$ createdb -Eutf8 ge15`~~
-~~d. Now fill it with some data:~~
+This file contains environment settings that change depending on where and when the app is running.
 
-### 5. Create a `.env` file
+For example API keys, service end points and tokens will be stored here. This file is not ignored from git so these details are kept secret.
 
-~~To begin with you just need to point the app at your database.~~
-
+On localhost and each individual server (CI, Prod etc) these values will be different.
 
 ## Coding (on local, in dev mode)
 
-### `gulp watch`
+### `npm run watch`
 
 To run the app locally (in development mode) and watch for file changes do this:
 
 ```shell
-$ gulp watch
+$ npm run watch
 ```
-
-Then open the site at [localhost:3000](http://localhost:3000/) (unless you've set a different port in your `.env` file). You can also do `$ gulp watch --open` to open your browser automatically when it's ready.
 
 The browser will reload when there are serverside code changes, client JS changes or CSS/SASS changes.
 
