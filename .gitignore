@@ -16,4 +16,3 @@ node-v*
 .sass-cache
 .haikro-cache
 .env
-db/data.json

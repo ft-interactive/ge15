@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "postinstall": "bower install",
-    "deploy": "npm run db-create && gulp && npm prune --production && haikro build deploy --heroku-token $HEROKU_AUTH_TOKEN --app $HEROKU_APP --verbose",
+    "deploy": "gulp && npm prune --production && haikro build deploy --heroku-token $HEROKU_AUTH_TOKEN --app $HEROKU_APP --verbose",
     "local": "gulp && NODE_ENV=production npm run start",
     "start": "node --harmony ./app.js",
     "pre-test": "gulp lint sass",
