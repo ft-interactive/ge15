@@ -1,5 +1,3 @@
-#!/usr/local/bin/node --harmony
-
 'use strict';
 
 var repl = require('repl');

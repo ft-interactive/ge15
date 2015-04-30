@@ -1,5 +1,3 @@
-#!/usr/local/bin/node --harmony
-
 'use strict';
 
 require('../db/create').create_database(function(){
