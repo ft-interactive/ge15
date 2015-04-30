@@ -5,14 +5,14 @@
   "main": "app.js",
   "scripts": {
     "postinstall": "bower install",
-    "deploy": "bin/db-create; gulp && haikro build deploy --heroku-token $HEROKU_AUTH_TOKEN --app $HEROKU_APP --verbose",
+    "deploy": "./bin/db-create && gulp && npm prune --production && haikro build deploy --heroku-token $HEROKU_AUTH_TOKEN --app $HEROKU_APP --verbose",
     "local": "gulp && NODE_ENV=production npm run start",
     "start": "node --harmony ./app.js",
     "pre-test": "gulp lint sass",
     "test": "testling",
-    "watch": "bin/db-create; gulp watch",
-    "db": "bin/db-query",
-    "db-create": "bin/db-create"
+    "watch": "./bin/db-create && gulp watch",
+    "db": "./bin/db-query",
+    "db-create": "./bin/db-create"
   },
   "repository": {
     "type": "git",
