@@ -14,5 +14,6 @@ node-v*
 .lock-wscript
 .idea
 .sass-cache
+.haikro-cache
 .env
 db/data.json
