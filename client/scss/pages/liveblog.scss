@@ -5,7 +5,6 @@
 @import "o-colors/main";
 @import "../functions";
 
-
 .assanka_htmlwidget {
   overflow: visible;
 }
@@ -39,13 +38,11 @@
       padding-bottom: 3px;
       margin: 0 0 15px;
 
-      > h3 {
-        margin: 0;
-        height: 0;
-        color: color(grey-tint5);
-      }
     }
+
+
   }
+
 
   .num-declared {
     margin: 0;
@@ -55,6 +52,12 @@
 
     > b { color: color(grey-tint5); }
   }
+}
+
+.widget-wrapper header > h3 {
+  margin: 0;
+  height: 0;
+  color: color(grey-tint5);
 }
 
 @import "../components/state-of-play";
