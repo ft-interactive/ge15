@@ -2,6 +2,9 @@
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
+console.log('NODE_ENV', process.env.NODE_ENV);
+console.log('PORT', process.env.PORT);
+
 const debug = require('debug')('ge15:main');
 
 debug('Load database');
