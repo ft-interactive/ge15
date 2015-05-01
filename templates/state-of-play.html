@@ -1,0 +1,63 @@
+<aside class="state-of-play">
+  {% if stateOfPlay.headline %}
+  <header>
+    <h3>{{stateOfPlay.headline}}</h3>
+    
+    
+    <p class="num-declared">
+      {% if stateOfPlay.numSeatsDeclared > 0 %}
+      <b>{{stateOfPlay.numSeatsDeclared}}</b> of 650 seats declared
+      {% else %}
+      No seats declared
+      {% endif %}
+      
+      {% if stateOfPlay.updated %}
+      <span class="time"> – {{ stateOfPlay.updated | date('g:i a') }}</span>
+      {% endif %}
+    </p>
+  </header>
+  {% endif %}
+
+  <table class="state-of-play__table">
+    <thead>
+      {% for party in stateOfPlay.parties %}
+      <th style="background:{{party.colour}};border-bottom-color:{{party.secondaryColour}}">
+        {{party.shortName}}
+        <span class="state-of-play__party-total">{{party.totalWon}}</span>
+      </th>
+      {% endfor %}
+    </thead>
+    <tbody>
+      <tr class="state-of-play__gains-row">
+        {% for party in stateOfPlay.parties %}
+        <td>
+          <span class="state-of-play__row-label">Gained&nbsp;from</span>
+          <div class="state-of-play__seats">
+            {% for seat in party.gains %}<span class="state-of-play__seat" style="background:{{seat.wasColour}}"></span>{% endfor %}
+          </div>
+        </td>
+        {% endfor %}
+      </tr>
+
+      <tr class="state-of-play__losses-row">
+        {% for party in stateOfPlay.parties %}
+        <td>
+          <span class="state-of-play__row-label">Lost&nbsp;to</span>
+          <div class="state-of-play__seats">
+            {% for seat in party.losses %}<span class="state-of-play__seat" style="background:{{seat.nowColour}}"></span>{% endfor %}
+          </div>
+        </td>
+        {% endfor %}
+      </tr>
+      
+      <tr class="state-of-play__net-change-row">
+        {% for party in stateOfPlay.parties %}
+        <td>
+          <span class="state-of-play__row-label">Net&nbsp;change</span>
+          <span class="state-of-play__net-change">{{ party.netChange }}</span>
+        </td>
+        {% endfor %}
+      </tr>
+    </tbody>
+  </table>
+</aside>

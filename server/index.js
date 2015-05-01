@@ -6,7 +6,6 @@ const debug = require('debug')('ge15:app');
 const koa = require('koa');
 const routers = require('./routers');
 const pkg = require('../package.json');
-
 const trace = require('koa-trace');
 const favicon = require('koa-favicon');
 const requestId = require('koa-request-id');
@@ -21,6 +20,8 @@ const printRequestId = require('./middleware/print-request-id');
 const ms = require('ms');
 const path = require('path');
 const raven = require('../raven');
+const cors = require('koa-cors');
+
 
 function main() {
   var app = koa();
@@ -45,6 +46,12 @@ function main() {
     this.set('Timing-Allow-Origin', '*');
     yield next;
   });
+
+
+  app.use(cors({
+    origin: true // do something more specific here
+  }));
+
   app.use(favicon(path.resolve(__dirname, '../public/images/favicon.ico')));
   app.use(conditional());
   app.use(etag());

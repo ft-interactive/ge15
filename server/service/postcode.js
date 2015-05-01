@@ -1,6 +1,7 @@
 'use strict';
 
 const request = require('request-promise');
+var Postcode = require('postcode');
 const db = require('./db');
 const knowPostcodes = new Map();
 const Reasons = {NOT_FOUND: 'NOT_FOUND', INVALID: 'INVALID'};
@@ -55,7 +56,10 @@ module.exports = function(postcode) {
     }
 
     knowPostcodes.set(postcode, seat.id);
-    return {seat: seat};
+    return {
+      seat: seat,
+      postcode: new Postcode(postcode).normalise()
+    };
 
   }).catch(function(reason){
     return recordUnknownPostcode(originalPostcode, reason.statusCode === 400 ? 'INVALID' : 'NOT_FOUND');

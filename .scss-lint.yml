@@ -21,6 +21,9 @@ linters:
   ColorKeyword:
     enabled: false
 
+  ColorVariable:
+    enabled: false
+
   # // not /**/
   Comment:
     enabled: false

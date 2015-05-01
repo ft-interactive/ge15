@@ -1,0 +1,16 @@
+.local-result {
+  // outline: 1px solid red;
+  position: relative;
+}
+
+  .local-result__postcode-form > input {
+    display: block;
+    line-height: 30px;
+    height: 30px;
+    width: 100%;
+    font-size: 14px;
+    border: 1px solid color(grey-tint1);
+    border-radius: 5px;
+    padding-left: 25px;
+    background: color(white) url(https://image.webservices.ft.com/v1/images/raw/fticon:search?width=13&source=ge15) no-repeat 6px 7px;
+  }

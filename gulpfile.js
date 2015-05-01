@@ -95,6 +95,7 @@ function createBrowserify(entry, bundle, watch) {
   }));
 
   b.transform('envify', e);
+  b.transform('hbsfy', e);
 
 // Transforms we might need here
 // Browserify-shim for JS libs without commonsJS.

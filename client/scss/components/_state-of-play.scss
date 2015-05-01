@@ -1,0 +1,101 @@
+.state-of-play {
+  > header {
+    > h3 {
+      float: left;
+    }
+
+    > .num-declared {
+      float: right;
+      margin-top: 9px;
+    }
+  }
+}
+
+  .state-of-play > .state-of-play__table { // specificity needed to override liveblog styles
+    border-spacing: 0;
+    border-collapse: separate;
+
+    th,
+    td {
+      width: 20%;
+      max-width: 20%;
+      vertical-align: top;
+    }
+
+    th {
+      border-bottom: 4px solid transparent; 
+      text-align: center;
+      color: color(white);
+      font-size: 12px;
+      line-height: 1.2;
+      padding: 7px 0 4px;
+      font-weight: 400;
+    }
+  }
+    .state-of-play__party-total {
+      display: block;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .state-of-play__gains-row,
+    .state-of-play__losses-row {
+      > td {
+        border-left: 1px solid color(pink-tint2);
+        border-right: 1px solid color(pink-tint2);
+        min-height: 30px;
+        padding: 8px 3px 20px;
+
+        &:first-child { border-left-width: 2px; }
+        &:last-child { border-right-width: 2px; }
+      }
+    }
+
+      .state-of-play__row-label {
+        text-transform: uppercase;
+        font-size: 9px;
+        line-height: 15px;
+        display: block;
+        visibility: hidden;
+        color: color(grey-tint3);
+
+        td:first-child & { visibility: visible; }
+      }
+    
+      .state-of-play__seats {
+        line-height: 0px;
+      }
+        .state-of-play__seat {
+          display: inline-block;
+          width: 7px;
+          height: 7px;
+          border: 1px solid color(pink);
+          margin: 0 -1px -1px 0;
+          position: relative;
+          z-index: 1;
+
+          // &:hover {
+          //   border-color: #000;
+          //   z-index: 2;
+          // }
+        }
+  
+    .state-of-play__net-change-row {
+      > td {
+        background: color(pink-tint1);
+        padding: 6px 3px;
+        border-left: 1px solid color(pink-tint2);
+        border-right: 1px solid color(pink-tint2);
+        border-bottom: 2px solid color(pink-tint2);
+
+        &:first-child { border-left-width: 2px; }
+        &:last-child { border-right-width: 2px; }
+      }
+    }
+      .state-of-play__net-change {
+        display: block;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+        color: color(grey-tint4);
+      }
