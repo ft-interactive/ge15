@@ -1,8 +1,12 @@
-.results-national-coalitions__coalition-party-block{
-  display:inline-block;
-}
+.results-national-coalitions {
 
-.results-national-coalitions__seat-count,
-.results-national-coalitions__party-list{
-  display:inline-block;
+  &__coalition-party-block {
+    display: inline-block;
+  }
+
+  &__seat-count,
+  &__party-list {
+    display: inline-block;
+  }
+
 }
