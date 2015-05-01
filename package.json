@@ -7,6 +7,7 @@
     "postinstall": "bower install",
     "deploy": "gulp && npm prune --production && haikro build deploy --heroku-token $HEROKU_AUTH_TOKEN --app $HEROKU_APP --verbose",
     "local": "gulp && NODE_ENV=production npm run start",
+    "start": "node --harmony ./app.js",
     "pre-test": "gulp lint sass",
     "test": "testling",
     "db": "node --harmony bin/db-query",
@@ -113,8 +114,7 @@
     "vinyl": "^0.4.5",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.0.0",
-    "watchify": "^3.1.0",
-    "yargs": "^3.8.0"
+    "watchify": "^3.1.0"
   },
   "engines": {
     "node": "0.11.15"

@@ -1,5 +1,5 @@
 {% extends 'article.html' %}
-
+{% set stylesheet = 'pages/results-index.css' %}
 {% block title %}#GE2015 - Full Results{% endblock %}
 
 {% block article_header %}
@@ -10,6 +10,11 @@
 <div class="o-grid-row">
   <div data-o-grid-colspan="12 M6 L8">
     <h2>National</h2>
+
+    {% include "./result-national-overview.html" %}
+
+    {% include "./result-national-coalitions.html" %}
+
   </div>
   <div data-o-grid-colspan="12 M6 L4">
     <h2>Local</h2>

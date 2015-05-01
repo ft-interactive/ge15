@@ -6,6 +6,7 @@ const n = require('numeral')();
 const _ = require('lodash');
 const parties = require('uk-political-parties');
 const debug = require('debug')('filters');
+const d3 = require('d3');
 
 exports.times = function(val, num) {
   return S(val).times(num).s;
@@ -109,7 +110,19 @@ exports.round = function(number, dp) {
   return Math.round(number * expo) / expo;
 };
 
-exports.change = function(value) {
+exports.ftdate = function(date) {
+  date = new Date(date);
+  var format = d3.time.format("%B %e, %Y %I:%M %p");
+  return format(date).replace(/(AM|PM)$/, function($1){
+    return $1 ? $1.toLowerCase() : '';
+  });
+};
+
+exports.percentageOf = function(part, whole) {
+  return parseFloat(part)/whole * 100;
+};
+
+exports.change = function(value){
   if(value>0) return '+'+value;
   return value;
 };

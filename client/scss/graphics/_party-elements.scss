@@ -59,7 +59,7 @@
   fill: $labour;
 }
 
-.lib-dem-area, 
+.lib-dem-area,
 .ap-area {
   stroke: $liberal-democrat;
   fill: $liberal-democrat;
@@ -103,4 +103,62 @@
 .other-party-area {
   stroke: $other;
   fill: $other;
+}
+
+/* html blcks */
+.conservative-block,
+.uup-block {
+  background-color: $conservative;
+  colour: white;
+}
+
+.labour-block {
+  background-color: $labour;
+  colour: white;
+}
+
+.lib-dem-block,
+.ap-block {
+  background-color: $liberal-democrat;
+  colour: white;
+}
+
+.ukip-block {
+  background-color: $ukip;
+  colour: white;
+}
+
+.snp-block {
+  background-color: $snp;
+  colour: white;
+}
+
+.pc-block {
+  background-color: $plaid-cymru;
+  colour: white;
+}
+
+.green-block {
+  background-color: $green;
+  colour: white;
+}
+
+.dup-block {
+  background-color: $dup;
+  colour: white;
+}
+
+.sdlp-block {
+  background-color: $sdlp;
+  colour: white;
+}
+
+.sinn-fein-block {
+  background-color: $sinn-fein;
+  colour: white;
+}
+
+.other-party-block {
+  background-color: $other;
+  colour: white;
 }
