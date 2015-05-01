@@ -10,7 +10,8 @@
     "pre-test": "gulp lint sass",
     "test": "testling",
     "db": "node --harmony bin/db-query",
-    "db-create": "node --harmony bin/db-create"
+    "db-create": "node --harmony bin/db-create",
+    "watch": "gulp watch"
   },
   "repository": {
     "type": "git",
