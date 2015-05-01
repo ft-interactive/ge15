@@ -17,12 +17,15 @@ const port = process.env.PORT || 3000;
 debug('Create server');
 const server = http.createServer(app.callback());
 
+
+debug('Start server');
+server.listen(port, function(){
+  debug('Listening on ' + port);
+});
+
 debug('Data sources: start update all');
 
 db.data_sources.update.all(function(){
   debug('Data sources: update all complete');
-  debug('Start server');
-  server.listen(port, function(){
-    debug('Listening on ' + port);
-  });
+
 });
