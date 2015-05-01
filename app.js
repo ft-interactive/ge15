@@ -7,10 +7,6 @@ console.log('PORT', process.env.PORT);
 
 const debug = require('debug')('ge15:main');
 
-debug('Load database');
-
-const db = require('./db').start();
-
 debug('Create app instance');
 
 const app = require('./server')();
@@ -25,6 +21,10 @@ debug('Start server');
 server.listen(port, function(){
   debug('Listening on ' + port);
 });
+
+debug('Load database');
+
+const db = require('./db').start();
 
 debug('Data sources: start update all');
 
