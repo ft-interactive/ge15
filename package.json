@@ -10,7 +10,7 @@
     "start": "node --harmony ./app.js",
     "pre-test": "gulp lint sass",
     "test": "testling",
-    "watch": "bin/db-create && gulp watch",
+    "watch": "npm run db-create && gulp watch",
     "db": "node --harmony ./bin/db-query",
     "db-create": "node --harmony ./bin/db-create"
   },
