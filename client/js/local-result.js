@@ -28,7 +28,7 @@ module.exports = function (widget) {
       })
       .then(function (result) {
         result = JSON.parse(result);
-        
+
         console.log('API result', result);
 
         if (result.error) throw result;

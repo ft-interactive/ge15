@@ -65,7 +65,7 @@
       throw response;
     }
 
-    return response.json().then(function(json){
+    return response.json().then(function(json) {
       showSeat(json.seat);
     });
   }
@@ -90,7 +90,6 @@
     }
   }
 
-  // TODO: only show button is geolocation API not available
   locbtn = document.getElementById('use-mylocation-js');
 
   if ('geolocation' in navigator) {
@@ -103,11 +102,7 @@
         fetch(url).then(lookup_onsuccess).catch(get_lookup_error_handler('location'));
       }
 
-      function geoloc_onerror(err) {
-        showError('location');
-      }
-
-      navigator.geolocation.getCurrentPosition(geoloc_onsuccess, geoloc_onerror);
+      navigator.geolocation.getCurrentPosition(geoloc_onsuccess, get_lookup_error_handler('location'));
     });
   } else {
     locbtn.style.display = 'none';
