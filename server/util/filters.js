@@ -113,6 +113,10 @@ exports.ftdate = function(date) {
   });
 };
 
+exports.percentageOf = function(part, whole) {
+  return parseFloat(part)/whole * 100;
+};
+
 exports.change = function(value){
   if(value>0) return '+'+value;
   return value;
