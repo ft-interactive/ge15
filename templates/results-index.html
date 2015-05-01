@@ -120,15 +120,17 @@
   document.getElementById('seat-search-js').addEventListener('submit', function(event) {
     event.preventDefault();
 
-    var postcode = event.target.elements.postcode.value;
+    var input = event.target.elements.postcode
+    var postcode = input.value.trim();
 
     if (!postcode) {
+      input.value = '';
       clear();
       return;
     }
 
     var offlineErrorMessage = 'Cannot connect to the internet to find postcode.';
-    var url = '/uk/2015/api/lookup/postcode/' + postcode.trim();
+    var url = '/uk/2015/api/lookup/postcode/' + postcode;
 
     fetch(url).then(lookup_onsuccess).catch(get_lookup_error_handler('postcode'));
   });
