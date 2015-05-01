@@ -12,7 +12,11 @@ const siteNav = require('../../middleware/site-navigation');
 function* home(next) {
   var data = {
     overview:yield service.resultNationalOverview(),
-    coalitions:yield service.resultNationalCoalitions()
+    coalitions:yield service.resultNationalCoalitions(),
+    page: {
+      title: 'Election results',
+      summary: 'The Conservative/Lib-Dem coalition is likely to hold office.\nExpect new party alliances to boost the majority.'
+    }
   };
   yield this.render('results-index', data);
   yield next;
