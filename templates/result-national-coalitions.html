@@ -1,0 +1,15 @@
+<div class="results-national-coalitions">
+  <h3>possible coalitions</h3>
+  {% for group in coalitions.groups %}
+  <div class="results-national-coalitions__group">
+      <div class="results-national-coalitions__party-list">
+        {% for party in group.parties %}
+            <div class="{{ party | partyClassName }}-block">{{ party | partyShortName }}</div>
+        {% endfor %}
+      </div>
+      <div class="results-national-coalitions__seat-count">
+          {{ group.seats }} Seats, majority of {{ group.majority }}
+      </div>
+  </div>
+  {% endfor %}
+</div>

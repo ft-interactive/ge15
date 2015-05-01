@@ -11,7 +11,8 @@ const siteNav = require('../../middleware/site-navigation');
 
 function* home(next) {
   var data = {
-    overview:yield service.resultNationalOverview()
+    overview:yield service.resultNationalOverview(),
+    coalitions:yield service.resultNationalCoalitions()
   };
   yield this.render('results-index', data);
   yield next;
@@ -21,8 +22,15 @@ function* nationalOverview(next) {
   var data = {
       overview:yield service.resultNationalOverview()
   };
-
   yield this.render('result-national-overview', data);
+  yield next;
+}
+
+function* nationalCoalitions(next) {
+  var data = {
+    coalitions:yield service.resultNationalCoalitions()
+  };
+  yield this.render('result-national-coalitions', data);
   yield next;
 }
 
@@ -37,7 +45,8 @@ function main() {
     .router()
 
     .get('/', home)
-    .get('/national-overview', nationalOverview);
+    .get('/national-overview', nationalOverview)
+    .get('/national-coalitions', nationalCoalitions);
 }
 
 module.exports = main;

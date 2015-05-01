@@ -106,6 +106,7 @@ exports.partyColor = function(str){
 };
 
 exports.ftdate = function(date) {
+  date = new Date(date);
   var format = d3.time.format("%B %e, %Y %I:%M %p");
   return format(date).replace(/(AM|PM)$/, function($1){
     return $1 ? $1.toLowerCase() : '';
