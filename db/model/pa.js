@@ -54,7 +54,7 @@ exports.create_result = function(file, xml, callback) {
 
     debug('Process type=' + type + ' file=' + file.name + ' id=' + seat.id + ' name=' + seat.name + ' pa_id=' + pa_id);
 
-    if (type = Types.RECOUNT) {
+    if (type === Types.RECOUNT) {
       // TODO: proper recount implementation
       seat.elections.ge15.recount = true;
       callback(null, seat);
@@ -106,7 +106,7 @@ function candidateXMLtoSeatPartyResult(node) {
     o.party = code;
   } else {
     o.party = 'other';
-    o.otherPartyName = party.name;
+    o.other_party_name = party.name;
   }
   return o;
 }
