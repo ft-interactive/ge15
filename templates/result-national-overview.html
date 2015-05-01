@@ -2,7 +2,7 @@
   <h3>the result</h3>
   <div class="results-national-overview__headings"></div>
     {% for party in overview.parties %}
-    <div class="results-national-overview__party">{{ party.party | partyShortName }} {{ party.seats }} ({{ party.seats_change }})</div>
+    <div class="results-national-overview__party">{{ party.party | partyShortName }}<div class="results-national-overview__bar {{ party.party | partyClassName }}-block" style="width:{{ party.seats }}px"></div> {{ party.seats }} ({{ party.seats_change }})</div>
     {% endfor %}
     updated {{ overview.updated | ftdate }}
 </div>
