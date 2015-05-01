@@ -58,7 +58,7 @@ module.exports = function(postcode) {
     knowPostcodes.set(postcode, seat.id);
     return {
       seat: seat,
-      postcode: new Postcode(postcode).normalise()
+      postcode: postcode
     };
 
   }).catch(function(reason){
