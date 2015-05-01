@@ -104,7 +104,7 @@
     "gulp-scss-lint": "^0.1.4",
     "gulp-uglify": "^1.0.1",
     "gulp-util": "^3.0.1",
-    "haikro": "^1.13.6",
+    "haikro": "git://github.com/matthew-andrews/haikro#iojs-fix",
     "jshint-stylish": "^1.0.0",
     "stripify": "^1.2.0",
     "tape": "^3.0.3",
