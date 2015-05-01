@@ -6,7 +6,6 @@ const n = require('numeral')();
 const _ = require('lodash');
 const parties = require('uk-political-parties');
 const debug = require('debug')('filters');
-const d3 = require('d3');
 
 exports.times = function(val, num) {
   return S(val).times(num).s;
@@ -76,7 +75,7 @@ exports.pluck = function(obj, property) {
   return _.pluck(obj, property);
 };
 
-exports.sortBy = function(array, property){
+exports.sortBy = function(array, property) {
   debug(array, property);
   return _.sortBy(array, property);
 };
@@ -85,34 +84,40 @@ exports.json = function(obj) {
   return JSON.stringify(obj, null, 0);
 };
 
-exports.partyAbbreviation = function(str){
+exports.partyAbbreviation = function(str) {
   return parties.shortName(str);
 };
 
-exports.partyClassName = function(str){
+exports.partyClassName = function(str) {
   return parties.className(str);
 };
 
-exports.partyFullName = function(str){
+exports.partyFullName = function(str) {
   return parties.fullName(str);
 };
 
-exports.partyShortName = function(str){
+exports.partyShortName = function(str) {
   return parties.shortName(str);
 };
 
-exports.partyColor = function(str){
+exports.partyColor = function(str) {
   return parties.colour(str);
 };
 
-exports.ftdate = function(date) {
-  var format = d3.time.format("%B %e, %Y %I:%M %p");
-  return format(date).replace(/(AM|PM)$/, function($1){
-    return $1 ? $1.toLowerCase() : '';
-  });
+exports.round = function(number, dp) {
+  var expo = Math.pow(10, dp || 0);
+  return Math.round(number * expo) / expo;
 };
 
-exports.change = function(value){
+exports.change = function(value) {
   if(value>0) return '+'+value;
   return value;
+};
+
+exports.diamondPath = function(size) {
+  return (
+    'M 0 0 L ' + (size/2) + ' ' + (size/2) +
+    ' L 0 ' + size + ' L ' + (0-size/2) + ' ' + (size/2) +
+    ' L 0 0 L ' + (size/2) + ' ' + (size/2)
+  );
 };

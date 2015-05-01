@@ -1,0 +1,66 @@
+.votes-vs-seats {
+  line,
+  rect {
+    shape-rendering: crispEdges;
+  }
+
+  text {
+    font: 12px BentonSans, sans-serif;
+    fill: color(grey-tint3);
+  }
+}
+  
+  .votes-vs-seats__key {
+    > text {
+      alignment-baseline: central;
+    }
+  }
+
+  .votes-vs-seats__chart {}
+
+    .votes-vs-seats__tracks {
+      > line {
+        stroke: color(pink-tint1);
+      }
+    }
+
+    .votes-vs-seats__ticks {}
+
+      .votes-vs-seats__tick {
+        > text {
+          text-anchor: middle;
+          alignment-baseline: after-edge;
+        }
+        > line {
+          stroke: color(grey-tint1);
+          stroke-dasharray: 1, 1;
+          stroke-width: 1px;
+
+          &.votes-vs-seats__first-tick {
+            stroke-dasharray: none;
+            stroke: color(grey-tint5);
+          }
+        }
+      }
+    
+    .votes-vs-seats__rows {}
+
+      .votes-vs-seats__row {}
+
+        .votes-vs-seats__party-label {
+          text-anchor: end;
+          alignment-baseline: central;
+        }
+
+        .votes-vs-seats__party-colour {
+        }
+
+        .votes-vs-seats__vote-percent {
+          stroke: color(grey-tint2);
+        }
+
+        .votes-vs-seats__seats-percent {
+          fill: lighten(color(pink), 10%);
+          stroke: color(grey-tint4);
+          stroke-width: 2;
+        }

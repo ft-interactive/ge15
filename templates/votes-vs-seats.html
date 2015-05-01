@@ -1,0 +1,90 @@
+<aside class="votes-vs-seats">
+  {% if votesVsSeats.headline %}
+  <header>
+    <h3>{{votesVsSeats.headline}}</h3>
+  </header>
+  {% endif %}
+
+
+  <svg width="{{ votesVsSeats.totalWidth }}" height="{{ votesVsSeats.rowHeight * (votesVsSeats.parties.length + 2) }}">
+    <g class="votes-vs-seats__key" transform="translate(0 {{votesVsSeats.rowHeight*0.3333}})">
+      <line
+        class="votes-vs-seats__vote-percent"
+        x2="15"
+        stroke-width="{{votesVsSeats.barThickness}}"
+      ></line>
+      <text x="20">% of popular vote</text>
+
+      <path
+        class="votes-vs-seats__seats-percent" 
+        d="{{votesVsSeats.seatsIconSize | diamondPath}}"
+        transform="translate(130 {{0-(votesVsSeats.seatsIconSize/2)}})"
+      ></path>
+      <text x="{{130 + votesVsSeats.seatsIconSize}}">% of seats won</text>
+    </g>
+    
+
+    <g class="votes-vs-seats__chart" style="transform: translate({{votesVsSeats.labelsWidth}}px,{{votesVsSeats.rowHeight*1.75}}px)">
+      
+      {# bottom layer: the full-width, tinted tracks #}
+      <g class="votes-vs-seats__tracks">
+        {% for party in votesVsSeats.parties %}
+        <line
+          y1="{{ loop.index0 * votesVsSeats.rowHeight + (votesVsSeats.rowHeight / 2)}}"
+          x2="{{votesVsSeats.trackLength}}"
+          y2="{{ loop.index0 * votesVsSeats.rowHeight + (votesVsSeats.rowHeight / 2) }}"
+          stroke-width="{{votesVsSeats.trackThickness}}"
+        ></line>
+        {% endfor %}
+      </g>
+      
+      {# 2nd layer: the vertical tick lines along the x-axis, inc. percent labels #}
+      <g class="votes-vs-seats__ticks">
+        {% for percentage in [0, 10, 20, 30, 40, 50] %}
+        <g class="votes-vs-seats__tick" style="transform:translate({{ loop.index0 * (votesVsSeats.trackLength / 5) - 1 }}px,0)">
+          <text  
+            y="{{ 0 - (votes-vs-seats.trackSpacing / 2) }}">{{percentage}}</text>
+          <line
+            {% if loop.first %}class="votes-vs-seats__first-tick"{% endif %}
+            y1="{{ 0 - (votes-vs-seats.trackSpacing /2) }}"
+            y2="{{ votesVsSeats.parties.length * votesVsSeats.rowHeight}}"></line>
+        </g>
+        {% endfor %}
+      </g>
+      
+      {# top layer: everything else, arranged in "rows" #}
+      <g class="votes-vs-seats__rows">
+        {% for party in votesVsSeats.parties %}
+        <g class="votes-vs-seats__row" style="transform:translate(0,{{ loop.index0 * votesVsSeats.rowHeight + (votesVsSeats.rowHeight / 2) }}px)">
+          
+          {# party label and colour #}
+          <text
+            class="votes-vs-seats__party-label"
+            x="-19">{{party.name}}</text>
+          <line
+            class="votes-vs-seats__party-colour"
+            x1="-15"
+            x2="-10"
+            stroke="{{party.colour}}"
+            stroke-width="{{votesVsSeats.trackThickness}}"
+          ></line>
+          
+          {# bar for vote percentage #}
+          <line
+            class="votes-vs-seats__vote-percent"
+            x2="{{votesVsSeats.trackLength * (party.percentVoteWon / 50) }}"
+            stroke-width="{{votesVsSeats.barThickness}}"
+          ><title>{{party.percentVoteWon | round(1)}}% of votes won</title></line>
+
+          {# icon for seats percentage #}
+          <path
+            class="votes-vs-seats__seats-percent"
+            transform="translate({{ votesVsSeats.trackLength * (party.percentSeatsWon / 50) }} {{0-(votesVsSeats.seatsIconSize/2)}})"
+            d="{{votesVsSeats.seatsIconSize | diamondPath}}"
+          ><title>{{party.percentSeatsWon | round(1)}}% of seats won</title></path>
+        </g>
+        {% endfor %}
+      </g>
+    </g>
+  </svg>
+</aside>
