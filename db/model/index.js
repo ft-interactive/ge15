@@ -17,7 +17,7 @@ var f = exports.factory = {
       message: message || '',
       filename: file.name,
       revision: file.revision,
-      declarationTime: time || null
+      declaration_time: time || null
     };
   },
 
