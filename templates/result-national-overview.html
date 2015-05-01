@@ -1,0 +1,6 @@
+<div class="results-national-overview">
+  <div class="results-national-overview__headings"></div>
+    {% for party in overview.parties %}
+    <div class="results-national-overview__party">{{ party.party | partyShortName }} {{ party.seats }} ({{ party.seats_change }})</div>
+    {% endfor %}
+</div>
