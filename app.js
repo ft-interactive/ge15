@@ -19,7 +19,7 @@ const server = http.createServer(app.callback());
 
 debug('Data sources: start update all');
 
-db.data_sources.update.all(function(){
+db.data_sources.update.all(function() {
   debug('Data sources: update all complete');
   debug('Start server');
   server.listen(port, function(){

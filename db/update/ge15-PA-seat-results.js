@@ -14,6 +14,7 @@ const connectionOptions = {
   port: 21,
   user: process.env.PA_USERNAME,
   password: process.env.PA_PASSWORD,
+  keepalive: 20000
 };
 
 
@@ -43,17 +44,34 @@ function update(cb) {
 
   console.log(connectionOptions);
 
-  function error() {
+  function error(err) {
+    console.error(err && err instanceof Error ? err.message : err || 'Unknown Error');
+    console.log(err.code);
+    console.log(err.stack);
     ftp.end();
     fail();
     cb();
   }
 
   function close() {
+    console.log('Close');
     ftp.end();
     done();
     cb();
   }
+
+  ftp.on('close', function() {
+    console.log('FTP connection closed');
+  });
+
+  ftp.on('end', function() {
+    console.log('FTP connection ended');
+  });
+
+  ftp.on('error', function() {
+    console.log('FTP connection error');
+    error();
+  });
 
   ftp.on('ready', function() {
 
@@ -63,12 +81,18 @@ function update(cb) {
 
 
       if (err) {
+        console.log('Error getting timestamp file');
         console.error(err);
         error(err);
         return;
       }
 
-      stream.pipe(accum.string(function(str){
+      stream.on('error', function() {
+        console.error('Get timestamp stream error');
+      });
+
+      stream.pipe(accum.string(function(str) {
+
         var newTimestamp = Number(str);
 
         if (!str || isNaN(newTimestamp)) {
@@ -88,6 +112,7 @@ function update(cb) {
         ftp.list(dir, function(err, list) {
 
           if (err) {
+            console.log('List error');
             console.error(err);
             error(err);
             return;
@@ -115,7 +140,7 @@ function update(cb) {
 
           debug('Size of list of Result/Rush/Recount xml files is ' + latestDirectoryList.length);
 
-          var newOrModified = latestDirectoryList.filter(function(f){
+          var newOrModified = latestDirectoryList.filter(function(f) {
             return f.isNew;
           });
 
@@ -134,21 +159,35 @@ function update(cb) {
               if (err) {
                 debug('Error getting ' + filename);
                 console.error(err);
-                error();
+                error(err);
                 return;
               }
 
+              if (!seatStream) {
+                console.error('No stream for file');
+                return;
+              }
+
+              console.log('DONE:'+filename);
+            return;
+
               debug('Streaming from ' + filename);
 
+              seatStream.on('error', function(){
+                console.error('Get file stream error');
+              });
+
               seatStream.pipe(accum.string(function(str){
+
                 xml2js(str, function(parseErr, result){
                   if (parseErr) {
                     debug('Error parsing ' + filename);
                     console.error(parseErr);
                     console.error(str);
-                    error();
+                    error(parseErr);
                     return;
                   }
+
 
                   var dbSeat;
                   var constituency;
@@ -169,9 +208,9 @@ function update(cb) {
 
                       dbSeat = db.getCollection('seats').findOne({pa_id: constituency.$.number});
 
-                      if (!dbSeat) {
-                        throw new Error('Cannot do lookup from PA ID to the DB');
-                      }
+                      // if (!dbSeat) {
+                      //   throw new Error('Cannot do lookup from PA ID to the DB');
+                      // }
 
                       if (dbSeat.elections.ge15.source &&
                                 typeof dbSeat.elections.ge15.source.type === 'number' &&
@@ -213,12 +252,12 @@ function update(cb) {
                           revision: file.revision,
                           declarationTime: null // a rush message is not declared yet
                         },
-                        incoming: {
+                        winner: {
                           party: constituency.$.winningPartyAbbreviation
                         },
                         outgoing: {
                           party: constituency.$.sittingPartyAbbreviation,
-                          person: dbSeat.elections.last.incoming.person
+                          person: dbSeat.elections.last.winner.person
                         },
                         others: {votes: 0, votes_pc: 0},
                         results: []
@@ -233,9 +272,9 @@ function update(cb) {
 
                     dbSeat = db.getCollection('seats').findOne({pa_id: constituency.$.number});
 
-                    if (!dbSeat) {
-                      throw new Error('Cannot do lookup from PA ID to the DB');
-                    }
+                    // if (!dbSeat) {
+                    //   throw new Error('Cannot do lookup from PA ID to the DB');
+                    // }
 
                     if (dbSeat.elections.ge15.source &&
                               typeof dbSeat.elections.ge15.source.type === 'number' &&
@@ -269,7 +308,7 @@ function update(cb) {
                         revision: file.revision,
                         declarationTime: new Date(result.FirstPastThePostResult.$.declarationTime)
                       },
-                      incoming: {
+                      winner: {
                         majority: Number(constituency.$.majority),
                         majority_pc: Number(constituency.$.percentageMajority),
                         person: null,
@@ -306,10 +345,10 @@ function update(cb) {
                         dbSeat.elections.ge15.outgoing.votes = o.votes;
                         dbSeat.elections.ge15.outgoing.votes_pc = o.votes_pc;
                       } else if (o.elected) {
-                        dbSeat.elections.ge15.incoming.party = o.party;
-                        dbSeat.elections.ge15.incoming.person = o.candidate_name;
-                        dbSeat.elections.ge15.incoming.votes = o.votes;
-                        dbSeat.elections.ge15.incoming.votes_pc = o.votes_pc;
+                        dbSeat.elections.ge15.winner.party = o.party;
+                        dbSeat.elections.ge15.winner.person = o.candidate_name;
+                        dbSeat.elections.ge15.winner.votes = o.votes;
+                        dbSeat.elections.ge15.winner.votes_pc = o.votes_pc;
                       }
 
                       if (isOther) {
@@ -332,7 +371,7 @@ function update(cb) {
 
                   if (dbSeat && do_update) {
                     debug('Update seat id=' + dbSeat.id + ' name="' + dbSeat.name + '" pa_id=' + pa_id + ' filename=' + file.name);
-                    console.dir(dbSeat.elections.ge15);
+                  //  console.dir(dbSeat.elections.ge15);
                     db.getCollection('seats').update(dbSeat);
                   }
 
