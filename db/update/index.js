@@ -12,11 +12,44 @@ exports.ge15_PA_seat_results = require('./ge15-PA-seat-results');
 exports.ge15_PA_SOP_results = require('./ge15-PA-SOP-results');
 exports.mock_nation_results = require('./mock-national-results');
 
+exports.results = function(cb) {
+
+    cb = cb || function(){};
+
+    debug('Update results - start');
+
+    var tasks = [
+      exports.mock_nation_results
+    ];
+
+    async.parallel(tasks, function() {
+      debug('Update results - complete');
+      cb();
+    });
+};
+
+exports.projections = function(cb) {
+
+  cb = cb || function(){};
+
+  debug('Update projections - start');
+
+  var tasks = [
+    exports.seat_projections,
+    exports.national_projections,
+  ];
+
+  async.parallel(tasks, function() {
+    debug('Update projections - complete');
+    cb();
+  });
+};
+
 exports.all = function(cb) {
 
   cb = cb || function(){};
 
-  debug('Update all');
+  debug('Update all - start');
 
   // TODO: how to do the cotrol flow here?
   //       perhaps you async waterfall?
@@ -34,7 +67,7 @@ exports.all = function(cb) {
   }
 
   function complete() {
-    debug('Update all complete');
+    debug('Update all - complete');
     cb();
   }
 
