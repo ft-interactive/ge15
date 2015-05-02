@@ -1,6 +1,8 @@
 'use strict';
 
-var app = require('../../util/app');
+const app = require('../../util/app');
+const election_called = process.env.ELECTION_CALLED === 'on';
+const home_redirect = election_called ? '/uk/2015/results' : '/uk/2015/projections';
 
 function* gtg(next) {
   this.set('Cache-Control', 'no-cache');
@@ -22,7 +24,7 @@ function* india(next) {
 function* home(next) {
   this.set('Cache-Control', 'public, max-age=3600, stale-while-revalidate=28800, stale-if-error=86400'); // jshint ignore:line
   this.set('Surrogate-Control', 'max-age=900'); // jshint ignore:line
-  this.redirect('/uk/2015/projections'); // jshint ignore:line
+  this.redirect(home_redirect); // jshint ignore:line
   this.status = 302;
   yield next;
 }

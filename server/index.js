@@ -22,7 +22,6 @@ const path = require('path');
 const raven = require('../raven');
 const cors = require('koa-cors');
 
-
 function main() {
   var app = koa();
 

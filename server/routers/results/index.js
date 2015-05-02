@@ -7,9 +7,13 @@ const viewLocals = require('../../middleware/view-locals');
 const siteNav = require('../../middleware/site-navigation');
 
 const pages = {
-  home: {
+  homeAfterCalled: {
     title: 'Election results',
     summary: 'The Conservative/Lib-Dem coalition is likely to hold office.\nExpect new party alliances to boost the majority.'
+  },
+  homeBeforeCalled: {
+    title: 'UK Election, the results so far',
+    summary: 'As ballot papers continue to be counted a picture is emerging.'
   }
 };
 
@@ -19,7 +23,8 @@ function* home(next) {
     yield service.resultNationalCoalitions()
   ]));
 
-  data.page = pages.home;
+
+  data.page = this.locals.flags.electionCalled ? pages.homeAfterCalled : pages.homeBeforeCalled;
 
   yield this.render('results-index', data);
   yield next;

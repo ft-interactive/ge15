@@ -20,10 +20,6 @@ var baseurl = {
   ft: '//www.ft.com'
 };
 
-var flags = {
-  tracking: prod
-};
-
 var assets;
 var getAsset;
 
@@ -49,8 +45,7 @@ swig.setDefaults({
   locals: {
     baseurl: baseurl,
     asset: getAsset,
-    now: getNow,
-    flags: flags
+    now: getNow
   }
 });
 

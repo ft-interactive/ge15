@@ -170,7 +170,6 @@ function update(cb) {
 
               console.log('DONE:'+filename);
             return;
-
               debug('Streaming from ' + filename);
 
               seatStream.on('error', function(){
