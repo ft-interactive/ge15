@@ -1,7 +1,10 @@
-<div class="results-national-overview">
-  <h3>the result</h3>
-  <div class="results-national-overview__headings"></div>
-    {% for party in overview.parties %}
+<div class="figure results-national-overview">
+  <header class="figure__header">
+    <h3 class="figure__title">Seats by party</h3>
+  </header>
+  <div class="figure__body">
+    <div class=" results-national-overview__headings"></div>
+    {% for party in parties %}
     <div class="results-national-overview__party" class="o-grid-row">
       <div data-o-grid-colspan="2">{{ party.party | partyShortName }}</div>
       <div  data-o-grid-colspan="2">{{ party.seats }} ({{ party.seats_change }})</div>
@@ -10,5 +13,8 @@
       </div>
     </div>
     {% endfor %}
-    updated {{ overview.updated | ftdate }}
+  </div>
+  <footer class="figure__footer">
+    <p>updated {{ updated | ftdate }}</p>
+  </footer>
 </div>

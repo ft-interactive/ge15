@@ -18,9 +18,10 @@ const pages = {
 };
 
 function* home(next) {
-  const data = _.zipObject(['overview', 'coalitions'], yield Promise.all([
-    yield service.resultNationalOverview(),
-    yield service.resultNationalCoalitions()
+  const data = _.zipObject(['overview', 'coalitions', 'votesVsSeats'], yield Promise.all([
+    service.resultNationalOverview(),
+    service.resultNationalCoalitions(),
+    service.votesVsSeats()
   ]));
 
 

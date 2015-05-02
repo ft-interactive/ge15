@@ -1,9 +1,9 @@
 /**
  * Routes:
  *   /uk/2015/liveblog/widgets
- *     outputs a simple HTML fragment containing all 
+ *     outputs a simple HTML fragment containing all
  *     the widgets, no CSS/JS.
- *   
+ *
  *   /uk/2015/liveblog/mockup
  *     outputs a webpage that roughly simulates the liveblog environment,
  *     containing (something close to) the embed code that will be put in the
@@ -23,9 +23,7 @@
 'use strict';
 
 var app = require('../../util/app');
-var votesVsSeatsData = require('../../service/votes-vs-seats');
-var stateOfPlayData = require('../../service/state-of-play');
-var localResultData = require('../../service/local-result');
+var service = require('../../service');
 var _ = require('lodash');
 var debug = require('debug')('liveblog');
 
@@ -35,9 +33,9 @@ var debug = require('debug')('liveblog');
  */
 function* widgets(next) {
   var data = _.zipObject(['stateOfPlay', 'votesVsSeats', 'localResult'], yield Promise.all([
-    stateOfPlayData(),
-    votesVsSeatsData(),
-    localResultData(),
+    service.stateOfPlay(),
+    service.votesVsSeats(),
+    service.localResult(),
   ]));
 
   debug(JSON.stringify(data.votesVsSeats, null, 2));
@@ -55,7 +53,6 @@ function* widgets(next) {
  */
 function* mockup(next) {
   yield this.render('liveblog-mockup'); // jshint ignore:line
-
   yield next;
 }
 
@@ -63,7 +60,6 @@ function* mockup(next) {
 module.exports = function main() {
   return app()
         .router()
-
         .get('mockup', '/mockup', mockup) // mockup page for testing functionatliy
         .get('widgets', '/widgets', widgets); // a fragment of all the widget fragments
 };

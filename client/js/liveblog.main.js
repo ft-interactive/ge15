@@ -4,9 +4,9 @@ var hostname = require('./hostname');
 
 // define the individual widget IDs, and their enhancer functions if available
 var widgets = {
-  'state-of-play': null,
-  'votes-vs-seats': null,
-  'local-result': require('./local-result'),
+  'state-of-play--js': null,
+  'votes-vs-seats--js': null,
+  'local-result--js': require('./local-result'),
 };
 
 var cutsTheMustard = (

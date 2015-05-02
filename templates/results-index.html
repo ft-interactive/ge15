@@ -6,15 +6,23 @@
 {% block article_body %}
 <div class="o-grid-row">
   <div data-o-grid-colspan="12 M6 L8">
-    <h2>National</h2>
 
-    {% include "./result-national-overview.html" %}
+    <div class="results-page-panel">
+      {% include "./result-national-overview.html" with overview only ignore missing %}
+    </div>
 
-    {% include "./result-national-coalitions.html" %}
+    <div class="results-page-panel">
+    {% include "./result-national-coalitions.html" with coalitions only ignore missing %}
+    </div>
+
+    <div class="results-page-panel">
+      {% include './votes-vs-seats.html' with votesVsSeats only ignore missing %}
+    </div>
+
+
 
   </div>
   <div data-o-grid-colspan="12 M6 L4">
-    <h2>Local</h2>
     <form id="seat-search-js" method="GET" action="postcode">
       <input type="search" name="postcode" placeholder="Postcode search">
       <button type="submit">Search</button>

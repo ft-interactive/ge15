@@ -1,13 +1,13 @@
-<aside class="local-result">
-  {% if localResult.headline %}
-  <header>
-    <h3>{{localResult.headline}}</h3>
+<div class="local-result figure">
+  {% if headline %}
+  <header class="figure__header">
+    <h3 class="figure__title">{{ headline }}</h3>
   </header>
   {% endif %}
-  
-  <form class="local-result__postcode-form"> 
+
+  <form class="local-result__postcode-form">
     <input type="text" placeholder="Enter postcode">
   </form>
-  
+
   <div class="local-result__card"></div>
-</aside>
+</div>

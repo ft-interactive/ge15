@@ -1,11 +1,17 @@
 {% if stateOfPlay %}
-{% include './state-of-play.html' %}
+  <aside class="state-of-play--js">
+    {% include './state-of-play.html' with stateOfPlay only ignore missing %}
+  </aside>
 {% endif %}
 
 {% if votesVsSeats %}
-{% include './votes-vs-seats.html' %}
+  <aside class="votes-vs-seats--js">
+    {% include './votes-vs-seats.html' with votesVsSeats only ignore missing %}
+  </aside>
 {% endif %}
 
 {% if localResult %}
-{% include './local-result.html' %}
+  <aside class="local-result--js">
+    {% include './local-result.html' with localResult only ignore missing %}
+  </aside>
 {% endif %}
