@@ -125,6 +125,11 @@ const middleware = {
     this.req.headers.accept = 'application/json';
     var data = yield service.place(this.params.search);
     this.body = data;
+  },
+  neighbours: function*(next) {
+    this.req.headers.accept = 'application/json';
+    var data = yield service.neighbours(this.params.seat_id);
+    this.body = data;
   }
 };
 
@@ -170,6 +175,7 @@ function main() {
           .get('/lookup/postcode/:postcode', middleware.postcode)
           .get('/lookup/point/:lon,:lat', middleware.point)
           .get('/lookup/place/:search', middleware.place)
+          .get('/lookup/neighbours/:seat_id', middleware.neighbours)
           .get('/collection/:collection', middleware.index)
           .get('/collection/:collection/:op/:field\::value', middleware.op)
           .get('/db/reload', secret, function* (next) {

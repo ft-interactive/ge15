@@ -27,6 +27,7 @@ if (argv.results) {
 message += '\n\n\tYou can query it using the CLI\n\n\t$ npm run db\n';
 
 function complete() {
+  console.log(message);
   debug('Complete');
 }
 

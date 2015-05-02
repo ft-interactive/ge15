@@ -16,3 +16,11 @@ exports.regions = function() {
 exports.parties = function() {
   return db.getCollection('parties');
 };
+
+exports.groups = function() {
+  return db.getCollection('groups');
+};
+
+exports.neighbours = function() {
+  return db.getCollection('neighbours');
+};

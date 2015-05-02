@@ -5,3 +5,7 @@ exports.point = require('./point');
 exports.place = require('./place');
 exports.resultNationalOverview = require('./result-national-overview');
 exports.resultNationalCoalitions = require('./result-national-coalitions');
+exports.votesVsSeats = require('./votes-vs-seats');
+exports.stateOfPlay = require('./state-of-play');
+exports.localResult = require('./local-result');
+exports.neighbours = require('./neighbours');

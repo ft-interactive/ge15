@@ -9,6 +9,7 @@ exports.create_database = function(cb) {
   require('./regions').load(db);
   require('./parties').load(db);
   require('./groups').load(db);
+  require('./neighbours').load(db);
 
   db.saveDatabase(cb);
 };
