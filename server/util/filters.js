@@ -90,19 +90,19 @@ exports.partyAbbreviation = function(str) {
 };
 
 exports.partyClassName = function(str) {
-  return parties.className(str);
+  return parties.className(str) || '';
 };
 
 exports.partyFullName = function(str) {
-  return parties.fullName(str);
+  return parties.fullName(str) || '';
 };
 
 exports.partyShortName = function(str) {
-  return parties.shortName(str);
+  return parties.shortName(str) || '';
 };
 
 exports.partyColor = function(str) {
-  return parties.colour(str);
+  return parties.colour(str) || '';
 };
 
 exports.round = function(number, dp) {
