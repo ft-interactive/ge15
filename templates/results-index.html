@@ -9,7 +9,7 @@
 {% block article_body %}
 <div class="o-grid-row">
   <div data-o-grid-colspan="12 M6 L8">
-    <h2>National</h2>
+    <h2 class="results-index-region">National</h2>
 
     {% include "./result-national-overview.html" %}
 
@@ -17,7 +17,7 @@
 
   </div>
   <div data-o-grid-colspan="12 M6 L4">
-    <h2>Local</h2>
+    <h2 class="results-index-region">Local</h2>
     <form id="seat-search-js" method="GET" action="postcode">
       <input type="search" name="postcode" placeholder="Postcode search">
       <button type="submit">Search</button>
