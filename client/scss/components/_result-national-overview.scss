@@ -1,11 +1,34 @@
-.results-national-overview{
-  border:1px solid black;
-}
-.results-national-overview__bar-container{
-  display:inline-block;
+.results-national-overview {
+  // border:1px solid black;
+  font-size: 0.9em;
+  h3{
+    margin-bottom: 0.5em;
+  }
 }
 
-.results-national-overview__bar{
+.results-national-overview__seats, .results-national-overview__change {
+  font-weight: bold;
+}
+
+.results-national-overview__seats {
+  text-align: left;
+}
+
+.results-national-overview__party {
+  text-align: right;
+}
+
+p.results-national-overview__date-modified {
+  color: oColorsGetPaletteColor(pink-tint4);
+  font-size: .75em;
+  clear: both;
+}
+.results-national-overview__bar-container {
+  display:inline-block;
+  text-align: left;
+}
+
+.results-national-overview__bar {
   display:inline-block;
   height:20px;
 }

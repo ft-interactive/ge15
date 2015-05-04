@@ -1,14 +1,17 @@
 <div class="results-national-overview">
-  <h3>the result</h3>
+  <h3>The result</h3>
+  <p>Number of seats won</p>
   <div class="results-national-overview__headings"></div>
     {% for party in overview.parties %}
     <div class="results-national-overview__party" class="o-grid-row">
       <div data-o-grid-colspan="2">{{ party.party | partyShortName }}</div>
-      <div  data-o-grid-colspan="2">{{ party.seats }} ({{ party.seats_change }})</div>
+      <div  class="results-national-overview__seats" data-o-grid-colspan="1">{{ party.seats }}</div>
       <div class="results-national-overview__bar-container"  data-o-grid-colspan="8">
-        <div class="results-national-overview__bar {{ party.party | partyClassName }}-block" style="width:{{ party.seats | percentageOf(400) }}%"></div>
+        <div class="results-national-overview__bar {{ party.party | partyClassName }}-block" style="width:{{ party.seats | percentageOf(330) }}%"></div>
       </div>
+      <div  class="results-national-overview__change" data-o-grid-colspan="1">{{ party.seats_change | change}}</div>
     </div>
     {% endfor %}
-    updated {{ overview.updated | ftdate }}
+   <!-- <div data-o-grid-colspan="12" class="results-national-overview__date-modified"> updated {{ overview.updated | ftdate }}</div> -->
+   <p class="results-national-overview__date-modified">updated {{ overview.updated | ftdate }}</p>
 </div>
