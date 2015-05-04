@@ -6,7 +6,8 @@
   }
 }
 
-.results-national-overview__seats, .results-national-overview__change {
+.results-national-overview__seats,
+.results-national-overview__change {
   font-weight: bold;
 }
 
@@ -18,17 +19,17 @@
   text-align: right;
 }
 
-p.results-national-overview__date-modified {
+.results-national-overview .results-national-overview__date-modified {
   color: oColorsGetPaletteColor(pink-tint4);
-  font-size: .75em;
+  font-size: 0.75em;
   clear: both;
 }
 .results-national-overview__bar-container {
-  display:inline-block;
+  display: inline-block;
   text-align: left;
 }
 
 .results-national-overview__bar {
-  display:inline-block;
-  height:20px;
+  display: inline-block;
+  height: 20px;
 }
