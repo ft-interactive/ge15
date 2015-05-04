@@ -1,7 +1,6 @@
 <div class="results-national-overview">
   <h2 class="article-body__subhead">The result</h2>
-  <p>Number of seats won</p>
-  <div class="results-national-overview__headings"></div>
+  <div class="results-national-overview__headings">Number of seats won</div>
     {% for party in overview.parties %}
     <div class="results-national-overview__party" class="o-grid-row">
       <div data-o-grid-colspan="2">{{ party.party | partyShortName }}</div>
