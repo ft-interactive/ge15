@@ -1,5 +1,5 @@
 <div class="results-national-coalitions">
-  <h4>Possible coalitions</h4>
+  <h2 class="article-body__subhead">Possible coalitions</h2>
   {% for group in coalitions.groups %}
   <div class="results-national-coalitions__group" class="o-grid-row">
 
@@ -9,7 +9,7 @@
         {% endfor %}
       </div>
       <div class="results-national-coalitions__seat-count" data-o-grid-colspan="6">
-        {{ group.seats }} Seats, majority of {{ group.majority }}
+        <span class="results-national-coalitions__seats">{{ group.seats }}</span> seats, majority of <span class="results-national-coalitions__majority">{{ group.majority }}</span>
       </div>
   </div>
   {% endfor %}
