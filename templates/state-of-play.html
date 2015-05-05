@@ -1,7 +1,10 @@
 <div class="state-of-play figure">
   {% if headline %}
   <header class="figure__header figure__header--with-note">
-    <h3 class="figure__title">{{headline}}</h3>
+    <h3 class="figure__title{% if showRosette %} figure__title--with-rosette{% endif %}">
+      {# {% if showRosette %}<span class="figure__header__rosette"></span>{% endif %} #}
+      {{headline}}
+    </h3>
 
     <p class="figure__note">
       {% if numSeatsDeclared > 0 %}
@@ -21,8 +24,8 @@
     <table class="state-of-play__table">
       <thead>
         {% for party in parties %}
-        <th style="background:{{party.colour}};border-bottom-color:{{party.secondaryColour}}">
-          {{party.shortName}}
+        <th style="background:{{party.colour}};border-bottom-color:{{party.secondaryColour}};width:{{100/parties.length}}%">
+          {{party.label}}
           <span class="state-of-play__party-total">{{party.totalWon}}</span>
         </th>
         {% endfor %}
@@ -30,7 +33,7 @@
       <tbody>
         <tr class="state-of-play__gains-row">
           {% for party in parties %}
-          <td>
+          <td style="width:{{100/parties.length}}%">
             <span class="state-of-play__row-label">Gained&nbsp;from</span>
             <div class="state-of-play__seats">
               {% for seat in party.gains %}<span class="state-of-play__seat" style="background:{{seat.wasColour}}"></span>{% endfor %}

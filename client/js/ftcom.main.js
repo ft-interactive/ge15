@@ -6,20 +6,18 @@ var cutsTheMustard = (
   'querySelectorAll' in document
 );
 
-var fragmentPath = '/uk/2015/live-figures/liveblog-fragment';
+var fragmentPath = '/uk/2015/live-figures/ftcom-fragment';
 
 if (cutsTheMustard) {
   // find the container we're going to put figures in
-  var container = document.querySelector('.ge15-liveblog-figures');
+  var container = document.querySelector('.ge15-ftcom-figures');
   if (!container) {
-    throw new Error('Could not find element with class "ge15-liveblog-figures"');
+    throw new Error('Could not find element with class "ge15-ftcom-figures"');
   }
 
-  // define which figures we'll use on this page, along with their enhancer functions (if any)
+  // define which figures we'll use on this page
   var config = {
-    'state-of-play': null,
-    'votes-vs-seats': null,
-    'local-result': require('./local-result'),
+    'state-of-play': null
   };
 
   embedLiveFigures(fragmentPath, container, config);

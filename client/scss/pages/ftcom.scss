@@ -1,16 +1,13 @@
 @import "o-colors/main";
 @import "../functions";
 
-.assanka_htmlwidget {
-  overflow: visible;
-}
-
-.ge15-liveblog-figures { // to prevent styles leaking out into page
-  width: 352px;
+.ge15-ftcom-figures { // to prevent styles leaking out into page
+  width: 600px;
   position: relative;
-  background: color(pink);
   font-family: BentonSans, sans-serif;
   -webkit-font-smoothing: antialiased;
+  margin-bottom: 20px;
+  min-height: 280px;
 
   // scss-lint:disable ImportantRule
   box-sizing: border-box !important;
@@ -23,21 +20,37 @@
   // scss-lint:enable ImportantRule
 
   > .figure-wrapper {
-    padding-bottom: 24px;
   }
     .figure__header {
-      border-bottom: 1px solid color(grey-tint1);
+      position: relative;
       height: 29px;
-      overflow: hidden;
       padding-bottom: 3px;
-      margin: 0 0 15px;
+      margin: 0 0 5px;
       
       > .figure__title {
         font: bold 18px/29px BentonSans, sans-serif;
         color: color(grey-tint5);
         margin: 0;
+        &--with-rosette {
+          text-indent: 20px;
+
+          &:before {
+            content: '';
+            display: block;
+            position: absolute;
+            left: -3px;
+            top: 2px;
+            width: 20px;
+            height: 28px;
+            background: transparent url(../../images/rosette.png) no-repeat left top;
+
+            @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
+              background: url(../../images/rosette@2x.png);
+              background-size: 40px 56px;
+            }
+          }
+        }
       }
-  
 
       // when the note is in the header, use floats
       &--with-note {
@@ -56,13 +69,11 @@
   .figure__note {
     margin: 0;
     font-weight: normal;
-    font-size: 12px;
-    color: color(grey-tint4);
+    font-size: 15px;
+    color: color(grey-tint3);
 
-    > b { color: color(grey-tint5); }
+    > b { color: color(grey-tint4); }
   }
 }
 
 @import "../components/state-of-play";
-@import "../components/votes-vs-seats";
-@import "../components/local-result";

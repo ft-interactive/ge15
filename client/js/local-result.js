@@ -12,9 +12,9 @@ var template = require('./local-result-card.hbs');
 var ukParties = require('uk-political-parties');
 
 
-module.exports = function (widget) {
-  var card = widget.querySelector('.local-result__card');
-  var form = widget.querySelector('.local-result__postcode-form');
+module.exports = function (figureElement) {
+  var card = figureElement.querySelector('.local-result__card');
+  var form = figureElement.querySelector('.local-result__postcode-form');
   var input = form.querySelector('input');
 
   form.onsubmit = function () {

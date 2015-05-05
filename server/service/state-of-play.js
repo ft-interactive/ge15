@@ -9,7 +9,7 @@ var knownParties = [
 ];
 
 
-module.exports = function () {
+module.exports = function (howMany) {
   // return dummy data, plundered from the battlegrounds data for now
   return require('../routers/data/').battlegroundData().then(function (battlegrounds) {
 
@@ -59,9 +59,9 @@ module.exports = function () {
 
 
     // anything beyond the top 4: roll into an "Others" party
-    var others = sopParties.slice(4);
-    sopParties.length = 4;
-    sopParties[4] = {
+    var others = sopParties.slice(howMany - 1);
+    sopParties.length = howMany - 1;
+    sopParties[howMany - 1] = {
       id: 'other',
       colour: ukParties.colour('other'),
       secondaryColour: ukParties.secondaryColour('other'),
@@ -76,7 +76,7 @@ module.exports = function () {
 
     // augment the top 5 with extra bits, and sort their squares
     sopParties.forEach(function (party) {
-      party.shortName = (party.id === 'other') ? 'Other' : ukParties.shortName(party.id);
+      party.label = (party.id === 'other') ? 'Other' : ukParties.shortName(party.id);
 
       party.netChange = party.gains.length - party.losses.length;
 
