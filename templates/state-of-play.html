@@ -64,4 +64,8 @@
       </tbody>
     </table>
   </div>
+
+  {% if linkText && linkURL %}
+  <a class="state-of-play__link" href="{{linkURL}}">{{linkText}}</a>
+  {% endif %}
 </div>
