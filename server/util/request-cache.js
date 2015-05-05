@@ -89,8 +89,6 @@ function cachedRequest(options) {
     } else {
       debug('Using cached 200 response', key);
 
-      // TODO: should we make a deep clone of the body?
-      //       in case the object gets modified by the application?
       return Promise.resolve(cachedResponse.body);
     }
 

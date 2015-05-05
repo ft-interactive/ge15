@@ -10,8 +10,12 @@ node_modules
 bower_components
 tmp
 node-linux-*
+iojs-linux-*
 node-v*
+iojs-v*
 .lock-wscript
 .idea
 .sass-cache
+.haikro-cache
 .env
+db/data.json

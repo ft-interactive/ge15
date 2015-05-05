@@ -1,12 +1,6 @@
 'use strict';
 
-// Ensure we are running the correct version of Node
 var pkg = require('./package.json');
-if (process.version.substr(1) !== pkg.engines.node) {
-  console.error('\nYou are using the wrong Node version: ' + process.version);
-  console.error('\nTry this:\n  $ n ' + pkg.engines.node + '\n');
-  process.exit(1);
-}
 
 var fs = require('fs');
 var _ = require('lodash');
@@ -47,6 +41,8 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 gulp.task('default', ['lint', 'clean', 'rev', 'images']);
 
 var vendorBundle = [
+  {file:'./bower_components/raven-js/dist/raven.js', expose:'raven-js'},
+  {file:'./bower_components/o-errors/main.js', expose:'o-errors'},
   {file:'./bower_components/headroom.js/dist/headroom.js', expose:'headroom.js'},
   {file:'./bower_components/dom-delegate/lib/delegate.js', expose:'dom-delegate'},
   {file:'./bower_components/o-hoverable/main.js', expose:'o-hoverable'},
@@ -99,6 +95,7 @@ function createBrowserify(entry, bundle, watch) {
   }));
 
   b.transform('envify', e);
+  b.transform('hbsfy', e);
 
 // Transforms we might need here
 // Browserify-shim for JS libs without commonsJS.
@@ -263,7 +260,7 @@ gulp.task('watch', ['dev', 'sass', 'vendor', 'images'], function() {
       nodeArgs: ['--harmony'],
       quiet: true,
       delay: 0.1,
-      watch: ['server', 'app.js'],
+      watch: ['server', 'app.js', 'db'],
       ext: 'js,json'
     })
     .on('start', function(a) {

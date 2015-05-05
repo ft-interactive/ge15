@@ -5,7 +5,8 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-  <div id="error">
+<div class="o-grid-row">
+  <div id="error" data-o-grid-colspan="12">
     <h1>Error</h1>
     <p>Looks like something broke!</p>
     {% if env == 'development' %}
@@ -20,3 +21,4 @@
     {% endif %}
   </div>
 {% endblock %}
+</div>

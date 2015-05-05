@@ -1,0 +1,651 @@
+ft_name	ons_id	ft_slug	region_name
+Barnsley Central	E14000541	barnsley-central	Yorkshire and The Humber
+Belfast West	N06000004	belfast-west	Northern Ireland
+Bradford West	E14000589	bradford-west	Yorkshire and The Humber
+Cardiff South and Penarth	W07000080	cardiff-south-and-penarth	Wales
+Clacton	E14000642	clacton	Eastern
+Corby	E14000648	corby	East Midlands
+Croydon North	E14000655	croydon-north	London
+Eastleigh	E14000685	eastleigh	South East
+Feltham and Heston	E14000701	feltham-and-heston	London
+Heywood and Middleton	E14000747	heywood-and-middleton	North West
+Inverclyde	S14000038	inverclyde	Scotland
+Leicester South	E14000783	leicester-south	East Midlands
+Manchester Central	E14000807	manchester-central	North West
+Middlesbrough	E14000819	middlesbrough	North East
+Newark	E14000829	newark	East Midlands
+Oldham East and Saddleworth	E14000870	oldham-east-and-saddleworth	North West
+Rochester and Strood	E14000898	rochester-and-strood	South East
+Rotherham	E14000904	rotherham	Yorkshire and The Humber
+South Shields	E14000944	south-shields	North East
+Mid Ulster	N06000010	mid-ulster	Northern Ireland
+Wythenshawe and Sale East	E14001059	wythenshawe-and-sale-east	North West
+Aberavon	W07000049	aberavon	Wales
+Aberconwy	W07000058	aberconwy	Wales
+Aberdeen North	S14000001	aberdeen-north	Scotland
+Aberdeen South	S14000002	aberdeen-south	Scotland
+West Aberdeenshire and Kincardine	S14000058	west-aberdeenshire-and-kincardine	Scotland
+Airdrie and Shotts	S14000003	airdrie-and-shotts	Scotland
+Aldershot	E14000530	aldershot	South East
+Aldridge-Brownhills	E14000531	aldridge-brownhills	West Midlands
+Altrincham and Sale West	E14000532	altrincham-and-sale-west	North West
+Alyn and Deeside	W07000043	alyn-and-deeside	Wales
+Amber Valley	E14000533	amber-valley	East Midlands
+Angus	S14000004	angus	Scotland
+East Antrim	N06000005	east-antrim	Northern Ireland
+North Antrim	N06000012	north-antrim	Northern Ireland
+South Antrim	N06000014	south-antrim	Northern Ireland
+Arfon	W07000057	arfon	Wales
+Argyll and Bute	S14000005	argyll-and-bute	Scotland
+Arundel and South Downs	E14000534	arundel-and-south-downs	South East
+Ashfield	E14000535	ashfield	East Midlands
+Ashford	E14000536	ashford	South East
+Ashton-under-Lyne	E14000537	ashton-under-lyne	North West
+Aylesbury	E14000538	aylesbury	South East
+Ayr, Carrick and Cumnock	S14000006	ayr-carrick-and-cumnock	Scotland
+Central Ayrshire	S14000010	central-ayrshire	Scotland
+North Ayrshire and Arran	S14000048	north-ayrshire-and-arran	Scotland
+Banbury	E14000539	banbury	South East
+Banff and Buchan	S14000007	banff-and-buchan	Scotland
+Barking	E14000540	barking	London
+Barnsley East	E14000542	barnsley-east	Yorkshire and The Humber
+Barrow and Furness	E14000543	barrow-and-furness	North West
+Basildon and Billericay	E14000544	basildon-and-billericay	Eastern
+South Basildon and East Thurrock	E14000933	south-basildon-and-east-thurrock	Eastern
+Basingstoke	E14000545	basingstoke	South East
+Bassetlaw	E14000546	bassetlaw	East Midlands
+Bath	E14000547	bath	South West
+Batley and Spen	E14000548	batley-and-spen	Yorkshire and The Humber
+Battersea	E14000549	battersea	London
+Beaconsfield	E14000550	beaconsfield	South East
+Beckenham	E14000551	beckenham	London
+Bedford	E14000552	bedford	Eastern
+Mid Bedfordshire	E14000813	mid-bedfordshire	Eastern
+North East Bedfordshire	E14000841	north-east-bedfordshire	Eastern
+South West Bedfordshire	E14000949	south-west-bedfordshire	Eastern
+Belfast East	N06000001	belfast-east	Northern Ireland
+Belfast North	N06000002	belfast-north	Northern Ireland
+Belfast South	N06000003	belfast-south	Northern Ireland
+Bermondsey and Old Southwark	E14000553	bermondsey-and-old-southwark	London
+Berwick-upon-Tweed	E14000554	berwick-upon-tweed	North East
+Berwickshire, Roxburgh and Selkirk	S14000008	berwickshire-roxburgh-and-selkirk	Scotland
+Bethnal Green and Bow	E14000555	bethnal-green-and-bow	London
+Beverley and Holderness	E14000556	beverley-and-holderness	Yorkshire and The Humber
+Bexhill and Battle	E14000557	bexhill-and-battle	South East
+Bexleyheath and Crayford	E14000558	bexleyheath-and-crayford	London
+Birkenhead	E14000559	birkenhead	North West
+Birmingham, Edgbaston	E14000560	birmingham-edgbaston	West Midlands
+Birmingham, Erdington	E14000561	birmingham-erdington	West Midlands
+Birmingham, Hall Green	E14000562	birmingham-hall-green	West Midlands
+Birmingham, Hodge Hill	E14000563	birmingham-hodge-hill	West Midlands
+Birmingham, Ladywood	E14000564	birmingham-ladywood	West Midlands
+Birmingham, Northfield	E14000565	birmingham-northfield	West Midlands
+Birmingham, Perry Barr	E14000566	birmingham-perry-barr	West Midlands
+Birmingham, Selly Oak	E14000567	birmingham-selly-oak	West Midlands
+Birmingham, Yardley	E14000568	birmingham-yardley	West Midlands
+Bishop Auckland	E14000569	bishop-auckland	North East
+Blackburn	E14000570	blackburn	North West
+Blackley and Broughton	E14000571	blackley-and-broughton	North West
+Blackpool North and Cleveleys	E14000572	blackpool-north-and-cleveleys	North West
+Blackpool South	E14000573	blackpool-south	North West
+Blaenau Gwent	W07000072	blaenau-gwent	Wales
+Blaydon	E14000574	blaydon	North East
+Blyth Valley	E14000575	blyth-valley	North East
+Bognor Regis and Littlehampton	E14000576	bognor-regis-and-littlehampton	South East
+Bolsover	E14000577	bolsover	East Midlands
+Bolton North East	E14000578	bolton-north-east	North West
+Bolton South East	E14000579	bolton-south-east	North West
+Bolton West	E14000580	bolton-west	North West
+Bootle	E14000581	bootle	North West
+Boston and Skegness	E14000582	boston-and-skegness	East Midlands
+Bosworth	E14000583	bosworth	East Midlands
+Bournemouth East	E14000584	bournemouth-east	South West
+Bournemouth West	E14000585	bournemouth-west	South West
+Bracknell	E14000586	bracknell	South East
+Bradford East	E14000587	bradford-east	Yorkshire and The Humber
+Bradford South	E14000588	bradford-south	Yorkshire and The Humber
+Braintree	E14000590	braintree	Eastern
+Brecon and Radnorshire	W07000068	brecon-and-radnorshire	Wales
+Brent Central	E14000591	brent-central	London
+Brent North	E14000592	brent-north	London
+Brentford and Isleworth	E14000593	brentford-and-isleworth	London
+Brentwood and Ongar	E14000594	brentwood-and-ongar	Eastern
+Bridgend	W07000073	bridgend	Wales
+Bridgwater and West Somerset	E14000595	bridgwater-and-west-somerset	South West
+Brigg and Goole	E14000596	brigg-and-goole	Yorkshire and The Humber
+Brighton, Kemptown	E14000597	brighton-kemptown	South East
+Brighton, Pavilion	E14000598	brighton-pavilion	South East
+Bristol East	E14000599	bristol-east	South West
+Bristol North West	E14000600	bristol-north-west	South West
+Bristol South	E14000601	bristol-south	South West
+Bristol West	E14000602	bristol-west	South West
+Broadland	E14000603	broadland	Eastern
+Bromley and Chislehurst	E14000604	bromley-and-chislehurst	London
+Bromsgrove	E14000605	bromsgrove	West Midlands
+Broxbourne	E14000606	broxbourne	Eastern
+Broxtowe	E14000607	broxtowe	East Midlands
+Buckingham	E14000608	buckingham	South East
+Burnley	E14000609	burnley	North West
+Burton	E14000610	burton	West Midlands
+Bury North	E14000611	bury-north	North West
+Bury South	E14000612	bury-south	North West
+Bury St Edmunds	E14000613	bury-st-edmunds	Eastern
+Caerphilly	W07000076	caerphilly	Wales
+Caithness, Sutherland and Easter Ross	S14000009	caithness-sutherland-and-easter-ross	Scotland
+Calder Valley	E14000614	calder-valley	Yorkshire and The Humber
+Camberwell and Peckham	E14000615	camberwell-and-peckham	London
+Camborne and Redruth	E14000616	camborne-and-redruth	South West
+Cambridge	E14000617	cambridge	Eastern
+North East Cambridgeshire	E14000842	north-east-cambridgeshire	Eastern
+North West Cambridgeshire	E14000855	north-west-cambridgeshire	Eastern
+South Cambridgeshire	E14000934	south-cambridgeshire	Eastern
+South East Cambridgeshire	E14000937	south-east-cambridgeshire	Eastern
+Cannock Chase	E14000618	cannock-chase	West Midlands
+Canterbury	E14000619	canterbury	South East
+Cardiff Central	W07000050	cardiff-central	Wales
+Cardiff North	W07000051	cardiff-north	Wales
+Cardiff West	W07000079	cardiff-west	Wales
+Carlisle	E14000620	carlisle	North West
+Carmarthen East and Dinefwr	W07000067	carmarthen-east-and-dinefwr	Wales
+Carmarthen West and South Pembrokeshire	W07000066	carmarthen-west-and-south-pembrokeshire	Wales
+Carshalton and Wallington	E14000621	carshalton-and-wallington	London
+Castle Point	E14000622	castle-point	Eastern
+Ceredigion	W07000064	ceredigion	Wales
+Charnwood	E14000625	charnwood	East Midlands
+Chatham and Aylesford	E14000626	chatham-and-aylesford	South East
+Cheadle	E14000627	cheadle	North West
+Chelmsford	E14000628	chelmsford	Eastern
+Chelsea and Fulham	E14000629	chelsea-and-fulham	London
+Cheltenham	E14000630	cheltenham	South West
+Chesham and Amersham	E14000631	chesham-and-amersham	South East
+City of Chester	E14000640	city-of-chester	North West
+Chesterfield	E14000632	chesterfield	East Midlands
+Chichester	E14000633	chichester	South East
+Chingford and Woodford Green	E14000634	chingford-and-woodford-green	London
+Chippenham	E14000635	chippenham	South West
+Chipping Barnet	E14000636	chipping-barnet	London
+Chorley	E14000637	chorley	North West
+Christchurch	E14000638	christchurch	South West
+Cities of London and Westminster	E14000639	cities-of-london-and-westminster	London
+Cleethorpes	E14000643	cleethorpes	Yorkshire and The Humber
+Clwyd South	W07000062	clwyd-south	Wales
+Clwyd West	W07000059	clwyd-west	Wales
+Coatbridge, Chryston and Bellshill	S14000011	coatbridge-chryston-and-bellshill	Scotland
+Colchester	E14000644	colchester	Eastern
+Colne Valley	E14000645	colne-valley	Yorkshire and The Humber
+Congleton	E14000646	congleton	North West
+Copeland	E14000647	copeland	North West
+North Cornwall	E14000837	north-cornwall	South West
+South East Cornwall	E14000938	south-east-cornwall	South West
+The Cotswolds	E14000991	the-cotswolds	South West
+Coventry North East	E14000649	coventry-north-east	West Midlands
+Coventry North West	E14000650	coventry-north-west	West Midlands
+Coventry South	E14000651	coventry-south	West Midlands
+Crawley	E14000652	crawley	South East
+Crewe and Nantwich	E14000653	crewe-and-nantwich	North West
+Croydon Central	E14000654	croydon-central	London
+Croydon South	E14000656	croydon-south	London
+Cumbernauld, Kilsyth and Kirkintilloch East	S14000012	cumbernauld-kilsyth-and-kirkintilloch-east	Scotland
+Cynon Valley	W07000070	cynon-valley	Wales
+Dagenham and Rainham	E14000657	dagenham-and-rainham	London
+Darlington	E14000658	darlington	North East
+Dartford	E14000659	dartford	South East
+Daventry	E14000660	daventry	East Midlands
+Delyn	W07000042	delyn	Wales
+Denton and Reddish	E14000661	denton-and-reddish	North West
+Derby North	E14000662	derby-north	East Midlands
+Derby South	E14000663	derby-south	East Midlands
+Derbyshire Dales	E14000664	derbyshire-dales	East Midlands
+Mid Derbyshire	E14000814	mid-derbyshire	East Midlands
+North East Derbyshire	E14000843	north-east-derbyshire	East Midlands
+South Derbyshire	E14000935	south-derbyshire	East Midlands
+Devizes	E14000665	devizes	South West
+Central Devon	E14000623	central-devon	South West
+East Devon	E14000678	east-devon	South West
+North Devon	E14000838	north-devon	South West
+South West Devon	E14000950	south-west-devon	South West
+Torridge and West Devon	E14001000	torridge-and-west-devon	South West
+Dewsbury	E14000666	dewsbury	Yorkshire and The Humber
+Don Valley	E14000667	don-valley	Yorkshire and The Humber
+Doncaster Central	E14000668	doncaster-central	Yorkshire and The Humber
+Doncaster North	E14000669	doncaster-north	Yorkshire and The Humber
+Mid Dorset and North Poole	E14000815	mid-dorset-and-north-poole	South West
+North Dorset	E14000839	north-dorset	South West
+South Dorset	E14000936	south-dorset	South West
+West Dorset	E14001031	west-dorset	South West
+Dover	E14000670	dover	South East
+North Down	N06000013	north-down	Northern Ireland
+South Down	N06000015	south-down	Northern Ireland
+Dudley North	E14000671	dudley-north	West Midlands
+Dudley South	E14000672	dudley-south	West Midlands
+Dulwich and West Norwood	E14000673	dulwich-and-west-norwood	London
+Dumfries and Galloway	S14000013	dumfries-and-galloway	Scotland
+Dumfriesshire, Clydesdale and Tweeddale	S14000014	dumfriesshire-clydesdale-and-tweeddale	Scotland
+East Dunbartonshire	S14000018	east-dunbartonshire	Scotland
+West Dunbartonshire	S14000059	west-dunbartonshire	Scotland
+Dundee East	S14000015	dundee-east	Scotland
+Dundee West	S14000016	dundee-west	Scotland
+Dunfermline and West Fife	S14000017	dunfermline-and-west-fife	Scotland
+City of Durham	E14000641	city-of-durham	North East
+North Durham	E14000840	north-durham	North East
+North West Durham	E14000856	north-west-durham	North East
+Dwyfor Meirionnydd	W07000061	dwyfor-meirionnydd	Wales
+Ealing Central and Acton	E14000674	ealing-central-and-acton	London
+Ealing North	E14000675	ealing-north	London
+Ealing, Southall	E14000676	ealing-southall	London
+Easington	E14000677	easington	North East
+East Ham	E14000679	east-ham	London
+East Kilbride, Strathaven and Lesmahagow	S14000019	east-kilbride-strathaven-and-lesmahagow	Scotland
+East Lothian	S14000020	east-lothian	Scotland
+Eastbourne	E14000684	eastbourne	South East
+Eddisbury	E14000686	eddisbury	North West
+Edinburgh East	S14000022	edinburgh-east	Scotland
+Edinburgh North and Leith	S14000023	edinburgh-north-and-leith	Scotland
+Edinburgh South	S14000024	edinburgh-south	Scotland
+Edinburgh South West	S14000025	edinburgh-south-west	Scotland
+Edinburgh West	S14000026	edinburgh-west	Scotland
+Edmonton	E14000687	edmonton	London
+Ellesmere Port and Neston	E14000688	ellesmere-port-and-neston	North West
+Elmet and Rothwell	E14000689	elmet-and-rothwell	Yorkshire and The Humber
+Eltham	E14000690	eltham	London
+Enfield North	E14000691	enfield-north	London
+Enfield, Southgate	E14000692	enfield-southgate	London
+Epping Forest	E14000693	epping-forest	Eastern
+Epsom and Ewell	E14000694	epsom-and-ewell	South East
+Erewash	E14000695	erewash	East Midlands
+Erith and Thamesmead	E14000696	erith-and-thamesmead	London
+Esher and Walton	E14000697	esher-and-walton	South East
+Exeter	E14000698	exeter	South West
+Falkirk	S14000028	falkirk	Scotland
+Fareham	E14000699	fareham	South East
+Faversham and Mid Kent	E14000700	faversham-and-mid-kent	South East
+Fermanagh and South Tyrone	N06000007	fermanagh-and-south-tyrone	Northern Ireland
+North East Fife	S14000049	north-east-fife	Scotland
+Filton and Bradley Stoke	E14000702	filton-and-bradley-stoke	South West
+Finchley and Golders Green	E14000703	finchley-and-golders-green	London
+Folkestone and Hythe	E14000704	folkestone-and-hythe	South East
+Forest of Dean	E14000705	forest-of-dean	South West
+Foyle	N06000008	foyle	Northern Ireland
+Fylde	E14000706	fylde	North West
+Gainsborough	E14000707	gainsborough	East Midlands
+Garston and Halewood	E14000708	garston-and-halewood	North West
+Gateshead	E14000709	gateshead	North East
+Gedling	E14000710	gedling	East Midlands
+Gillingham and Rainham	E14000711	gillingham-and-rainham	South East
+Glasgow Central	S14000029	glasgow-central	Scotland
+Glasgow East	S14000030	glasgow-east	Scotland
+Glasgow North	S14000031	glasgow-north	Scotland
+Glasgow North East	S14000032	glasgow-north-east	Scotland
+Glasgow North West	S14000033	glasgow-north-west	Scotland
+Glasgow South	S14000034	glasgow-south	Scotland
+Glasgow South West	S14000035	glasgow-south-west	Scotland
+Glenrothes	S14000036	glenrothes	Scotland
+Gloucester	E14000712	gloucester	South West
+Gordon	S14000037	gordon	Scotland
+Gosport	E14000713	gosport	South East
+Gower	W07000046	gower	Wales
+Grantham and Stamford	E14000714	grantham-and-stamford	East Midlands
+Gravesham	E14000715	gravesham	South East
+Great Grimsby	E14000716	great-grimsby	Yorkshire and The Humber
+Great Yarmouth	E14000717	great-yarmouth	Eastern
+Greenwich and Woolwich	E14000718	greenwich-and-woolwich	London
+Guildford	E14000719	guildford	South East
+Hackney North and Stoke Newington	E14000720	hackney-north-and-stoke-newington	London
+Hackney South and Shoreditch	E14000721	hackney-south-and-shoreditch	London
+Halesowen and Rowley Regis	E14000722	halesowen-and-rowley-regis	West Midlands
+Halifax	E14000723	halifax	Yorkshire and The Humber
+Haltemprice and Howden	E14000724	haltemprice-and-howden	Yorkshire and The Humber
+Halton	E14000725	halton	North West
+Hammersmith	E14000726	hammersmith	London
+East Hampshire	E14000680	east-hampshire	South East
+North East Hampshire	E14000844	north-east-hampshire	South East
+North West Hampshire	E14000857	north-west-hampshire	South East
+Hampstead and Kilburn	E14000727	hampstead-and-kilburn	London
+Harborough	E14000728	harborough	East Midlands
+Harlow	E14000729	harlow	Eastern
+Harrogate and Knaresborough	E14000730	harrogate-and-knaresborough	Yorkshire and The Humber
+Harrow East	E14000731	harrow-east	London
+Harrow West	E14000732	harrow-west	London
+Hartlepool	E14000733	hartlepool	North East
+Harwich and North Essex	E14000734	harwich-and-north-essex	Eastern
+Hastings and Rye	E14000735	hastings-and-rye	South East
+Havant	E14000736	havant	South East
+Hayes and Harlington	E14000737	hayes-and-harlington	London
+Hazel Grove	E14000738	hazel-grove	North West
+Hemel Hempstead	E14000739	hemel-hempstead	Eastern
+Hemsworth	E14000740	hemsworth	Yorkshire and The Humber
+Hendon	E14000741	hendon	London
+Henley	E14000742	henley	South East
+Hereford and South Herefordshire	E14000743	hereford-and-south-herefordshire	West Midlands
+North Herefordshire	E14000847	north-herefordshire	West Midlands
+Hertford and Stortford	E14000744	hertford-and-stortford	Eastern
+North East Hertfordshire	E14000845	north-east-hertfordshire	Eastern
+South West Hertfordshire	E14000951	south-west-hertfordshire	Eastern
+Hertsmere	E14000745	hertsmere	Eastern
+Hexham	E14000746	hexham	North East
+High Peak	E14000748	high-peak	East Midlands
+Hitchin and Harpenden	E14000749	hitchin-and-harpenden	Eastern
+Holborn and St Pancras	E14000750	holborn-and-st-pancras	London
+Hornchurch and Upminster	E14000751	hornchurch-and-upminster	London
+Hornsey and Wood Green	E14000752	hornsey-and-wood-green	London
+Horsham	E14000753	horsham	South East
+Houghton and Sunderland South	E14000754	houghton-and-sunderland-south	North East
+Hove	E14000755	hove	South East
+Huddersfield	E14000756	huddersfield	Yorkshire and The Humber
+Kingston upon Hull East	E14000771	kingston-upon-hull-east	Yorkshire and The Humber
+Kingston upon Hull North	E14000772	kingston-upon-hull-north	Yorkshire and The Humber
+Kingston upon Hull West and Hessle	E14000773	kingston-upon-hull-west-and-hessle	Yorkshire and The Humber
+Huntingdon	E14000757	huntingdon	Eastern
+Hyndburn	E14000758	hyndburn	North West
+Ilford North	E14000759	ilford-north	London
+Ilford South	E14000760	ilford-south	London
+Inverness, Nairn, Badenoch and Strathspey	S14000039	inverness-nairn-badenoch-and-strathspey	Scotland
+Ipswich	E14000761	ipswich	Eastern
+Isle of Wight	E14000762	isle-of-wight	South East
+Islington North	E14000763	islington-north	London
+Islington South and Finsbury	E14000764	islington-south-and-finsbury	London
+Islwyn	W07000077	islwyn	Wales
+Jarrow	E14000765	jarrow	North East
+Keighley	E14000766	keighley	Yorkshire and The Humber
+Kenilworth and Southam	E14000767	kenilworth-and-southam	West Midlands
+Kensington	E14000768	kensington	London
+Kettering	E14000769	kettering	East Midlands
+Kilmarnock and Loudoun	S14000040	kilmarnock-and-loudoun	Scotland
+Kingston and Surbiton	E14000770	kingston-and-surbiton	London
+Kingswood	E14000774	kingswood	South West
+Kirkcaldy and Cowdenbeath	S14000041	kirkcaldy-and-cowdenbeath	Scotland
+Knowsley	E14000775	knowsley	North West
+Lagan Valley	N06000009	lagan-valley	Northern Ireland
+Lanark and Hamilton East	S14000042	lanark-and-hamilton-east	Scotland
+West Lancashire	E14001033	west-lancashire	North West
+Lancaster and Fleetwood	E14000776	lancaster-and-fleetwood	North West
+Leeds Central	E14000777	leeds-central	Yorkshire and The Humber
+Leeds East	E14000778	leeds-east	Yorkshire and The Humber
+Leeds North East	E14000779	leeds-north-east	Yorkshire and The Humber
+Leeds North West	E14000780	leeds-north-west	Yorkshire and The Humber
+Leeds West	E14000781	leeds-west	Yorkshire and The Humber
+Leicester East	E14000782	leicester-east	East Midlands
+Leicester West	E14000784	leicester-west	East Midlands
+North West Leicestershire	E14000858	north-west-leicestershire	East Midlands
+South Leicestershire	E14000940	south-leicestershire	East Midlands
+Leigh	E14000785	leigh	North West
+Lewes	E14000786	lewes	South East
+Lewisham, Deptford	E14000789	lewisham-deptford	London
+Lewisham East	E14000787	lewisham-east	London
+Lewisham West and Penge	E14000788	lewisham-west-and-penge	London
+Leyton and Wanstead	E14000790	leyton-and-wanstead	London
+Lichfield	E14000791	lichfield	West Midlands
+Lincoln	E14000792	lincoln	East Midlands
+Linlithgow and East Falkirk	S14000043	linlithgow-and-east-falkirk	Scotland
+Liverpool, Riverside	E14000793	liverpool-riverside	North West
+Liverpool, Walton	E14000794	liverpool-walton	North West
+Liverpool, Wavertree	E14000795	liverpool-wavertree	North West
+Liverpool, West Derby	E14000796	liverpool-west-derby	North West
+Livingston	S14000044	livingston	Scotland
+Llanelli	W07000045	llanelli	Wales
+East Londonderry	N06000006	east-londonderry	Northern Ireland
+Loughborough	E14000797	loughborough	East Midlands
+Louth and Horncastle	E14000798	louth-and-horncastle	East Midlands
+Ludlow	E14000799	ludlow	West Midlands
+Luton North	E14000800	luton-north	Eastern
+Luton South	E14000801	luton-south	Eastern
+Macclesfield	E14000802	macclesfield	North West
+Maidenhead	E14000803	maidenhead	South East
+Maidstone and The Weald	E14000804	maidstone-and-the-weald	South East
+Makerfield	E14000805	makerfield	North West
+Maldon	E14000806	maldon	Eastern
+Manchester, Gorton	E14000808	manchester-gorton	North West
+Manchester, Withington	E14000809	manchester-withington	North West
+Mansfield	E14000810	mansfield	East Midlands
+Meon Valley	E14000811	meon-valley	South East
+Meriden	E14000812	meriden	West Midlands
+Merthyr Tydfil and Rhymney	W07000071	merthyr-tydfil-and-rhymney	Wales
+Middlesbrough South and East Cleveland	E14000820	middlesbrough-south-and-east-cleveland	North East
+Midlothian	S14000045	midlothian	Scotland
+Milton Keynes North	E14000821	milton-keynes-north	South East
+Milton Keynes South	E14000822	milton-keynes-south	South East
+Mitcham and Morden	E14000823	mitcham-and-morden	London
+Mole Valley	E14000824	mole-valley	South East
+Monmouth	W07000054	monmouth	Wales
+Montgomeryshire	W07000063	montgomeryshire	Wales
+Moray	S14000046	moray	Scotland
+Morecambe and Lunesdale	E14000825	morecambe-and-lunesdale	North West
+Morley and Outwood	E14000826	morley-and-outwood	Yorkshire and The Humber
+Motherwell and Wishaw	S14000047	motherwell-and-wishaw	Scotland
+Na h-Eileanan an Iar	S14000027	na-h-eileanan-an-iar	Scotland
+Neath	W07000069	neath	Wales
+New Forest East	E14000827	new-forest-east	South East
+New Forest West	E14000828	new-forest-west	South East
+Newbury	E14000830	newbury	South East
+Newcastle-under-Lyme	E14000834	newcastle-under-lyme	West Midlands
+Newcastle upon Tyne Central	E14000831	newcastle-upon-tyne-central	North East
+Newcastle upon Tyne East	E14000832	newcastle-upon-tyne-east	North East
+Newcastle upon Tyne North	E14000833	newcastle-upon-tyne-north	North East
+Newport East	W07000055	newport-east	Wales
+Newport West	W07000056	newport-west	Wales
+Newry and Armagh	N06000011	newry-and-armagh	Northern Ireland
+Newton Abbot	E14000835	newton-abbot	South West
+Mid Norfolk	E14000816	mid-norfolk	Eastern
+North Norfolk	E14000848	north-norfolk	Eastern
+North West Norfolk	E14000859	north-west-norfolk	Eastern
+South Norfolk	E14000941	south-norfolk	Eastern
+South West Norfolk	E14000952	south-west-norfolk	Eastern
+Normanton, Pontefract and Castleford	E14000836	normanton-pontefract-and-castleford	Yorkshire and The Humber
+Northampton North	E14000861	northampton-north	East Midlands
+Northampton South	E14000862	northampton-south	East Midlands
+South Northamptonshire	E14000942	south-northamptonshire	East Midlands
+Norwich North	E14000863	norwich-north	Eastern
+Norwich South	E14000864	norwich-south	Eastern
+Nottingham East	E14000865	nottingham-east	East Midlands
+Nottingham North	E14000866	nottingham-north	East Midlands
+Nottingham South	E14000867	nottingham-south	East Midlands
+Nuneaton	E14000868	nuneaton	West Midlands
+Ochil and South Perthshire	S14000050	ochil-and-south-perthshire	Scotland
+Ogmore	W07000074	ogmore	Wales
+Old Bexley and Sidcup	E14000869	old-bexley-and-sidcup	London
+Oldham West and Royton	E14000871	oldham-west-and-royton	North West
+Orkney and Shetland	S14000051	orkney-and-shetland	Scotland
+Orpington	E14000872	orpington	London
+Oxford East	E14000873	oxford-east	South East
+Oxford West and Abingdon	E14000874	oxford-west-and-abingdon	South East
+Paisley and Renfrewshire North	S14000052	paisley-and-renfrewshire-north	Scotland
+Paisley and Renfrewshire South	S14000053	paisley-and-renfrewshire-south	Scotland
+Pendle	E14000875	pendle	North West
+Penistone and Stocksbridge	E14000876	penistone-and-stocksbridge	Yorkshire and The Humber
+Penrith and The Border	E14000877	penrith-and-the-border	North West
+Perth and North Perthshire	S14000054	perth-and-north-perthshire	Scotland
+Peterborough	E14000878	peterborough	Eastern
+Plymouth, Moor View	E14000879	plymouth-moor-view	South West
+Plymouth, Sutton and Devonport	E14000880	plymouth-sutton-and-devonport	South West
+Pontypridd	W07000075	pontypridd	Wales
+Poole	E14000881	poole	South West
+Poplar and Limehouse	E14000882	poplar-and-limehouse	London
+Portsmouth North	E14000883	portsmouth-north	South East
+Portsmouth South	E14000884	portsmouth-south	South East
+Preseli Pembrokeshire	W07000065	preseli-pembrokeshire	Wales
+Preston	E14000885	preston	North West
+Pudsey	E14000886	pudsey	Yorkshire and The Humber
+Putney	E14000887	putney	London
+Rayleigh and Wickford	E14000888	rayleigh-and-wickford	Eastern
+Reading East	E14000889	reading-east	South East
+Reading West	E14000890	reading-west	South East
+Redcar	E14000891	redcar	North East
+Redditch	E14000892	redditch	West Midlands
+Reigate	E14000893	reigate	South East
+East Renfrewshire	S14000021	east-renfrewshire	Scotland
+Rhondda	W07000052	rhondda	Wales
+Ribble Valley	E14000894	ribble-valley	North West
+Richmond (Yorks)	E14000895	richmond-yorks	Yorkshire and The Humber
+Richmond Park	E14000896	richmond-park	London
+Rochdale	E14000897	rochdale	North West
+Rochford and Southend East	E14000899	rochford-and-southend-east	Eastern
+Romford	E14000900	romford	London
+Romsey and Southampton North	E14000901	romsey-and-southampton-north	South East
+Ross, Skye and Lochaber	S14000055	ross-skye-and-lochaber	Scotland
+Rossendale and Darwen	E14000902	rossendale-and-darwen	North West
+Rother Valley	E14000903	rother-valley	Yorkshire and The Humber
+Rugby	E14000905	rugby	West Midlands
+Ruislip, Northwood and Pinner	E14000906	ruislip-northwood-and-pinner	London
+Runnymede and Weybridge	E14000907	runnymede-and-weybridge	South East
+Rushcliffe	E14000908	rushcliffe	East Midlands
+Rutherglen and Hamilton West	S14000056	rutherglen-and-hamilton-west	Scotland
+Rutland and Melton	E14000909	rutland-and-melton	East Midlands
+Saffron Walden	E14000910	saffron-walden	Eastern
+St Albans	E14000960	st-albans	Eastern
+St Austell and Newquay	E14000961	st-austell-and-newquay	South West
+St Helens North	E14000962	st-helens-north	North West
+St Helens South and Whiston	E14000963	st-helens-south-and-whiston	North West
+St Ives	E14000964	st-ives	South West
+Salford and Eccles	E14000911	salford-and-eccles	North West
+Salisbury	E14000912	salisbury	South West
+Scarborough and Whitby	E14000913	scarborough-and-whitby	Yorkshire and The Humber
+Scunthorpe	E14000914	scunthorpe	Yorkshire and The Humber
+Sedgefield	E14000915	sedgefield	North East
+Sefton Central	E14000916	sefton-central	North West
+Selby and Ainsty	E14000917	selby-and-ainsty	Yorkshire and The Humber
+Sevenoaks	E14000918	sevenoaks	South East
+Sheffield, Brightside and Hillsborough	E14000921	sheffield-brightside-and-hillsborough	Yorkshire and The Humber
+Sheffield Central	E14000919	sheffield-central	Yorkshire and The Humber
+Sheffield, Hallam	E14000922	sheffield-hallam	Yorkshire and The Humber
+Sheffield, Heeley	E14000923	sheffield-heeley	Yorkshire and The Humber
+Sheffield South East	E14000920	sheffield-south-east	Yorkshire and The Humber
+Sherwood	E14000924	sherwood	East Midlands
+Shipley	E14000925	shipley	Yorkshire and The Humber
+Shrewsbury and Atcham	E14000926	shrewsbury-and-atcham	West Midlands
+North Shropshire	E14000849	north-shropshire	West Midlands
+Sittingbourne and Sheppey	E14000927	sittingbourne-and-sheppey	South East
+Skipton and Ripon	E14000928	skipton-and-ripon	Yorkshire and The Humber
+Sleaford and North Hykeham	E14000929	sleaford-and-north-hykeham	East Midlands
+Slough	E14000930	slough	South East
+Solihull	E14000931	solihull	West Midlands
+North Somerset	E14000850	north-somerset	South West
+North East Somerset	E14000846	north-east-somerset	South West
+Somerton and Frome	E14000932	somerton-and-frome	South West
+South Holland and The Deepings	E14000939	south-holland-and-the-deepings	East Midlands
+South Ribble	E14000943	south-ribble	North West
+Southampton, Itchen	E14000955	southampton-itchen	South East
+Southampton, Test	E14000956	southampton-test	South East
+Southend West	E14000957	southend-west	Eastern
+Southport	E14000958	southport	North West
+Spelthorne	E14000959	spelthorne	South East
+Stafford	E14000965	stafford	West Midlands
+Staffordshire Moorlands	E14000966	staffordshire-moorlands	West Midlands
+South Staffordshire	E14000945	south-staffordshire	West Midlands
+Stalybridge and Hyde	E14000967	stalybridge-and-hyde	North West
+Stevenage	E14000968	stevenage	Eastern
+Stirling	S14000057	stirling	Scotland
+Stockport	E14000969	stockport	North West
+Stockton North	E14000970	stockton-north	North East
+Stockton South	E14000971	stockton-south	North East
+Stoke-on-Trent Central	E14000972	stoke-on-trent-central	West Midlands
+Stoke-on-Trent North	E14000973	stoke-on-trent-north	West Midlands
+Stoke-on-Trent South	E14000974	stoke-on-trent-south	West Midlands
+Stone	E14000975	stone	West Midlands
+Stourbridge	E14000976	stourbridge	West Midlands
+Strangford	N06000016	strangford	Northern Ireland
+Stratford-on-Avon	E14000977	stratford-on-avon	West Midlands
+Streatham	E14000978	streatham	London
+Stretford and Urmston	E14000979	stretford-and-urmston	North West
+Stroud	E14000980	stroud	South West
+Central Suffolk and North Ipswich	E14000624	central-suffolk-and-north-ipswich	Eastern
+Suffolk Coastal	E14000981	suffolk-coastal	Eastern
+South Suffolk	E14000946	south-suffolk	Eastern
+West Suffolk	E14001034	west-suffolk	Eastern
+Sunderland Central	E14000982	sunderland-central	North East
+East Surrey	E14000681	east-surrey	South East
+Surrey Heath	E14000983	surrey-heath	South East
+South West Surrey	E14000953	south-west-surrey	South East
+Mid Sussex	E14000817	mid-sussex	South East
+Sutton and Cheam	E14000984	sutton-and-cheam	London
+Sutton Coldfield	E14000985	sutton-coldfield	West Midlands
+Swansea East	W07000048	swansea-east	Wales
+Swansea West	W07000047	swansea-west	Wales
+North Swindon	E14000851	north-swindon	South West
+South Swindon	E14000947	south-swindon	South West
+Tamworth	E14000986	tamworth	West Midlands
+Tatton	E14000987	tatton	North West
+Taunton Deane	E14000988	taunton-deane	South West
+Telford	E14000989	telford	West Midlands
+Tewkesbury	E14000990	tewkesbury	South West
+North Thanet	E14000852	north-thanet	South East
+South Thanet	E14000948	south-thanet	South East
+Thirsk and Malton	E14000993	thirsk-and-malton	Yorkshire and The Humber
+Thornbury and Yate	E14000994	thornbury-and-yate	South West
+Thurrock	E14000995	thurrock	Eastern
+Tiverton and Honiton	E14000996	tiverton-and-honiton	South West
+Tonbridge and Malling	E14000997	tonbridge-and-malling	South East
+Tooting	E14000998	tooting	London
+Torbay	E14000999	torbay	South West
+Torfaen	W07000053	torfaen	Wales
+Totnes	E14001001	totnes	South West
+Tottenham	E14001002	tottenham	London
+Truro and Falmouth	E14001003	truro-and-falmouth	South West
+Tunbridge Wells	E14001004	tunbridge-wells	South East
+Twickenham	E14001005	twickenham	London
+Tynemouth	E14001006	tynemouth	North East
+North Tyneside	E14000853	north-tyneside	North East
+West Tyrone	N06000018	west-tyrone	Northern Ireland
+Upper Bann	N06000017	upper-bann	Northern Ireland
+Uxbridge and South Ruislip	E14001007	uxbridge-and-south-ruislip	London
+Vale of Clwyd	W07000060	vale-of-clwyd	Wales
+Vale of Glamorgan	W07000078	vale-of-glamorgan	Wales
+Vauxhall	E14001008	vauxhall	London
+Wakefield	E14001009	wakefield	Yorkshire and The Humber
+Wallasey	E14001010	wallasey	North West
+Walsall North	E14001011	walsall-north	West Midlands
+Walsall South	E14001012	walsall-south	West Midlands
+Walthamstow	E14001013	walthamstow	London
+Wansbeck	E14001014	wansbeck	North East
+Wantage	E14001015	wantage	South East
+Warley	E14001016	warley	West Midlands
+Warrington North	E14001017	warrington-north	North West
+Warrington South	E14001018	warrington-south	North West
+Warwick and Leamington	E14001019	warwick-and-leamington	West Midlands
+North Warwickshire	E14000854	north-warwickshire	West Midlands
+Washington and Sunderland West	E14001020	washington-and-sunderland-west	North East
+Watford	E14001021	watford	Eastern
+Waveney	E14001022	waveney	Eastern
+Wealden	E14001023	wealden	South East
+Weaver Vale	E14001024	weaver-vale	North West
+Wellingborough	E14001025	wellingborough	East Midlands
+Wells	E14001026	wells	South West
+Welwyn Hatfield	E14001027	welwyn-hatfield	Eastern
+Wentworth and Dearne	E14001028	wentworth-and-dearne	Yorkshire and The Humber
+West Bromwich East	E14001029	west-bromwich-east	West Midlands
+West Bromwich West	E14001030	west-bromwich-west	West Midlands
+West Ham	E14001032	west-ham	London
+Westminster North	E14001036	westminster-north	London
+Westmorland and Lonsdale	E14001037	westmorland-and-lonsdale	North West
+Weston-Super-Mare	E14001038	weston-super-mare	South West
+Wigan	E14001039	wigan	North West
+North Wiltshire	E14000860	north-wiltshire	South West
+South West Wiltshire	E14000954	south-west-wiltshire	South West
+Wimbledon	E14001040	wimbledon	London
+Winchester	E14001041	winchester	South East
+Windsor	E14001042	windsor	South East
+Wirral South	E14001043	wirral-south	North West
+Wirral West	E14001044	wirral-west	North West
+Witham	E14001045	witham	Eastern
+Witney	E14001046	witney	South East
+Woking	E14001047	woking	South East
+Wokingham	E14001048	wokingham	South East
+Wolverhampton North East	E14001049	wolverhampton-north-east	West Midlands
+Wolverhampton South East	E14001050	wolverhampton-south-east	West Midlands
+Wolverhampton South West	E14001051	wolverhampton-south-west	West Midlands
+Worcester	E14001052	worcester	West Midlands
+Mid Worcestershire	E14000818	mid-worcestershire	West Midlands
+West Worcestershire	E14001035	west-worcestershire	West Midlands
+Workington	E14001053	workington	North West
+Worsley and Eccles South	E14001054	worsley-and-eccles-south	North West
+East Worthing and Shoreham	E14000682	east-worthing-and-shoreham	South East
+Worthing West	E14001055	worthing-west	South East
+The Wrekin	E14000992	the-wrekin	West Midlands
+Wrexham	W07000044	wrexham	Wales
+Wycombe	E14001056	wycombe	South East
+Wyre and Preston North	E14001057	wyre-and-preston-north	North West
+Wyre Forest	E14001058	wyre-forest	West Midlands
+Yeovil	E14001060	yeovil	South West
+Ynys Mon	W07000041	ynys-mon	Wales
+York Central	E14001061	york-central	Yorkshire and The Humber
+York Outer	E14001062	york-outer	Yorkshire and The Humber
+East Yorkshire	E14000683	east-yorkshire	Yorkshire and The Humber

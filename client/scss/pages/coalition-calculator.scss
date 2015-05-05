@@ -9,12 +9,14 @@
 
 .interactive-input {
   cursor: pointer;
-  cursor: hand;
+  // Enquire: is this duplicate property something Autoprefixr should handle?
+  cursor: hand; // scss-lint:disable DuplicateProperty
 }
 
 .slider-input__label {
     fill: #ffffff;
     stroke: none;
+    // Fixme: doesn't aAutoprefixer do this?
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;

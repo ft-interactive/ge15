@@ -2,38 +2,55 @@
 
 module.exports = main;
 
-var koa = require('koa');
-var routers = require('./routers');
-var pkg = require('../package.json');
-
-var trace = require('koa-trace');
-var favicon = require('koa-favicon');
-var requestId = require('koa-request-id');
-var responseTime = require('koa-response-time');
-var conditional = require('koa-conditional-get');
-var etag = require('koa-etag');
-var serve = require('koa-static');
-var htmlMinifier = require('koa-html-minifier');
-var printRequestId = require('./middleware/print-request-id');
-var ms = require('ms');
-var path = require('path');
+const debug = require('debug')('ge15:app');
+const koa = require('koa');
+const routers = require('./routers');
+const pkg = require('../package.json');
+const trace = require('koa-trace');
+const favicon = require('koa-favicon');
+const requestId = require('koa-request-id');
+const responseTime = require('koa-response-time');
+const conditional = require('koa-conditional-get');
+const etag = require('koa-etag');
+const serve = require('koa-static');
+const onerror = require('koa-onerror');
+const htmlMinifier = require('koa-html-minifier');
+const sentry = require('koa-sentry');
+const printRequestId = require('./middleware/print-request-id');
+const ms = require('ms');
+const path = require('path');
+const raven = require('../raven');
+const cors = require('koa-cors');
 
 function main() {
   var app = koa();
 
-  trace(app);
-
   app.name = pkg.name;
   app.proxy = true;
   app.poweredBy = false;
-  app.isProd = process.env.NODE_ENV === 'production';
 
-  if (!app.isProd) app.debug();
+  onerror(app, {template: './templates/error.html'});
+  sentry(app, raven);
+  trace(app);
+
+  app.isProd = app.context.isProd = process.env.NODE_ENV === 'production';
+
+  debug('NODE_ENV=' + process.env.NODE_ENV);
+
+  app.context.raven = raven;
+
+  if (!app.isProd || /koa-trace/.test(process.env.DEBUG)) app.debug();
 
   app.use(function*(next) {
     this.set('Timing-Allow-Origin', '*');
     yield next;
   });
+
+
+  app.use(cors({
+    origin: true // do something more specific here
+  }));
+
   app.use(favicon(path.resolve(__dirname, '../public/images/favicon.ico')));
   app.use(conditional());
   app.use(etag());
@@ -57,13 +74,10 @@ function main() {
   }));
 
   if (!app.isProd) {
+    debug('Using livereload');
     app.use(require('koa-livereload')());
   }
 
   routers(app);
   return app;
-}
-
-if (!module.parent) {
-  main().listen(process.env.PORT || 3000);
 }

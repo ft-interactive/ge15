@@ -37,7 +37,7 @@ exports.divide = function(val, num) {
 };
 
 exports.format = function(val, format) {
-  return n.value(val).format(format);
+  return n.set(val).format(format);
 };
 
 exports.unformat = function(val, format) {
@@ -76,7 +76,7 @@ exports.pluck = function(obj, property) {
   return _.pluck(obj, property);
 };
 
-exports.sortBy = function(array, property){
+exports.sortBy = function(array, property) {
   debug(array, property);
   return _.sortBy(array, property);
 };
@@ -85,34 +85,61 @@ exports.json = function(obj) {
   return JSON.stringify(obj, null, 0);
 };
 
-exports.partyAbbreviation = function(str){
+exports.partyAbbreviation = function(str) {
   return parties.shortName(str);
 };
 
-exports.partyClassName = function(str){
-  return parties.className(str);
+exports.partyClassName = function(str) {
+  return parties.className(str) || '';
 };
 
-exports.partyFullName = function(str){
-  return parties.fullName(str);
+exports.partyFullName = function(str) {
+  return parties.fullName(str) || '';
 };
 
-exports.partyShortName = function(str){
-  return parties.shortName(str);
+exports.partyShortName = function(str) {
+  return parties.shortName(str) || '';
 };
 
-exports.partyColor = function(str){
-  return parties.colour(str);
+exports.partyColor = function(str) {
+  return parties.colour(str) || '';
+};
+
+exports.round = function(number, dp) {
+  var expo = Math.pow(10, dp || 0);
+  return Math.round(number * expo) / expo;
 };
 
 exports.ftdate = function(date) {
+  date = new Date(date);
   var format = d3.time.format("%B %e, %Y %I:%M %p");
   return format(date).replace(/(AM|PM)$/, function($1){
     return $1 ? $1.toLowerCase() : '';
   });
 };
 
+exports.verticalScale = function(value, domain, range) {
+  //assume the domin and the range start at 0, note the range is backwards for vertical usage
+  if(!range) range = 1;
+  if(!domain) domain = 1;
+  return d3.scale.linear()
+    .domain([0,domain])
+    .range([range,0])(value);
+};
+
+exports.percentageOf = function(part, whole) {
+  return parseFloat(part)/whole * 100;
+};
+
 exports.change = function(value){
   if(value>0) return '+'+value;
   return value;
+};
+
+exports.diamondPath = function(size) {
+  return (
+    'M 0 0 L ' + (size/2) + ' ' + (size/2) +
+    ' L 0 ' + size + ' L ' + (0-size/2) + ' ' + (size/2) +
+    ' L 0 0 L ' + (size/2) + ' ' + (size/2)
+  );
 };

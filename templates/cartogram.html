@@ -1,0 +1,92 @@
+{% if not view.layout.fragment %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <style>
+
+    @font-face {
+      font-family: 'BentonSans';
+      font-weight: bold;
+      font-style: normal;
+      src: url("//build.origami.ft.com/files/o-fonts-assets@0.2.2/bentonsans-bold.eot");
+      src: url("//build.origami.ft.com/files/o-fonts-assets@0.2.2/bentonsans-bold.eot?#iefix") format("embedded-opentype"), url("//build.origami.ft.com/files/o-fonts-assets@0.2.2/bentonsans-bold.woff") format("woff"), url("//build.origami.ft.com/files/o-fonts-assets@0.2.2/bentonsans-bold.ttf") format("truetype"); }
+    @font-face {
+      font-family: 'BentonSans';
+      font-weight: normal;
+      font-style: normal;
+      src: url("//build.origami.ft.com/files/o-fonts-assets@0.2.2/bentonsans-normal.eot");
+      src: url("//build.origami.ft.com/files/o-fonts-assets@0.2.2/bentonsans-normal.eot?#iefix") format("embedded-opentype"), url("//build.origami.ft.com/files/o-fonts-assets@0.2.2/bentonsans-normal.woff") format("woff"), url("//build.origami.ft.com/files/o-fonts-assets@0.2.2/bentonsans-normal.ttf") format("truetype"); }
+
+    html {
+      box-sizing: border-box;
+    }
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+
+    html, body {
+      background-color: #fff1e0;
+      max-width: 600px;
+      margin:0 auto;
+      font-family: 'BentonSans', sans-serif;
+    }
+
+    </style>
+{% endif %}
+
+    <style>
+
+    .projections-cartogram,
+    .projections-cartogram *,
+    .projections-cartogram *:after {
+      box-sizing: border-box;
+
+    }
+
+    .projections-cartogram{
+    }
+
+    .cartogram-matrix:after{
+      content: " ";
+      padding-top: 50%;
+      position: relative;
+      display: block;
+    }
+
+    .projections-cartogram .cartogram-matrix{
+      position: relative;
+      width: 100%;
+      padding-top: 100%;
+      height: 1em;
+      /* float: left; */
+    }
+
+    .projections-cartogram .seat{
+      position: absolute;
+      width: 3.03030303%;
+      padding-top: 3.03030303%;
+      line-height: 0;
+      background: black;
+      border-radius: 100%;
+      cursor: pointer;
+    }
+    </style>
+    {% if not view.layout.fragment %}
+    </head>
+    <body>
+      {% endif %}
+      <div class="projections-cartogram">
+      <div class="cartogram-matrix">
+        {% for seat in seats %}
+        <div class="seat" title="{{ seat.name }} - {{ seat.party | partyFullName | default('No result') }}"
+              data-seat-coord-x="{{ seat.x }}" data-seat-coord-y="{{ seat.y }}" data-seat-id="{{ seat.id }}"
+              style="background-color:{{ seat.party | partyColor | default('#f6e9d8') }};outline-color:{{ seat.party | partyColor | default('auto') }};top: {{ seat.y * 3.03030303 }}%;left: {{ seat.x * 3.03030303 }}%;"></div>
+        {% endfor %}
+      </div>
+      </div>
+{% if not view.layout.fragment %}
+    </body>
+</html>
+{% endif %}

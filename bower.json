@@ -11,7 +11,7 @@
     "tests"
   ],
   "dependencies": {
-    "o-colors": "~2.4.4",
+    "o-colors": "~2.4.7",
     "sass-mq": "~3.1.0",
     "o-fonts": "~1.6.7",
     "scut": "~1.0.1",
@@ -26,7 +26,9 @@
     "o-dom": "~1.0.0",
     "o-header": "~3.0.0",
     "o-footer": "~3.0.0",
-    "o-buttons": "~2.0.0"
+    "o-buttons": "~2.0.0",
+    "o-errors": "~2.0.0",
+    "o-table": "~1.7.0"
   },
   "resolutions": {
     "sass-mq": "~3.1.0",
