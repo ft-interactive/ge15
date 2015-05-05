@@ -31,7 +31,6 @@
   }
     .figure__header {
       -webkit-font-smoothing: antialiased;
-      font: bold 18px BentonSans, sans-serif;
       border-bottom: 1px solid color(grey-tint1);
       height: 29px;
       overflow: hidden;
@@ -39,6 +38,7 @@
       margin: 0 0 15px;
       
       > .figure__title {
+        font: bold 18px/29px BentonSans, sans-serif;
         color: color(grey-tint5);
         margin: 0;
       }
