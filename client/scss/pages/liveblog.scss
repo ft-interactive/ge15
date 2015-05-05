@@ -42,21 +42,23 @@
         color: color(grey-tint5);
         margin: 0;
       }
+  
 
+      // when the note is in the header, use floats
       &--with-note {
         > .figure__title {
           float: left;
           height: 0;
         }
 
-        > .num-declared {
+        > .figure__note {
           float: right;
           margin-top: 8px;
         }
       }
     }
 
-  .num-declared {
+  .figure__note {
     margin: 0;
     font-weight: normal;
     font-size: 12px;
