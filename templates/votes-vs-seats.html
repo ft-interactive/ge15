@@ -1,92 +1,66 @@
 <div class="votes-vs-seats figure">
 
   {% if headline %}
-  <header class="figure_header">
+  <header class="figure__header">
     <h3 class="figure__title">{{ headline }}</h3>
   </header>
   {% endif %}
 
   <div class="figure__body">
-    <svg width="{{ totalWidth }}" height="{{ rowHeight * (parties.length + 2) }}">
-      <g class="votes-vs-seats__key" transform="translate(0 {{rowHeight*0.3333}})">
-        <line
-          class="votes-vs-seats__vote-percent"
-          x2="15"
-          stroke-width="{{barThickness}}"
-        ></line>
-        <text x="20">% of popular vote</text>
 
-        <path
-          class="votes-vs-seats__seats-percent"
-          d="{{seatsIconSize | diamondPath}}"
-          transform="translate(130 {{0-(seatsIconSize/2)}})"
-        ></path>
-        <text x="{{130 + seatsIconSize}}">% of seats won</text>
-      </g>
+    <div class="votes-vs-seats__key">
+      <div class="votes-vs-seats__vote-percent" style="width:15px"></div>
+      <div class="votes-vs-seats__key__label">% of popular vote</div>
 
+      <div class="votes-vs-seats__seats-percent"></div>
+      <div class="votes-vs-seats__key__label">% of seats won</div>
+    </div>
+    
+    <div class="votes-vs-seats__chart">
+      {# bottom layer: the full-width, tinted tracks #}
+      <div class="votes-vs-seats__tracks">
+        {% for party in parties %}
+        <div class="votes-vs-seats__track"></div>
+        {% endfor %}
+      </div>
 
-      <g class="votes-vs-seats__chart" style="transform: translate({{labelsWidth}}px,{{rowHeight*1.75}}px)">
+      {# 2nd layer: the vertical tick lines along the x-axis, inc. percent labels #}
+      <div class="votes-vs-seats__ticks">
+        {% for percentage in [0, 10, 20, 30, 40, 50] %}
+        <div class="votes-vs-seats__tick">
+          <div class="votes-vs-seats__tick__label">{{percentage}}</div>
+        </div>
+        {% endfor %}
+      </div>
 
-        {# bottom layer: the full-width, tinted tracks #}
-        <g class="votes-vs-seats__tracks">
-          {% for party in parties %}
-          <line
-            y1="{{ loop.index0 * rowHeight + (rowHeight / 2)}}"
-            x2="{{trackLength}}"
-            y2="{{ loop.index0 * rowHeight + (rowHeight / 2) }}"
-            stroke-width="{{trackThickness}}"
-          ></line>
-          {% endfor %}
-        </g>
+      {# top layer: everything else, arranged in "rows" #}
+      <div class="votes-vs-seats__rows">
+        {% for party in parties %}
+        <div class="votes-vs-seats__row">
 
-        {# 2nd layer: the vertical tick lines along the x-axis, inc. percent labels #}
-        <g class="votes-vs-seats__ticks">
-          {% for percentage in [0, 10, 20, 30, 40, 50] %}
-          <g class="votes-vs-seats__tick" style="transform:translate({{ loop.index0 * (trackLength / 5) - 1 }}px,0)">
-            <text
-              y="{{ 0 - (votes-vs-seats.trackSpacing / 2) }}">{{percentage}}</text>
-            <line
-              {% if loop.first %}class="votes-vs-seats__first-tick"{% endif %}
-              y1="{{ 0 - (votes-vs-seats.trackSpacing /2) }}"
-              y2="{{ parties.length * rowHeight}}"></line>
-          </g>
-          {% endfor %}
-        </g>
-
-        {# top layer: everything else, arranged in "rows" #}
-        <g class="votes-vs-seats__rows">
-          {% for party in parties %}
-          <g class="votes-vs-seats__row" style="transform:translate(0,{{ loop.index0 * rowHeight + (rowHeight / 2) }}px)">
-
-            {# party label and colour #}
-            <text
-              class="votes-vs-seats__party-label"
-              x="-19">{{party.name}}</text>
-            <line
+          {# party label and colour #}
+          <div class="votes-vs-seats__party-label">
+            {{party.name}}
+            <span
               class="votes-vs-seats__party-colour"
-              x1="-15"
-              x2="-10"
-              stroke="{{party.colour}}"
-              stroke-width="{{trackThickness}}"
-            ></line>
+              style="background:{{party.colour}}"></span>
+          </div>
 
-            {# bar for vote percentage #}
-            <line
-              class="votes-vs-seats__vote-percent"
-              x2="{{trackLength * (party.percentVoteWon / 50) }}"
-              stroke-width="{{barThickness}}"
-            ><title>{{party.percentVoteWon | round(1)}}% of votes won</title></line>
+          {# bar for vote percentage #}
+          <div
+            class="votes-vs-seats__vote-percent"
+            style="width:{{ party.percentVoteWon * 2 }}%"
+            title="{{party.percentVoteWon | round(1)}}% of votes won"></div>
 
-            {# icon for seats percentage #}
-            <path
-              class="votes-vs-seats__seats-percent"
-              transform="translate({{ trackLength * (party.percentSeatsWon / 50) }} {{0-(seatsIconSize/2)}})"
-              d="{{seatsIconSize | diamondPath}}"
-            ><title>{{party.percentSeatsWon | round(1)}}% of seats won</title></path>
-          </g>
-          {% endfor %}
-        </g>
-      </g>
-    </svg>
+          {# icon for seats percentage #}
+          <div
+            class="votes-vs-seats__seats-percent"
+            style="left:{{ party.percentSeatsWon * 2 }}%"
+            title="{{party.percentSeatsWon | round(1)}}% of seats won"></div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
   </div>
 </div>

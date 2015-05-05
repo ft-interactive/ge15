@@ -1,0 +1,96 @@
+@import "o-colors/main";
+@import "../functions";
+
+.ge15-ftcom-figures { // to prevent styles leaking out into page
+  width: 600px;
+  position: relative;
+  font-family: BentonSans, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  margin-bottom: 42px;
+  min-height: 280px;
+
+  > .figure-wrapper {
+  }
+    .figure__header {
+      position: relative;
+      height: 29px;
+      padding-bottom: 3px;
+      margin: 0 0 5px;
+      
+      > .figure__title {
+        font: bold 18px/29px BentonSans, sans-serif;
+        color: color(grey-tint5);
+        margin: 0;
+        &--with-rosette {
+          text-indent: 24px;
+
+          &:before {
+            content: '';
+            display: block;
+            position: absolute;
+            left: -3px;
+            top: 2px;
+            width: 20px;
+            height: 28px;
+            background: transparent url(../../images/rosette.png) no-repeat left top;
+
+            @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
+              background: url(../../images/rosette@2x.png);
+              background-size: 40px 56px;
+            }
+          }
+        }
+      }
+
+      // when the note is in the header, use floats
+      &--with-note {
+        > .figure__title {
+          float: left;
+          height: 0;
+        }
+
+        > .figure__note {
+          float: right;
+          margin-top: 8px;
+        }
+      }
+    }
+
+  .figure__note {
+    margin: 0;
+    font-weight: normal;
+    font-size: 15px;
+    color: color(grey-tint4);
+
+    > b { color: color(grey-tint4); }
+  }
+
+
+  
+  // override state-of-play styles to make things bigger/spacier
+  .state-of-play__seat {
+    width: 9px;
+    height: 9px;
+  }
+
+  .state-of-play__net-change-row > td {
+    padding: 6px 8px;
+  }
+  .state-of-play__gains-row > td,
+  .state-of-play__losses-row > td {
+    padding: 8px 4px 20px 8px;
+  }
+
+  .figure__body > .state-of-play__table > th {
+    font-size: 14px;
+    padding: 10px 0 6px;
+  }
+  .state-of-play__party-total {
+    font-size: 22px;
+  }
+  .state-of-play__row-label {
+    margin-bottom: 2px;
+  }
+}
+
+@import "../components/state-of-play";

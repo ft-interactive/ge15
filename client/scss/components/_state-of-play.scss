@@ -1,24 +1,21 @@
 .state-of-play {
-  > header {
-    > h3 {
-      float: left;
-    }
-
-    > .num-declared {
-      float: right;
-      margin-top: 9px;
-    }
+  // scss-lint:disable ImportantRule
+  box-sizing: border-box !important;
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit !important;
+    font-family: inherit;
   }
+  // scss-lint:enable ImportantRule
 }
 
-  .state-of-play > .state-of-play__table { // specificity needed to override liveblog styles
+  .figure__body > .state-of-play__table { // specificity needed to override liveblog styles
     border-spacing: 0;
     border-collapse: separate;
 
     th,
     td {
-      width: 20%;
-      max-width: 20%;
       vertical-align: top;
     }
 
@@ -99,3 +96,11 @@
         font-weight: bold;
         color: color(grey-tint4);
       }
+  
+  .state-of-play__link {
+    display: block;
+    float: right;
+    font-weight: bold;
+    font-size: 15px;
+    margin: 7px 0;
+  }

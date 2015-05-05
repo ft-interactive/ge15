@@ -114,7 +114,8 @@ linters:
   # See SelectorDepth for control over the actually maximum authorized depth
   NestingDepth:
     enabled: true
-    max_depth: 3
+    max_depth: 5
+    severity: warning
 
   # @extend %placeholders, don't @extend .a-class
   PlaceholderInExtend:

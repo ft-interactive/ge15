@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html lang="en" class="msie msie6"><![endif]-->
+<!--[if IE 7 ]><html lang="en" class="msie msie7"><![endif]-->
+<!--[if IE 8 ]><html lang="en" class="msie msie8"><![endif]-->
+<!--[if IE 9 ]><html lang="en" class="msie msie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<!--<![endif]-->
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="UTF-8" />
+
+    <!-- <base href="http://www.ft.com/"> -->
+
+    <title>DEMO</title>
+    <link rel='stylesheet' href='http://static-render-p.ft.com/style/b49e004/bundles/core.css' media="all" />
+    <link rel='stylesheet' href='http://navigation.webservices.ft.com/v1/navigation/ft/css/style.min.css' media="all" />
+    <link rel='stylesheet' href='http://static-render-p.ft.com/style/cbffbf8b/bundles/nonArticle.css' media="all" />
+
+    <link rel="shortcut icon" href="http://im.ft-static.com/m/icons/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="http://im.ft-static.com/m/icons/apple-touch-icon.png" />
+
+</head>
+
+<body class="nojs hoverable ">
+    <div style="background:green;text-align:center;color:white;font:bold 20px sans-serif;padding:14px 0 8px">DEMO</div>
+
+    <div id="fullpage-container"></div>
+
+    <div class="clearfix container" id="page-container">
+
+        <div class="master-row topSection" data-nozone="topSection" data-timer-key="1">
+            <div id="header" class="headerGPT clearfix" data-comp-name="header" data-comp-view="header" data-comp-index="0" data-timer-key="2">
+                <div id="page-title">
+                    <div class="bar">
+                        <p class="bc">
+                            <a href="http://www.ft.com"><span class="ftdotcom">ft.com</span>/frontpage</a>
+                        </p>
+                        <div class="edition">
+                            UK
+                            <div id="editionChanger" class="basic">
+                                <p>Change edition</p>
+                                <ul>
+                                    <li><a href="/home/asia">Asia</a></li>
+                                    <li><a href="/home/europe">Europe</a></li>
+                                    <li><a href="/home/india">India</a></li>
+                                    <li><a href="/home/middleeast">Middle East</a></li>
+                                    <li class="selected">UK</li>
+                                    <li><a href="/home/us">US</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <span class="timezone">All times are London time</span>
+                    </div>
+                    <h1><a href='http://www.ft.com'><img src='http://im.ft-static.com/m/img/masthead_main.jpg' alt='Financial Times' /></a></h1> </div>
+                <div class="colright clearfix">
+                    <div id="ft-search" class="clearfix wideSearchInput">
+                        <form id="wsod-symbolSearch" method="get" action="http://search.ft.com/search">
+                            <fieldset>
+                                <div class="searchContainer">
+                                    <input class="text ft-search-auto-completable" type="text" value="" name="queryText" id="simpleSearchField" autocomplete="off" />
+                                </div>
+                                <button type="submit" class="ft-button ft-button-large">Search</button>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div id="ftLogin">
+                        <div class="ftLogin-loggedOut">
+                            <a id="ftLogin-signIn" class="ft-link" href="https://registration.ft.com/registration/barrier/login">Sign in</a>
+                            <a class="ft-link" href="http://registration.ft.com/registration/subscription-service/signuppsp?segid=70009">Register</a>
+                            <a class="ft-link subscriptionLink" href="http://registration.ft.com/registration/subscription-service/bpsp?segid=70152">Subscribe</a>
+                        </div>
+                        <div class="ftLogin-loggedIn">
+                            <a href="https://registration.ft.com/registration/login/logout?location=" id="ftLogin-logout">Sign out <span id="ftLogin-user"></span></a>
+                            <span id="ftLogin-sub-link"><a href="http://registration.ft.com/registration/subscription-service/bpsp?segid=70152" class="subscriptionLink">Subscribe</a></span>
+                            <a href="http://registration.ft.com/registration/selfcare/" id="ftLogin-yourAccount">Your account</a>
+                        </div>
+                        <div id="ftLogin-box" class="roundedCorners">
+                            <form action="https://registration.ft.com/registration/barrier/login" method="post" autocompete="off">
+                                <input type="hidden" name="location" value="http://www.ft.com/" />
+                                <fieldset>
+                                    <label for="ftLogin-username">Email address</label>
+                                    <input id="ftLogin-username" name="username" class="text" type="text" />
+                                </fieldset>
+                                <fieldset>
+                                    <label for="ftLogin-password">Password</label>
+                                    <input id="ftLogin-password" name="password" class="text" type="password" />
+                                </fieldset>
+                                <span class="ftLogin-forgotPassword">
+<a href="https://registration.ft.com/registration/login/forgottenpassword?forgottenPasswordUsername=&amp;location=">Forgot password?</a>
+</span>
+                                <fieldset>
+                                    <p class="ftLogin-rememberMe">
+                                        <span>
+<input id="ftLogin-remember" name="rememberme" class="checkbox" type="checkbox" checked="checked" />
+<label for="ftLogin-remember">Remember me on this computer</label>
+</span>
+                                        <button type="submit" class="ft-button ft-button-large">Sign in</button>
+                                    </p>
+                                    <p class="ftLogin-cookiePolicy">
+                                        "Remember me" uses a cookie. View our <a href="http://www.ft.com/cookiepolicy">Cookie Policy</a>.
+                                    </p>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="skyline" data-comp-name="skyline" data-comp-view="skyline2and3" data-comp-index="1" data-timer-key="3">
+                <div id="skyline-inner">
+                    <div class="skyline-x" data-pos="0">
+                        <h3>
+<span class="story-image">
+<a href="http://www.ft.com/cms/s/0/3f87f086-c651-11e4-add0-00144feab7de.html" >
+<img src="http://im.ft-static.com/content/images/bc9c57a8-a0c0-11e4-8ad8-00144feab7de.img" alt="ECB" />
+</a>
+<span class="credit manualSource"></span>
+</span><span class="story-text">
+<a href="http://www.ft.com/cms/s/0/3f87f086-c651-11e4-add0-00144feab7de.html" >
+<strong>ECB launches QE</strong><br />Five metrics to judge Draghi&rsquo;s plan
+</a>
+</span> </h3>
+                    </div>
+                    <div class="skyline-x" data-pos="1">
+                        <h3>
+<span class="story-image">
+<a href="http://www.ft.com/cms/s/0/d52262ea-c406-11e4-9019-00144feab7de.html" >
+<img src="http://im.ft-static.com/content/images/40b3a816-a536-11e3-a7b4-00144feab7de.img" alt="Silicon Valley" />
+</a>
+<span class="credit manualSource"></span>
+</span><span class="story-text">
+<a href="http://www.ft.com/cms/s/0/d52262ea-c406-11e4-9019-00144feab7de.html" >
+<strong>Finance power shift</strong><br />Why private equity has venture capital envy
+</a>
+</span> </h3>
+                    </div>
+                    <ul class="skyline-y">
+                        <li data-pos="2">
+                            <h3>
+<a href="http://www.ft.com/cms/s/0/a49c325c-c5ed-11e4-ab8f-00144feab7de.html" >
+<strong>Behind closed doors</strong> What the Fed says about China
+</a>
+</h3>
+                        </li>
+                        <li data-pos="3">
+                            <h3>
+<a href="http://www.ft.com/cms/s/0/f002b0c2-c3f4-11e4-9019-00144feab7de.html" >
+<strong>Clinton fatigue</strong> Edward Luce on a gathering US storm
+</a>
+</h3>
+                        </li>
+                        <li data-pos="4">
+                            <h3>
+<a href="http://www.ft.com/cms/s/0/d7db4be4-c264-11e4-ad89-00144feab7de.html" >
+<strong>Mohamed El-Erian</strong> Impact of US-Europe divide on bonds
+</a>
+</h3>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <nav class="nav-ftcom">
+                <div id="nav-ftcom" data-track-comp-name="nav" data-nav-source="ft-uk">
+                    <ol class="nav-items-l1">
+                        <li class="nav-item-l1 nav-selected" data-track-pos="0"> <a href="http://www.ft.com">Home</a>
+                            <ol class="nav-items-l2">
+                                <li> <a href="http://video.ft.com/"> Video </a> </li>
+                                <li> <a href="http://www.ft.com/interactive"> Interactive </a> </li>
+                                <li> <a href="http://www.ft.com/blogs"> Blogs </a> </li>
+                                <li> <a href="http://www.ft.com/news-feed"> News feed </a> </li>
+                                <li> <a href="http://www.ft.com/alphaville"> Alphaville </a> </li>
+                                <li> <a href="http://blogs.ft.com/beyond-brics/"> beyondbrics </a> </li>
+                                <li> <a href="http://portfolio.ft.com/"> Portfolio </a> </li>
+                                <li> <a href="http://www.ft.com/special-reports"> Special Reports </a> </li>
+                                <li> <a href="http://www.ft.com/indepth"> In depth </a> </li>
+                                <li> <a href="http://www.ft.com/uk-edition"> Today’s Newspaper </a> </li>
+                                <li class="nav-rss"><img src="http://navigation.webservices.ft.com/v1/navigation/ft/img/rss-icon.gif" width="14" height="14" alt="RSS" /></li>
+                                <li class="nav-tools nav-has-l3"> <a href="http://www.ft.com/servicestools">Tools</a>
+                                    <ol class="nav-items-l3">
+                                        <li class="title"> <a href="http://www.ft.com/servicestools"> Tools <span class="arrow">&#8250;</span> </a> </li>
+                                        <li> <a href="http://aboutus.ft.com/">About Us</a> </li>
+                                        <li> <a href="http://www.ft.com/topics">Topics</a> </li>
+                                        <li> <a href="http://portfolio.ft.com/">Portfolio</a> </li>
+                                        <li> <a href="http://clippings.ft.com/">FT clippings</a> </li>
+                                        <li> <a href="http://markets.ft.com/alerts/keyword.asp">Alerts hub</a> </li>
+                                        <li> <a href="http://nbe.ft.com/nbe/profile.cfm">Email briefings</a> </li>
+                                        <li> <a href="http://rankings.ft.com/businessschoolrankings/global-mba-rankings">MBA rankings</a> </li>
+                                        <li> <a href="http://mbanewslines.ft.com/">Newslines</a> </li>
+                                        <li> <a href="http://lexicon.ft.com">FT Lexicon</a> </li>
+                                        <li> <a href="http://www.ft.com/mobile">Mobile</a> </li>
+                                        <li> <a href="http://markets.ft.com/ft/markets/currencies.asp">Currency converter</a> </li>
+                                        <li> <a href="http://www.ft.com/FTePaper">ePaper</a> </li>
+                                        <li> <a href="http://jobs.ft.com/regionselector.ashx">Executive jobs</a> </li>
+                                        <li> <a href="http://presscuttings.ft.com/presscuttings/search.htm">FT press cuttings</a> </li>
+                                        <li> <a href="http://aboutus.ft.com/social-media/">Social Media hub</a> </li>
+                                        <li> <a href="http://markets.ft.com/research/EcoCalendar">Economic calendar</a> </li>
+                                    </ol>
+                                </li>
+                            </ol>
+                        </li>
+                        <li class="nav-item-l1" data-track-pos="1" data-headlinesuuid="2836ebbe-cd26-11de-a748-00144feabdc0"> <a href="http://www.ft.com/world/uk">UK</a>
+                            <div class="nav-flyout"></div>
+                        </li>
+                        <li class="nav-item-l1" data-track-pos="2" data-headlinesuuid="fefd8528-cd25-11de-a748-00144feabdc0"> <a href="http://www.ft.com/world">World</a>
+                            <div class="nav-flyout"></div>
+                        </li>
+                        <li class="nav-item-l1" data-track-pos="3" data-headlinesuuid="ee08dbdc-cd25-11de-a748-00144feabdc0"> <a href="http://www.ft.com/companies">Companies</a>
+                            <div class="nav-flyout"></div>
+                        </li>
+                        <li class="nav-item-l1" data-track-pos="4" data-headlinesuuid="011debcc-cd26-11de-a748-00144feabdc0"> <a href="http://www.ft.com/markets">Markets</a>
+                            <div class="nav-flyout"></div>
+                        </li>
+                        <li class="nav-item-l1" data-track-pos="5" data-headlinesuuid="efdac59c-cd25-11de-a748-00144feabdc0"> <a href="http://www.ft.com/global-economy">Global Economy</a>
+                            <div class="nav-flyout"></div>
+                        </li>
+                        <li class="nav-item-l1" data-track-pos="6" data-headlinesuuid="fa35a412-cd25-11de-a748-00144feabdc0"> <a href="http://www.ft.com/lex">Lex</a>
+                            <div class="nav-flyout"></div>
+                        </li>
+                        <li class="nav-item-l1" data-track-pos="7" data-headlinesuuid="ec66fcc8-cd25-11de-a748-00144feabdc0"> <a href="http://www.ft.com/comment">Comment</a>
+                            <div class="nav-flyout"></div>
+                        </li>
+                        <li class="nav-item-l1" data-track-pos="8" data-headlinesuuid="fcdae4e8-cd25-11de-a748-00144feabdc0"> <a href="http://www.ft.com/management">Management</a>
+                            <div class="nav-flyout"></div>
+                        </li>
+                        <li class="nav-item-l1" data-track-pos="9" data-headlinesuuid="d5480e62-cd28-11de-a748-00144feabdc0"> <a href="http://www.ft.com/personal-finance">Personal Finance</a>
+                            <div class="nav-flyout"></div>
+                        </li>
+                        <li class="nav-item-l1" data-track-pos="10" data-headlinesuuid="cec106aa-cd25-11de-a748-00144feabdc0"> <a href="http://www.ft.com/life-arts">Life & Arts</a>
+                            <div class="nav-flyout"></div>
+                        </li>
+                    </ol>
+                </div>
+            </nav>
+
+
+            <div id="highlights" data-comp-name="highlights" data-comp-view="highlights" data-comp-index="3" data-timer-key="5">
+                <h2>Highlights</h2>
+                <ul>
+                    <li data-pos="0" class="first">
+                        <a href="http://blogs.ft.com/nick-butler/2015/03/08/can-solar-transform-the-energy-market/">
+Nick Butler: Solar energy
+</a>
+                    </li>
+                    <li data-pos="1">
+                        <a href="http://podcast.ft.com?pid=2568">
+Podcast: FT Online MBA rankings 
+</a>
+                    </li>
+                    <li data-pos="2">
+                        <a href="http://www.ft.com/intl/cms/s/0/a6419764-c408-11e4-9019-00144feab7de.html#axzz3Trz7V4Um">
+Does the best team win the Six Nations?
+</a>
+                    </li>
+                    <li data-pos="3">
+                        <a href="http://www.ft.com/intl/cms/s/0/34d50c0a-c598-11e4-bd6b-00144feab7de.html#axzz3Trz7V4Um">
+McCoy&rsquo;s swan song
+</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="master-column middleSection " data-nozone="middleSection" data-timer-key="6">
+            <div class="master-row contentSection " data-nozone="contentSection" data-timer-key="7">
+                <div class="master-row editorialSection" data-nozone="editorialSection" data-timer-key="8">
+                    
+{# BEGIN FTCOM EMBED CODE (nb. asset urls will need to be made absolute #}
+  <div class="ge15-ftcom-figures">
+    <div class="figure-wrapper figure-wrapper--state-of-play--js"></div>
+  </div>
+
+  <link href="/css/pages/ftcom.css" rel="stylesheet">
+  <script src="https://cdn.polyfill.io/v1/polyfill.min.js?features=default,fetch"></script>
+  <script src="/js/vendor.js"></script>
+  <script src="/js/ftcom.js"></script>
+{# END FTCOM EMBED CODE #}
+        
+
+                    <div class="freestyle" data-comp-name="freestyle" data-comp-view="freestyle" data-comp-index="1" data-timer-key="10" id="239710">
+                        <span></span>
+                    </div>
+
+
+                    <div class="top5 ft-spc-btm-full top5_standalone" data-comp-name="top5" data-comp-view="top5_standalone" data-comp-index="2" data-timer-key="11">
+                        <div class="top5-columns ft-spc-btm-full clearfix">
+                            <div class="top5-column-primary">
+                                <div class="article standalone image comment ft-spc-btm-half" data-pos="0">
+                                    <div class="ft-image ft-image-leader">
+                                        <a href="http://blogs.ft.com/tech-blog/liveblogs/apple-watch-spring-liveblog/"><img src="http://im.ft-static.com/content/images/3ace93a4-4260-4711-9d1f-e6314d8a621f.img" alt="Apple CEO Tim Cook speaks about the Apple Watch during an Apple event at the Flint Center in Cupertino, California, in this September 9, 2014 file photo. Cook is expected to announce details of the first product developed under his leadership, a watch that Apple hopes will transform the market of wearable technology. REUTERS/Stephen Lam/Files (United States - Tags: SCIENCE TECHNOLOGY BUSINESS)" /></a>
+                                        <div class="ft-overlay ft-overlay-bottomright-credit ft-overlay-bg20">
+                                            <a href="http://www.ft.com/servicestools/terms/reuters" class="ft-overlay-credit">&#169;Reuters</a> </div>
+                                        <div class="ft-overlay ft-overlay-topleft ft-overlay-bg30">
+                                            <h4 class="ft-overlay-heading"></h4>
+                                            <h4 class="ft-overlay-title"><a href="http://blogs.ft.com/tech-blog/liveblogs/apple-watch-spring-liveblog/" class='ft-link-stealth'>Time for Apple Watch &ndash; live</a></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ft-footer ft-footer-small ft-spc-btm-half"></div>
+                                <div class="article primary image package clearfix" data-pos="1">
+                                    <div class="article-metadata">
+                                        <span class="ft-timestamp">9:17am</span>
+                                        <span class="ft-heading ft-heading-medium ">
+<a href="http://www.ft.com/world" class="ft-link " >WORLD</a>
+</span>
+                                    </div>
+                                    <h3 class="ft-title ft-title-large ft-spc-btm-half"><div class='ftbf-syndicationIndicator' data-uuid='f3cf544c-c199-11e4-8b74-00144feab7de'><a href='http://ftsyndication.com/redirect.php?uuid=f3cf544c-c199-11e4-8b74-00144feab7de&title=Top%20City%20financiers%20warn%20investors%20over%20Grexit%20chaos&action=article' target='_blank'>Download</a></div><a href="http://www.ft.com/cms/s/0/f3cf544c-c199-11e4-8b74-00144feab7de.html" class='ft-link-stealth'>UK business chiefs warn on Grexit risks</a></h3>
+                                    <h4 class="ft-lead ft-lead-large ft-spc-btm-half">Fears that Athens could run out of cash despite bailout extension</h4>
+                                    <ul class="ft-list ft-list-bulletted storyPackage " data-track-region="storyPackage">
+                                        <li class="ft-list-item"> <span class="ft-link-kicker">FT City Network</span>
+                                            <a href="http://www.ft.com/cms/s/0/5357f5f4-c19a-11e4-8b74-00144feab7de.html" class="ft-link ">Transcript — ‘Does Grexit matter any more?’</a>
+                                        </li>
+                                        <li class="ft-list-item"> <span class="ft-link-kicker">In depth</span>
+                                            <a href="http://www.ft.com/indepth/ft-city-network" class="ft-link ft-link-alternative">FT City Network</a>
+                                        </li>
+                                        <li class="ft-list-item">
+                                            <div class='ftbf-syndicationIndicator' data-uuid='d8f0efde-c192-11e4-bd24-00144feab7de'><a target='_blank' href='http://ftsyndication.com/redirect.php?uuid=d8f0efde-c192-11e4-bd24-00144feab7de&title=Athens%20faces%20uphill%20climb%20despite%20deal&action=article'>Download</a></div> <a href="http://www.ft.com/cms/s/0/d8f0efde-c192-11e4-bd24-00144feab7de.html" class="ft-link ">Athens faces uphill climb despite deal</a>
+                                        </li>
+                                        <li class="ft-list-item"> <span class="ft-link-kicker">In depth</span>
+                                            <a href="http://www.ft.com/indepth/greece-debt-crisis" class="ft-link ft-link-alternative">Greece debt crisis</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="top5-column-secondary">
+                                <div class="article secondary comment ft-spc-btm-half clearfix" data-pos="2">
+                                    <h3 class="ft-title ft-title-small ft-spc-btm-qtr"><div class='ftbf-syndicationIndicator' data-uuid='878cf440-c66e-11e4-add0-00144feab7de'><a href='http://ftsyndication.com/redirect.php?uuid=878cf440-c66e-11e4-add0-00144feab7de&title=Live:%20MPs%20quiz%20HSBC%20bosses%20on%20tax&action=article' target='_blank'>Download</a></div><a href="http://blogs.ft.com/westminster/liveblogs/2015-03-09/" class='ft-link-stealth'>Live &mdash; MPs quiz HSBC bosses on tax</a></h3>
+                                    <h4 class="ft-lead ft-lead-small ">Chief executive Stuart Gulliver admits bank has suffered &lsquo;reputational damage&rsquo;</h4>
+                                </div>
+                                <div class="article secondary ft-spc-btm-half clearfix" data-pos="3">
+                                    <div class="article-metadata">
+                                        <span class="ft-timestamp">2:42pm</span>
+                                    </div>
+                                    <h3 class="ft-title ft-title-small ft-spc-btm-qtr"><div class='ftbf-syndicationIndicator' data-uuid='c38eb96a-c65a-11e4-add0-00144feab7de'><a href='http://ftsyndication.com/redirect.php?uuid=c38eb96a-c65a-11e4-add0-00144feab7de&title=Labour%20candidates%20reject%20Blair%20donation&action=article' target='_blank'>Download</a></div><a href="http://www.ft.com/cms/s/0/c38eb96a-c65a-11e4-add0-00144feab7de.html" class='ft-link-stealth'>Labour candidates reject Blair donation</a></h3>
+                                    <h4 class="ft-lead ft-lead-small ">Cash from former prime minister is shunned by two prospective MPs</h4>
+                                </div>
+                                <div class="article secondary ft-spc-btm-half clearfix" data-pos="4">
+                                    <div class="article-metadata">
+                                        <span class="ft-timestamp">12:13pm</span>
+                                    </div>
+                                    <h3 class="ft-title ft-title-small ft-spc-btm-qtr"><div class='ftbf-syndicationIndicator' data-uuid='e0c1a708-c63d-11e4-9bf4-00144feab7de'><a href='http://ftsyndication.com/redirect.php?uuid=e0c1a708-c63d-11e4-9bf4-00144feab7de&title=Bonds%20rally%20as%20ECB%20buying%20programme%20begins&action=article' target='_blank'>Download</a></div><a href="http://www.ft.com/cms/s/0/e0c1a708-c63d-11e4-9bf4-00144feab7de.html" class='ft-link-stealth'>Bonds rally as ECB buying plan begins</a></h3>
+                                    <h4 class="ft-lead ft-lead-small ">Yields on US and German 10-year debt widen to record levels</h4>
+                                </div>
+                                <div class="article secondary ft-spc-btm-half clearfix" data-pos="5">
+                                    <div class="article-metadata">
+                                        <span class="ft-timestamp">2:00pm</span>
+                                    </div>
+                                    <h3 class="ft-title ft-title-small ft-spc-btm-qtr"><div class='ftbf-syndicationIndicator' data-uuid='fd6fb062-c65a-11e4-a13d-00144feab7de'><a href='http://ftsyndication.com/redirect.php?uuid=fd6fb062-c65a-11e4-a13d-00144feab7de&title=JPMorgan%20%E2%80%98whale%E2%80%99%20assistant%20loses%20judicial%20review&action=article' target='_blank'>Download</a></div><a href="http://www.ft.com/cms/s/0/fd6fb062-c65a-11e4-a13d-00144feab7de.html" class='ft-link-stealth'>JPM &lsquo;whale&rsquo; aide loses judicial review</a></h3>
+                                    <h4 class="ft-lead ft-lead-small ">Grout had sought to force UK watchdog to reopen probe</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ft-footer ft-footer-small "></div>
+                    </div>
+
+
+                    <div class="topten " data-comp-name="top10" data-comp-view="top10_simple" data-comp-index="3" data-timer-key="12">
+                        <div class="article secondary first image package ft-spc-btm-full clearfix" data-pos="0">
+                            <div class="ft-image ft-image-secondary ft-spc-btm-qtr">
+                                <a href="http://www.ft.com/cms/s/0/386cb1f8-c62c-11e4-9bf4-00144feab7de.html"><img src="http://im.ft-static.com/content/images/7a2605e9-c131-40ef-b503-33fa8c1272f8.img" alt="A businessman passes a relief in a wall outside a Lloyds TSB bank branch, part of the Lloyds Banking Group Plc, in London, U.K., on Thursday, June 20, 2013. U.K. Chancellor of the Exchequer George Osborne said the government is &quot;actively considering&quot; selling shares in Lloyds Banking Group Plc, though privatizing Royal Bank of Scotland Group Plc is still some way off. Photographer: Matthew Lloyd/Bloomberg" /></a>
+                                <div class="ft-overlay ft-overlay-bottomright-credit ft-overlay-bg20">
+                                    <a href="http://www.ft.com/servicestools/terms/bloomberg" class="ft-overlay-credit">&#169;Bloomberg</a> </div>
+                            </div>
+                            <div class="article-metadata">
+                                <span class="ft-timestamp">9:29am</span>
+                                <span class="ft-heading ft-heading-medium ">
+<a href="http://www.ft.com/companies" class="ft-link " >COMPANIES</a>
+</span>
+                            </div>
+                            <h3 class="ft-title ft-title-medium ft-spc-btm-qtr"><div class='ftbf-syndicationIndicator' data-uuid='386cb1f8-c62c-11e4-9bf4-00144feab7de'><a href='http://ftsyndication.com/redirect.php?uuid=386cb1f8-c62c-11e4-9bf4-00144feab7de&title=Treasury%20sells%20further%201%25%20of%20Lloyds%20Bank%20holding&action=article' target='_blank'>Download</a></div><a href="http://www.ft.com/cms/s/0/386cb1f8-c62c-11e4-9bf4-00144feab7de.html" class='ft-link-stealth'>Treasury sells &pound;500m of Lloyds shares</a></h3>
+                            <h4 class="ft-lead ft-lead-medium ft-spc-btm-qtr">Government stake cut to 22.9% as it drip feeds shares on to market</h4>
+                            <ul class="ft-list ft-list-bulletted storyPackage ft-list-wrapping " data-track-region="storyPackage">
+                                <li class="ft-list-item">
+                                    <div class='ftbf-syndicationIndicator' data-uuid='58984af0-be4d-11e4-8036-00144feab7de'><a target='_blank' href='http://ftsyndication.com/redirect.php?uuid=58984af0-be4d-11e4-8036-00144feab7de&title=Lloyds%20to%20pay%20first%20dividend%20in%206%20years&action=article'>Download</a></div> <a href="http://www.ft.com/cms/s/0/58984af0-be4d-11e4-8036-00144feab7de.html" class="ft-link ">Lloyds to pay first dividend in 6 years</a>
+                                </li>
+                                <li class="ft-list-item">
+                                    <div class='ftbf-syndicationIndicator' data-uuid='f9cbfb68-be8b-11e4-a341-00144feab7de'><a target='_blank' href='http://ftsyndication.com/redirect.php?uuid=f9cbfb68-be8b-11e4-a341-00144feab7de&title=Lloyds%20and%20RBS%20%E2%80%94%20fashion%20statements&action=article'>Download</a></div> <span class="ft-link-kicker">Lex</span>
+                                    <a href="http://www.ft.com/cms/s/3/f9cbfb68-be8b-11e4-a341-00144feab7de.html" class="ft-link ">Lloyds and RBS — fashion statements</a>
+                                </li>
+                                <li class="ft-list-item">
+                                    <div class='ftbf-syndicationIndicator' data-uuid='a8480880-be64-11e4-8036-00144feab7de'><a target='_blank' href='http://ftsyndication.com/redirect.php?uuid=a8480880-be64-11e4-8036-00144feab7de&title=Treasury%20apologises%20for%20Lloyds%20bond%20error&action=article'>Download</a></div> <a href="http://www.ft.com/cms/s/0/a8480880-be64-11e4-8036-00144feab7de.html" class="ft-link ">Treasury apologises for Lloyds bond error</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="article secondary image package ft-spc-btm-full clearfix" data-pos="1">
+                            <div class="ft-image ft-image-secondary ft-spc-btm-qtr">
+                                <a href="http://www.ft.com/cms/s/0/6e5c3b1a-c3ef-11e4-a02e-00144feab7de.html"><img src="http://im.ft-static.com/content/images/5e6ea695-be30-4c02-90ee-9594e63ce1c9.img" alt="CHELTENHAM, ENGLAND - MARCH 09: (EDITORS NOTE: This image was created using digital filters) The Gordon Elliott string on the gallops at Cheltenham racecourse on March 09, 2015 in Cheltenham, England. (Photo by Alan Crowhurst/Getty Images)" /></a>
+                                <div class="ft-overlay ft-overlay-bottomright-credit ft-overlay-bg20">
+                                    <a href="http://www.ft.com/servicestools/terms/getty" class="ft-overlay-credit">&#169;Getty</a> </div>
+                            </div>
+                            <div class="article-metadata">
+                                <span class="ft-timestamp">12:41pm</span>
+                                <span class="ft-heading ft-heading-medium ">
+<a href="http://www.ft.com/companies" class="ft-link " >COMPANIES</a>
+</span>
+                            </div>
+                            <h3 class="ft-title ft-title-medium ft-spc-btm-qtr"><div class='ftbf-syndicationIndicator' data-uuid='6e5c3b1a-c3ef-11e4-a02e-00144feab7de'><a href='http://ftsyndication.com/redirect.php?uuid=6e5c3b1a-c3ef-11e4-a02e-00144feab7de&title=Bookmakers%20fear%20havoc%20on%20Cheltenham%20Festival%E2%80%99s%20opening%20day&action=article' target='_blank'>Download</a></div><a href="http://www.ft.com/cms/s/0/6e5c3b1a-c3ef-11e4-a02e-00144feab7de.html" class='ft-link-stealth'>Bookies fear havoc at Cheltenham opening</a></h3>
+                            <h4 class="ft-lead ft-lead-medium ft-spc-btm-qtr">Veteran trainer Mullins fields array of favourites</h4>
+                            <ul class="ft-list ft-list-bulletted storyPackage ft-list-wrapping " data-track-region="storyPackage">
+                                <li class="ft-list-item">
+                                    <div class='ftbf-syndicationIndicator' data-uuid='73135658-c30d-11e4-ac3d-00144feab7de'><a target='_blank' href='http://ftsyndication.com/redirect.php?uuid=73135658-c30d-11e4-ac3d-00144feab7de&title=Betfair%20beats%20rivals%20as%20it%20raises%20forecast&action=article'>Download</a></div> <a href="http://www.ft.com/cms/s/0/73135658-c30d-11e4-ac3d-00144feab7de.html" class="ft-link ">Betfair beats rivals as it raises forecast</a>
+                                </li>
+                                <li class="ft-list-item">
+                                    <div class='ftbf-syndicationIndicator' data-uuid='3dd8aa4e-7b8f-11e4-a695-00144feabdc0'><a target='_blank' href='http://ftsyndication.com/redirect.php?uuid=3dd8aa4e-7b8f-11e4-a695-00144feabdc0&title=Betfair%20raises%20dividend%20after%20World%20Cup&action=article'>Download</a></div> <a href="http://www.ft.com/cms/s/0/3dd8aa4e-7b8f-11e4-a695-00144feabdc0.html" class="ft-link ">Betfair raises dividend after World Cup</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="article secondary image package ft-spc-btm-full clearfix" data-pos="2">
+                            <div class="ft-image ft-image-secondary ft-spc-btm-qtr">
+                                <a href="http://www.ft.com/cms/s/0/4bedb9b8-c62f-11e4-9bf4-00144feab7de.html"><img src="http://im.ft-static.com/content/images/9429ade6-d9f2-41ed-aa06-211e1086486b.img" alt="WPP chief Sir Martin Sorrell" /></a>
+                                <div class="ft-overlay ft-overlay-bottomright-credit ft-overlay-bg20">
+                                    <a href="http://www.ft.com/servicestools/terms/afp" class="ft-overlay-credit">&#169;AFP</a> </div>
+                            </div>
+                            <div class="article-metadata">
+                                <span class="ft-timestamp">8:50am</span>
+                                <span class="ft-heading ft-heading-medium ">
+<a href="http://www.ft.com/companies" class="ft-link " >COMPANIES</a>
+</span>
+                            </div>
+                            <h3 class="ft-title ft-title-medium ft-spc-btm-qtr"><div class='ftbf-syndicationIndicator' data-uuid='4bedb9b8-c62f-11e4-9bf4-00144feab7de'><a href='http://ftsyndication.com/redirect.php?uuid=4bedb9b8-c62f-11e4-9bf4-00144feab7de&title=WPP%20warns%20UK%20election%20will%20hurt%20business&action=article' target='_blank'>Download</a></div><a href="http://www.ft.com/cms/s/0/4bedb9b8-c62f-11e4-9bf4-00144feab7de.html" class='ft-link-stealth'>WPP cautions on UK election risk</a></h3>
+                            <h4 class="ft-lead ft-lead-medium ft-spc-btm-qtr">Advertising group points to uncertainty after polls</h4>
+                            <ul class="ft-list ft-list-bulletted storyPackage ft-list-wrapping " data-track-region="storyPackage">
+                                <li class="ft-list-item">
+                                    <div class='ftbf-syndicationIndicator' data-uuid='50332d42-c64c-11e4-9bf4-00144feab7de'><a target='_blank' href='http://ftsyndication.com/redirect.php?uuid=50332d42-c64c-11e4-9bf4-00144feab7de&title=The%20irrationality%20of%20opposing%20pay%20ratios&action=article'>Download</a></div> <span class="ft-link-kicker">Lombard</span>
+                                    <a href="http://www.ft.com/cms/s/0/50332d42-c64c-11e4-9bf4-00144feab7de.html" class="ft-link ">The irrationality of opposing pay ratios</a>
+                                </li>
+                                <li class="ft-list-item">
+                                    <div class='ftbf-syndicationIndicator' data-uuid='5cf7fafe-bbb0-11e4-aa71-00144feab7de'><a target='_blank' href='http://ftsyndication.com/redirect.php?uuid=5cf7fafe-bbb0-11e4-aa71-00144feab7de&title=WPP%20/%20ComScore%20%E2%80%94%20measure%20for%20measure&action=article'>Download</a></div> <span class="ft-link-kicker">Lex</span>
+                                    <a href="http://www.ft.com/cms/s/3/5cf7fafe-bbb0-11e4-aa71-00144feab7de.html" class="ft-link ">WPP / ComScore — measure for measure</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="midriff midriffDouble clearfix" data-comp-name="midriff" data-comp-view="midriff_double" data-comp-index="3_0" data-timer-key="13">
+                            <div class="column media">
+                                <div class="midriff-heading">
+                                    <h3 data-pos="0">
+<a href="http://www.ft.com/cms/s/0/ebffee56-c361-11e4-9c27-00144feab7de.html" >
+Free Lunch: Sub zero and peak cash
+</a>
+</h3>
+                                </div>
+                                <div class="clearfix" data-pos="2">
+                                    <span class="story-image">
+<a href="http://www.ft.com/cms/s/0/ebffee56-c361-11e4-9c27-00144feab7de.html" >
+<img src="http://im.ft-static.com/content/images/013d2be4-85e9-4554-8932-e2634f0bde09.img" alt="A trader monitors financial data on his computer screens at the Frankfurt Stock Exchange in Frankfurt, Germany, on Wednesday, Aug. 21, 2013. European stocks declined for a third day, their longest losing streak in eight weeks, as investors awaited the release of minutes from the Federal Reserve&#39;s July meeting. U.S. index futures and Asian shares also retreated. Photographer: Ralph Orlowski/Bloomberg" />
+</a>
+<a href="http://www.ft.com/servicestools/terms/bloomberg" class="credit">&#169;Bloomberg</a>
+</span>
+                                    <h4>
+<a href="http://www.ft.com/cms/s/0/ebffee56-c361-11e4-9c27-00144feab7de.html" >
+Wherever the lower bound on interest rates is, it is both lower than most people think and set to keep falling.
+</a>
+</h4>
+                                </div>
+                            </div>
+                            <div class="column media">
+                                <div class="midriff-heading">
+                                    <h3 data-pos="1">
+<a href="http://www.ft.com/cms/s/0/4eb29b92-c3ea-11e4-a02e-00144feab7de.html" >
+Why I hope Etsy survives with its soul intact
+</a>
+</h3>
+                                </div>
+                                <div class="clearfix" data-pos="12">
+                                    <span class="story-image">
+<a href="http://www.ft.com/cms/s/0/4eb29b92-c3ea-11e4-a02e-00144feab7de.html" >
+<img src="http://im.ft-static.com/content/images/bfd43802-8d9f-4560-bb58-e67da5d066c0.img" alt="The Etsy Inc. logo is displayed for a photograph on a smartphone next to sewing supplies in Tiskilwa, Illinois, U.S., on Tuesday, Jan. 20, 2015. Etsy Inc., the online marketplace for handmade and vintage goods, is poised to carve out a big valuation for itself as the e-commerce company readies an initial public offering. Photographer: Daniel Acker/Bloomberg" />
+</a>
+<a href="http://www.ft.com/servicestools/terms/bloomberg" class="credit">&#169;Bloomberg</a>
+</span>
+                                    <h4>
+<a href="http://www.ft.com/cms/s/0/4eb29b92-c3ea-11e4-a02e-00144feab7de.html" >
+The effect of listing on the online craft marketplace will stand as an important test case, writes Andrew Hill
+</a>
+</h4>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="article secondary image package ft-spc-btm-full clearfix" data-pos="3">
+                            <div class="ft-image ft-image-secondary ft-spc-btm-qtr">
+                                <a href="http://www.ft.com/cms/s/0/31598e46-c662-11e4-add0-00144feab7de.html"><img src="http://im.ft-static.com/content/images/cb633a71-f93b-418d-ac24-1a77fced84ca.img" alt="McDonalds Golden Arches" /></a>
+                                <div class="ft-overlay ft-overlay-bottomright-credit ft-overlay-bg20">
+                                    <a href="http://www.ft.com/servicestools/terms/associated-press" class="ft-overlay-credit">&#169;AP</a> </div>
+                            </div>
+                            <div class="article-metadata">
+                                <span class="ft-timestamp">1:55pm</span>
+                                <span class="ft-heading ft-heading-medium ">
+<a href="http://www.ft.com/companies" class="ft-link " >COMPANIES</a>
+</span>
+                            </div>
+                            <h3 class="ft-title ft-title-medium ft-spc-btm-qtr"><div class='ftbf-syndicationIndicator' data-uuid='31598e46-c662-11e4-add0-00144feab7de'><a href='http://ftsyndication.com/redirect.php?uuid=31598e46-c662-11e4-add0-00144feab7de&title=McDonald%E2%80%99s%20warns%20of%20%E2%80%98urgent%E2%80%99%20need%20for%20change&action=article' target='_blank'>Download</a></div><a href="http://www.ft.com/cms/s/0/31598e46-c662-11e4-add0-00144feab7de.html" class='ft-link-stealth'>McDonald&rsquo;s warns &lsquo;urgent&rsquo; change needed</a></h3>
+                            <h4 class="ft-lead ft-lead-medium ft-spc-btm-qtr">Sales fall more than expected, driven by US decline</h4>
+                            <ul class="ft-list ft-list-bulletted storyPackage ft-list-wrapping " data-track-region="storyPackage">
+                                <li class="ft-list-item">
+                                    <div class='ftbf-syndicationIndicator' data-uuid='aeeaf598-bcfd-11e4-9902-00144feab7de'><a target='_blank' href='http://ftsyndication.com/redirect.php?uuid=aeeaf598-bcfd-11e4-9902-00144feab7de&title=Report%20links%20McDonald%E2%80%99s%20to%20EU%20tax%20avoidance%20scandal&action=article'>Download</a></div> <a href="http://www.ft.com/cms/s/0/aeeaf598-bcfd-11e4-9902-00144feab7de.html" class="ft-link ">Report links McDonald’s to EU tax avoidance scandal</a>
+                                </li>
+                                <li class="ft-list-item">
+                                    <div class='ftbf-syndicationIndicator' data-uuid='a0ae49f0-bc6f-11e4-a6d7-00144feab7de'><a target='_blank' href='http://ftsyndication.com/redirect.php?uuid=a0ae49f0-bc6f-11e4-a6d7-00144feab7de&title=McDonald%E2%80%99s%20franchisee%20sued%20by%20Brazilian%20unions&action=article'>Download</a></div> <a href="http://www.ft.com/cms/s/0/a0ae49f0-bc6f-11e4-a6d7-00144feab7de.html" class="ft-link ">McDonald’s franchisee sued by Brazilian unions</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="article secondary image package ft-spc-btm-full clearfix" data-pos="4">
+                            <div class="ft-image ft-image-secondary ft-spc-btm-qtr">
+                                <a href="http://www.ft.com/cms/s/0/a60af130-c658-11e4-a13d-00144feab7de.html"><img src="http://im.ft-static.com/content/images/6a5c5c51-54d9-4208-b046-cb2145e3048b.img" alt="GM Battery Begins Assembly Of Electric Battery For Its Volt Car...BROWNSTOWN TOWNSHIP, MI - JANUARY O7: The first battery pack for the General Motors Chevrolet Volt extended-range electric vehicle comes off the assembly line January 7, 2010 in Brownstown Township, Michigan. GM is the first major automaker to manufacture an advanced lithium-ion battery pack in the U.S. (Photo by Bill Pugliano/Getty Images)" /></a>
+                                <div class="ft-overlay ft-overlay-bottomright-credit ft-overlay-bg20">
+                                    <a href="http://www.ft.com/servicestools/terms/getty" class="ft-overlay-credit">&#169;Getty</a> </div>
+                            </div>
+                            <div class="article-metadata">
+                                <span class="ft-timestamp">1:13pm</span>
+                                <span class="ft-heading ft-heading-medium ">
+<a href="http://www.ft.com/companies" class="ft-link " >COMPANIES</a>
+</span>
+                            </div>
+                            <h3 class="ft-title ft-title-medium ft-spc-btm-qtr"><div class='ftbf-syndicationIndicator' data-uuid='a60af130-c658-11e4-a13d-00144feab7de'><a href='http://ftsyndication.com/redirect.php?uuid=a60af130-c658-11e4-a13d-00144feab7de&title=GM%20plans%20$5bn%20buyback%20in%20deal%20with%20activists&action=article' target='_blank'>Download</a></div><a href="http://www.ft.com/cms/s/0/a60af130-c658-11e4-a13d-00144feab7de.html" class='ft-link-stealth'>GM plans $5bn buyback in deal with activists</a></h3>
+                            <h4 class="ft-lead ft-lead-medium ft-spc-btm-qtr">Harry Wilson agrees to drop bid to join carmaker&rsquo;s board</h4>
+                            <ul class="ft-list ft-list-bulletted storyPackage ft-list-wrapping " data-track-region="storyPackage">
+                                <li class="ft-list-item">
+                                    <div class='ftbf-syndicationIndicator' data-uuid='a336b45e-be2d-11e4-9d09-00144feab7de'><a target='_blank' href='http://ftsyndication.com/redirect.php?uuid=a336b45e-be2d-11e4-9d09-00144feab7de&title=GM%20faces%20reality%20check%20in%20SE%20Asia&action=article'>Download</a></div> <a href="http://www.ft.com/cms/s/0/a336b45e-be2d-11e4-9d09-00144feab7de.html" class="ft-link ">GM faces reality check in SE Asia</a>
+                                </li>
+                                <li class="ft-list-item">
+                                    <div class='ftbf-syndicationIndicator' data-uuid='876321e8-bd71-11e4-9902-00144feab7de'><a target='_blank' href='http://ftsyndication.com/redirect.php?uuid=876321e8-bd71-11e4-9902-00144feab7de&title=GM%20to%20end%20Indonesia%20vehicle%20manufacturing&action=article'>Download</a></div> <a href="http://www.ft.com/cms/s/0/876321e8-bd71-11e4-9902-00144feab7de.html" class="ft-link ">GM to end Indonesia vehicle manufacturing</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="article secondary image package ft-spc-btm-full clearfix" data-pos="5">
+                            <div class="ft-image ft-image-secondary ft-spc-btm-qtr">
+                                <a href="http://www.ft.com/cms/s/0/1977c546-c639-11e4-add0-00144feab7de.html"><img src="http://im.ft-static.com/content/images/c2969fcb-22c0-4786-a9c7-fc3e296b17d8.img" alt="Tanker Glut Signals 25% Slump In Freight Rates This Year...Oil tankers are anchored near the Port of Long Beach, California, U.S., on Thursday, Dec. 31, 2009. A surplus of idled oil tankers, which would stretch 26 miles if lined up end to end, may signal a 25 percent slump in freight rates this year. The ships will unload 26 percent of the crude and oil products they are storing in six months, adding to vessel supply and pushing rates for supertankers down to an average of $30,000 a day, compared with $40,212 now. Photographer: Tim Rue/Bloomberg" /></a>
+                                <div class="ft-overlay ft-overlay-bottomright-credit ft-overlay-bg20">
+                                    <a href="http://www.ft.com/servicestools/terms/bloomberg" class="ft-overlay-credit">&#169;Bloomberg</a> </div>
+                            </div>
+                            <div class="article-metadata">
+                                <span class="ft-timestamp">4:03pm</span>
+                                <span class="ft-heading ft-heading-medium ">
+<a href="http://www.ft.com/markets" class="ft-link " >MARKETS</a>
+</span>
+                            </div>
+                            <h3 class="ft-title ft-title-medium ft-spc-btm-qtr"><div class='ftbf-syndicationIndicator' data-uuid='1977c546-c639-11e4-add0-00144feab7de'><a href='http://ftsyndication.com/redirect.php?uuid=1977c546-c639-11e4-add0-00144feab7de&title=Traders%20left%20adrift%20as%20oil%20storage%20trade%20loses%20its%20lustre&action=article' target='_blank'>Download</a></div><a href="http://www.ft.com/cms/s/0/1977c546-c639-11e4-add0-00144feab7de.html" class='ft-link-stealth'>Traders adrift over oil storage trade</a></h3>
+                            <h4 class="ft-lead ft-lead-medium ft-spc-btm-qtr">Tankers leased as contango fails to live up to hopes</h4>
+                            <ul class="ft-list ft-list-bulletted storyPackage ft-list-wrapping " data-track-region="storyPackage">
+                                <li class="ft-list-item">
+                                    <div class='ftbf-syndicationIndicator' data-uuid='f7e0337e-c425-11e4-9019-00144feab7de'><a target='_blank' href='http://ftsyndication.com/redirect.php?uuid=f7e0337e-c425-11e4-9019-00144feab7de&title=Oil%20falls%20on%20prospect%20of%20Iran%E2%80%99s%20return&action=article'>Download</a></div> <a href="http://www.ft.com/cms/s/0/f7e0337e-c425-11e4-9019-00144feab7de.html" class="ft-link ">Oil falls on prospect of Iran’s return</a>
+                                </li>
+                                <li class="ft-list-item">
+                                    <div class='ftbf-syndicationIndicator' data-uuid='96bd2cec-c258-11e4-ad89-00144feab7de'><a target='_blank' href='http://ftsyndication.com/redirect.php?uuid=96bd2cec-c258-11e4-ad89-00144feab7de&title=US%20oil%20industry%20needs%20capital%20to%20keep%20flowing&action=article'>Download</a></div> <span class="ft-link-kicker">Comment</span>
+                                    <a href="http://www.ft.com/cms/s/0/96bd2cec-c258-11e4-ad89-00144feab7de.html" class="ft-link ">US oil industry needs capital to keep flowing</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="article secondary image package ft-spc-btm-full clearfix" data-pos="6">
+                            <div class="ft-image ft-image-secondary ft-spc-btm-qtr">
+                                <a href="http://www.ft.com/cms/s/0/56a871cc-c634-11e4-9bf4-00144feab7de.html"><img src="http://im.ft-static.com/content/images/ada0a947-c014-47cc-a927-06b43c80d908.img" alt="Marco Pantani, right, races Lance Armstrong in the Tour de France in 2000" /></a>
+                                <div class="ft-overlay ft-overlay-bottomright-credit ft-overlay-bg20">
+                                    <span class="ft-overlay-credit">&#169;Christophe Ena/AP</span> </div>
+                            </div>
+                            <div class="article-metadata">
+                                <span class="ft-timestamp">12:38pm</span>
+                                <span class="ft-heading ft-heading-medium ">
+<a href="http://www.ft.com/world" class="ft-link " >WORLD</a>
+</span>
+                            </div>
+                            <h3 class="ft-title ft-title-medium ft-spc-btm-qtr"><div class='ftbf-syndicationIndicator' data-uuid='56a871cc-c634-11e4-9bf4-00144feab7de'><a href='http://ftsyndication.com/redirect.php?uuid=56a871cc-c634-11e4-9bf4-00144feab7de&title=Cycling%20bosses%20slammed%20over%20Lance%20Armstrong&action=article' target='_blank'>Download</a></div><a href="http://www.ft.com/cms/s/0/56a871cc-c634-11e4-9bf4-00144feab7de.html" class='ft-link-stealth'>Cycling bosses slammed over Armstrong</a></h3>
+                            <h4 class="ft-lead ft-lead-medium ft-spc-btm-qtr">Official report finds UCI repeatedly protected disgraced star</h4>
+                            <ul class="ft-list ft-list-bulletted storyPackage ft-list-wrapping " data-track-region="storyPackage">
+                                <li class="ft-list-item"> <a href="http://www.ft.com/cms/s/0/e5824024-ace3-11e2-b27f-00144feabdc0.html" class="ft-link ">Lance Armstrong sued by US government</a>
+                                </li>
+                                <li class="ft-list-item"> <a href="http://www.ft.com/cms/s/0/aca9cc68-7d36-11e2-8bd7-00144feabdc0.html" class="ft-link ">US joins suit against Armstrong</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <h2 class="bracket bracket_nocolon">
+<span >Comment and Analysis</span>
+</h2>
+                        <div class="article secondary image package ft-spc-btm-full clearfix" data-pos="7">
+                            <div class="ft-image ft-image-secondary ft-spc-btm-qtr">
+                                <a href="http://www.ft.com/cms/s/0/e8783bee-c433-11e4-9019-00144feab7de.html"><img src="http://im.ft-static.com/content/images/dd9cf86f-f088-48d6-829e-56b18a8c012d.img" alt="" /></a>
+                                <div class="ft-overlay ft-overlay-bottomright-credit ft-overlay-bg20">
+                                    <a href="http://www.ft.com/servicestools/terms/epa" class="ft-overlay-credit">&#169;EPA</a> </div>
+                            </div>
+                            <div class="article-metadata">
+                                <span class="ft-timestamp">3:09pm</span>
+                                <span class="ft-heading ft-heading-medium ">
+<a href="http://www.ft.com/companies" class="ft-link " >COMPANIES</a>
+</span>
+                            </div>
+                            <h3 class="ft-title ft-title-medium ft-spc-btm-qtr"><div class='ftbf-syndicationIndicator' data-uuid='e8783bee-c433-11e4-9019-00144feab7de'><a href='http://ftsyndication.com/redirect.php?uuid=e8783bee-c433-11e4-9019-00144feab7de&title=Decay%20of%20UK%20investment%20banking%20leaves%20smaller%20clients%20exposed&action=article' target='_blank'>Download</a></div><a href="http://www.ft.com/cms/s/0/e8783bee-c433-11e4-9019-00144feab7de.html" class='ft-link-stealth'>Decay of UK investment banking</a></h3>
+                            <h4 class="ft-lead ft-lead-medium ft-spc-btm-qtr">Wimbledon model seen as loss for mid-market groups</h4>
+                            <ul class="ft-list ft-list-bulletted storyPackage ft-list-wrapping " data-track-region="storyPackage">
+                                <li class="ft-list-item">
+                                    <div class='ftbf-syndicationIndicator' data-uuid='b48271fa-c3fd-11e4-a02e-00144feab7de'><a target='_blank' href='http://ftsyndication.com/redirect.php?uuid=b48271fa-c3fd-11e4-a02e-00144feab7de&title=The%20government%20should%20soon%20sell%20its%20stake%20in%20RBS&action=article'>Download</a></div> <span class="ft-link-kicker">FT View</span>
+                                    <a href="http://www.ft.com/cms/s/0/b48271fa-c3fd-11e4-a02e-00144feab7de.html" class="ft-link ">The government should soon sell its stake in RBS</a>
+                                </li>
+                                <li class="ft-list-item">
+                                    <div class='ftbf-syndicationIndicator' data-uuid='0a5bd8a2-c3f2-11e4-9019-00144feab7de'><a target='_blank' href='http://ftsyndication.com/redirect.php?uuid=0a5bd8a2-c3f2-11e4-9019-00144feab7de&title=RBS%20job%20cuts%20draw%20attention%20to%20staff%20numbers&action=article'>Download</a></div> <span class="ft-link-kicker">The Top Line</span>
+                                    <a href="http://www.ft.com/cms/s/0/0a5bd8a2-c3f2-11e4-9019-00144feab7de.html" class="ft-link ">RBS job cuts draw attention to staff numbers</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="article secondary image package comment ft-spc-btm-full clearfix" data-pos="8">
+                            <div class="ft-image ft-image-secondary ft-spc-btm-qtr">
+                                <a href="http://blogs.ft.com/brusselsblog/2015/03/09/will-the-troika-return-to-athens/"><img src="http://im.ft-static.com/content/images/3c12d22e-31ff-432e-af7c-8ec300e97da0.img" alt="Birds fly past the Acropolis in Athens o...Birds fly past the Acropolis in Athens on February 19, 2015. Greece asked its EU creditors for six-month loan assistance, pledging to respect fiscal balance but rejecting further austerity, a government source said. AFP PHOTO / LOUISA GOULIAMAKILOUISA GOULIAMAKI/AFP/Getty Images" /></a>
+                                <div class="ft-overlay ft-overlay-bottomright-credit ft-overlay-bg20">
+                                    <a href="http://www.ft.com/servicestools/terms/afp" class="ft-overlay-credit">&#169;AFP</a> </div>
+                            </div>
+                            <div class="article-metadata">
+                                <span class="ft-timestamp">10:26am</span>
+                                <span class="ft-heading ft-heading-medium ">
+<a href="http://blogs.ft.com/brusselsblog/" class="ft-link " >Brussels Blog</a>
+</span>
+                                <span class="from-label">from</span> <span class="ft-heading ft-heading-medium ">
+<a href="http://www.ft.com/comment" class="ft-link " >COMMENT</a>
+</span>
+                            </div>
+                            <h3 class="ft-title ft-title-medium ft-spc-btm-qtr"><a href="http://blogs.ft.com/brusselsblog/2015/03/09/will-the-troika-return-to-athens/" class='ft-link-stealth'>Will the &lsquo;troika&rsquo; return to Athens?</a></h3>
+                            <h4 class="ft-lead ft-lead-medium ft-spc-btm-qtr">Dijsselbloem outlines plans in letter to Varoufakis</h4>
+                            <ul class="ft-list ft-list-bulletted storyPackage ft-list-wrapping " data-track-region="storyPackage">
+                                <li class="ft-list-item"> <span class="ft-link-kicker">FT City Network</span>
+                                    <a href="http://www.ft.com/cms/s/0/5357f5f4-c19a-11e4-8b74-00144feab7de.html" class="ft-link ">Transcript — ‘Does Grexit matter any more?’</a>
+                                </li>
+                                <li class="ft-list-item">
+                                    <div class='ftbf-syndicationIndicator' data-uuid='f3cf544c-c199-11e4-8b74-00144feab7de'><a target='_blank' href='http://ftsyndication.com/redirect.php?uuid=f3cf544c-c199-11e4-8b74-00144feab7de&title=Grexit%20risks%20underestimated&action=article'>Download</a></div> <span class="ft-link-kicker">City leaders</span>
+                                    <a href="http://www.ft.com/cms/s/0/f3cf544c-c199-11e4-8b74-00144feab7de.html" class="ft-link ">Grexit risks underestimated</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="article secondary image ft-spc-btm-full clearfix" data-pos="9">
+                            <div class="ft-image ft-image-secondary ft-spc-btm-qtr">
+                                <a href="http://www.ft.com/cms/s/0/cef7bda8-c662-11e4-a13d-00144feab7de.html"><img src="http://im.ft-static.com/content/images/93925ac3-b0c0-4822-ae52-fba357c7efd2.img" alt="Bangladesh bowler Rubel Hossain (C) and team mates Soumya Sarker (L) and Taskin Ahmed (on Hossain&#39;s back) react after England captain Eoin Morgan (R) was caught out for a duck during their Cricket World Cup match in Adelaide, March 9, 2015. REUTERS/David Gray (AUSTRALIA - Tags: SPORT CRICKET TPX IMAGES OF THE DAY)" /></a>
+                                <div class="ft-overlay ft-overlay-bottomright-credit ft-overlay-bg20">
+                                    <a href="http://www.ft.com/servicestools/terms/reuters" class="ft-overlay-credit">&#169;Reuters</a> </div>
+                            </div>
+                            <div class="article-metadata">
+                                <span class="ft-timestamp">2:19pm</span>
+                                <span class="ft-heading ft-heading-medium ">
+<a href="http://www.ft.com/world/uk" class="ft-link " >UK</a>
+</span>
+                            </div>
+                            <h3 class="ft-title ft-title-medium ft-spc-btm-qtr"><div class='ftbf-syndicationIndicator' data-uuid='cef7bda8-c662-11e4-a13d-00144feab7de'><a href='http://ftsyndication.com/redirect.php?uuid=cef7bda8-c662-11e4-a13d-00144feab7de&title=England%20left%20to%20rue%20cricket%20World%20Cup%20exit&action=article' target='_blank'>Download</a></div><a href="http://www.ft.com/cms/s/0/cef7bda8-c662-11e4-a13d-00144feab7de.html" class='ft-link-stealth'>England rue cricket World Cup exit</a></h3>
+                            <h4 class="ft-lead ft-lead-medium ft-spc-btm-qtr">Team&rsquo;s dismal tournament ends at the hands of Bangladesh</h4>
+                        </div>
+                    </div>
+
+
+                    <div class="freestyle" data-comp-name="freestyle" data-comp-view="freestyle" data-comp-index="4" data-timer-key="14" id="239777">
+                        <h2 class="bracket bracket_nocolon">
+<span>Best comments from our readers</span>
+</h2>
+                        <div style="font-size:14px" data-track-comp-name="bestComments">
+                            <p data-track-pos="2">"For the young rent is over 40% of wages. Why do we have to keep paying the rentiers who generate no wealth? We don't need a new productivity revolution, we need to crush the rentiers. There is your paradigm shift."
+                                <br /> By <a href="http://on.ft.com/1BD9nJT">/B</a> on <a href="http://www.ft.com/cms/s/0/03f60e96-c1d2-11e4-bd24-00144feab7de.html#axzz3TWhjyJwK">Blame feeble productivity growth for stagnant living standards</a>
+                            </p>
+                            <br />
+                            <p data-track-pos="2">"I want to see a cartoon with all the EZ leaders and Draghi peddling a Heath Robinson-esque 19 seater bicycle over a cliff with the caption: 'Our timing is perfect, and the end is nigh . . .'."
+                                <br /> By <a href="http://on.ft.com/1wQWgPF">
+Kiacofomo</a> on <a href="http://www.ft.com/cms/s/2/390a26b6-c359-11e4-8fa9-00144feab7de.html#axzz3TWhjyJwK">With perfect timing, ECB’s Draghi calls end to eurozone crisis</a>
+                            </p>
+                            <br />
+                        </div>
+                    </div>
+
+
+                    <div class="triplet clearfix" data-comp-name="triplet" data-comp-view="triplet" data-comp-index="5" data-timer-key="15">
+                        <span class="heading" data-pos="0">
+More on FT.com
+</span>
+                        <div class="firstStory" data-pos="1">
+                            <h4>
+<a href="http://video.ft.com/view-from-the-top" class="label"><span>View from the Top video</span></a>
+</h4>
+                            <span class="story-image">
+<a href="http://video.ft.com/4090915572001/VMware-on-how-to-be-successful-in-China/Companies" >
+<img src="http://im.ft-static.com/content/images/4beacf17-8db3-418b-96bd-46f1b2b8c5a0.img" alt="vmware" />
+</a>
+<span class="credit manualSource"></span>
+                            <span class="img-overlay img-overlay-icon-video"></span>
+                            </span>
+                            <a href="http://video.ft.com/4090915572001/VMware-on-how-to-be-successful-in-China/Companies">
+                                <span class="content"> VMware on how to be successful in China</span>
+                            </a>
+                        </div>
+                        <div data-pos="2">
+                            <h4>
+<a href="http://video.ft.com/authers-note" class="label"><span>authers&rsquo; note</span></a>
+</h4>
+                            <span class="story-image">
+<a href="http://video.ft.com/4099041104001/New-direction/Markets" >
+<img src="http://im.ft-static.com/content/images/45dcd370-c589-11e4-ab8f-00144feab7de.img" alt="" />
+</a>
+<span class="credit manualSource"></span>
+                            </span>
+                            <a href="http://video.ft.com/4099041104001/New-direction/Markets">
+                                <span class="content"> A new direction for US monetary policy</span>
+                            </a>
+                        </div>
+                        <div data-pos="3">
+                            <h4>
+<a href="http://blogs.ft.com/beyond-brics/" class="label"><span>beyondbrics</span></a>
+</h4>
+                            <span class="story-image">
+<a href="http://blogs.ft.com/beyond-brics/2015/03/08/guest-post-poverty-is-sexist/" >
+<img src="http://im.ft-static.com/content/images/b7aba4c9-eaf5-4d8a-a8a9-c17138d405b5.img" alt="An Indian woman does domestic chores at her home following cross-border firing at the India/Pakistan border" />
+</a>
+<a href="http://www.ft.com/servicestools/terms/getty" class="credit">&#169;Getty</a>
+</span>
+                            <a href="http://blogs.ft.com/beyond-brics/2015/03/08/guest-post-poverty-is-sexist/">
+                                <span class="content"> Guest post: Poverty is sexist</span>
+                            </a>
+                        </div>
+                    </div>
+
+
+                    <div class="feedBoxes clearfix" data-comp-name="feedboxes" data-comp-view="feedboxes" data-comp-index="6" data-timer-key="16">
+                        <h3 data-pos="0">
+More stories
+</h3>
+                        <div class="feedBoxRow doubleColumn">
+                            <div class="feedBox">
+                                <h4 data-pos="1">
+<a href="http://www.ft.com/world" >
+World
+</a>
+</h4>
+                                <ul data-pos="2">
+                                    <li>
+                                        <a href="http://www.ft.com/cms/s/0/4952d930-c5a4-11e4-bd6b-00144feab7de.html">
+Two men charged over Nemtsov murder
+</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.ft.com/cms/s/0/da6282ac-c641-11e4-add0-00144feab7de.html">
+Merkel intervenes in Japanese war debate
+</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.ft.com/cms/s/0/db622d4c-c0f6-11e4-88ca-00144feab7de.html">
+Anti-fracking protests disrupt Algeria
+</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.ft.com/cms/s/0/1141286a-c588-11e4-bd6b-00144feab7de.html">
+Juncker calls for creation of EU army
+</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="feedBox">
+                                <h4 data-pos="3">
+<a href="http://www.ft.com/markets" >
+Markets
+</a>
+</h4>
+                                <ul data-pos="4">
+                                    <li>
+                                        <a href="http://www.ft.com/cms/s/0/542e14bc-c60a-11e4-ab8f-00144feab7de.html">
+German Bund yields fall as ECB starts QE
+</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.ft.com/cms/s/0/49351d92-c657-11e4-a13d-00144feab7de.html">
+Euro’s fall triggers dollar parity chat
+</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.ft.com/cms/s/0/d7db4be4-c264-11e4-ad89-00144feab7de.html">
+Policy tug of war outcome hard to predict
+</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.ft.com/cms/s/0/ba51bd80-c447-11e4-9019-00144feab7de.html">
+Investors eye US spending data and ECB QE
+</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="feedBoxRow doubleColumn">
+                            <div class="feedBox">
+                                <h4 data-pos="5">
+<a href="http://www.ft.com/companies" >
+Companies
+</a>
+</h4>
+                                <ul data-pos="6">
+                                    <li>
+                                        <a href="http://www.ft.com/cms/s/0/fd6fb062-c65a-11e4-a13d-00144feab7de.html">
+JPM ‘whale’ aide loses judicial review
+</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.ft.com/cms/s/0/69190de0-c64c-11e4-add0-00144feab7de.html">
+Barclays in SunGard cost savings deal
+</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.ft.com/cms/s/0/e5b8b87a-c654-11e4-a13d-00144feab7de.html">
+PizzaExpress in fresh Chinese push
+</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.ft.com/cms/s/0/dd0838f6-c652-11e4-add0-00144feab7de.html">
+Alcoa to buy titanium group for $1.5bn
+</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="feedBox">
+                                <h4 data-pos="7">
+<a href="http://www.ft.com/companies/financials" >
+Financials
+</a>
+</h4>
+                                <ul data-pos="8">
+                                    <li>
+                                        <a href="http://www.ft.com/cms/s/0/bc61e87c-c427-11e4-9019-00144feab7de.html">
+Cerberus studies options for Bawag exit
+</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.ft.com/cms/s/0/6895f702-c66a-11e4-add0-00144feab7de.html">
+Simon in $22.4bn hostile bid for Macerich
+</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.ft.com/cms/s/3/12c1b63e-c63f-11e4-9bf4-00144feab7de.html">
+ETFs: crowd funding
+</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.ft.com/cms/s/0/53fe0ed8-c665-11e4-add0-00144feab7de.html">
+Credit report companies agree to reforms
+</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="feedBoxRow doubleColumn">
+                            <div class="feedBox">
+                                <h4 data-pos="9">
+<a href="http://www.ft.com/companies/technology" >
+Technology
+</a>
+</h4>
+                                <ul data-pos="10">
+                                    <li>
+                                        <a href="http://www.ft.com/cms/s/0/e908f44c-c5b7-11e4-ab8f-00144feab7de.html">
+Crunch time for Apple bulls and bears
+</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.ft.com/cms/s/0/a0e7e836-c412-11e4-a02e-00144feab7de.html">
+Huawei aims to be at forefront of 5G
+</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.ft.com/cms/s/0/69190de0-c64c-11e4-add0-00144feab7de.html">
+Barclays in SunGard cost savings deal
+</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.ft.com/cms/s/0/ba8e1a72-c46b-11e4-a949-00144feab7de.html">
+Google making Android for virtual reality
+</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="feedBox">
+                                <h4 data-pos="11">
+<a href="http://www.ft.com/markets/emerging" >
+Emerging Markets
+</a>
+</h4>
+                                <ul data-pos="12">
+                                    <li>
+                                        <a href="http://www.ft.com/cms/s/0/542e14bc-c60a-11e4-ab8f-00144feab7de.html">
+German Bund yields fall as ECB starts QE
+</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.ft.com/cms/s/0/e5b8b87a-c654-11e4-a13d-00144feab7de.html">
+PizzaExpress in fresh Chinese push
+</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.ft.com/cms/s/0/b53c20f0-c61e-11e4-add0-00144feab7de.html">
+Australia warns Indonesia over executions
+</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.ft.com/cms/s/0/a49c325c-c5ed-11e4-ab8f-00144feab7de.html">
+What the Fed really thinks about China
+</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="feedBoxRow doubleColumn">
+                            <div class="feedBox">
+                                <h4 data-pos="13">
+<a href="http://www.ft.com/comment" >
+Comment
+</a>
+</h4>
+                                <ul data-pos="14">
+                                    <li>
+                                        <a href="http://www.ft.com/cms/s/0/a464a5f8-c656-11e4-add0-00144feab7de.html">
+Greece, Russia and humiliation politics
+</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.ft.com/cms/s/0/042a592e-c283-11e4-ad89-00144feab7de.html">
+Japan’s economic losers suffer in silence
+</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.ft.com/cms/s/0/0b916fde-c64a-11e4-9bf4-00144feab7de.html">
+State of India’s government health system
+</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.ft.com/cms/s/0/f002b0c2-c3f4-11e4-9019-00144feab7de.html">
+Hillary Clinton’s gathering storm
+</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="feedBox">
+                                <h4 data-pos="15">
+<a href="http://www.ft.com/lex" >
+Lex
+</a>
+</h4>
+                                <ul data-pos="16">
+                                    <li>
+                                        <a href="http://www.ft.com/cms/s/3/12c1b63e-c63f-11e4-9bf4-00144feab7de.html">
+ETFs: crowd funding
+</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.ft.com/cms/s/3/38f3f03e-c440-11e4-a949-00144feab7de.html">
+Insurance M&A: Island of despair
+</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.ft.com/cms/s/3/9832742a-c41e-11e4-a949-00144feab7de.html">
+FamilyMart and Uny: bottoms up
+</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.ft.com/cms/s/3/6817b052-c35b-11e4-8fa9-00144feab7de.html">
+Subprime lending: long branch
+</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="master-row marketingSection" data-nozone="marketingSection" data-timer-key="17">
+
+
+                    <div class="triplet marketing clearfix" data-comp-name="marketingtriplet" data-comp-view="marketingtriplet" data-comp-index="0" data-timer-key="18">
+                        <span class="heading" data-pos="0">
+Offers
+</span>
+                        <div class="firstStory" data-pos="1">
+                            <a href="http://www.exec-appointments.com/"><span class="headline label">EXECUTIVE APPOINTMENTS</span></a><span class="tagline">Global executive jobs</span>
+                            <span class="story-image">
+<a href="http://www.exec-appointments.com/" >
+<img src="http://im.ft-static.com/content/images/47bbb79a-26b8-11e3-9dc0-00144feab7de.img" alt="" />
+</a>
+<span class="credit manualSource"></span>
+                            </span> <a href="http://www.exec-appointments.com/"><span class="content"> Register today for free job alerts</span></a> </div>
+                        <div data-pos="2">
+                            <a href="http://www.ft.com/chrome"><span class="headline label">NEW FT EXTENSION</span></a><span class="tagline">for Google Chrome</span>
+                            <span class="story-image">
+<a href="http://www.ft.com/chrome" >
+<img src="http://im.ft-static.com/content/images/bd910122-26a0-11e3-9dc0-00144feab7de.img" alt="" />
+</a>
+<span class="credit manualSource"></span>
+                            </span> <a href="http://www.ft.com/chrome"><span class="content"> Receive global news right from your toolbar</span></a> </div>
+                        <div data-pos="3">
+                            <a href="http://www.ft.com/triplet"><span class="headline label">FT Subscription</span></a><span class="tagline">Subscribe to the FT today</span>
+                            <span class="story-image">
+<a href="http://www.ft.com/triplet" >
+<img src="http://im.ft-static.com/content/images/354f4bec-c174-11e3-83af-00144feabdc0.img" alt="" />
+</a>
+<span class="credit manualSource"></span>
+                            </span> <a href="http://www.ft.com/triplet"><span class="content"> Subscribe now for complete and unrestricted access</span></a> </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div id="railBg"></div>
+            <div class="master-row railSection" data-nozone="railSection" data-timer-key="21">
+
+                <div class="ft-header-medium ft-header-medium-tabs contentTab-header-medium" data-comp-name="contentTab" data-comp-view="contentTab_medium" data-comp-index="1" data-timer-key="23">
+                    <ul class="ft-tabs-large" data-behaviour="contentTabs">
+                        <li class="ft-tab-large ft-state-selected" data-pos="0" data-tab-comps="204634">
+                            <a href="#204634" class="ft-tab-title">
+FAST FT
+</a>
+                        </li>
+                        <li class="ft-tab-large" data-pos="1" data-tab-comps="163379">
+                            <a href="#163379" class="ft-tab-title">
+MARKETS DATA
+</a>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <div class="freestyle" data-comp-name="freestyle" data-comp-view="freestyle" data-comp-index="2" data-timer-key="24" id="204634">
+                    <style>
+                        .fastft-introtext {
+                            margin-bottom: 8px;
+                            font-size: 12px;
+                            line-height: 18px;
+                            white-space: nowrap;
+                        }
+                        
+                        .fastft-logo {
+                            float: left;
+                            margin-right: 2px;
+                            border: 1px solid red;
+                        }
+                        
+                        .fastft-list {
+                            margin-top: 3px;
+                        }
+                        
+                        .fastft-arrow {
+                            border-style: dashed;
+                            border-color: transparent;
+                            display: -moz-inline-box;
+                            display: inline-block;
+                            font-size: 8px;
+                            height: 0;
+                            line-height: 0;
+                            position: relative;
+                            vertical-align: middle;
+                            width: 0;
+                            border-left-width: 5px;
+                            border-left-style: solid;
+                            border-left-color: #666;
+                            left: 0.25em;
+                        }
+                        
+                        .fastft-introtext a:hover .fastft-arrow {
+                            border-left-color: #E5250E;
+                        }
+                    </style>
+                    <div class="fastft">
+                        <p class="fastft-introtext">
+                            <a href="/fastft" class="ft-link-stealth">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADkAAAAQCAMAAACbZSdJAAAAxlBMVEXjfXnz0sLwxbfxxbeak4fgbWry0cLrrKHZTU/po5rhdnIQDw5sZ1+LhHr13c2qoZTo28oPDw4uKyhNSEPn28oeHRpdWFFNSUOakoeLg3m6saNsZl7Yzr3o3MpcV1AfHRt8dWzrq6HbVFTy0sIPDg3mkov13s3uuaz36tfieXUuLCndYF/wxLfpn5btuazTLjPaU1TaVFTtuKzfbWo+OzbYR0m5sKK6sKLkhoDWOj49OjW5r6J7dWz469gAAADRIin369j36tgcXOOoAAAB30lEQVR42i1RhZLsMAzrY2Y6vmW6LeNeG8P//9STnXqmjp2xIktNRFWDSNAQUFqBjC/Wfx+J6NQ0zYlomoi8+NQ0P4iSoAgHOQQtvtgGyw3RqIhrmhZ0JToSPYt+f6QEl+vtsBfBFEj8OAQrcAIMok4CLptp0eCuc6R2QIaUEb6dUdqQNQVzhVKmyHmQ8fXCih5ImzmBM2e+lECgj5s6/sLsuwPZ44HuTj3EtzVNiWbMrWuNtEjOi+fQBTEklr8dZ+NsW59K6hYzxauqLritv+oOfVmvB9zmRa0SOfV+0/t41KkBkbDHfDxp6Wf+3o9SXOfDdLuBWI9g20INth0g6Di84MvxiNkz8yob8uOwYq6HKqghv9zcfMbK0b7oresEEk+/3FUpqgqiz+GtW7vHnCM7s7LX6INxqnOqG5QVbFGsLV9StfdsznWO9gCQ6CTqFIXOPdTJEtLe1Kazuhh2UODdEHVOCXf3wee1n/+KJKnNlVAoVu12mj2BO4M9WGn2NrqKjPBt0cMh5jQYzTFn/tC278IZ3BU4qwzYuK0jkWadB3cIdJmCxuPjfC4ry1tFPBBdAxKh+L4R/fxtGyRmhZ5bzrcr2JmW5tBSQ80mQKdnIpCMUOjIq18b9H/+of4PQg3QCSHr3EQAAAAASUVORK5CYII=" class="fastft-logo" />Market-moving news and views, 24 hours a day <span class="fastft-arrow"></span></a>
+                        </p>
+                        <div class="fastft-list">
+                            <div class="fastft-unavailable ft-state-hidden">Sorry, Fast FT is unavailable at the moment</div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="freestyle" data-comp-name="freestyle" data-comp-view="freestyle" data-comp-index="3" data-timer-key="25" id="163379">
+                    <style>
+                        #marketsDataHomepageWidget .ft-header-medium {
+                            border-top: 0;
+                            background-color: #f6e9d8;
+                        }
+                    </style>
+                    <div id="marketsDataHomepageWidget"></div>
+                </div>
+
+                <div class="freestyle" data-comp-name="freestyle" data-comp-view="freestyle" data-comp-index="7" data-timer-key="29" id="209502">
+                    <div class="ft-header-medium ft-header-medium-tint ">
+                        <h3 class="ft-header-medium-title " data-pos="1">FOLLOW THE FT</h3>
+                    </div>
+                    <div class="sitepageShare">
+                        <ul>
+                            <li class="twitter">
+                                <a target="_blank" href="http://www.twitter.com/ft"></a>
+                            </li>
+                            <li class="facebook">
+                                <a target="_blank" href="https://www.facebook.com/financialtimes"></a>
+                            </li>
+                            <li class="linkedin">
+                                <a target="_blank" href="http://www.linkedin.com/company/financial-times"></a>
+                            </li>
+                            <li class="googleplus">
+                                <a target="_blank" href="https://plus.google.com/+FinancialTimes/posts"></a>
+                            </li>
+                            <li class="youtube">
+                                <a target="_blank" href="http://www.youtube.com/user/FinancialTimesVideos"></a>
+                            </li>
+                            <li class="tumblr">
+                                <a target="_blank" href="http://financialtimes.tumblr.com"></a>
+                            </li>
+                        </ul>
+                        <div style="clear: both; font-size: 13px;">Visit our <a href="http://aboutus.ft.com/social-media-hub/" class="ft-link">social media and communities</a> page</div>
+                    </div>
+                    <style>
+                        .sitepageShare {
+                            padding: 16px 10px 28px 10px
+                        }
+                        
+                        .sitepageShare ul {
+                            margin: 0 0 10px
+                        }
+                        
+                        .sitepageShare ul li {
+                            display: inline-block;
+                            margin-right: 15px;
+                            width: 24px;
+                            height: 24px
+                        }
+                        
+                        .sitepageShare ul li a {
+                            display: inline-block;
+                            width: 24px;
+                            height: 24px
+                        }
+                        
+                        .msie7 .sitepageShare ul {
+                            clear: both
+                        }
+                        
+                        .msie7 .sitepageShare ul li {
+                            float: left
+                        }
+                        
+                        .sitepageShare .facebook,
+                        .sitepageShare .googleplus,
+                        .sitepageShare .twitter,
+                        .sitepageShare .linkedin,
+                        .sitepageShare .youtube,
+                        .sitepageShare .tumblr {
+                            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAACQCAYAAAASlKtNAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAwkSURBVHjazBoJdFTV9f7JJDPZJ/tKGDAkMUiiYoQiJEFrjVKTcFxPWxXXozS0Ruk59kCLFfQoIrFAsdUqCNZTFAuBIyqlCIiCsiUhRhKBDGRlsg7JZCHz/+97b/J//jrz/zDT03vOnf+Wefe+u7z37lsoQLBo6UfF6FMFQF0PfgHWhn4qN6+5fyf18HPbioGCLyEQwMJCI8OwmygKAkOfhSojyzJWlAgUWLEEPrWMjw2HwpuniMq6ep3w1XfNojKfGBTOmgJP/3K2rLzhrB0OHj0vZcDoIp47LUmROKd0KT3dEtxZnO3BaQCk9HQzKMifJMpv+vgY2Fr6SNo5fEWBActclZvs3tfgsd5nL+LAW3tqwaJ3vHLY9e5jmpidPtMBy17/TL8ENE1rlIbxzchaXVmFAeNnBuL/Urc9uFGXlXe+85AoX/7kVv96kbSH3tobw8JNV8XAW3vj1GtSdDGQepS39kb9A0vfyA84AwPCA3oZCNELHMAMKhH267GBED0ApllpWL98QQ1KzNcqiUYJMK35mDaxQUXtaiteoLUwGKkV5ytUFnuM6wFqqMb7ispRZgfx6enXQ2iuO/YKTkiG4MRkxdZj9k7o3PiqeDxMd7cb+r5GWLwQS1AVd98iiLnrXjCER3iVoG/Pduj5eLOsPH3Fm+TbdH+xsLjKOHn1360mayYMHjsMXZs3wFhXJ+lNwiMVgMuJ3p2D0L5mubR3muIiAyYy3FAD7a8vJ8Q5MVv+9CwhTHwZSZa6dJUmCRUHmuPA53JvQcTt72+A5MUv8EywKrGUGKKKS4idpID/w9sKdZgwcI33XAqXEeNEpCqu5+ZxlWGIRgw4h1BjgDXjdaoYQn+KKJhL0kKCWGqhTTjCQgfgJcAN1Qw4ajvLM+Bswkmn1HOphxk4fWoaZIgZCd+UUBjeCdDIDSpzdh4M15+Sh4OC6cDxnz3AujxHGNJ63gYpS34PzUseBlqgBjJCx/U+cOQg9O/drUr4wguL3Wocc4kXfZad2H6MnG+CzrfWwlDdCQhOSoHkZ56HyJ8UgbP2BBoXS4EZHNQ9DqgLy55lkyt+ByHJqYp/cNYch+bKJ30OLY2OA/sAYzBiEJKCMDkN0pet4v/QvW0rsBKxdTHgdDbacpFgxI0FYhvkz4T+/Xt9Z8COia0+erFFlE94EBne4YDOv67ziUHQU3HRL7I0Axy6ELHIglkQkpbO/yniplkQnJIGA0ePADM8glyX1YzGiBtvgriF90PotbkQlpOr2pO4snsgCM1J536tz+C8m3Zv3wYD3x6B0dYW8g2KioIpq9+EmJ+JR3nbn9+AdoSaGTjrT7NNTzwCV1palPfD9z0AU6vWT0QVlx1wPHeadiPX3Vpo87Tg2z/8B7HNNev+4jZaVDRy5RTkcS1a6NuCHjcFOxCBcjznqKGzrg5MGRkQPiOPtOrdvRtNfDbw1IYgyzxqnNM7sPlwRChutwLNfqqSjDTb+PTAyVPAXvEw+CiwAUVVzh0Y2kkmux3bz9ooIIWeY6O9HeOb45PejllqWBzZlaQB9eynLcUURQXkvAg56HwjTePzosCc56ABsMlIM4wVAgdWo8vFQCDB6KL1M7hlSiTckBoOPUMu+HdTP3Q71T0K2UDMID48GDJiTHCyVXn1ujE9Ah4rSHSvFc4xOHTOAbSHThqwBCJEA+Q381JgTakVSqfHQkgQ8HU4/cSsJFFnXirJgDnWSJDRGceg6WWLX8TzHYfOURq6BsegKNMC1yaFwW3TYsBooKC5ZxhKro2F/LRwWS9nToqAAz/2wyBqK6SFUdEGuAG/ooUY4J78eFIWjkVQgTtyYmDzt51gjTODrWdkYlCXv10nGwRT0J+WFKWjb6gu4zuv0PDukQ74sqlP3cgYztqHfHJJLKEVOYiQJnXnhpOKw3hqfCg8NTcd8tK07QmOnO+HlZ81a/CicWy65IQtR9s09/79o+2KdAxYHIzleQlgNlLA5TGeungZznV5V9cnJy/Bj6hDwrYc8l504oID1t6bAzWtl2FwhIYIcxDMzYyB5CjPpymf1XfBuv029aVhzqvf8DbAxJYvyIQbMqK89npwxAXbjnfAe1+3el70Z718WGbku2YkQlFWLBRlx8kaYNt8WmdHeIkMLK9RxcyXDnlcDFKiTZBiMZMeY+L6Z1Mv03ULmiIw/k+na10MkCvZtB6E+AA2I5qeK1G4siMg5CmoJNdDU5//vBxf6PhREhuFiJ9/o8QdF5Xfngfumyh/XUfhtQBgLYqRqd/uaS2ngAqIihCbhdiLqigIzEUaYlCFAy+reKvu57hIacF5IC8WbsuMgqbuEdh0vJuEJ34baNkJZkIcQ1a8GWZPCofqhj7/MRgYEfd2cNQFVzPaqV980CgzwMz0cChBUcIPl4bhX6d7rjJ0lJyOhKGFewAtOB/XdJN8jNng3i9HhLgPqFDkYOsdAWusGQoyIt2jCuWPXRzQpqJJllBYcUcGn//oVBfYB69Axbw0ntj3nUOwIDdWPHRR+R/32EjoIlr0pWsoQ8tvODodoxN+h3ouJc6VL7o5SbYmy6IKWnJlwqAxTytco+xr7CUohFuzYmRRhUxFtMIdjbRsR20X/O1wK7eLgdtzJiTKTQ6DurZB9cgOjWy5BJKyw2f7+OitQ6A+rr2QpmzJ1CIBznPtpLdQwjpFL9IiAc5z7RhWvU5RRdJLB3wkI787Y3g1sFKnENQpSyBrIPcinOcl8FCnwoBRcFMFG6ipSFCnyMCBNnbHmifujFp7h2VlOM+1w/VqdWSyy122P3DPNsYlCHBcRDP4Hm1HgBi44yLrc1+guIj1c1xEVdrW3rGTO3YpRniK9R9gWsXcqSNOiM6LDh06BAcPfQUPP/Qrkt+y9QMoKpwHhYWFeiWZD0o9r6mtZYNNZnbd+vXs+1u2kHT1rl0+SSI63hdCYnIy6bEl2gK7du8Ce2cn1NbVkbr8vDxdx16K8PgTT7IJSUlsZlY2ST+3dCmRBCPOHzx4kKS570srVynSMagxLi29G/r7HXDhwgUkyTyoq62D/Pw8Ur5l61bNAqgyEBq0tLSUfLG68vPy9Y1ktQpLdDTynEI+7SsYIMCg69GADdmjH3mUEFauetl3CfKQUTFiWLKkAhyOfqhFxv7D8uWoPB8slmiItrhVOXlyhuf7AyGMHTuG8LhudZjLy8CQmuqZwdDGtxBu9C2SjoyEmE+2i5jIGPT8ZA6ELV4MxpyJ12iORx8T9TIoOwecr72myAS3DVv8jLoN2IEBoBvPuC8j0tJkqjKkpomY++SmIzurCWG6rY3YI77+NOlZ9Kb33K6XkwNxR74h0mDE9bF7v0AdSgXXmTO+uykfObS5j9pMZWXkO1pdTdJYOqyBq2YgJcIxuuqBpgZYAuw5mLHUTTVPFSG3zufT2PjYJScMnwrBBQWkDNvHIwOuIdPehgzWSL7Y0Ex7O5/HhsS9HUZLKe49Znhl/36ZgblxgO/Z+ecG2L9xQ18Be5NATTWKiz7uFd3WTnquBbB7Yg/CapSoaH7AwxbiRStXb7KgQMniv9MisCAGFmKDFa+8U46IB+a8iGUXoh0OXRXABa0KbQJdmuLRW2bnQ6jZBH39l+FEzRnt50WIgaZ//rzE/b7lXHMrfHu83vfDECUomJnLn4nhLZOWNoINiGcJQs1mKFtQ7N7Sj+8qvbXRJAHWd/6MLLi37Kckza17aSmJUPHUAxN7uDY7bK/e54mBcm+K5s1Bei/k/HpiyQw1QeY1GaJdqCc7GtWeE2p96MqSkwDakw2UKxsaz5M9b3ycBbnoDXx5d08/fH30lCjv8sRAjXvDD2cJ5mRNkTDogx279vnv/sBFXheworMIPaeQRpeXR9vSIzbMy0XrGAfeXoXTDC2SgGUZzS/Jxxm4dEqAvcblPxtgTxI67OTJaWAymcA55L44Cg9z39hyedmafPvCp706fPU/N4jy9q5eNOHVQWJCLFyXOw1eWfM21Df86JuRMZyub4QZ07MmtrjxMXB3SZHkjEiZjkH6SFgJX3ztLfj6uxrFB4Kd9h5o77SrtqVuuXOR5vOipMQ4yJueTb6XEOFzzS1w3tbidRxoPi9q67AT/L86LwrqaD59JsV6XS3LMLNxqCF9tuAjYq08enL/hzv/K8AAhqTdBaTHqR4AAAAASUVORK5CYII=) no-repeat
+                        }
+                        
+                        .sitepageShare .facebook {
+                            background-position: 0 0
+                        }
+                        
+                        .sitepageShare .googleplus {
+                            background-position: 0 -24px
+                        }
+                        
+                        .sitepageShare .twitter {
+                            background-position: 0 -48px
+                        }
+                        
+                        .sitepageShare .linkedin {
+                            background-position: 0 -72px
+                        }
+                        
+                        .sitepageShare .youtube {
+                            background-position: 0 -96px
+                        }
+                        
+                        .sitepageShare .tumblr {
+                            background-position: 0 -120px
+                        }
+                    </style>
+                </div>
+
+
+                <div class="freestyle" data-comp-name="freestyle" data-comp-view="freestyle" data-comp-index="8" data-timer-key="30" id="240206">
+                    <span><div class="doublet-container" style="width:352px;height:178px;background-color:#f6e9d8">
+<div class="editorialDoublet">
+<div class="comp-header">
+<h3 class="comp-header-title"><span class="ft-badge ft-badge-red">NEW</span> FT ANTENNA</h3>
+                </div>
+                <div class="doublet">
+                    <div class="doublet-column">
+                        <div class="doublet-content">
+                            <span class="story-image">
+<a target="_top" href="http://antenna.ft.com/top/today">
+<img src="http://im.ft-static.com/content/images/0959871c-4583-11e4-9b71-00144feabdc0.img" alt="Antenna logo with beta badge" />
+</a>
+</span>
+                        </div>
+                    </div>
+                    <div class="doublet-column">
+                        <div class="doublet-content">
+                            <a target="_top" href="http://antenna.ft.com/top/today">View the best stories from across carefully selected websites. FT Antenna is designed for FT readers and powered by Twitter accounts we trust. Click here to see</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </span>
+    </div>
+
+    <div class="railList" data-comp-name="raillist" data-comp-view="raillist" data-comp-index="10" data-timer-key="32">
+        <div class="comp-header">
+            <h3 class="comp-header-title" data-pos="0">
+IN DEPTH
+</h3>
+        </div>
+        <div class="comp-body">
+            <ol class="railLinks topics">
+                <li data-pos="2">
+                    <a href="http://www.ft.com/topics/themes/Greece_Debt_Crisis">
+Greece debt crisis
+</a>
+                </li>
+                <li data-pos="3">
+                    <a href="http://www.ft.com/indepth/crisis-in-ukraine">
+Crisis in Ukraine
+</a>
+                </li>
+                <li data-pos="4">
+                    <a href="http://www.ft.com/indepth/uk-general-election">
+UK general election
+</a>
+                </li>
+                <li data-pos="5">
+                    <a href="http://www.ft.com/indepth/living-with-cheaper-oil">
+Living with cheaper oil
+</a>
+                </li>
+                <li data-pos="6">
+                    <a href="http://www.ft.com/topics/places/Iraq">
+Crisis in Iraq
+</a>
+                </li>
+            </ol>
+            <div class="moreLink">
+                <a href="http://www.ft.com/indepth">
+More in depths
+</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="railList" data-comp-name="raillist" data-comp-view="raillist" data-comp-index="11" data-timer-key="33">
+        <div class="comp-header">
+            <h3 class="comp-header-title" data-pos="0">
+FT INVESTIGATIONS
+</h3>
+        </div>
+        <div class="comp-body">
+            <ol class="railLinks">
+                <li data-pos="2">
+                    <a href="http://www.ft.com/cms/s/0/6c74497e-a62a-11e4-abe9-00144feab7de.html">
+Shining a light solar star Hanergy
+</a>
+                </li>
+                <li data-pos="3">
+                    <a href="http://www.ft.com/intl/cms/s/0/b6d081a2-74b8-11e4-8321-00144feabdc0.html#axzz3LgTLi623">
+Bahrain royal land deals
+</a>
+                </li>
+                <li data-pos="4">
+                    <a href="http://www.ft.com/intl/indepth/silk-road-redux">
+Silk Road Redux
+</a>
+                </li>
+                <li data-pos="5">
+                    <a href="http://www.ft.com/intl/cms/s/2/308a133a-1db8-11e4-b927-00144feabdc0.html">
+China in Africa: The middleman
+</a>
+                </li>
+                <li data-pos="6">
+                    <a href="http://www.ft.com/ez">
+How the euro was saved
+</a>
+                </li>
+            </ol>
+            <div class="moreLink">
+                <a href="http://www.ft.com/ft-investigations">
+More FT investigations
+</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="jobsBox" data-comp-name="railFeedsBox" data-comp-view="jobsbox" data-comp-index="13" data-timer-key="35">
+        <div class="comp-header">
+            <h3 class="comp-header-title" data-pos="0">
+<a href="http://www.exec-appointments.com/" >
+EXECUTIVE APPOINTMENTS
+</a>
+</h3>
+        </div>
+        <form action="http://www.exec-appointments.com/searchjobs/" method="get" class="jobsBoxSearch">
+            <fieldset>
+                <legend>Enter job search</legend>
+                <input type="text" name="Keywords" class="jobsBoxKeywords" value="" placeholder="Enter job search here..." />
+                <button type="submit" class="jobsBoxSearchButton"><span><span>Search</span></span>
+                </button>
+            </fieldset>
+        </form>
+        <ul class="jobsBoxLinks clearfix" data-pos="1">
+            <li class="odd">
+                <a target="_blank" href="http://www.exec-appointments.com/job/1397556/alzheimer-s-society-trustee/?TrackID=28">
+Alzheimer’s Society Trustee
+</a>
+                <br/> Alzheimer’s Society
+                <br/>
+            </li>
+            <li>
+                <a target="_blank" href="http://www.exec-appointments.com/job/1397234/group-chair-and-executive-coach/?TrackID=28">
+Group Chair and Executive Coach
+</a>
+                <br/> Vistage UK
+                <br/>
+            </li>
+            <li class="odd">
+                <a target="_blank" href="http://www.exec-appointments.com/job/1396502/chief-financial-officer/?TrackID=28">
+Chief Financial Officer
+</a>
+                <br/> Fieri Partners
+                <br/>
+            </li>
+            <li>
+                <a target="_blank" href="http://www.exec-appointments.com/job/1396437/head-of-finance-transformation-/?TrackID=28">
+Head of Finance Transformation
+</a>
+                <br/> Allen Lane Financial Recruitment
+                <br/>
+            </li>
+        </ul>
+        <div class="jobsBoxOptionalLink" data-pos="2">
+            <a href="http://www.exec-appointments.com/alerts/">
+Register for free to receive the latest executive jobs by email
+</a>
+        </div>
+    </div>
+
+
+    <div class="toolsandservices" data-comp-name="toolsandservices" data-comp-view="toolsandservices" data-comp-index="14" data-timer-key="36">
+        <div class="comp-header">
+            <h3 class="comp-header-title">TOOLS &amp; SERVICES</h3>
+        </div>
+        <div class="tools-column">
+            <h3 class="tools-heading" data-pos="0">
+Multimedia
+</h3>
+            <ul>
+                <li data-pos="1">
+                    <a href="http://www.ft.com/video">
+Video
+</a>
+                </li>
+                <li data-pos="2">
+                    <a href="http://www.ft.com/comment/blogs">
+Blogs
+</a>
+                </li>
+                <li data-pos="3">
+                    <a href="http://podcast.ft.com/?segid=70118">
+Podcasts
+</a>
+                </li>
+                <li data-pos="4">
+                    <a href="http://www.ft.com/interactive">
+Interactive graphics
+</a>
+                </li>
+                <li data-pos="5">
+                    <a href="http://www.ft.com/interactive/audioslideshows">
+Audio slideshows
+</a>
+                </li>
+                <li data-pos="6">
+                    <a href="http://www.ft.com/multimedia/slideshows">
+Picture slideshows 
+</a>
+                </li>
+            </ul>
+            <h3 class="tools-heading" data-pos="7">
+Tools
+</h3>
+            <ul>
+                <li data-pos="8">
+                    <a href="http://portfolio.ft.com/">
+Portfolio
+</a>
+                </li>
+                <li data-pos="9">
+                    <a href="http://www.ft.com/topics">
+Topics
+</a>
+                </li>
+                <li data-pos="10">
+                    <a href="http://lexicon.ft.com/">
+FT Lexicon
+</a>
+                </li>
+                <li data-pos="11">
+                    <a href="http://clippings.ft.com">
+FT clippings
+</a>
+                </li>
+                <li data-pos="12">
+                    <a href="http://markets.ft.com/markets/currencies.asp?segid=70113">
+Currency converter
+</a>
+                </li>
+                <li data-pos="13">
+                    <a href="http://rankings.ft.com/businessschoolrankings/global-mba-rankings?segid=70114">
+MBA rankings
+</a>
+                </li>
+                <li data-pos="14">
+                    <a href="http://www.ft.com/newslines">
+Newslines
+</a>
+                </li>
+                <li data-pos="15">
+                    <a href="http://www.ft.com/uk-edition">
+Today&#39;s newspaper
+</a>
+                </li>
+                <li data-pos="16">
+                    <a href="http://presscuttings.ft.com/presscuttings/search.htm">
+FT press cuttings
+</a>
+                </li>
+                <li data-pos="17">
+                    <a href="http://www.ft.com/uk-edition">
+FT ePaper
+</a>
+                </li>
+                <li data-pos="18">
+                    <a href="http://markets.ft.com/research/EcoCalendar">
+Economic calendar
+</a>
+                </li>
+                <li data-pos="19">
+                    <a href="http://www.ft.com/ebooks">
+Ebooks
+</a>
+                </li>
+            </ul>
+            <h3 class="tools-heading" data-pos="20">
+Services
+</h3>
+            <ul>
+                <li data-pos="21">
+                    <a href="https://www.ftnewspaper.com/map3">
+Subscriptions
+</a>
+                </li>
+                <li data-pos="22">
+                    <a href="http://www.ft.com/corporate">
+Corporate subscriptions
+</a>
+                </li>
+                <li data-pos="23">
+                    <a href="http://education.ft.com/">
+Education subscriptions
+</a>
+                </li>
+                <li data-pos="24">
+                    <a href="http://www.ft.com/syndication">
+Syndication
+</a>
+                </li>
+                <li data-pos="25">
+                    <a href="http://live.ft.com/">
+Conferences
+</a>
+                </li>
+                <li data-pos="26">
+                    <a href="http://markets.ft.com/markets/investorRelations.asp?segid=90058">
+Annual reports
+</a>
+                </li>
+                <li data-pos="27">
+                    <a href="http://www.exec-appointments.com/">
+Executive job search
+</a>
+                </li>
+                <li data-pos="28">
+                    <a href="http://www.non-execs.com/">
+Non-Executive Directors&#39; Club
+</a>
+                </li>
+                <li data-pos="29">
+                    <a href="http://www.businessesforsale.com/ft">
+Businesses for sale
+</a>
+                </li>
+                <li data-pos="30">
+                    <a href="http://www.businessesforsale.com/ft2/notices">
+Contracts &amp; tenders
+</a>
+                </li>
+                <li data-pos="31">
+                    <a href="https://commerce.uk.reuters.com/purchase/mostPopular.do?rpc=471">
+Analyst research
+</a>
+                </li>
+                <li data-pos="32">
+                    <a href="http://www.propertysales.com/">
+PropertySales.com
+</a>
+                </li>
+                <li><a href="http://www.ft.com/servicestools/newstracking/rss" class="rss">RSS feeds</a></li>
+            </ul>
+        </div>
+        <div class="tools-column">
+            <h3 class="tools-heading" data-pos="33">
+Quick links
+</h3>
+            <ul>
+                <li data-pos="34">
+                    <a href="http://live.ft.com/">
+FT Live 
+</a>
+                </li>
+                <li data-pos="35">
+                    <a href="http://www.ft.com/howtospendit">
+How to spend it
+</a>
+                </li>
+                <li data-pos="36">
+                    <a href="http://www.ftpropertylistings.com/">
+FT Property Listings
+</a>
+                </li>
+                <li data-pos="37">
+                    <a href="http://aboutus.ft.com/social-media/">
+Social Media hub
+</a>
+                </li>
+                <li data-pos="38">
+                    <a href="http://www.thebanker.com/">
+The Banker
+</a>
+                </li>
+                <li data-pos="39">
+                    <a href="http://www.thebankerdatabase.com">
+The Banker Database
+</a>
+                </li>
+                <li data-pos="40">
+                    <a href="http://www.globalriskregulator.com/">
+Global Risk Regulator
+</a>
+                </li>
+                <li data-pos="41">
+                    <a href="http://www.fdiintelligence.com/">
+fDi Intelligence
+</a>
+                </li>
+                <li data-pos="42">
+                    <a href="http://www.fdimarkets.com/">
+fDi Markets
+</a>
+                </li>
+                <li data-pos="43">
+                    <a href="http://www.fdibenchmark.com/">
+fDi Benchmark
+</a>
+                </li>
+                <li data-pos="44">
+                    <a href="http://www.pwmnet.com/">
+Professional Wealth Management
+</a>
+                </li>
+                <li data-pos="45">
+                    <a href="http://www.thisisafricaonline.com/">
+This is Africa
+</a>
+                </li>
+                <li data-pos="46">
+                    <a href="http://www.investorschronicle.co.uk/">
+Investors Chronicle
+</a>
+                </li>
+                <li data-pos="47">
+                    <a href="http://www.mandatewire.com">
+MandateWire
+</a>
+                </li>
+                <li data-pos="48">
+                    <a href="http://www.ftchinese.com/">
+FTChinese.com
+</a>
+                </li>
+                <li data-pos="49">
+                    <a href="http://www.pensions-expert.com/">
+Pensions Expert
+</a>
+                </li>
+                <li data-pos="50">
+                    <a href="http://www.nyif.com/">
+New York Institute of Finance
+</a>
+                </li>
+                <li data-pos="51">
+                    <a href="http://www.execsense.com/">
+ExecSense
+</a>
+                </li>
+                <li data-pos="52">
+                    <a href="http://www.aseanconfidential.com/">
+ASEAN Confidential
+</a>
+                </li>
+                <li data-pos="53">
+                    <a href="http://www.ftchinaconfidential.com/">
+China Confidential
+</a>
+                </li>
+                <li data-pos="54">
+                    <a href="http://www.latamconfidential.com/">
+LATAM Confidential
+</a>
+                </li>
+            </ul>
+            <h3 class="tools-heading" data-pos="55">
+Updates
+</h3>
+            <ul>
+                <li data-pos="56">
+                    <a href="http://markets.ft.com/alerts/keyword.asp">
+Alerts Hub
+</a>
+                </li>
+                <li data-pos="57">
+                    <a href="http://nbe.ft.com/nbe/profile.cfm?segid=70121">
+Daily briefings
+</a>
+                </li>
+                <li data-pos="58">
+                    <a href="https://www.facebook.com/financialtimes">
+FT on Facebook
+</a>
+                </li>
+                <li data-pos="59">
+                    <a href="http://www.ft.com/twitter">
+FT on Twitter
+</a>
+                </li>
+                <li data-pos="60">
+                    <a href="http://www.ft.com/mobile ">
+FT on your mobile
+</a>
+                </li>
+                <li data-pos="61">
+                    <a href="http://announce.ft.com/?segid=90059">
+Company announcements
+</a>
+                </li>
+                <li data-pos="62">
+                    <a href="http://www.ft.com/cms/s/6d61227e-d377-11da-b2f3-0000779e2340.htm?segid=70123">
+Share prices on your phone
+</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    </div>
+    </div>
+    <div class="master-row bottomSection " data-nozone="bottomSection" data-timer-key="37">
+
+
+        <div class="freestyle" data-comp-name="freestyle" data-comp-view="freestyle" data-comp-index="0" data-timer-key="38" id="240882">
+            <div id="footer">
+                <div id="content">
+                    <ul class="gen-freestyle-ul">
+                        <li><a href="http://www.ft.com/help">Help</a></li>
+                        <li>&#8226;<a href="http://aboutus.ft.com/contact-us">Contact us</a></li>
+                        <li>&#8226;<a href="http://www.ft.com/aboutus">About us</a></li>
+                        <li>&#8226;<a href="http://www.ft.com/advertising">Advertise with the FT</a></li>
+                        <li>&#8226;<a href="http://www.ft.com/servicestools/help/terms">Terms &amp; conditions</a></li>
+                        <li>&#8226;<a href="http://www.ft.com/servicestools/help/privacy">Privacy policy</a></li>
+                        <li>&#8226;<a href="http://www.ft.com/servicestools/help/copyright">Copyright</a></li>
+                        <li id="footerCookiePolicy">&#8226;<a href="http://www.ft.com/cookiepolicy">Cookie policy</a></li>
+                    </ul>
+                    <p>
+                        <span class="copyright"><strong>&#169; The Financial Times Ltd 2015 </strong></span>
+                        <span><acronym title="Financial Times">FT</acronym> and 'Financial Times' are trademarks of The Financial Times Ltd.</span>
+                    </p>
+                    <div class="pearson">
+                        <div class="tagline"><span class="offscreen">Always learning</span></div>
+                        <div class="companyName"><span class="offscreen">Pearson</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div id="tweetText" class="twitter-overlay-container">
+        <div class="overlayArrow"></div>
+        <div class="innerBox">
+            <div class="title">SHARE THIS QUOTE
+                <a class="twitterCloseOverlay" href="javascript:void(0)"></a>
+            </div>
+            <div class="content pullquote"></div>
+            <div class="tweet-btn-container">
+                <a href="javascript:void(0)" class="tweet-btn" data-text="">
+                    <span class="quoteImg"></span><span class="label"><strong>Tweet</strong> this quote</span>
+                </a>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>

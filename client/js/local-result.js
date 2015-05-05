@@ -1,5 +1,8 @@
 /**
- * The 'enhancer' for the local result widget. (The liveblog.main.js calls this, passing in the widget element, whenever it has refreshed the widgets.)
+ * The 'enhancer' for the local result widget.
+ * 
+ * To use: put the "local result" component HTML on the page, select the
+ * `.local-result.figure` element, and pass it into this function.
  */
 
 'use strict';
@@ -9,9 +12,9 @@ var template = require('./local-result-card.hbs');
 var ukParties = require('uk-political-parties');
 
 
-module.exports = function (widget) {
-  var card = widget.querySelector('.local-result__card');
-  var form = widget.querySelector('.local-result__postcode-form');
+module.exports = function (figureElement) {
+  var card = figureElement.querySelector('.local-result__card');
+  var form = figureElement.querySelector('.local-result__postcode-form');
   var input = form.querySelector('input');
 
   form.onsubmit = function () {
@@ -32,10 +35,6 @@ module.exports = function (widget) {
         console.log('API result', result);
 
         if (result.error) throw result;
-
-        // reassuringly show the normalised postcode
-        input.value = result.postcode;
-
 
         // build data and render the result
         var whichElection = 'last'; // for testing

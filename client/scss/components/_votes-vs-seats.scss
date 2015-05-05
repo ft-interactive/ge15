@@ -1,66 +1,131 @@
-.votes-vs-seats {
-  line,
-  rect {
-    shape-rendering: crispEdges;
-  }
+@mixin votes-vs-seats (
+  $labels-width: 100px,
+  $row-thickness: 26px,
+  $track-thickness: 16px,
+  $bar-thickness: 10px,
+  $seats-icon-size: 10px,
+  $font-size: 12px
+) {
+  .votes-vs-seats {
+    // scss-lint:disable ImportantRule
+    box-sizing: border-box !important;
+    *,
+    *:before,
+    *:after {
+      box-sizing: inherit !important;
+      font-family: inherit;
+    }
+    // scss-lint:enable ImportantRule
 
-  text {
-    font: 12px BentonSans, sans-serif;
-    fill: color(grey-tint3);
-  }
-}
-  
-  .votes-vs-seats__key {
-    > text {
-      alignment-baseline: central;
+    .figure__body {
+      position: relative;
+      font: #{$font-size}/1 BentonSans, sans-serif;
+      color: color(grey-tint3);
     }
   }
 
-  .votes-vs-seats__chart {}
+    .votes-vs-seats__key {
+      height: $row-thickness;
 
-    .votes-vs-seats__tracks {
-      > line {
-        stroke: color(pink-tint1);
+      > div {
+        display: inline-block;
+        position: static;
       }
     }
-
-    .votes-vs-seats__ticks {}
-
-      .votes-vs-seats__tick {
-        > text {
-          text-anchor: middle;
-          alignment-baseline: after-edge;
-        }
-        > line {
-          stroke: color(grey-tint1);
-          stroke-dasharray: 1, 1;
-          stroke-width: 1px;
-
-          &.votes-vs-seats__first-tick {
-            stroke-dasharray: none;
-            stroke: color(grey-tint5);
-          }
-        }
+      .votes-vs-seats__key__label {
+        margin: 0 20px 0 5px;
       }
     
-    .votes-vs-seats__rows {}
+    .votes-vs-seats__chart {
+      position: relative;
+      margin: 30px 10px 0 $labels-width;
+    }
 
-      .votes-vs-seats__row {}
+      .votes-vs-seats__tracks,
+      .votes-vs-seats__ticks {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+      }
 
-        .votes-vs-seats__party-label {
-          text-anchor: end;
-          alignment-baseline: central;
+      .votes-vs-seats__tracks {}
+
+        .votes-vs-seats__track {
+          height: $track-thickness;
+          margin-bottom: $row-thickness - $track-thickness;
+          background-color: color(pink-tint1);
         }
 
-        .votes-vs-seats__party-colour {
+      .votes-vs-seats__ticks {
+        height: 100%;
+        white-space: nowrap;
+      }
+
+        .votes-vs-seats__tick {
+          display: inline-block;
+          height: 100%;
+          width: 20%;
+          position: relative;
+          border-left: 1px dotted color(grey-tint1);
+          margin-top: -(($row-thickness - $track-thickness) / 2);
+
+          &:first-child {
+            border-left: 1px solid color(grey-tint5);
+            z-index: 2;
+          }
         }
 
-        .votes-vs-seats__vote-percent {
-          stroke: color(grey-tint2);
+          .votes-vs-seats__tick__label {
+            position: absolute;
+            top: -18px;
+            width: 40px;
+            margin-left: -20px;
+            text-align: center;
+          }
+
+      .votes-vs-seats__rows {
+        position: relative;
+      }
+
+        .votes-vs-seats__row {
+          height: $row-thickness;
+          position: relative;
         }
 
-        .votes-vs-seats__seats-percent {
-          fill: lighten(color(pink), 10%);
-          stroke: color(grey-tint4);
-          stroke-width: 2;
-        }
+          .votes-vs-seats__party-label {
+            margin-left: -$labels-width;
+            width: $labels-width;
+            text-align: right;
+            vertical-align: top;
+            height: 0;
+            padding-top: 1px;
+          }
+
+            .votes-vs-seats__party-colour {
+              display: inline-block;
+              width: 5px;
+              height: $track-thickness;
+              margin: -1px 10px 0 0;
+            }
+
+          .votes-vs-seats__vote-percent {
+            position: absolute;
+            top: ($track-thickness - $bar-thickness) / 2;
+            height: $bar-thickness;
+            background: color(grey-tint2);
+            overflow: hidden;
+          }
+
+          .votes-vs-seats__seats-percent {
+            position: absolute;
+            top: $seats-icon-size * 0.2;
+            margin-left: -($seats-icon-size / 2);
+            transform: rotateZ(45deg);
+            width: $seats-icon-size;
+            height: $seats-icon-size;
+            background: color(white);
+            border: 2px solid color(grey-tint4);
+            z-index: 3;
+          }
+}
