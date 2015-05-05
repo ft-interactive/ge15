@@ -1,17 +1,7 @@
 .state-of-play {
-  > header {
-    > h3 {
-      float: left;
-    }
-
-    > .num-declared {
-      float: right;
-      margin-top: 9px;
-    }
-  }
 }
 
-  .state-of-play > .state-of-play__table { // specificity needed to override liveblog styles
+  .figure__body > .state-of-play__table { // specificity needed to override liveblog styles
     border-spacing: 0;
     border-collapse: separate;
 

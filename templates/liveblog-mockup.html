@@ -1,35 +1,42 @@
+<html>
 {#
   This is just a mockup page to simulate a liveblog (not very accurately)
   for developing widgets in.
 #}
 
-{% extends 'layout.html' %}
-
-{% block content %}
+<head>
 <style>
-/* styles to imitate the right rail*/
-.rightrail {
+body {
+  background: #fff1e0;
+}
+
+.fake-right-rail {
   width: 352px;
   margin: 0 auto;
   background-color: #f9e9da;
 }
 </style>
+</head>
+<body>
 
 <h1>Liveblog mockup</h1>
 
-<div class="rightrail">
+<div class="fake-right-rail">
 
   {# BEGIN WORDPRESS EMBED CODE (nb. asset urls will need to be made absolute #}
   <div class="ge15-liveblog-widgets">
-    <div class="widget-wrapper widget-wrapper--state-of-play--js"></div>
-    <div class="widget-wrapper widget-wrapper--votes-vs-seats--js"></div>
-    <div class="widget-wrapper widget-wrapper--local-result--js"></div>
+    <div class="figure-wrapper figure-wrapper--state-of-play--js"></div>
+    <div class="figure-wrapper figure-wrapper--local-result--js"></div>
+    <div class="figure-wrapper figure-wrapper--votes-vs-seats--js"></div>
   </div>
 
   <link href="/css/pages/liveblog.css" rel="stylesheet">
-  <script src="https://cdn.polyfill.io/v1/polyfill.min.js?features=fetch"></script>
+  <script src="https://cdn.polyfill.io/v1/polyfill.min.js?features=default,fetch"></script>
+  <script src="/js/vendor.js"></script>
   <script src="/js/liveblog.js"></script>
   {# END WORDPRESS EMBED CODE #}
 
 </div>
-{% endblock %}
+
+</body>
+</html>
