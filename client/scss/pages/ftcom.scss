@@ -6,7 +6,7 @@
   position: relative;
   font-family: BentonSans, sans-serif;
   -webkit-font-smoothing: antialiased;
-  margin-bottom: 30px;
+  margin-bottom: 42px;
   min-height: 280px;
 
   // scss-lint:disable ImportantRule
@@ -32,7 +32,7 @@
         color: color(grey-tint5);
         margin: 0;
         &--with-rosette {
-          text-indent: 20px;
+          text-indent: 24px;
 
           &:before {
             content: '';
@@ -70,9 +70,36 @@
     margin: 0;
     font-weight: normal;
     font-size: 15px;
-    color: color(grey-tint3);
+    color: color(grey-tint4);
 
     > b { color: color(grey-tint4); }
+  }
+
+
+  
+  // override state-of-play styles to make things bigger/spacier
+  .state-of-play__seat {
+    width: 9px;
+    height: 9px;
+  }
+
+  .state-of-play__net-change-row > td {
+    padding: 6px 8px;
+  }
+  .state-of-play__gains-row > td,
+  .state-of-play__losses-row > td {
+    padding: 8px 4px 20px 8px;
+  }
+
+  .figure__body > .state-of-play__table > th {
+    font-size: 14px;
+    padding: 10px 0 6px;
+  }
+  .state-of-play__party-total {
+    font-size: 22px;
+  }
+  .state-of-play__row-label {
+    margin-bottom: 2px;
   }
 }
 
