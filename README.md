@@ -114,3 +114,17 @@ The DNS records for http://elections.ft.com point to a Fastly Varnish server.
 [Fastly currently routes all traffic](https://app.fastly.com/#configure/service/656lsqYifRuigSP96daQvp) to the main Heroku server:
 
 http://uk-election-2015.herokuapp.com/
+
+
+## Components in the liveblog
+
+- Mockup page: http://localhost:3000/uk/2015/liveblog/mockup
+- Widgets fragment: http://localhost:3000/uk/2015/liveblog/widgets
+- Front-end assets that make the figures appear in the liveblog
+  - `client/js/liveblog.main.js` (periodically downloads the widgets fragment and writes them into the page)
+  - `client/scss/pages/liveblog.scss`
+
+- Training liveblog: http://training.blogs.ft.com/westminster/liveblogs/2015-04-22-2/
+- Edit the training liveblog embed code here: http://training.blogs.ft.com/westminster/wp-admin/widgets.php
+  - expand "Webchats sidebar" widget, bottom-right, and edit "Assanka HTML widget"
+  - the embed code you need is in `templates/liveblog-mockup.html` (demarcated by comments) – but you'll need to edit all the local script/stylesheet URLs to make them absolute.
