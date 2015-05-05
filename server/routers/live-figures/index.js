@@ -44,6 +44,9 @@ function* ftcomFragment(next) {
     party.label = longerNames[party.label] || party.label;
   });
 
+  data.stateOfPlay.linkText = 'Election Live Blog »';
+  data.stateOfPlay.linkURL = 'http://training.blogs.ft.com/westminster/liveblogs/2015-04-22-2/';
+
   debug(JSON.stringify(data.votesVsSeats, null, 2));
 
   yield this.render('ftcom-fragment', data); // jshint ignore:line
