@@ -118,6 +118,15 @@ exports.ftdate = function(date) {
   });
 };
 
+exports.verticalScale = function(value, domain, range) {
+  //assume the domin and the range start at 0, note the range is backwards for vertical usage
+  if(!range) range = 1;
+  if(!domain) domain = 1;
+  return d3.scale.linear()
+    .domain([0,domain])
+    .range([range,0])(value);
+};
+
 exports.percentageOf = function(part, whole) {
   return parseFloat(part)/whole * 100;
 };

@@ -105,6 +105,64 @@
   fill: $other;
 }
 
+/*text*/
+.conservative-text,
+.uup-text {
+  stroke: none;
+  fill: $conservative-dark;
+}
+
+.labour-text {
+  stroke: none;
+  fill: $labour-dark;
+}
+
+.lib-dem-text,
+.ap-text {
+  stroke: none;
+  fill: $liberal-democrat-dark;
+}
+
+.ukip-text {
+  stroke: none;
+  fill: $ukip-dark;
+}
+
+.snp-text {
+  stroke: none;
+  fill: $snp-dark;
+}
+
+.pc-text {
+  stroke: none;
+  fill: $plaid-cymru-dark;
+}
+
+.green-text {
+  stroke: none;
+  fill: $green-dark;
+}
+
+.dup-text {
+  stroke: none;
+  fill: $dup-dark;
+}
+
+.sdlp-text {
+  stroke: none;
+  fill: $sdlp-dark;
+}
+
+.sinn-fein-text {
+  stroke: none;
+  fill: $sinn-fein-dark;
+}
+
+.other-party-text {
+  stroke: none;
+  fill: $other-dark;
+}
+
 /* html blcks */
 .conservative-block,
 .uup-block {

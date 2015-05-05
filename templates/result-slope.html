@@ -1,0 +1,36 @@
+<div class="figure results-slope">
+  {% if title %}
+  <header class="figure__header">
+    <h3 class="figure__title">{{title}}</h3>
+  </header>
+  {% endif %}
+  <div class="figure__body slope-graphic">
+    <svg
+        data-domain="{{slopeDomain}}"
+        data-margintop="{{slopeMargin.top}}"
+        data-marginleft="{{slopeMargin.left}}"
+        data-marginbottom="{{slopeMargin.bottom}}"
+        data-marginright="{{slopeMargin.right}}"
+        class="image slope-graphic"
+        width="{{slopeWidth + slopeMargin.left + slopeMargin.right }}"
+        height="{{slopeHeight + slopeMargin.top + slopeMargin.bottom}}">
+      <g class="slopes" transform="translate( {{slopeMargin.left}}, {{slopeMargin.top}} )">
+      {% for slope in slopes %}
+          <g data-start="{{ slope.start }}" data-end="{{ slope.end }}" data-party="{{ slope.party }}" data-label="{{ slope.label }}" class="slope">
+            <line class="slope-graphic__slope-edge {{ slope.party | partyClassName }}-edge" x1="0" y1="{{ slope.start | verticalScale(slopeDomain, slopeHeight) }}" x2="{{slopeWidth}}" y2="{{ slope.end | verticalScale(slopeDomain, slopeHeight)}}"></line>
+            <circle r="{{ pointRadius }}" cx="0" cy="{{ slope.start | verticalScale(slopeDomain, slopeHeight) }}" class="slope-graphic__slope-point-start {{ slope.party | partyClassName }}-area"></circle>
+            <circle r="{{ pointRadius }}" cx="{{slopeWidth}}" cy="{{ slope.end | verticalScale(slopeDomain, slopeHeight) }}" class="slope-graphic__slope-point-end {{ slope.party | partyClassName }}-area"></circle>
+            {% if slope.label %}
+                {% if slopeWidth < 150 %}
+                    {% set textClass = "slope-graphic__slope-text-small" %}
+                {% else %}
+                    {% set textClass = "slope-graphic__slope-text" %}
+                {% endif %}
+            <text class="{{textClass}} {{ slope.party | partyClassName }}-text" transform="translate({{ 5 + slopeWidth}},{{ 5 + slope.end | verticalScale(slopeDomain, slopeHeight)}})">{{ slope.label }}</text>
+            {% endif %}
+          </g>
+      {% endfor %}
+      </g>
+    </svg>
+  </div>
+</div>

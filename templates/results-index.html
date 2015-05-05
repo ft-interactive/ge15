@@ -19,6 +19,21 @@
       {% include './votes-vs-seats.html' with votesVsSeats only ignore missing %}
     </div>
 
+    <div class="results-page-panel">
+      {%
+        set nationalSlopeChartData = {
+          slopeHeight: 200,
+          slopeWidth: 130,
+          slopeMargin: {top:10, left:10, bottom:10, right:120},
+          slopeDomain: 300,
+          slopes: nationalSlopes,
+          title: 'National Change',
+          pointRadius: 3
+        }
+      %}
+      {% include "./result-slope.html" with nationalSlopeChartData only %}
+    </div>
+
 
 
   </div>
@@ -32,6 +47,11 @@
   </div>
 </div>
 <script>
+
+  if (cutsTheMustard) {
+    addScript('{{ asset("js/results.js") }}', false, false);
+  }
+
 
   function showSeat(seat) {
     var el = document.getElementById('seat-search-results-js');
