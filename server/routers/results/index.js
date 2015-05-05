@@ -18,10 +18,11 @@ const pages = {
 };
 
 function* home(next) {
-  const data = _.zipObject(['overview', 'coalitions', 'votesVsSeats'], yield Promise.all([
+  const data = _.zipObject(['overview', 'coalitions', 'votesVsSeats','nationalSlopes'], yield Promise.all([
     service.resultNationalOverview(),
     service.resultNationalCoalitions(),
-    service.votesVsSeats()
+    service.votesVsSeats(),
+    service.resultNationalSlopes()
   ]));
 
 
@@ -32,9 +33,7 @@ function* home(next) {
 }
 
 function* nationalOverview(next) {
-  var data = {
-      overview:yield service.resultNationalOverview()
-  };
+  var data = yield service.resultNationalOverview();
   yield this.render('result-national-overview', data);
   yield next;
 }
@@ -59,7 +58,8 @@ function main() {
 
     .get('/', home)
     .get('/national-overview', nationalOverview)
-    .get('/national-coalitions', nationalCoalitions);
+    .get('/national-coalitions', nationalCoalitions)
+    .get('/national-change', nationalOverview);
 }
 
 module.exports = main;
