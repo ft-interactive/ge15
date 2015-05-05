@@ -116,15 +116,36 @@ The DNS records for http://elections.ft.com point to a Fastly Varnish server.
 http://uk-election-2015.herokuapp.com/
 
 
-## Components in the liveblog
+## Live figures
 
-- Mockup page: http://localhost:3000/uk/2015/liveblog/mockup
-- Widgets fragment: http://localhost:3000/uk/2015/liveblog/widgets
-- Front-end assets that make the figures appear in the liveblog
-  - `client/js/liveblog.main.js` (periodically downloads the widgets fragment and writes them into the page)
-  - `client/scss/pages/liveblog.scss`
+The state-of-play, local-result and votes-vs-seats components can all be used as "live figures", which means they can be embedded in any page dynamically using JS.
+
+The `live-figures` router provides these routes:
+
+- http://localhost:3000/uk/2015/live-figures/liveblog-mockup
+- http://localhost:3000/uk/2015/live-figures/liveblog-fragment
+
+- http://localhost:3000/uk/2015/live-figures/homepage-mockup
+- http://localhost:3000/uk/2015/live-figures/homepage-fragment
+
+
+Front-end assets that embed and style the live figures
+
+- `client/js/liveblog.main.js`
+- `client/scss/pages/liveblog.scss`
+
+- `client/js/ftcom.main.js`
+- `client/scss/pages/ftcom.scss`
+
+### Wordpress embedding
 
 - Training liveblog: http://training.blogs.ft.com/westminster/liveblogs/2015-04-22-2/
 - Edit the training liveblog embed code here: http://training.blogs.ft.com/westminster/wp-admin/widgets.php
-  - expand "Webchats sidebar" widget, bottom-right, and edit "Assanka HTML widget"
-  - the embed code you need is in `templates/liveblog-mockup.html` (demarcated by comments) – but you'll need to edit all the local script/stylesheet URLs to make them absolute.
+  - Expand "Webchats sidebar" widget, bottom-right, and edit "Assanka HTML widget"
+  - The embed code you need is in `templates/liveblog-mockup.html` (demarcated by comments)
+    - But edit the script/stylesheet URLs to make them absolute.
+
+### FT.com embedding
+
+- The embed code you need is in `templates/ftcom-mockup.html` (search for "BEGIN FTCOM EMBED CODE")
+  - But edit the script/stylesheet URLs to make them absolute.
