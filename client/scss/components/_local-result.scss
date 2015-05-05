@@ -3,7 +3,7 @@
   position: relative;
 }
 
-  .local-result__postcode-form > input {
+  .local-result__postcode-form > input[type=text] { // high specificity to override liveblog styles
     display: block;
     line-height: 30px;
     height: 30px;
