@@ -15,11 +15,13 @@ if (cutsTheMustard) {
     throw new Error('Could not find element with class "ge15-liveblog-figures"');
   }
 
-  // define which figures we'll use on this page, along with their enhancer functions (if any)
   var config = {
-    'state-of-play': null,
-    'votes-vs-seats': null,
-    'local-result': require('./local-result'),
+    'state-of-play': {},
+    'votes-vs-seats': {},
+    'local-result': {
+      enhance: require('./local-result'),
+      retain: true, // prevents it being rewritten after the first time (would be bad for this widget)
+    },
   };
 
   embedLiveFigures(fragmentPath, container, config);
