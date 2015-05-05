@@ -1,12 +1,35 @@
 .results-national-coalitions {
-
-  &__coalition-party-block {
-    display: inline-block;
+  font-size: 0.9em;
+  h2 {
+    font-size: 1.5em;
+    margin-bottom: 12px;
   }
+}
 
-  &__seat-count,
-  &__party-list {
-    display: inline-block;
-  }
+.results-national-coalitions__group {
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e9decf;
+}
 
+.results-national-coalitions__coalition-party-block {
+  display: inline-block;
+  width: 50px;
+  text-align: center;
+  font-weight: bold;
+  color: oColorsGetPaletteColor(white);
+  margin-right: 4px;
+  padding: 2px 0 3px;
+}
+
+.results-national-coalitions__seat-count,
+.results-national-coalitions__party-list {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+
+.results-national-coalitions__seats,
+.results-national-coalitions__majority {
+  font-weight: bold;
 }
