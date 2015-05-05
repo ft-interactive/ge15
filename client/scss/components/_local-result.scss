@@ -1,8 +1,18 @@
 .local-result {
-  // outline: 1px solid red;
   position: relative;
-}
 
+  // scss-lint:disable ImportantRule
+  box-sizing: border-box !important;
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit !important;
+    font-family: inherit;
+  }
+  // scss-lint:enable ImportantRule
+}
+  
+  // scss-lint:disable QualifyingElement
   .local-result__postcode-form > input[type=text] { // high specificity to override liveblog styles
     display: block;
     line-height: 30px;
@@ -14,3 +24,4 @@
     padding-left: 25px;
     background: color(white) url(https://image.webservices.ft.com/v1/images/raw/fticon:search?width=13&source=ge15) no-repeat 6px 7px;
   }
+  // scss-lint:enable QualifyingElement

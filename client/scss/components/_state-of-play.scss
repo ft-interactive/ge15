@@ -1,4 +1,13 @@
 .state-of-play {
+  // scss-lint:disable ImportantRule
+  box-sizing: border-box !important;
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit !important;
+    font-family: inherit;
+  }
+  // scss-lint:enable ImportantRule
 }
 
   .figure__body > .state-of-play__table { // specificity needed to override liveblog styles

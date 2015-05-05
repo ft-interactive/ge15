@@ -85,16 +85,5 @@ module.exports = function () {
   return Promise.resolve({
     headline: 'Popular vote vs. seats won',
     parties: _.take(_.sortBy(data, 'percentVoteWon').reverse(), 6),
-
-    // Key dimensions are given as template locals, so we can easily make a
-    // bigger version for use elsewhere.
-    // These dimensions are good for the liveblog:
-    totalWidth: 352,
-    labelsWidth: 100,
-    trackLength: 352 - (100 + 20), // rail width, minus labels width and a little extra margin
-    rowHeight: 26,
-    seatsIconSize: 12,
-    trackThickness: 16,
-    barThickness: 10,
   });
 };

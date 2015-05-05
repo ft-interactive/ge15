@@ -1,6 +1,12 @@
 @import "o-colors/main";
 @import "../functions";
 
+@import "../components/state-of-play";
+@import "../components/votes-vs-seats";
+@import "../components/local-result";
+
+@include votes-vs-seats;
+
 .assanka_htmlwidget {
   overflow: visible;
 }
@@ -11,16 +17,6 @@
   background: color(pink);
   font-family: BentonSans, sans-serif;
   -webkit-font-smoothing: antialiased;
-
-  // scss-lint:disable ImportantRule
-  box-sizing: border-box !important;
-  *,
-  *:before,
-  *:after {
-    box-sizing: inherit !important;
-    font-family: inherit;
-  }
-  // scss-lint:enable ImportantRule
 
   > .figure-wrapper {
     padding-bottom: 24px;
@@ -62,7 +58,3 @@
     > b { color: color(grey-tint5); }
   }
 }
-
-@import "../components/state-of-play";
-@import "../components/votes-vs-seats";
-@import "../components/local-result";

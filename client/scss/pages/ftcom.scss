@@ -9,16 +9,6 @@
   margin-bottom: 42px;
   min-height: 280px;
 
-  // scss-lint:disable ImportantRule
-  box-sizing: border-box !important;
-  *,
-  *:before,
-  *:after {
-    box-sizing: inherit !important;
-    font-family: inherit;
-  }
-  // scss-lint:enable ImportantRule
-
   > .figure-wrapper {
   }
     .figure__header {
