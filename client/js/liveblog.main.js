@@ -34,7 +34,7 @@ if (cutsTheMustard) {
 
       // insert/replace them all one-by-one
       Object.keys(widgets).forEach(function (widgetId) {
-        var wrapper = widgetsContainer.querySelector('.widget-wrapper--' + widgetId);
+        var wrapper = widgetsContainer.querySelector('.figure-wrapper--' + widgetId);
 
         if (!wrapper) {
           console.warn('Missing wrapper for widget:', widgetId);

@@ -9,7 +9,7 @@
   overflow: visible;
 }
 
-.ge15-liveblog-widgets {
+.ge15-liveblog-widgets { // to prevent styles leaking out into page
   width: 352px;
   position: relative;
   background: color(pink);
@@ -26,10 +26,10 @@
   }
   // scss-lint:enable ImportantRule
 
-  > .widget-wrapper {
+  > .figure-wrapper {
     padding-bottom: 24px;
-
-    header {
+  }
+    .figure__header {
       -webkit-font-smoothing: antialiased;
       font: bold 18px BentonSans, sans-serif;
       border-bottom: 1px solid color(grey-tint1);
@@ -37,12 +37,24 @@
       overflow: hidden;
       padding-bottom: 3px;
       margin: 0 0 15px;
+      
+      > .figure__title {
+        color: color(grey-tint5);
+        margin: 0;
+      }
 
+      &--with-note {
+        > .figure__title {
+          float: left;
+          height: 0;
+        }
+
+        > .num-declared {
+          float: right;
+          margin-top: 8px;
+        }
+      }
     }
-
-
-  }
-
 
   .num-declared {
     margin: 0;
@@ -52,12 +64,6 @@
 
     > b { color: color(grey-tint5); }
   }
-}
-
-.widget-wrapper header > h3 {
-  margin: 0;
-  height: 0;
-  color: color(grey-tint5);
 }
 
 @import "../components/state-of-play";
