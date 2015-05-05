@@ -9,15 +9,13 @@ var cutsTheMustard = (
 var fragmentPath = '/uk/2015/live-figures/ftcom-fragment';
 
 if (cutsTheMustard) {
-  // find the container we're going to put figures in
   var container = document.querySelector('.ge15-ftcom-figures');
   if (!container) {
     throw new Error('Could not find element with class "ge15-ftcom-figures"');
   }
 
-  // define which figures we'll use on this page
   var config = {
-    'state-of-play': null
+    'state-of-play': {}
   };
 
   embedLiveFigures(fragmentPath, container, config);

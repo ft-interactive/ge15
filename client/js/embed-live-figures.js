@@ -22,13 +22,17 @@ module.exports = function (fragmentPath, container, config) {
         return;
       }
 
+
       var loadedFigure = loadedFigures.querySelector('.' + figureId);
       if (loadedFigure) {
+        // if it already exists and `retain` is set, just leave it as it is
+        if (config[figureId].retain && wrapper.children.length) return;
+
         wrapper.innerHTML = loadedFigure.outerHTML;
 
         // enhance it
-        if (config[figureId]) {
-          config[figureId](wrapper.firstElementChild);
+        if (config[figureId].enhance) {
+          config[figureId].enhance(wrapper.firstElementChild);
         }
       }
       else {
