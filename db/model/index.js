@@ -1,13 +1,6 @@
 'use strict';
 
-const Types = exports.Types = {
-  PREVIOUS: -2,
-  FORECAST: -1,
-  NOT_CALLED: 0,
-  RUSH: 1,
-  RESULT: 2,
-  RECOUNT: 3
-};
+const Types = exports.Types = require('./types');
 
 var f = exports.factory = {
 
@@ -72,15 +65,18 @@ var f = exports.factory = {
       votes: Number(o.votes) || 0,
       votes_pc: Number(o.votes_pc) || 0,
       seats: Number(o.seats) || 0,
+      seats_pc_so_far: Number(o.seats_pc_so_far) || 0,
       seats_change: Number(o.seats_change) || 0,
       seats_gain: Number(o.seats_gain) || 0,
-      seats_loss: Number(o.seats_loss) || 0
+      seats_loss: Number(o.seats_loss) || 0,
+      pa_forecast: typeof o.pa_forecast === 'number' ? o.pa_forecast : null,
+      revision: Number(o.revision) || 0
     };
 
     d.seats_pc = d.seats / 6.5;
 
-    if (!d.votes_pc && electorateSize) {
-      d.votes_pc = d.votes / 100;
+    if (!d.votes_pc && d.votes && typeof electorateSize === 'number') {
+      d.votes_pc = d.votes / (electorateSize / 100);
     }
 
     return d;
@@ -91,7 +87,6 @@ var f = exports.factory = {
     var d = f.PartyNationalResult(o, electorateSize);
     d.seats_lo = Number(o.seats_lo) || 0;
     d.seats_hi = Number(o.seats_hi) || 0;
-    d.pa_forecast = Number(o.pa_forecast) || 0;
     return d;
   },
 

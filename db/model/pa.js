@@ -5,34 +5,181 @@ const _ = require('lodash');
 const PoliticalParties = require('uk-political-parties');
 const xml2js = require('xml2js').parseString;
 
-const db = require('../');
+const db = require('../loki');
 const model = require('./index.js');
 const f = model.factory;
-const Types = model.types;
+const Types = require('./types');
 
+exports.SOP_xml_to_PartyNationalResults = function(file, xml) {
 
-exports.create_result = function(file, xml, callback) {
+  var parties = xml.FirstPastThePostStateOfParties.Parties[0].Party;
+  var sop = xml.FirstPastThePostStateOfParties.$;
+  var seats_so_far = Number(sop.numberOfResults) || 0;
+  var votes_so_far = Number(sop.totalVotes) || 0;
+
+  /*
+  TODO: how do we get the size of the turnout? is it the vote size after 650 seats?
+  TODO: do we want to use the party's %-change field in any way? <Party percentageChange="+21.58">
+  TODO: how do we get seats_change and seats_change_pc? is this only relevant at the end of the night?
+  TODO: we need a place in the DB to store high level numbers like turnout and electorate size.
+  TODO: might be useful to make a special table of gains an losses for each party
+  */
+  var others = {};
+  others.id = 'other',
+  others.election = f.PartyNationalResult({revision: file.revision});
+  others.election.other_parties = [];
+
+  var results = parties.reduce(function(result, node) {
+    var party = node.$;
+    var code = PoliticalParties.paToCode(party.abbreviation);
+
+    var o = {
+      pa_number: party.paId,
+      election: f.PartyNationalResult({
+        votes: party.totalVotes,
+        votes_pc: party.percentageShare,
+        seats: party.totalSeats,
+        seats_pc_so_far: Number(party.totalSeats) / (seats_so_far / 100),
+        seats_gain: party.gains,
+        seats_loss: party.losses,
+        pa_forecast: party.forecastSeats ? Number(party.forecastSeats) : null,
+        revision: file.revision
+      })
+    };
+
+    // Once the last results are called, the PA stop sending a
+    // forecast. Fill in the missing data here for anything
+    // still needing the forecast.
+    if (seats_so_far >= 650 && !o.election.pa_forecast) {
+      o.election.pa_forecast = o.election.seats;
+    }
+
+    if (PoliticalParties.isKnownParty(code)) {
+      o.id = code;
+      result.push(o);
+    } else {
+      o.id = 'other';
+      o.election.other_party_name = party.name;
+
+      // for reference, keep are record of all the parties that come under 'other'
+      others.election.other_parties.push(o);
+
+      // aggregate the numbers for all the other parties
+      others.election.votes += o.election.votes;
+      others.election.votes_pc += o.election.votes_pc;
+      others.election.seats += o.election.seats;
+      others.election.seats_pc += o.election.seats_pc;
+      others.election.seats_pc_so_far += o.election.seats_pc_so_far;
+      others.election.seats_gain += o.election.seats_gain;
+      others.election.seats_loss += o.election.seats_loss;
+      others.election.pa_forecast += o.election.pa_forecast;
+    }
+    return result;
+  }, []);
+
+  // We don't need so much data for all the 'other' parties.
+  others.election.other_parties = others.election.other_parties.map(function(p) {
+    return {
+      pa_number: p.pa_number,
+      name: p.election.other_party_name,
+      seats: p.election.seats,
+      votes: p.election.votes,
+      votes_pc: p.election.votes_pc
+    };
+  });
+
+  results.push(others);
+
+  // TODO: what we going to do with all the other data?
+  return {
+    parties: results,
+    votes_so_far: votes_so_far,
+    seats_so_far: seats_so_far,
+    pa_forecast_majority: sop.forecastMajority ? Number(sop.forecastMajority) : null,
+    source: {
+      message: sop.forecastWinningParty || '',
+      note: sop.note || '',
+      filename: file.name,
+      revision: file.revision,
+    }
+  };
+
+};
+
+exports.update_party_results = function(file, xml, callback) {
+
   xml2js(xml, function(parseErr, result) {
     if (parseErr) {
       callback(parseErr);
       return;
     }
 
+    var o = exports.SOP_xml_to_PartyNationalResults(file, result);
+    var updating = o.parties.map(function(party) {
+
+      var existing = db.getCollection('parties').findOne({id: party.id});
+
+      if (!existing) {
+        console.error('SOP has unknown party');
+        return existing;
+      }
+
+      var existingElection = existing.elections.ge15;
+      var election = party.election;
+      var can_update = election.revision > existingElection.revision;
+
+      if (can_update) {
+        existingElection.votes = election.votes;
+        existingElection.votes_pc = election.votes_pc;
+        existingElection.seats = election.seats,
+        existingElection.seats_pc = election.seats_pc;
+        existingElection.seats_pc_so_far = election.seats_pc_so_far;
+        existingElection.seats_gain = election.seats_gain;
+        existingElection.seats_gain = election.seats_loss;
+        existingElection.pa_forecast = election.pa_forecast || existingElection.pa_forecast;
+        existingElection.revision = election.revision;
+        if (election.other_parties) {
+          existingElection.other_parties = election.other_parties;
+        }
+      }
+
+      return existing;
+    });
+
+    db.getCollection('parties').update(updating);
+
+    // TODO: this is where we would update the db with high level stats for the whole GE
+
+    callback();
+  });
+};
+
+exports.update_seat_result = function(file, xml, callback) {
+
+
+  xml2js(xml, function(parseErr, result) {
+    if (parseErr) {
+      debug('parse err');
+      callback(parseErr);
+      return;
+    }
+
     var pa_id;
-    var data;
     var type;
 
-    if (file.isRecount) {
+    if (file.type === Types.RECOUNT) {
       type = Types.RECOUNT;
       pa_id = result.Recount.Election[0].Constituency[0].$.number;
-    } else if (file.isRush) {
+    } else if (file.type === Types.RUSH) {
       pa_id = result.FirstPastThePostRush.Election[0].Constituency[0].$.number;
       type = Types.RUSH;
-    } else if (file.isResult) {
+    } else if (file.type === Types.RESULT) {
       pa_id = result.FirstPastThePostResult.Election[0].Constituency[0].$.number;
       type = Types.RESULT;
     }
 
+debug('type: '+type);
+debug('pa_id: '+pa_id);
     if (!type) {
       callback(new Error('File type is not recognised'));
       return;
@@ -45,47 +192,80 @@ exports.create_result = function(file, xml, callback) {
 
     debug('Find seat data for pa_id=' + pa_id);
 
-    var seat = db.getCollection('seats').findOne({pa_id: pa_id});
+    var collection = db.getCollection('seats');
+    var seat = collection.findOne({pa_id: pa_id});
 
     if (!seat) {
       callback(new Error('Cannot find PA Seat ID ' + pa_id + ' in the DB'));
       return;
     }
 
-    debug('Process type=' + type + ' file=' + file.name + ' id=' + seat.id + ' name=' + seat.name + ' pa_id=' + pa_id);
+    var message_context = '. type=' + type + ' file=' + file.name + ' revision=' + file.revision + ' id=' + seat.id + ' name=' + seat.name + ' pa_id=' + pa_id;
+
+    debug('Process type=' + type + message_context);
 
     if (type === Types.RECOUNT) {
       // TODO: proper recount implementation
       seat.elections.ge15.recount = true;
-      callback(null, seat);
+      collection.update(seat);
+      callback();
       return;
     }
 
-    data = exports.xml_to_result(type, file, result);
+    var existing_type = seat.elections.ge15.source && typeof seat.elections.ge15.source.type === 'number' ? seat.elections.ge15.source.type : Types.NOT_CALLED;
+    var existing_revision = seat.elections.ge15.source && typeof seat.elections.ge15.source.revision === 'number' ? seat.elections.ge15.source.revision : 0;
 
-    if (seat.elections.ge15.source &&
-              typeof seat.elections.ge15.source.type === 'number' &&
-              seat.elections.ge15.source.type === 2) {
-      debug('Dont update rush, already have result. id=' + seat.id + ' name="' + seat.name + '" pa_id=' + pa_id + ' file=' + JSON.stringify(file) + ' source=' + JSON.stringify(dbSeat.elections.ge15.source));
-      return;
+    message_context += ' current=(type:' + existing_type + ',revision:' + existing_revision + ')';
+
+    var correction_only = false;
+
+    // We only want to think about cancelling the update
+    // if we already have results data
+    if (existing_type > Types.NOT_CALLED) {
+
+      if (type === Types.RUSH) {
+
+        if (existing_type === Types.RESULT && existing_revision > file.revision) {
+          debug('Dont update rush, already have result' + message_context);
+          callback();
+          return;
+        }
+
+        if (existing_revision >= file.revision) {
+          debug('Dont update rush, later revision (or correction) already received' + message_context);
+          callback();
+          return;
+        }
+
+      } else if (type === Types.RESULT) {
+
+        if (existing_type === Types.RESULT && existing_revision >= file.revision) {
+          debug('Dont update result, later revision already received'  + message_context);
+          callback();
+          return;
+        }
+
+      } else {
+        callback(new Error('This should not happen'));
+        return;
+      }
     }
 
-    if (dbSeat.elections.ge15.source &&
-              typeof dbSeat.elections.ge15.source.type === 'number' &&
-              dbSeat.elections.ge15.source.type === 1 &&
-              typeof dbSeat.elections.ge15.source.revision === 'number' &&
-              dbSeat.elections.ge15.source.revision >= file.revision) {
-      debug('Dont update rush, later revision already received. id=' + dbSeat.id + ' name="' + dbSeat.name + '" pa_id=' + pa_id + ' file=' + JSON.stringify(file) + ' source=' + JSON.stringify(dbSeat.elections.ge15.source));
-      return;
-    }
+    debug('Adding ' + (type === Types.RESULT ? 'result' : 'rush') + ' data.'  + message_context);
 
-    debug('Adding rush data. id=' + dbSeat.id + ' name="' + dbSeat.name + '" pa_id=' + pa_id + ' file=' + file.name);
+    // create a new election object the reflect what's
+    // contained in the new XML from the PA feed.
+    var data = exports.seat_xml_to_result(type, file, result);
 
-    do_update = true;
+    // apply all the new data to the seat object
+    seat.elections.ge15 = data;
 
+    // update the object
+    collection.update(seat);
 
-
-
+// console.dir(seat);
+// console.dir(seat.elections.ge15);
+    callback();
 
   });
 };
@@ -97,10 +277,17 @@ function candidateXMLtoSeatPartyResult(node) {
   var o = f.SeatPartyResult({
     person: candidate.firstName + ' ' + candidate.surname,
     winner: candidate.elected === '*',
-    loser: candidate.previousSittingMember === '*',
+    loser: false,
     votes: Number(party.votes),
     votes_pc: Number(party.percentageShare)
   });
+
+  if (!o.winner && candidate.previousSittingMember === '*') {
+    o.loser = candidate.previousSittingMember === '*';
+  }
+
+  // TODO: add "person_of_note_field"
+  //       by combining some bertha data and PA data
 
   if (PoliticalParties.isKnownParty(code)) {
     o.party = code;
@@ -111,7 +298,7 @@ function candidateXMLtoSeatPartyResult(node) {
   return o;
 }
 
-exports.xml_to_result = function(type, file, xml) {
+exports.seat_xml_to_result = function(type, file, xml) {
   var node_name;
 
   if (type === Types.RUSH) {
@@ -146,7 +333,7 @@ exports.xml_to_result = function(type, file, xml) {
   var winner = winnerIndex !== -1 ? data.results[winnerIndex] : null;
 
   if (winner) {
-    winner.o.majority = constituency.majority ? Number(constituency.majority) : null;
+    winner.majority = constituency.majority ? Number(constituency.majority) : null;
     winner.majority_pc = constituency.percentageMajority ? Number(constituency.percentageMajority) : null;
     data.winner = winner;
   } else {
@@ -160,15 +347,6 @@ exports.xml_to_result = function(type, file, xml) {
     }
     return others;
   }, {votes: 0, votes_pc: 0});
-
-  /*
-  Do we need to some rounding on votes_pc?
-
-  dbSeat.elections.ge15.others = {
-    votes: dbSeat.elections.ge15.turnout - knowPartiesTotals.votes,
-    votes_pc: roundDp(100 - knowPartiesTotals.votes_pc, 2)
-  };
-  */
 
   return data;
 };
