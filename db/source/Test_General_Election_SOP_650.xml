@@ -1,0 +1,792 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FirstPastThePostStateOfParties numberOfResults="650" totalNumberOfConstituencies="650" totalVotes="29080946" forecastWinningParty="No overall majority" note="Votes cast for the Speaker at Buckingham are included in the Conservative total ">
+  <Election name="Test General Election" date="2015-05-06" type="G" />
+  <Parties>
+    <Party paId="5516" name="Labour" abbreviation="Lab" totalSeats="285" gains="160" losses="132" totalVotes="10753799" percentageShare="36.98" percentageChange="+7.99" />
+    <Party paId="5515" name="Conservative" abbreviation="C" totalSeats="291" gains="138" losses="150" totalVotes="9479293" percentageShare="32.60" percentageChange="-3.87" />
+    <Party paId="5518" name="Liberal Democrat" abbreviation="LD" totalSeats="37" gains="29" losses="49" totalVotes="4302468" percentageShare="14.79" percentageChange="-8.23" />
+    <Party paId="5521" name="Green" abbreviation="Green" totalSeats="2" gains="2" losses="1" totalVotes="1549211" percentageShare="5.33" percentageChange="+4.37" />
+    <Party paId="5650" name="UK Independence Party" abbreviation="UKIP" totalSeats="5" gains="3" totalVotes="1253503" percentageShare="4.31" percentageChange="+1.21" />
+    <Party paId="5520" name="Scottish National Party" abbreviation="SNP" totalSeats="10" gains="9" losses="5" totalVotes="432860" percentageShare="1.49" percentageChange="-0.17" />
+    <Party paId="5519" name="Plaid Cymru" abbreviation="PC" totalSeats="9" gains="7" losses="1" totalVotes="260674" percentageShare="0.90" percentageChange="+0.34" />
+    <Party paId="5571" name="Independent" abbreviation="Ind" totalSeats="2" gains="2" losses="3" totalVotes="159731" percentageShare="0.55" percentageChange="+0.02" />
+    <Party paId="7383" name="Ulster Unionist Party" abbreviation="UUP" totalSeats="2" gains="2" totalVotes="115888" percentageShare="0.40" />
+    <Party paId="5524" name="Social Democratic and Labour Party" abbreviation="SDLP" totalSeats="1" gains="1" losses="3" totalVotes="112774" percentageShare="0.39" percentageChange="+0.01" />
+    <Party paId="5525" name="Sinn Fein" abbreviation="SF" totalSeats="3" gains="3" losses="5" totalVotes="111499" percentageShare="0.38" percentageChange="-0.20" />
+    <Party paId="5647" name="Trade Unionist and Socialist Coalition" abbreviation="TUSC" totalVotes="94718" percentageShare="0.33" percentageChange="+0.28" />
+    <Party paId="5526" name="Alliance" abbreviation="Alliance" totalSeats="2" gains="2" losses="1" totalVotes="85526" percentageShare="0.29" percentageChange="+0.15" />
+    <Party paId="5523" name="Democratic Unionist Party" abbreviation="DUP" totalSeats="1" losses="7" totalVotes="54939" percentageShare="0.19" percentageChange="-0.38" />
+    <Party paId="5527" name="Workers' Party" abbreviation="WP" totalVotes="26459" percentageShare="0.09" percentageChange="+0.09" />
+    <Party paId="5561" name="English Democrats" abbreviation="Eng Dem" totalVotes="20382" percentageShare="0.07" percentageChange="-0.15" />
+    <Party paId="8014" name="Cannabis is Safer than Alcohol" abbreviation="CSA" totalVotes="20127" percentageShare="0.07" />
+    <Party paId="5611" name="No description" abbreviation="ND" totalVotes="19518" percentageShare="0.07" percentageChange="+0.05" />
+    <Party paId="5547" name="Christian Peoples Alliance" abbreviation="CPA" totalVotes="13231" percentageShare="0.05" percentageChange="+0.02" />
+    <Party paId="8007" name="Yorkshire First" abbreviation="Yorks" totalVotes="13216" percentageShare="0.05" />
+    <Party paId="5604" name="Monster Raving Loony Party" abbreviation="Loony" totalVotes="12669" percentageShare="0.04" percentageChange="+0.02" />
+    <Party paId="5648" name="Traditional Unionist Voice" abbreviation="TUV" totalVotes="12489" percentageShare="0.04" percentageChange="-0.05" />
+    <Party paId="8092" name="Socialist Party of Great Britain" abbreviation="SPGB" totalVotes="7795" percentageShare="0.03" />
+    <Party paId="5606" name="National Front" abbreviation="NF" totalVotes="7538" percentageShare="0.03" percentageChange="-0.01" />
+    <Party paId="7395" name="National Health Action Party" abbreviation="NHA" totalVotes="7473" percentageShare="0.03" />
+    <Party paId="8011" name="Independence from Europe" abbreviation="IE" totalVotes="6701" percentageShare="0.02" />
+    <Party paId="5632" name="Socialist Labour Party" abbreviation="Soc Lab" totalVotes="5940" percentageShare="0.02" percentageChange="-0.00" />
+    <Party paId="5618" name="Pirate Party UK" abbreviation="Pirate" totalVotes="5012" percentageShare="0.02" percentageChange="+0.01" />
+    <Party paId="5600" name="Mebyon Kernow" abbreviation="Meb Ker" totalVotes="4774" percentageShare="0.02" percentageChange="-0.00" />
+    <Party paId="8074" name="Ubuntu Party" abbreviation="Ubuntu" totalVotes="3944" percentageShare="0.01" />
+    <Party paId="7969" name="Class War" abbreviation="Class War" totalVotes="3912" percentageShare="0.01" />
+    <Party paId="5596" name="Lincolnshire Independents" abbreviation="Lincs Ind" totalVotes="3781" percentageShare="0.01" percentageChange="-0.00" />
+    <Party paId="5539" name="British National Party" abbreviation="BNP" totalVotes="3655" percentageShare="0.01" percentageChange="-1.89" />
+    <Party paId="5655" name="Workers' Revolutionary Party" abbreviation="WRP" totalVotes="3582" percentageShare="0.01" percentageChange="+0.01" />
+    <Party paId="8068" name="Northern Party" abbreviation="Northern" totalVotes="3489" percentageShare="0.01" />
+    <Party paId="8032" name="Above and Beyond Party" abbreviation="Above" totalVotes="3429" percentageShare="0.01" />
+    <Party paId="5623" name="Respect the Unity Coalition" abbreviation="Respect" losses="1" totalVotes="3098" percentageShare="0.01" percentageChange="-0.10" />
+    <Party paId="5627" name="Scottish Socialist Party" abbreviation="SSP" totalVotes="3094" percentageShare="0.01" percentageChange="+0.00" />
+    <Party paId="8054" name="The North East Party" abbreviation="NEParty" totalVotes="2996" percentageShare="0.01" />
+    <Party paId="5594" name="Liberal" abbreviation="Lib" totalVotes="2856" percentageShare="0.01" percentageChange="-0.01" />
+    <Party paId="5531" name="Alliance for Green Socialism" abbreviation="Green Soc" totalVotes="2629" percentageShare="0.01" percentageChange="+0.00" />
+    <Party paId="8035" name="Vapers in Power" abbreviation="Vapers" totalVotes="2576" percentageShare="0.01" />
+    <Party paId="8038" name="We Are The Reality Party" abbreviation="Reality" totalVotes="2511" percentageShare="0.01" />
+    <Party paId="8009" name="Communities United Party" abbreviation="Community" totalVotes="2446" percentageShare="0.01" />
+    <Party paId="8034" name="All People's Party" abbreviation="AP" totalVotes="2387" percentageShare="0.01" />
+    <Party paId="8055" name="Justice For Men &amp; Boys" abbreviation="JMB" totalVotes="2364" percentageShare="0.01" />
+    <Party paId="5544" name="Christian" abbreviation="Christian" totalVotes="2213" percentageShare="0.01" percentageChange="+0.01" />
+    <Party paId="8072" name="The Birthday Party" abbreviation="Birthday" totalVotes="2094" percentageShare="0.01" />
+    <Party paId="8016" name="Animal Welfare Party" abbreviation="AWP" totalVotes="2011" percentageShare="0.01" />
+    <Party paId="8073" name="Children of the Atom" abbreviation="Atom" totalVotes="1992" percentageShare="0.01" />
+    <Party paId="8060" name="Patria" abbreviation="Patria" totalVotes="1914" percentageShare="0.01" />
+    <Party paId="5553" name="Communist Party" abbreviation="Comm" totalVotes="1776" percentageShare="0.01" percentageChange="+0.00" />
+    <Party paId="8019" name="Whig Party" abbreviation="Whig" totalVotes="1763" percentageShare="0.01" />
+    <Party paId="8046" name="Removing the Politicians" abbreviation="RTP" totalVotes="1749" percentageShare="0.01" />
+    <Party paId="8084" name="Rochdale First Party" abbreviation="Rochdale" totalVotes="1702" percentageShare="0.01" />
+    <Party paId="8080" name="British Democrats" abbreviation="Brit Dem" totalVotes="1702" percentageShare="0.01" />
+    <Party paId="5546" name="Christian Party" abbreviation="Ch P" totalVotes="1675" percentageShare="0.01" percentageChange="-0.06" />
+    <Party paId="7389" name="Young People's Party UK" abbreviation="Young" totalVotes="1634" percentageShare="0.01" />
+    <Party paId="5552" name="Communist League" abbreviation="Comm Lge" totalVotes="1623" percentageShare="0.01" percentageChange="+0.01" />
+    <Party paId="7751" name="National Liberal Party" abbreviation="Nat Lib" totalVotes="1563" percentageShare="0.01" percentageChange="+0.01" />
+    <Party paId="8027" name="Left Unity" abbreviation="LU" totalVotes="1546" percentageShare="0.01" />
+    <Party paId="8041" name="Liberty GB" abbreviation="Lib GB" totalVotes="1499" percentageShare="0.01" />
+    <Party paId="8029" name="The Peace Party" abbreviation="Peace" totalVotes="1495" percentageShare="0.01" />
+    <Party paId="8022" name="Communist" abbreviation="Communist" totalVotes="1485" percentageShare="0.01" />
+    <Party paId="8083" name="New Independent Centralists" abbreviation="New IC" totalVotes="1390" percentageShare="0.00" />
+    <Party paId="8012" name="Residents for Uttlesford" abbreviation="Uttlesford" totalVotes="1375" percentageShare="0.00" />
+    <Party paId="7999" name="Independents Against Social Injustice" abbreviation="IASI" totalVotes="1328" percentageShare="0.00" />
+    <Party paId="5554" name="Communist Party of Britain" abbreviation="Comm Brit" totalVotes="1319" percentageShare="0.00" percentageChange="+0.00" />
+    <Party paId="8006" name="Movement for Active Democracy" abbreviation="Active Dem" totalVotes="1300" percentageShare="0.00" />
+    <Party paId="8047" name="The Democratic Party" abbreviation="DP" totalVotes="1237" percentageShare="0.00" />
+    <Party paId="8026" name="Scottish Christian Party" abbreviation="SCP" totalVotes="1232" percentageShare="0.00" />
+    <Party paId="8021" name="U Party" abbreviation="U Party" totalVotes="1131" percentageShare="0.00" />
+    <Party paId="8079" name="Republican Socialist" abbreviation="Rep Soc" totalVotes="1130" percentageShare="0.00" />
+    <Party paId="5631" name="Socialist Equality Party" abbreviation="SEP" totalVotes="1112" percentageShare="0.00" percentageChange="+0.00" />
+    <Party paId="5615" name="People Before Profit" abbreviation="PBP" totalVotes="1099" percentageShare="0.00" percentageChange="-0.01" />
+    <Party paId="5576" name="Independent Community and Health Concern" abbreviation="Ind CHC" totalVotes="1095" percentageShare="0.00" percentageChange="-0.05" />
+    <Party paId="8039" name="Independents for Bristol" abbreviation="Bristol" totalVotes="1048" percentageShare="0.00" />
+    <Party paId="7997" name="Independent Political Alliance Party" abbreviation="IPAP" totalVotes="1040" percentageShare="0.00" />
+    <Party paId="8077" name="Bournemouth Independent Alliance" abbreviation="Bournemouth" totalVotes="1004" percentageShare="0.00" />
+    <Party paId="8064" name="Party for a United Thanet" abbreviation="Thanet" totalVotes="966" percentageShare="0.00" />
+    <Party paId="8063" name="Manston Airport Independent Party" abbreviation="Manston" totalVotes="955" percentageShare="0.00" />
+    <Party paId="5589" name="Islam Zinda Baad Platform" abbreviation="IZB" totalVotes="931" percentageShare="0.00" percentageChange="+0.00" />
+    <Party paId="8065" name="Campaign Party" abbreviation="Campaign" totalVotes="895" percentageShare="0.00" />
+    <Party paId="8025" name="The Southport Party" abbreviation="Southport" totalVotes="883" percentageShare="0.00" />
+    <Party paId="8031" name="Something New" abbreviation="S New" totalVotes="846" percentageShare="0.00" />
+    <Party paId="5598" name="Magna Carta Party" abbreviation="Magna Carta" totalVotes="844" percentageShare="0.00" percentageChange="+0.00" />
+    <Party paId="8061" name="Justice and Anti-Corruption Party" abbreviation="JACP" totalVotes="839" percentageShare="0.00" />
+    <Party paId="8036" name="Democratic Reform Party" abbreviation="Dem  Ref" totalVotes="833" percentageShare="0.00" />
+    <Party paId="8087" name="Your Vote Could Save Our Hospital" abbreviation="Hospital" totalVotes="810" percentageShare="0.00" />
+    <Party paId="8056" name="The Evolution Party" abbreviation="TEP" totalVotes="794" percentageShare="0.00" />
+    <Party paId="8008" name="British Independents" abbreviation="Brit Ind" totalVotes="788" percentageShare="0.00" />
+    <Party paId="5569" name="Humanity" abbreviation="Humanity" totalVotes="780" percentageShare="0.00" percentageChange="+0.00" />
+    <Party paId="5545" name="Christian Movement for Great Britain" abbreviation="Ch M" totalVotes="765" percentageShare="0.00" percentageChange="+0.00" />
+    <Party paId="8091" name="Keep it Real" abbreviation="Real" totalVotes="722" percentageShare="0.00" />
+    <Party paId="8066" name="Digital Democracy" abbreviation="Digital" totalVotes="700" percentageShare="0.00" />
+    <Party paId="8095" name="Restore the Family" abbreviation="Restore" totalVotes="699" percentageShare="0.00" />
+    <Party paId="5551" name="Common Sense Party" abbreviation="CSP" totalVotes="699" percentageShare="0.00" percentageChange="-0.00" />
+    <Party paId="5629" name="Social Democratic Party" abbreviation="Soc Dem" totalVotes="696" percentageShare="0.00" percentageChange="-0.00" />
+    <Party paId="8015" name="The Eccentric Party of Great Britain" abbreviation="Eccentric" totalVotes="689" percentageShare="0.00" />
+    <Party paId="7971" name="Free Public Transport Party" abbreviation="FPT" totalVotes="646" percentageShare="0.00" />
+    <Party paId="8028" name="Mainstream" abbreviation="Mainstream" totalVotes="645" percentageShare="0.00" />
+    <Party paId="8075" name="Hoi Polloi" abbreviation="Hoi" totalVotes="617" percentageShare="0.00" />
+    <Party paId="8045" name="Patriotic Socialist Party" abbreviation="PSP" totalVotes="606" percentageShare="0.00" />
+    <Party paId="7968" name="Beer, Baccy and Scratchings" abbreviation="Beer BS" totalVotes="603" percentageShare="0.00" />
+    <Party paId="8042" name="The Pluralist Party" abbreviation="Plural" totalVotes="562" percentageShare="0.00" />
+    <Party paId="8044" name="The Sustainable Population Party" abbreviation="TSPP" totalVotes="549" percentageShare="0.00" />
+    <Party paId="8023" name="Consensus" abbreviation="Consensus" totalVotes="548" percentageShare="0.00" />
+    <Party paId="8067" name="The UK Progressive Democracy Party" abbreviation="UKPDP" totalVotes="524" percentageShare="0.00" />
+    <Party paId="8033" name="Europeans Party" abbreviation="EP" totalVotes="520" percentageShare="0.00" />
+    <Party paId="8049" name="Poole People" abbreviation="Poole" totalVotes="510" percentageShare="0.00" />
+    <Party paId="8076" name="People First" abbreviation="PF" totalVotes="472" percentageShare="0.00" />
+    <Party paId="8086" name="World Peace Through Song" abbreviation="Song" totalVotes="453" percentageShare="0.00" />
+    <Party paId="8017" name="The Realists' Party" abbreviation="Realist" totalVotes="447" percentageShare="0.00" />
+    <Party paId="8093" name="Red Flag Anti-Corruption" abbreviation="RFAC" totalVotes="385" percentageShare="0.00" />
+    <Party paId="8020" name="Population Party UK" abbreviation="PP UK" totalVotes="372" percentageShare="0.00" />
+    <Party paId="8082" name="War Veteran's Pro-Traditional Family Party" abbreviation="WVPTFP" totalVotes="344" percentageShare="0.00" />
+    <Party paId="8098" name="Alter Change - Politics Only Different" abbreviation="Change" totalVotes="339" percentageShare="0.00" />
+    <Party paId="8070" name="Wigan Independents" abbreviation="Wigan" totalVotes="335" percentageShare="0.00" />
+    <Party paId="8071" name="Guildford Greenbelt Group" abbreviation="Guildford" totalVotes="330" percentageShare="0.00" />
+    <Party paId="8048" name="Scottish Communist Party" abbreviation="Scottish CP" totalVotes="282" percentageShare="0.00" />
+    <Party paId="8085" name="The Roman Party Ave" abbreviation="Roman" totalVotes="277" percentageShare="0.00" />
+    <Party paId="8057" name="The 30-50 Coalition" abbreviation="30-50" totalVotes="274" percentageShare="0.00" />
+    <Party paId="8069" name="Putting Croydon First!" abbreviation="Croydon" totalVotes="252" percentageShare="0.00" />
+    <Party paId="8090" name="Apni" abbreviation="Apni" totalVotes="240" percentageShare="0.00" />
+    <Party paId="8078" name="The New Society of Worth" abbreviation="Worth" totalVotes="232" percentageShare="0.00" />
+    <Party paId="8013" name="The Pilgrim Party" abbreviation="Pilgrim" totalVotes="221" percentageShare="0.00" />
+    <Party paId="5654" name="Wessex Regionalist" abbreviation="Wessex Reg" totalVotes="213" percentageShare="0.00" percentageChange="+0.00" />
+    <Party paId="5535" name="Apolitical Democrats" abbreviation="AD" totalVotes="192" percentageShare="0.00" percentageChange="+0.00" />
+    <Party paId="8000" name="Independent Save Withybush Save Lives" abbreviation="ISWSL" totalVotes="151" percentageShare="0.00" />
+    <Party paId="8010" name="The Principles of Politics Party" abbreviation="PPP" totalVotes="143" percentageShare="0.00" />
+    <Party paId="8062" name="Al-Zebabist Nation of Ooog" abbreviation="Zeb" totalVotes="110" percentageShare="0.00" />
+    <Party paId="8050" name="Land Party" abbreviation="LP" totalVotes="90" percentageShare="0.00" />
+    <Party paId="8051" name="Reduce VAT In Sport" abbreviation="VAT" totalVotes="58" percentageShare="0.00" />
+    <Party paId="8052" name="Vote Elmo" abbreviation="Elmo" totalVotes="38" percentageShare="0.00" />
+  </Parties>
+  <ConstituenciesIncluded>
+    <Constituency number="1" name="Aberavon" />
+    <Constituency number="2" name="Aberconwy" />
+    <Constituency number="3" name="Aberdeen North" />
+    <Constituency number="4" name="Aberdeen South" />
+    <Constituency number="5" name="Aberdeenshire West &amp; Kincardine" />
+    <Constituency number="6" name="Airdrie &amp; Shotts" />
+    <Constituency number="7" name="Aldershot" />
+    <Constituency number="8" name="Aldridge-Brownhills" />
+    <Constituency number="9" name="Altrincham &amp; Sale West" />
+    <Constituency number="10" name="Alyn &amp; Deeside" />
+    <Constituency number="11" name="Amber Valley" />
+    <Constituency number="12" name="Angus" />
+    <Constituency number="13" name="Antrim East" />
+    <Constituency number="14" name="Antrim North" />
+    <Constituency number="15" name="Antrim South" />
+    <Constituency number="16" name="Arfon" />
+    <Constituency number="17" name="Argyll &amp; Bute" />
+    <Constituency number="18" name="Arundel &amp; South Downs" />
+    <Constituency number="19" name="Ashfield" />
+    <Constituency number="20" name="Ashford" />
+    <Constituency number="21" name="Ashton Under Lyne" />
+    <Constituency number="22" name="Aylesbury" />
+    <Constituency number="23" name="Ayr, Carrick &amp; Cumnock" />
+    <Constituency number="24" name="Ayrshire Central" />
+    <Constituency number="25" name="Ayrshire North &amp; Arran" />
+    <Constituency number="26" name="Banbury" />
+    <Constituency number="27" name="Banff &amp; Buchan" />
+    <Constituency number="28" name="Barking" />
+    <Constituency number="29" name="Barnsley Central" />
+    <Constituency number="30" name="Barnsley East" />
+    <Constituency number="31" name="Barrow &amp; Furness" />
+    <Constituency number="32" name="Basildon &amp; Billericay" />
+    <Constituency number="33" name="Basildon South &amp; Thurrock East" />
+    <Constituency number="34" name="Basingstoke" />
+    <Constituency number="35" name="Bassetlaw" />
+    <Constituency number="36" name="Bath" />
+    <Constituency number="37" name="Batley &amp; Spen" />
+    <Constituency number="38" name="Battersea" />
+    <Constituency number="39" name="Beaconsfield" />
+    <Constituency number="40" name="Beckenham" />
+    <Constituency number="41" name="Bedford" />
+    <Constituency number="42" name="Bedfordshire Mid" />
+    <Constituency number="43" name="Bedfordshire North East" />
+    <Constituency number="44" name="Bedfordshire South West" />
+    <Constituency number="45" name="Belfast East" />
+    <Constituency number="46" name="Belfast North" />
+    <Constituency number="47" name="Belfast South" />
+    <Constituency number="48" name="Belfast West" />
+    <Constituency number="49" name="Bermondsey &amp; Old Southwark" />
+    <Constituency number="50" name="Berwick-upon-Tweed" />
+    <Constituency number="51" name="Berwickshire, Roxburgh &amp; Selkirk" />
+    <Constituency number="52" name="Bethnal Green &amp; Bow" />
+    <Constituency number="53" name="Beverley &amp; Holderness" />
+    <Constituency number="54" name="Bexhill &amp; Battle" />
+    <Constituency number="55" name="Bexleyheath &amp; Crayford" />
+    <Constituency number="56" name="Birkenhead" />
+    <Constituency number="57" name="Birmingham Edgbaston" />
+    <Constituency number="58" name="Birmingham Erdington" />
+    <Constituency number="59" name="Birmingham Hall Green" />
+    <Constituency number="60" name="Birmingham Hodge Hill" />
+    <Constituency number="61" name="Birmingham Ladywood" />
+    <Constituency number="62" name="Birmingham Northfield" />
+    <Constituency number="63" name="Birmingham Perry Barr" />
+    <Constituency number="64" name="Birmingham Selly Oak" />
+    <Constituency number="65" name="Birmingham Yardley" />
+    <Constituency number="66" name="Bishop Auckland" />
+    <Constituency number="67" name="Blackburn" />
+    <Constituency number="68" name="Blackley &amp; Broughton" />
+    <Constituency number="69" name="Blackpool North &amp; Cleveleys" />
+    <Constituency number="70" name="Blackpool South" />
+    <Constituency number="71" name="Blaenau Gwent" />
+    <Constituency number="72" name="Blaydon" />
+    <Constituency number="73" name="Blyth Valley" />
+    <Constituency number="74" name="Bognor Regis &amp; Littlehampton" />
+    <Constituency number="75" name="Bolsover" />
+    <Constituency number="76" name="Bolton North East" />
+    <Constituency number="77" name="Bolton South East" />
+    <Constituency number="78" name="Bolton West" />
+    <Constituency number="79" name="Bootle" />
+    <Constituency number="80" name="Boston &amp; Skegness" />
+    <Constituency number="81" name="Bosworth" />
+    <Constituency number="82" name="Bournemouth East" />
+    <Constituency number="83" name="Bournemouth West" />
+    <Constituency number="84" name="Bracknell" />
+    <Constituency number="85" name="Bradford East" />
+    <Constituency number="86" name="Bradford South" />
+    <Constituency number="87" name="Bradford West" />
+    <Constituency number="88" name="Braintree" />
+    <Constituency number="89" name="Brecon &amp; Radnorshire" />
+    <Constituency number="90" name="Brent Central" />
+    <Constituency number="91" name="Brent North" />
+    <Constituency number="92" name="Brentford &amp; Isleworth" />
+    <Constituency number="93" name="Brentwood &amp; Ongar" />
+    <Constituency number="94" name="Bridgend" />
+    <Constituency number="95" name="Bridgwater &amp; Somerset West" />
+    <Constituency number="96" name="Brigg &amp; Goole" />
+    <Constituency number="97" name="Brighton Kemptown" />
+    <Constituency number="98" name="Brighton Pavilion" />
+    <Constituency number="99" name="Bristol East" />
+    <Constituency number="100" name="Bristol North West" />
+    <Constituency number="101" name="Bristol South" />
+    <Constituency number="102" name="Bristol West" />
+    <Constituency number="103" name="Broadland" />
+    <Constituency number="104" name="Bromley &amp; Chislehurst" />
+    <Constituency number="105" name="Bromsgrove" />
+    <Constituency number="106" name="Broxbourne" />
+    <Constituency number="107" name="Broxtowe" />
+    <Constituency number="108" name="Buckingham" />
+    <Constituency number="109" name="Burnley" />
+    <Constituency number="110" name="Burton" />
+    <Constituency number="111" name="Bury North" />
+    <Constituency number="112" name="Bury South" />
+    <Constituency number="113" name="Bury St Edmunds" />
+    <Constituency number="114" name="Caerphilly" />
+    <Constituency number="115" name="Caithness, Sutherland &amp; Easter Ross" />
+    <Constituency number="116" name="Calder Valley" />
+    <Constituency number="117" name="Camberwell &amp; Peckham" />
+    <Constituency number="118" name="Camborne &amp; Redruth" />
+    <Constituency number="119" name="Cambridge" />
+    <Constituency number="120" name="Cambridgeshire North East" />
+    <Constituency number="121" name="Cambridgeshire North West" />
+    <Constituency number="122" name="Cambridgeshire South" />
+    <Constituency number="123" name="Cambridgeshire South East" />
+    <Constituency number="124" name="Cannock Chase" />
+    <Constituency number="125" name="Canterbury" />
+    <Constituency number="126" name="Cardiff Central" />
+    <Constituency number="127" name="Cardiff North" />
+    <Constituency number="128" name="Cardiff South &amp; Penarth" />
+    <Constituency number="129" name="Cardiff West" />
+    <Constituency number="130" name="Carlisle" />
+    <Constituency number="131" name="Carmarthen East &amp; Dinefwr" />
+    <Constituency number="132" name="Carmarthen West &amp; Pembrokeshire South" />
+    <Constituency number="133" name="Carshalton &amp; Wallington" />
+    <Constituency number="134" name="Castle Point" />
+    <Constituency number="135" name="Ceredigion" />
+    <Constituency number="136" name="Charnwood" />
+    <Constituency number="137" name="Chatham &amp; Aylesford" />
+    <Constituency number="138" name="Cheadle" />
+    <Constituency number="139" name="Chelmsford" />
+    <Constituency number="140" name="Chelsea &amp; Fulham" />
+    <Constituency number="141" name="Cheltenham" />
+    <Constituency number="142" name="Chesham &amp; Amersham" />
+    <Constituency number="143" name="Chester, City of" />
+    <Constituency number="144" name="Chesterfield" />
+    <Constituency number="145" name="Chichester" />
+    <Constituency number="146" name="Chingford &amp; Woodford Green" />
+    <Constituency number="147" name="Chippenham" />
+    <Constituency number="148" name="Chipping Barnet" />
+    <Constituency number="149" name="Chorley" />
+    <Constituency number="150" name="Christchurch" />
+    <Constituency number="151" name="Cities of London &amp; Westminster" />
+    <Constituency number="152" name="Clacton" />
+    <Constituency number="153" name="Cleethorpes" />
+    <Constituency number="154" name="Clwyd South" />
+    <Constituency number="155" name="Clwyd West" />
+    <Constituency number="156" name="Coatbridge, Chryston &amp; Bellshill" />
+    <Constituency number="157" name="Colchester" />
+    <Constituency number="158" name="Colne Valley" />
+    <Constituency number="159" name="Congleton" />
+    <Constituency number="160" name="Copeland" />
+    <Constituency number="161" name="Corby" />
+    <Constituency number="162" name="Cornwall North" />
+    <Constituency number="163" name="Cornwall South East" />
+    <Constituency number="164" name="Cotswolds, The" />
+    <Constituency number="165" name="Coventry North East" />
+    <Constituency number="166" name="Coventry North West" />
+    <Constituency number="167" name="Coventry South" />
+    <Constituency number="168" name="Crawley" />
+    <Constituency number="169" name="Crewe &amp; Nantwich" />
+    <Constituency number="170" name="Croydon Central" />
+    <Constituency number="171" name="Croydon North" />
+    <Constituency number="172" name="Croydon South" />
+    <Constituency number="173" name="Cumbernauld, Kilsyth &amp; Kirkintilloch East" />
+    <Constituency number="174" name="Cynon Valley" />
+    <Constituency number="175" name="Dagenham &amp; Rainham" />
+    <Constituency number="176" name="Darlington" />
+    <Constituency number="177" name="Dartford" />
+    <Constituency number="178" name="Daventry" />
+    <Constituency number="179" name="Delyn" />
+    <Constituency number="180" name="Denton &amp; Reddish" />
+    <Constituency number="181" name="Derby North" />
+    <Constituency number="182" name="Derby South" />
+    <Constituency number="183" name="Derbyshire Dales" />
+    <Constituency number="184" name="Derbyshire Mid" />
+    <Constituency number="185" name="Derbyshire North East" />
+    <Constituency number="186" name="Derbyshire South" />
+    <Constituency number="187" name="Devizes" />
+    <Constituency number="188" name="Devon Central" />
+    <Constituency number="189" name="Devon East" />
+    <Constituency number="190" name="Devon North" />
+    <Constituency number="191" name="Devon South West" />
+    <Constituency number="192" name="Devon West &amp; Torridge" />
+    <Constituency number="193" name="Dewsbury" />
+    <Constituency number="194" name="Don Valley" />
+    <Constituency number="195" name="Doncaster Central" />
+    <Constituency number="196" name="Doncaster North" />
+    <Constituency number="197" name="Dorset Mid &amp; Poole North" />
+    <Constituency number="198" name="Dorset North" />
+    <Constituency number="199" name="Dorset South" />
+    <Constituency number="200" name="Dorset West" />
+    <Constituency number="201" name="Dover" />
+    <Constituency number="202" name="Down North" />
+    <Constituency number="203" name="Down South" />
+    <Constituency number="204" name="Dudley North" />
+    <Constituency number="205" name="Dudley South" />
+    <Constituency number="206" name="Dulwich &amp; West Norwood" />
+    <Constituency number="207" name="Dumfries &amp; Galloway" />
+    <Constituency number="208" name="Dumfriesshire, Clydesdale &amp; Tweeddale" />
+    <Constituency number="209" name="Dunbartonshire East" />
+    <Constituency number="210" name="Dunbartonshire West" />
+    <Constituency number="211" name="Dundee East" />
+    <Constituency number="212" name="Dundee West" />
+    <Constituency number="213" name="Dunfermline &amp; Fife West" />
+    <Constituency number="214" name="Durham, City of" />
+    <Constituency number="215" name="Durham North" />
+    <Constituency number="216" name="Durham North West" />
+    <Constituency number="217" name="Dwyfor Meirionnydd" />
+    <Constituency number="218" name="Ealing Central &amp; Acton" />
+    <Constituency number="219" name="Ealing North" />
+    <Constituency number="220" name="Ealing Southall" />
+    <Constituency number="221" name="Easington" />
+    <Constituency number="222" name="East Ham" />
+    <Constituency number="223" name="East Kilbride, Strathaven &amp; Lesmahagow" />
+    <Constituency number="224" name="East Lothian" />
+    <Constituency number="225" name="Eastbourne" />
+    <Constituency number="226" name="Eastleigh" />
+    <Constituency number="227" name="Eddisbury" />
+    <Constituency number="228" name="Edinburgh East" />
+    <Constituency number="229" name="Edinburgh North &amp; Leith" />
+    <Constituency number="230" name="Edinburgh South" />
+    <Constituency number="231" name="Edinburgh South West" />
+    <Constituency number="232" name="Edinburgh West" />
+    <Constituency number="233" name="Edmonton" />
+    <Constituency number="234" name="Ellesmere Port &amp; Neston" />
+    <Constituency number="235" name="Elmet &amp; Rothwell" />
+    <Constituency number="236" name="Eltham" />
+    <Constituency number="237" name="Enfield North" />
+    <Constituency number="238" name="Enfield Southgate" />
+    <Constituency number="239" name="Epping Forest" />
+    <Constituency number="240" name="Epsom &amp; Ewell" />
+    <Constituency number="241" name="Erewash" />
+    <Constituency number="242" name="Erith &amp; Thamesmead" />
+    <Constituency number="243" name="Esher &amp; Walton" />
+    <Constituency number="244" name="Exeter" />
+    <Constituency number="245" name="Falkirk" />
+    <Constituency number="246" name="Fareham" />
+    <Constituency number="247" name="Faversham &amp; Kent Mid" />
+    <Constituency number="248" name="Feltham &amp; Heston" />
+    <Constituency number="249" name="Fermanagh &amp; South Tyrone" />
+    <Constituency number="250" name="Fife North East" />
+    <Constituency number="251" name="Filton &amp; Bradley Stoke" />
+    <Constituency number="252" name="Finchley &amp; Golders Green" />
+    <Constituency number="253" name="Folkestone &amp; Hythe" />
+    <Constituency number="254" name="Forest of Dean" />
+    <Constituency number="255" name="Foyle" />
+    <Constituency number="256" name="Fylde" />
+    <Constituency number="257" name="Gainsborough" />
+    <Constituency number="258" name="Garston &amp; Halewood" />
+    <Constituency number="259" name="Gateshead" />
+    <Constituency number="260" name="Gedling" />
+    <Constituency number="261" name="Gillingham &amp; Rainham" />
+    <Constituency number="262" name="Glasgow Central" />
+    <Constituency number="263" name="Glasgow East" />
+    <Constituency number="264" name="Glasgow North" />
+    <Constituency number="265" name="Glasgow North East" />
+    <Constituency number="266" name="Glasgow North West" />
+    <Constituency number="267" name="Glasgow South" />
+    <Constituency number="268" name="Glasgow South West" />
+    <Constituency number="269" name="Glenrothes" />
+    <Constituency number="270" name="Gloucester" />
+    <Constituency number="271" name="Gordon" />
+    <Constituency number="272" name="Gosport" />
+    <Constituency number="273" name="Gower" />
+    <Constituency number="274" name="Grantham &amp; Stamford" />
+    <Constituency number="275" name="Gravesham" />
+    <Constituency number="276" name="Great Grimsby" />
+    <Constituency number="277" name="Great Yarmouth" />
+    <Constituency number="278" name="Greenwich &amp; Woolwich" />
+    <Constituency number="279" name="Guildford" />
+    <Constituency number="280" name="Hackney North &amp; Stoke Newington" />
+    <Constituency number="281" name="Hackney South &amp; Shoreditch" />
+    <Constituency number="282" name="Halesowen &amp; Rowley Regis" />
+    <Constituency number="283" name="Halifax" />
+    <Constituency number="284" name="Haltemprice &amp; Howden" />
+    <Constituency number="285" name="Halton" />
+    <Constituency number="286" name="Hammersmith" />
+    <Constituency number="287" name="Hampshire East" />
+    <Constituency number="288" name="Hampshire North East" />
+    <Constituency number="289" name="Hampshire North West" />
+    <Constituency number="290" name="Hampstead &amp; Kilburn" />
+    <Constituency number="291" name="Harborough" />
+    <Constituency number="292" name="Harlow" />
+    <Constituency number="293" name="Harrogate &amp; Knaresborough" />
+    <Constituency number="294" name="Harrow East" />
+    <Constituency number="295" name="Harrow West" />
+    <Constituency number="296" name="Hartlepool" />
+    <Constituency number="297" name="Harwich &amp; Essex North" />
+    <Constituency number="298" name="Hastings &amp; Rye" />
+    <Constituency number="299" name="Havant" />
+    <Constituency number="300" name="Hayes &amp; Harlington" />
+    <Constituency number="301" name="Hazel Grove" />
+    <Constituency number="302" name="Hemel Hempstead" />
+    <Constituency number="303" name="Hemsworth" />
+    <Constituency number="304" name="Hendon" />
+    <Constituency number="305" name="Henley" />
+    <Constituency number="306" name="Hereford &amp; Herefordshire South" />
+    <Constituency number="307" name="Herefordshire North" />
+    <Constituency number="308" name="Hertford &amp; Stortford" />
+    <Constituency number="309" name="Hertfordshire North East" />
+    <Constituency number="310" name="Hertfordshire South West" />
+    <Constituency number="311" name="Hertsmere" />
+    <Constituency number="312" name="Hexham" />
+    <Constituency number="313" name="Heywood &amp; Middleton" />
+    <Constituency number="314" name="High Peak" />
+    <Constituency number="315" name="Hitchin &amp; Harpenden" />
+    <Constituency number="316" name="Holborn &amp; St Pancras" />
+    <Constituency number="317" name="Hornchurch &amp; Upminster" />
+    <Constituency number="318" name="Hornsey &amp; Wood Green" />
+    <Constituency number="319" name="Horsham" />
+    <Constituency number="320" name="Houghton &amp; Sunderland South" />
+    <Constituency number="321" name="Hove" />
+    <Constituency number="322" name="Huddersfield" />
+    <Constituency number="323" name="Hull East" />
+    <Constituency number="324" name="Hull North" />
+    <Constituency number="325" name="Hull West &amp; Hessle" />
+    <Constituency number="326" name="Huntingdon" />
+    <Constituency number="327" name="Hyndburn" />
+    <Constituency number="328" name="Ilford North" />
+    <Constituency number="329" name="Ilford South" />
+    <Constituency number="330" name="Inverclyde" />
+    <Constituency number="331" name="Inverness, Nairn, Badenoch &amp; Strathspey" />
+    <Constituency number="332" name="Ipswich" />
+    <Constituency number="333" name="Isle of Wight" />
+    <Constituency number="334" name="Islington North" />
+    <Constituency number="335" name="Islington South &amp; Finsbury" />
+    <Constituency number="336" name="Islwyn" />
+    <Constituency number="337" name="Jarrow" />
+    <Constituency number="338" name="Keighley" />
+    <Constituency number="339" name="Kenilworth &amp; Southam" />
+    <Constituency number="340" name="Kensington" />
+    <Constituency number="341" name="Kettering" />
+    <Constituency number="342" name="Kilmarnock &amp; Loudoun" />
+    <Constituency number="343" name="Kingston &amp; Surbiton" />
+    <Constituency number="344" name="Kingswood" />
+    <Constituency number="345" name="Kirkcaldy &amp; Cowdenbeath" />
+    <Constituency number="346" name="Knowsley" />
+    <Constituency number="347" name="Lagan Valley" />
+    <Constituency number="348" name="Lanark &amp; Hamilton East" />
+    <Constituency number="349" name="Lancashire West" />
+    <Constituency number="350" name="Lancaster &amp; Fleetwood" />
+    <Constituency number="351" name="Leeds Central" />
+    <Constituency number="352" name="Leeds East" />
+    <Constituency number="353" name="Leeds North East" />
+    <Constituency number="354" name="Leeds North West" />
+    <Constituency number="355" name="Leeds West" />
+    <Constituency number="356" name="Leicester East" />
+    <Constituency number="357" name="Leicester South" />
+    <Constituency number="358" name="Leicester West" />
+    <Constituency number="359" name="Leicestershire North West" />
+    <Constituency number="360" name="Leicestershire South" />
+    <Constituency number="361" name="Leigh" />
+    <Constituency number="362" name="Lewes" />
+    <Constituency number="363" name="Lewisham Deptford" />
+    <Constituency number="364" name="Lewisham East" />
+    <Constituency number="365" name="Lewisham West &amp; Penge" />
+    <Constituency number="366" name="Leyton &amp; Wanstead" />
+    <Constituency number="367" name="Lichfield" />
+    <Constituency number="368" name="Lincoln" />
+    <Constituency number="369" name="Linlithgow &amp; Falkirk East" />
+    <Constituency number="370" name="Liverpool Riverside" />
+    <Constituency number="371" name="Liverpool Walton" />
+    <Constituency number="372" name="Liverpool Wavertree" />
+    <Constituency number="373" name="Liverpool West Derby" />
+    <Constituency number="374" name="Livingston" />
+    <Constituency number="375" name="Llanelli" />
+    <Constituency number="376" name="Londonderry East" />
+    <Constituency number="377" name="Loughborough" />
+    <Constituency number="378" name="Louth &amp; Horncastle" />
+    <Constituency number="379" name="Ludlow" />
+    <Constituency number="380" name="Luton North" />
+    <Constituency number="381" name="Luton South" />
+    <Constituency number="382" name="Macclesfield" />
+    <Constituency number="383" name="Maidenhead" />
+    <Constituency number="384" name="Maidstone &amp; The Weald" />
+    <Constituency number="385" name="Makerfield" />
+    <Constituency number="386" name="Maldon" />
+    <Constituency number="387" name="Manchester Central" />
+    <Constituency number="388" name="Manchester Gorton" />
+    <Constituency number="389" name="Manchester Withington" />
+    <Constituency number="390" name="Mansfield" />
+    <Constituency number="391" name="Meon Valley" />
+    <Constituency number="392" name="Meriden" />
+    <Constituency number="393" name="Merthyr Tydfil &amp; Rhymney" />
+    <Constituency number="394" name="Middlesbrough" />
+    <Constituency number="395" name="Middlesbrough South &amp; Cleveland East" />
+    <Constituency number="396" name="Midlothian" />
+    <Constituency number="397" name="Milton Keynes North" />
+    <Constituency number="398" name="Milton Keynes South" />
+    <Constituency number="399" name="Mitcham &amp; Morden" />
+    <Constituency number="400" name="Mole Valley" />
+    <Constituency number="401" name="Monmouth" />
+    <Constituency number="402" name="Montgomeryshire" />
+    <Constituency number="403" name="Moray" />
+    <Constituency number="404" name="Morecambe &amp; Lunesdale" />
+    <Constituency number="405" name="Morley &amp; Outwood" />
+    <Constituency number="406" name="Motherwell &amp; Wishaw" />
+    <Constituency number="407" name="Na h-Eileanan an Iar" />
+    <Constituency number="408" name="Neath" />
+    <Constituency number="409" name="New Forest East" />
+    <Constituency number="410" name="New Forest West" />
+    <Constituency number="411" name="Newark" />
+    <Constituency number="412" name="Newbury" />
+    <Constituency number="413" name="Newcastle-under-Lyme" />
+    <Constituency number="414" name="Newcastle upon Tyne Central" />
+    <Constituency number="415" name="Newcastle upon Tyne East" />
+    <Constituency number="416" name="Newcastle upon Tyne North" />
+    <Constituency number="417" name="Newport East" />
+    <Constituency number="418" name="Newport West" />
+    <Constituency number="419" name="Newry &amp; Armagh" />
+    <Constituency number="420" name="Newton Abbot" />
+    <Constituency number="421" name="Norfolk Mid" />
+    <Constituency number="422" name="Norfolk North" />
+    <Constituency number="423" name="Norfolk North West" />
+    <Constituency number="424" name="Norfolk South" />
+    <Constituency number="425" name="Norfolk South West" />
+    <Constituency number="426" name="Normanton, Pontefract &amp; Castleford" />
+    <Constituency number="427" name="Northampton North" />
+    <Constituency number="428" name="Northampton South" />
+    <Constituency number="429" name="Northamptonshire South" />
+    <Constituency number="430" name="Norwich North" />
+    <Constituency number="431" name="Norwich South" />
+    <Constituency number="432" name="Nottingham East" />
+    <Constituency number="433" name="Nottingham North" />
+    <Constituency number="434" name="Nottingham South" />
+    <Constituency number="435" name="Nuneaton" />
+    <Constituency number="436" name="Ochil &amp; Perthshire South" />
+    <Constituency number="437" name="Ogmore" />
+    <Constituency number="438" name="Old Bexley &amp; Sidcup" />
+    <Constituency number="439" name="Oldham East &amp; Saddleworth" />
+    <Constituency number="440" name="Oldham West &amp; Royton" />
+    <Constituency number="441" name="Orkney &amp; Shetland" />
+    <Constituency number="442" name="Orpington" />
+    <Constituency number="443" name="Oxford East" />
+    <Constituency number="444" name="Oxford West &amp; Abingdon" />
+    <Constituency number="445" name="Paisley &amp; Renfrewshire North" />
+    <Constituency number="446" name="Paisley &amp; Renfrewshire South" />
+    <Constituency number="447" name="Pendle" />
+    <Constituency number="448" name="Penistone &amp; Stocksbridge" />
+    <Constituency number="449" name="Penrith &amp; The Border" />
+    <Constituency number="450" name="Perth &amp; Perthshire North" />
+    <Constituency number="451" name="Peterborough" />
+    <Constituency number="452" name="Plymouth Moor View" />
+    <Constituency number="453" name="Plymouth Sutton &amp; Devonport" />
+    <Constituency number="454" name="Pontypridd" />
+    <Constituency number="455" name="Poole" />
+    <Constituency number="456" name="Poplar &amp; Limehouse" />
+    <Constituency number="457" name="Portsmouth North" />
+    <Constituency number="458" name="Portsmouth South" />
+    <Constituency number="459" name="Preseli Pembrokeshire" />
+    <Constituency number="460" name="Preston" />
+    <Constituency number="461" name="Pudsey" />
+    <Constituency number="462" name="Putney" />
+    <Constituency number="463" name="Rayleigh &amp; Wickford" />
+    <Constituency number="464" name="Reading East" />
+    <Constituency number="465" name="Reading West" />
+    <Constituency number="466" name="Redcar" />
+    <Constituency number="467" name="Redditch" />
+    <Constituency number="468" name="Reigate" />
+    <Constituency number="469" name="Renfrewshire East" />
+    <Constituency number="470" name="Rhondda" />
+    <Constituency number="471" name="Ribble Valley" />
+    <Constituency number="472" name="Richmond (Yorks)" />
+    <Constituency number="473" name="Richmond Park" />
+    <Constituency number="474" name="Rochdale" />
+    <Constituency number="475" name="Rochester &amp; Strood" />
+    <Constituency number="476" name="Rochford &amp; Southend East" />
+    <Constituency number="477" name="Romford" />
+    <Constituency number="478" name="Romsey &amp; Southampton North" />
+    <Constituency number="479" name="Ross, Skye &amp; Lochaber" />
+    <Constituency number="480" name="Rossendale &amp; Darwen" />
+    <Constituency number="481" name="Rother Valley" />
+    <Constituency number="482" name="Rotherham" />
+    <Constituency number="483" name="Rugby" />
+    <Constituency number="484" name="Ruislip, Northwood &amp; Pinner" />
+    <Constituency number="485" name="Runnymede &amp; Weybridge" />
+    <Constituency number="486" name="Rushcliffe" />
+    <Constituency number="487" name="Rutherglen &amp; Hamilton West" />
+    <Constituency number="488" name="Rutland &amp; Melton" />
+    <Constituency number="489" name="Saffron Walden" />
+    <Constituency number="490" name="St Albans" />
+    <Constituency number="491" name="St Austell &amp; Newquay" />
+    <Constituency number="492" name="St Helens North" />
+    <Constituency number="493" name="St Helens South &amp; Whiston" />
+    <Constituency number="494" name="St Ives" />
+    <Constituency number="495" name="Salford &amp; Eccles" />
+    <Constituency number="496" name="Salisbury" />
+    <Constituency number="497" name="Scarborough &amp; Whitby" />
+    <Constituency number="498" name="Scunthorpe" />
+    <Constituency number="499" name="Sedgefield" />
+    <Constituency number="500" name="Sefton Central" />
+    <Constituency number="501" name="Selby &amp; Ainsty" />
+    <Constituency number="502" name="Sevenoaks" />
+    <Constituency number="503" name="Sheffield Brightside &amp; Hillsborough" />
+    <Constituency number="504" name="Sheffield Central" />
+    <Constituency number="505" name="Sheffield Hallam" />
+    <Constituency number="506" name="Sheffield Heeley" />
+    <Constituency number="507" name="Sheffield South East" />
+    <Constituency number="508" name="Sherwood" />
+    <Constituency number="509" name="Shipley" />
+    <Constituency number="510" name="Shrewsbury &amp; Atcham" />
+    <Constituency number="511" name="Shropshire North" />
+    <Constituency number="512" name="Sittingbourne &amp; Sheppey" />
+    <Constituency number="513" name="Skipton &amp; Ripon" />
+    <Constituency number="514" name="Sleaford &amp; North Hykeham" />
+    <Constituency number="515" name="Slough" />
+    <Constituency number="516" name="Solihull" />
+    <Constituency number="517" name="Somerset North" />
+    <Constituency number="518" name="Somerset North East" />
+    <Constituency number="519" name="Somerton &amp; Frome" />
+    <Constituency number="520" name="South Holland &amp; The Deepings" />
+    <Constituency number="521" name="South Ribble" />
+    <Constituency number="522" name="South Shields" />
+    <Constituency number="523" name="Southampton Itchen" />
+    <Constituency number="524" name="Southampton Test" />
+    <Constituency number="525" name="Southend West" />
+    <Constituency number="526" name="Southport" />
+    <Constituency number="527" name="Spelthorne" />
+    <Constituency number="528" name="Stafford" />
+    <Constituency number="529" name="Staffordshire Moorlands" />
+    <Constituency number="530" name="Staffordshire South" />
+    <Constituency number="531" name="Stalybridge &amp; Hyde" />
+    <Constituency number="532" name="Stevenage" />
+    <Constituency number="533" name="Stirling" />
+    <Constituency number="534" name="Stockport" />
+    <Constituency number="535" name="Stockton North" />
+    <Constituency number="536" name="Stockton South" />
+    <Constituency number="537" name="Stoke-on-Trent Central" />
+    <Constituency number="538" name="Stoke-on-Trent North" />
+    <Constituency number="539" name="Stoke-on-Trent South" />
+    <Constituency number="540" name="Stone" />
+    <Constituency number="541" name="Stourbridge" />
+    <Constituency number="542" name="Strangford" />
+    <Constituency number="543" name="Stratford-on-Avon" />
+    <Constituency number="544" name="Streatham" />
+    <Constituency number="545" name="Stretford &amp; Urmston" />
+    <Constituency number="546" name="Stroud" />
+    <Constituency number="547" name="Suffolk Central &amp; Ipswich North" />
+    <Constituency number="548" name="Suffolk Coastal" />
+    <Constituency number="549" name="Suffolk South" />
+    <Constituency number="550" name="Suffolk West" />
+    <Constituency number="551" name="Sunderland Central" />
+    <Constituency number="552" name="Surrey East" />
+    <Constituency number="553" name="Surrey Heath" />
+    <Constituency number="554" name="Surrey South West" />
+    <Constituency number="555" name="Sussex Mid" />
+    <Constituency number="556" name="Sutton &amp; Cheam" />
+    <Constituency number="557" name="Sutton Coldfield" />
+    <Constituency number="558" name="Swansea East" />
+    <Constituency number="559" name="Swansea West" />
+    <Constituency number="560" name="Swindon North" />
+    <Constituency number="561" name="Swindon South" />
+    <Constituency number="562" name="Tamworth" />
+    <Constituency number="563" name="Tatton" />
+    <Constituency number="564" name="Taunton Deane" />
+    <Constituency number="565" name="Telford" />
+    <Constituency number="566" name="Tewkesbury" />
+    <Constituency number="567" name="Thanet North" />
+    <Constituency number="568" name="Thanet South" />
+    <Constituency number="569" name="Thirsk &amp; Malton" />
+    <Constituency number="570" name="Thornbury &amp; Yate" />
+    <Constituency number="571" name="Thurrock" />
+    <Constituency number="572" name="Tiverton &amp; Honiton" />
+    <Constituency number="573" name="Tonbridge &amp; Malling" />
+    <Constituency number="574" name="Tooting" />
+    <Constituency number="575" name="Torbay" />
+    <Constituency number="576" name="Torfaen" />
+    <Constituency number="577" name="Totnes" />
+    <Constituency number="578" name="Tottenham" />
+    <Constituency number="579" name="Truro &amp; Falmouth" />
+    <Constituency number="580" name="Tunbridge Wells" />
+    <Constituency number="581" name="Twickenham" />
+    <Constituency number="582" name="Tynemouth" />
+    <Constituency number="583" name="Tyneside North" />
+    <Constituency number="584" name="Tyrone West" />
+    <Constituency number="585" name="Ulster Mid" />
+    <Constituency number="586" name="Upper Bann" />
+    <Constituency number="587" name="Uxbridge &amp; Ruislip South" />
+    <Constituency number="588" name="Vale of Clwyd" />
+    <Constituency number="589" name="Vale of Glamorgan" />
+    <Constituency number="590" name="Vauxhall" />
+    <Constituency number="591" name="Wakefield" />
+    <Constituency number="592" name="Wallasey" />
+    <Constituency number="593" name="Walsall North" />
+    <Constituency number="594" name="Walsall South" />
+    <Constituency number="595" name="Walthamstow" />
+    <Constituency number="596" name="Wansbeck" />
+    <Constituency number="597" name="Wantage" />
+    <Constituency number="598" name="Warley" />
+    <Constituency number="599" name="Warrington North" />
+    <Constituency number="600" name="Warrington South" />
+    <Constituency number="601" name="Warwick &amp; Leamington" />
+    <Constituency number="602" name="Warwickshire North" />
+    <Constituency number="603" name="Washington &amp; Sunderland West" />
+    <Constituency number="604" name="Watford" />
+    <Constituency number="605" name="Waveney" />
+    <Constituency number="606" name="Wealden" />
+    <Constituency number="607" name="Weaver Vale" />
+    <Constituency number="608" name="Wellingborough" />
+    <Constituency number="609" name="Wells" />
+    <Constituency number="610" name="Welwyn Hatfield" />
+    <Constituency number="611" name="Wentworth &amp; Dearne" />
+    <Constituency number="612" name="West Bromwich East" />
+    <Constituency number="613" name="West Bromwich West" />
+    <Constituency number="614" name="West Ham" />
+    <Constituency number="615" name="Westminster North" />
+    <Constituency number="616" name="Westmorland &amp; Lonsdale" />
+    <Constituency number="617" name="Weston-Super-Mare" />
+    <Constituency number="618" name="Wigan" />
+    <Constituency number="619" name="Wiltshire North" />
+    <Constituency number="620" name="Wiltshire South West" />
+    <Constituency number="621" name="Wimbledon" />
+    <Constituency number="622" name="Winchester" />
+    <Constituency number="623" name="Windsor" />
+    <Constituency number="624" name="Wirral South" />
+    <Constituency number="625" name="Wirral West" />
+    <Constituency number="626" name="Witham" />
+    <Constituency number="627" name="Witney" />
+    <Constituency number="628" name="Woking" />
+    <Constituency number="629" name="Wokingham" />
+    <Constituency number="630" name="Wolverhampton North East" />
+    <Constituency number="631" name="Wolverhampton South East" />
+    <Constituency number="632" name="Wolverhampton South West" />
+    <Constituency number="633" name="Worcester" />
+    <Constituency number="634" name="Worcestershire Mid" />
+    <Constituency number="635" name="Worcestershire West" />
+    <Constituency number="636" name="Workington" />
+    <Constituency number="637" name="Worsley &amp; Eccles South" />
+    <Constituency number="638" name="Worthing East &amp; Shoreham" />
+    <Constituency number="639" name="Worthing West" />
+    <Constituency number="640" name="Wrekin, The" />
+    <Constituency number="641" name="Wrexham" />
+    <Constituency number="642" name="Wycombe" />
+    <Constituency number="643" name="Wyre &amp; Preston North" />
+    <Constituency number="644" name="Wyre Forest" />
+    <Constituency number="645" name="Wythenshawe &amp; Sale East" />
+    <Constituency number="646" name="Yeovil" />
+    <Constituency number="647" name="Ynys Mon" />
+    <Constituency number="648" name="York Central" />
+    <Constituency number="649" name="York Outer" />
+    <Constituency number="650" name="Yorkshire East" />
+  </ConstituenciesIncluded>
+</FirstPastThePostStateOfParties>
