@@ -20,7 +20,7 @@ module.exports = function(options) {
   } else {
 
     var partition = partition_parties(all_parties, options.filter_parties);
-    var others = partition[0];
+    var others = partition[1];
     filtered_parties = partition[0];
 
     if (options.rollup_others) {
