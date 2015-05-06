@@ -15,6 +15,7 @@ exports.SOP_xml_to_PartyNationalResults = function(file, xml) {
   var parties = xml.FirstPastThePostStateOfParties.Parties[0].Party;
   var sop = xml.FirstPastThePostStateOfParties.$;
   var seats_so_far = Number(sop.numberOfResults) || 0;
+  var total_seats_available = Number(sop.totalNumberOfConstituencies) || 650;
   var votes_so_far = Number(sop.totalVotes) || 0;
 
   /*
@@ -50,7 +51,7 @@ exports.SOP_xml_to_PartyNationalResults = function(file, xml) {
     // Once the last results are called, the PA stop sending a
     // forecast. Fill in the missing data here for anything
     // still needing the forecast.
-    if (seats_so_far >= 650 && !o.election.pa_forecast) {
+    if (seats_so_far >= total_seats_available && !o.election.pa_forecast) {
       o.election.pa_forecast = o.election.seats;
     }
 
