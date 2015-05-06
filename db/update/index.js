@@ -8,8 +8,7 @@ const collect_results_data = process.env.COLLECT_RESULTS === 'on';
 
 exports.seat_projections = require('./seat-projections');
 exports.national_projections = require('./national-projections');
-exports.ge15_PA_seat_results = require('./ge15-PA-seat-results');
-exports.ge15_PA_SOP_results = require('./ge15-PA-SOP-results');
+exports.ge15_PA_results = require('./ge15-PA-results');
 exports.mock_nation_results = require('./mock-national-results');
 
 exports.results = function(cb) {
@@ -19,7 +18,7 @@ exports.results = function(cb) {
     debug('Update results - start');
 
     var tasks = [
-      exports.mock_nation_results
+     exports.mock_nation_results
     ];
 
     async.parallel(tasks, function() {
@@ -61,10 +60,10 @@ exports.all = function(cb) {
     exports.national_projections,
   ];
 
-  if (collect_results_data) {
-    tasks.push(exports.ge15_PA_seat_results);
-    tasks.push(exports.ge15_PA_SOP_results);
-  }
+  //if (collect_results_data) {
+    //tasks.push(exports.ge15_PA_results.update);
+  setInterval(exports.ge15_PA_results.update, 5000);
+  //}
 
   function complete() {
     debug('Update all - complete');
@@ -72,11 +71,12 @@ exports.all = function(cb) {
   }
 
   async.parallel(tasks, function() {
-    if (!use_mock_data) {
-      complete();
-      return;
-    }
-    exports.mock_nation_results(complete);
+    complete();
+    // if (!use_mock_data) {
+    //   complete();
+    //   return;
+    // }
+    // exports.mock_nation_results(complete);
   });
 
 };
