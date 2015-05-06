@@ -12,7 +12,7 @@
     "test": "testling",
     "db": "node --harmony bin/db-query",
     "db-create": "node --harmony bin/db-create",
-    "watch": "gulp watch"
+    "watch": "npm run db-create -- --all && gulp watch"
   },
   "repository": {
     "type": "git",
