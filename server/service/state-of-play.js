@@ -35,10 +35,17 @@ module.exports = function (howMany) {
       colour: party.colour,
       secondaryColour: party.secondary_colour,
       totalWon: party.elections.ge15.seats,
+      // netChange: Math.round((Math.random() - 0.5) * 50),
+      netChange: 999,
 
       losses: [],
       gains: [],
     };
+  });
+
+  // find all the parties who are not in our selected bunch
+  var others = db.parties().find().filter(function (party) {
+    return selected_parties.indexOf(party.id) === -1;
   });
 
 
@@ -48,19 +55,53 @@ module.exports = function (howMany) {
     label: 'Others',
     colour: ukParties.colour('other'),
     secondaryColour: ukParties.secondaryColour('other'),
-    totalWon: db.parties().find()
-      .filter(function (party) {
-        return selected_parties.indexOf(party.id) === -1;
-      }).reduce(function (total, party) {
+    totalWon: others.reduce(function (total, party) {
         return total + party.elections.ge15.seats;
       }, 0),
 
-    losses: [],
-    gains: []
+    minitable: (function () {
+      var customShortNames = {
+        'A': 'Alliance',
+        'Grn': 'Greens',
+        'Oth': 'Other',
+        'SF': 'Sinn Fein'
+      };
+      var minitable = others
+        // only parties who have won something
+        .filter(function (party) {
+          return party.elections.ge15.seats > 0;
+        })
+        // make the table row objects
+        .map(function (party) {
+          var shortName = ukParties.shortName(party.id);
+          shortName = customShortNames[shortName] || shortName;
+          var fullName = ukParties.fullName(party.id);
+
+          return {
+            shortName: shortName,
+            fullName: fullName,
+            numSeats: party.elections.ge15.seats
+          };
+        })
+        // sort by highest number of seats
+        .sort(function (a, b) {
+          if (a.numSeats > b.numSeats) return -1;
+          if (a.numSeats < b.numSeats) return 1;
+          return 0;
+        });
+
+      // move the 'other' to the end
+      var otherRowIndex;
+      minitable.forEach(function (row, i) {
+        if (row.shortName === 'Other') otherRowIndex = i;
+      });
+      minitable.push(minitable.splice(otherRowIndex, 1)[0]);
+
+      return minitable;
+    })()
   };
 
   numSeatsDeclared += othersParty.totalWon;
-
 
   // go through all the seats and increment the relevant bits and bobs
   db.seats().find().forEach(function (seat) {
@@ -69,8 +110,8 @@ module.exports = function (howMany) {
       var loserId = seat.elections.last.winner.party;
       var winnerId = seat.elections.ge15.winner.party;
 
-      var loser = _.findWhere(sopParties, {id: loserId}) || othersParty;
-      var winner = _.findWhere(sopParties, {id: winnerId}) || othersParty;
+      var loser = _.findWhere(sopParties, {id: loserId});
+      var winner = _.findWhere(sopParties, {id: winnerId});
 
       // sanity check
       if (seat.elections.ge15.change !== (loserId !== winnerId)) {
@@ -91,24 +132,15 @@ module.exports = function (howMany) {
           now: winnerId
         };
 
-        loser.losses.push(seatChangeDetails);
-        winner.gains.push(seatChangeDetails);
+        if (loser) loser.losses.push(seatChangeDetails);
+        if (winner) winner.gains.push(seatChangeDetails);
       }
     }
   });
 
 
-  // add "Others" party to the main array
-  sopParties.push(othersParty);
-
-
-  // TODO: should we get the updated date from the PA data somehow?
-
-
   // augment the top 5 with extra bits, and sort their squares
   sopParties.forEach(function (party) {
-    party.netChange = party.gains.length - party.losses.length;
-
     // sort so the little squares are grouped into parties (with biggest group fist)
     var gainerTotals = {};
     party.losses.forEach(function (seat) {
@@ -120,7 +152,16 @@ module.exports = function (howMany) {
       if (gainerTotals[b.now] < gainerTotals[a.now]) return -1;
       return 0;
     });
+
+    // party.losses.splice(0, 90); // for seeing how it might really look
   });
+
+
+  // add "Others" party to the main array
+  sopParties.push(othersParty);
+
+
+  // TODO: should we get the updated date from the PA data somehow?
 
 
   var finalData = {
