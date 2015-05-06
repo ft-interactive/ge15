@@ -19,7 +19,8 @@
     </p>
   </header>
   {% endif %}
-
+  
+  {% if linkURL %}<a href="{{ linkURL }}">{% endif %}
   <div class="figure__body">
     <table class="state-of-play__table">
       <thead>
@@ -33,26 +34,46 @@
       <tbody>
         <tr class="state-of-play__losses-row">
           {% for party in parties %}
-          <td>
-            <span class="state-of-play__row-label">Lost&nbsp;seats&nbsp;to</span>
-            <div class="state-of-play__seats">
-              {% for seat in party.losses %}<span class="state-of-play__seat" title="{{ seat.tooltip }}" style="background:{{seat.winnerColour}}"></span>{% endfor %}
-            </div>
-          </td>
+
+            {% if party.minitable %}
+            <td rowspan="2" style="width:{{100/parties.length}}%" class="state-of-play__minitable">
+              <table>
+              <tbody>
+              {% for littleParty in party.minitable %}
+              <tr{% if littleParty.fullName !== littleParty.shortName %} title="{{littleParty.fullName}}"{% endif %}>
+                <td>{{littleParty.shortName}}</td>
+                <td>{{littleParty.numSeats}}</td>
+              </tr>
+              {% endfor %}
+              </tbody>
+              </table>
+            </td>
+            {% else %}
+            <td style="width:{{100/parties.length}}%">
+              <span class="state-of-play__row-label">Lost&nbsp;to</span>
+              <div class="state-of-play__seats">
+                {% for seat in party.losses %}<span class="state-of-play__seat" title="{{ seat.tooltip }}" style="background:{{seat.winnerColour}}"></span>{% endfor %}
+              </div>
+            </td>
+            {% endif %}
+
           {% endfor %}
         </tr>
 
         <tr class="state-of-play__net-change-row">
           {% for party in parties %}
-          <td>
+          {% if !party.minitable %}
+          <td style="width:{{100/parties.length}}%">
             <span class="state-of-play__row-label">Net&nbsp;change</span>
-            <span class="state-of-play__net-change">{{ party.netChange }}</span>
+            <span class="state-of-play__net-change">{% if party.netChange > 0 %}+{% endif %}{{ party.netChange }}</span>
           </td>
+          {% endif %}
           {% endfor %}
         </tr>
       </tbody>
     </table>
   </div>
+  {% if linkURL %}</a>{% endif %}
 
   {% if linkText && linkURL %}
   <a class="state-of-play__link" href="{{linkURL}}">{{linkText}}</a>
