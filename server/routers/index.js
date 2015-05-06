@@ -8,7 +8,7 @@ var pathRouters = {
   results: require('./results'),
   parties: require('./parties'),
   projections: require('./projections'),
-  liveblog: require('./liveblog'),
+  'live-figures': require('./live-figures'),
   seatmoves: require('./sankey'),
   'coalition-calculator': require('./coalitioncalculator'),
   data: require('./data').routes,

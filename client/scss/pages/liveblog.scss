@@ -1,50 +1,55 @@
-// This CSS is used directly in the liveblog, so it needs to protect against any liveblog page styles leaking in.
-
-// The header styling for all widgets is done here, so it's consistent on the liveblog and can be done separately for other places.
-
 @import "o-colors/main";
 @import "../functions";
+
+@import "../components/state-of-play";
+@import "../components/votes-vs-seats";
+@import "../components/local-result";
+
+@include votes-vs-seats;
 
 .assanka_htmlwidget {
   overflow: visible;
 }
 
-.ge15-liveblog-widgets {
+.ge15-liveblog-figures { // to prevent styles leaking out into page
   width: 352px;
   position: relative;
   background: color(pink);
   font-family: BentonSans, sans-serif;
   -webkit-font-smoothing: antialiased;
 
-  // scss-lint:disable ImportantRule
-  box-sizing: border-box !important;
-  *,
-  *:before,
-  *:after {
-    box-sizing: inherit !important;
-    font-family: inherit;
-  }
-  // scss-lint:enable ImportantRule
-
-  > .widget-wrapper {
+  > .figure-wrapper {
     padding-bottom: 24px;
-
-    header {
-      -webkit-font-smoothing: antialiased;
-      font: bold 18px BentonSans, sans-serif;
+  }
+    .figure__header {
       border-bottom: 1px solid color(grey-tint1);
       height: 29px;
       overflow: hidden;
       padding-bottom: 3px;
       margin: 0 0 15px;
+      
+      > .figure__title {
+        font: bold 18px/29px BentonSans, sans-serif;
+        color: color(grey-tint5);
+        margin: 0;
+      }
+  
 
+      // when the note is in the header, use floats
+      &--with-note {
+        > .figure__title {
+          float: left;
+          height: 0;
+        }
+
+        > .figure__note {
+          float: right;
+          margin-top: 8px;
+        }
+      }
     }
 
-
-  }
-
-
-  .num-declared {
+  .figure__note {
     margin: 0;
     font-weight: normal;
     font-size: 12px;
@@ -53,13 +58,3 @@
     > b { color: color(grey-tint5); }
   }
 }
-
-.widget-wrapper header > h3 {
-  margin: 0;
-  height: 0;
-  color: color(grey-tint5);
-}
-
-@import "../components/state-of-play";
-@import "../components/votes-vs-seats";
-@import "../components/local-result";

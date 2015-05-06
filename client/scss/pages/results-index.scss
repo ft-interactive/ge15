@@ -3,9 +3,21 @@
 @import "o-colors/main";
 
 @import "var";
+@import "functions";
 
 @import "graphics/party-elements";
 
 @import "components/result-national-coalitions";
 @import "components/result-national-overview";
 @import "components/result-slope";
+@import "components/votes-vs-seats";
+
+// votes-vs-seats is done as a mixin so dimensions can be overridden easily.
+@include votes-vs-seats(
+  $labels-width: 160px,
+  $row-thickness: 40px,
+  $track-thickness: 25px,
+  $bar-thickness: 16px,
+  $seats-icon-size: 16px,
+  $font-size: 15px
+);

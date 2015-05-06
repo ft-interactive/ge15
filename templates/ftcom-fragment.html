@@ -1,0 +1,5 @@
+{% if stateOfPlay %}
+  <aside class="state-of-play--js">
+    {% include './state-of-play.html' with stateOfPlay only ignore missing %}
+  </aside>
+{% endif %}

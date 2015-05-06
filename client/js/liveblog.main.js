@@ -1,71 +1,33 @@
 'use strict';
 
-var hostname = require('./hostname');
-
-// define the individual widget IDs, and their enhancer functions if available
-var widgets = {
-  'state-of-play--js': null,
-  'votes-vs-seats--js': null,
-  'local-result--js': require('./local-result'),
-};
+var embedLiveFigures = require('./embed-live-figures');
 
 var cutsTheMustard = (
   'querySelectorAll' in document
 );
 
+var fragmentPath = '/uk/2015/live-figures/liveblog-fragment';
+
 if (cutsTheMustard) {
-  // find the container we're going to put widgets in
-  var widgetsContainer = document.querySelector('.ge15-liveblog-widgets');
-  if (!widgetsContainer) {
-    throw new Error('Could not find element with class "ge15-liveblog-widgets"');
+  // find the container we're going to put figures in
+  var container = document.querySelector('.ge15-liveblog-figures');
+  if (!container) {
+    throw new Error('Could not find element with class "ge15-liveblog-figures"');
   }
 
-
-  // function to display/update the widgets
-  var updateWidgets = function () {
-    fetch('http://' + hostname +
-      '/uk/2015/liveblog/widgets').then(function (response) {
-      return response.text();
-    })
-    .then(function (html) {
-      // make an HTML version of the loaded widgets so we can select them
-      var loadedWidgets = document.createElement('div');
-      loadedWidgets.innerHTML = html;
-
-      // insert/replace them all one-by-one
-      Object.keys(widgets).forEach(function (widgetId) {
-        var wrapper = widgetsContainer.querySelector('.widget-wrapper--' + widgetId);
-
-        if (!wrapper) {
-          console.warn('Missing wrapper for widget:', widgetId);
-          return;
-        }
-
-        var loadedWidget = loadedWidgets.querySelector('.' + widgetId);
-        if (loadedWidget) {
-          wrapper.innerHTML = loadedWidget.outerHTML;
-
-          // enhance it
-          if (widgets[widgetId]) {
-            widgets[widgetId](wrapper.firstElementChild);
-          }
-        }
-        else {
-          // the server decided not to output this widget (e.g. because
-          // not enough data) - don't show this widget. In fact, empty it (in
-          // case it was already shown and the app has elected to stop showing it).
-          wrapper.innerHTML = '';
-
-          console.log('Not showing widget:', widgetId);
-        }
-      });
-    })
-    .catch(function (err) {
-      console.error(err);
-    });
+  var config = {
+    'state-of-play': {},
+    'votes-vs-seats': {},
+    'local-result': {
+      enhance: require('./local-result'),
+      retain: true, // prevents it being rewritten after the first time (would be bad for this widget)
+    },
   };
 
-  updateWidgets();
+  embedLiveFigures(fragmentPath, container, config);
 
-  // setInterval(updateWidgets, 2000);
+  // and repeat every 2 minutes
+  setInterval(function () {
+    embedLiveFigures(fragmentPath, container, config);
+  }, 1000 * 60);
 }
