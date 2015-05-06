@@ -20,22 +20,8 @@
     </div>
 
     <div class="results-page-panel">
-      {%
-        set nationalSlopeChartData = {
-          slopeHeight: 200,
-          slopeWidth: 130,
-          slopeMargin: {top:10, left:10, bottom:10, right:120},
-          slopeDomain: 300,
-          slopes: nationalSlopes,
-          title: 'National Change',
-          pointRadius: 3
-        }
-      %}
-      {% include "./result-slope.html" with nationalSlopeChartData only %}
+      {% include "./national-change.html" %}
     </div>
-
-
-
   </div>
   <div data-o-grid-colspan="12 M6 L4">
     <form id="seat-search-js" method="GET" action="postcode">
