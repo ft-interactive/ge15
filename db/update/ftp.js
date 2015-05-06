@@ -131,7 +131,7 @@ function connect(callback) {
 
   if (!client) {
     client = new FTPClient();
-
+    client.setMaxListeners(0);
     client.on('close', function(hadErr) {
       debug('Connection closed' + (hadErr ? ' with Error' : ''));
     });
