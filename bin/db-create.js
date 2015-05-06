@@ -17,11 +17,11 @@ var basic_data_only = !argv.projections && !argv.results;
 var message = '\n\tDatabase created with...\n\n\t * Base data (including last vote results)';
 
 if (argv.projections) {
-  message += '\n\t * electionforecast projections';
+  message += '\n\t * ElectionForecast.co.uk projections';
 }
 
 if (argv.results) {
-  message += '\n\t * PA results';
+  message += '\n\t * Mock PA results';
 }
 
 message += '\n\n\tYou can query it using the CLI\n\n\t$ npm run db\n';
@@ -49,7 +49,7 @@ if (basic_data_only) {
 
     if (argv.results) {
       debug('Add results');
-      tasks.push(db.data_sources.update.results);
+      tasks.push(db.data_sources.update.mock_results);
     }
 
     if (tasks.length) {

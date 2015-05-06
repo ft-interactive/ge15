@@ -15,6 +15,7 @@ exports.SOP_xml_to_PartyNationalResults = function(file, xml) {
   var parties = xml.FirstPastThePostStateOfParties.Parties[0].Party;
   var sop = xml.FirstPastThePostStateOfParties.$;
   var seats_so_far = Number(sop.numberOfResults) || 0;
+  var total_seats_available = Number(sop.totalNumberOfConstituencies) || 650;
   var votes_so_far = Number(sop.totalVotes) || 0;
 
   /*
@@ -50,7 +51,7 @@ exports.SOP_xml_to_PartyNationalResults = function(file, xml) {
     // Once the last results are called, the PA stop sending a
     // forecast. Fill in the missing data here for anything
     // still needing the forecast.
-    if (seats_so_far >= 650 && !o.election.pa_forecast) {
+    if (seats_so_far >= total_seats_available && !o.election.pa_forecast) {
       o.election.pa_forecast = o.election.seats;
     }
 
@@ -72,6 +73,7 @@ exports.SOP_xml_to_PartyNationalResults = function(file, xml) {
       others.election.seats_pc_so_far += o.election.seats_pc_so_far;
       others.election.seats_gain += o.election.seats_gain;
       others.election.seats_loss += o.election.seats_loss;
+      others.election.seats_net_gain += o.election.seats_net_gain;
       others.election.pa_forecast += o.election.pa_forecast;
     }
     return result;
@@ -135,12 +137,15 @@ exports.update_party_results = function(file, xml, callback) {
         existingElection.seats_pc = election.seats_pc;
         existingElection.seats_pc_so_far = election.seats_pc_so_far;
         existingElection.seats_gain = election.seats_gain;
-        existingElection.seats_gain = election.seats_loss;
+        existingElection.seats_loss = election.seats_loss;
+        existingElection.seats_net_gain = election.seats_net_gain;
         existingElection.pa_forecast = election.pa_forecast || existingElection.pa_forecast;
         existingElection.revision = election.revision;
         if (election.other_parties) {
           existingElection.other_parties = election.other_parties;
         }
+        existingElection.seats_change = existingElection.seats - existing.elections.last.seats;
+        existingElection.seats_change_pc = existingElection.seats_pc - existing.elections.last.seats_pc;
       }
 
       return existing;
@@ -267,6 +272,15 @@ exports.update_seat_result = function(file, xml, callback) {
 };
 
 function candidateXMLtoSeatPartyResult(node) {
+
+  var pa_party_abbrv = party.abbreviation.toLowerCase();
+  // handle Scottish Labour candidates that style themselves as Labout Co-op
+  if (pa_party_abbrv === 'lab co-op') {
+    party.abbreviation = PoliticalParties.data.lab.id;
+  } else if (pa_party_abbrv === 'the speaker' || pa_party_abbrv === 'speaker') {
+    party.abbreviation = PoliticalParties.data.c.id;
+  }
+
   var candidate = node.$;
   var party = node.Party[0].$;
   var code = PoliticalParties.paToCode(party.abbreviation);
@@ -319,7 +333,7 @@ exports.seat_xml_to_result = function(type, file, xml) {
     turnout_pc: constituency.percentageTurnout,
     turnout_pc_change: constituency.percentageChangeTurnout,
     electorate: constituency.electorate,
-    change: !!constituency.gainOrHold ? constituency.gainOrHold !== 'hold' : false,
+    change: !!constituency.gainOrHold ? constituency.gainOrHold.toLowerCase() !== 'hold' : false,
   });
 
   data.source = f.SeatResultDataSource(file, type, declation_time, constituency.paStyleMessageText || '');

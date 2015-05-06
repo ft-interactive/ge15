@@ -2,10 +2,13 @@
 
 const async = require('async');
 const debug = require('debug')('db-update');
-const slave = require('./slave');
+const slave_seats = require('./slave-seats');
+const slave_parties = require('./slave-parties');
 
-const use_mock_data = process.env.USE_MOCK_DATA === 'on';
-const collect_results_data = process.env.COLLECT_RESULTS === 'on';
+const is_master = (process.env.REPLICATION || '').toLowerCase() === 'master';
+const is_slave = (process.env.REPLICATION || '').toLowerCase() === 'slave';
+const is_local = (process.env.REPLICATION || '').toLowerCase() === 'local';
+const is_polling_on = is_master || is_slave;
 
 exports.seat_projections = require('./seat-projections');
 exports.national_projections = require('./national-projections');
@@ -13,12 +16,11 @@ exports.ge15_PA_results = require('./ge15-PA-results');
 exports.mock_nation_results = require('./mock-national-results');
 exports.mock_seat_results = require('./mock-seat-results');
 
-
-exports.results = function(cb) {
+exports.mock_results = function(cb) {
 
     cb = cb || function(){};
 
-    debug('Update results - start');
+    debug('Update mock results - start');
 
     var tasks = [
      exports.mock_nation_results,
@@ -26,7 +28,7 @@ exports.results = function(cb) {
     ];
 
     async.parallel(tasks, function() {
-      debug('Update results - complete');
+      debug('Update mock results - complete');
       cb();
     });
 };
@@ -56,8 +58,24 @@ exports.all = function(cb) {
 
   var tasks = [
     exports.projections,
-    slave.start_polling
   ];
+
+  if (is_polling_on) {
+    if (is_slave) {
+      debug('Polling is ON. Replication=slave');
+      tasks.push(slave_seats.start_polling);
+      tasks.push(slave_parties.start_polling);
+    } else if (is_master) {
+      debug('Polling is ON. Replication=master');
+      //TODO: start polling PA FTP
+    }
+  } else {
+    debug('Polling is OFF, no replication will happen');
+    if (is_local) {
+      debug('Using local mock data instead');
+      tasks.push(exports.mock_results);
+    }
+  }
 
   function complete() {
     debug('Update all - complete');

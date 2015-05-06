@@ -1,14 +1,26 @@
 'use strict';
 
-const debug = require('debug')('db-slave');
+const debug = require('debug')('db-slave:seats');
 const request = require('request-promise');
 const db = require('../loki');
 const master = process.env.MASTER_SEAT_RESULTS;
-const interval = 1000 * 60;
+const interval = process.env.SEAT_RESULTS_INTERVAL ? parseInt(process.env.MASTER_SEAT_RESULTS) : 1000 * 60;
+
+var started = false;
 
 exports.start_polling = function(callback_first_time) {
+
+  if (started) {
+    debug('Already started. Exiting.');
+    callback_first_time();
+    return;
+  }
+
+  started = true;
+
   if (master) {
-    get_seats(callback_first_time);
+    debug('Start polling %s', master);
+    get_data(callback_first_time);
   } else {
     debug('No master url is set so there is nothing to poll,');
     callback_first_time();
@@ -17,10 +29,10 @@ exports.start_polling = function(callback_first_time) {
 
 function repeat() {
   debug('Scheduling a refresh in %dms', interval);
-  setTimeout(get_seats, interval);
+  setTimeout(get_data, interval);
 }
 
-function get_seats(cb) {
+function get_data(cb) {
 
   debug('Getting seats data from master url %s', master);
 

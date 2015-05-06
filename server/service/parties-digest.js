@@ -20,7 +20,7 @@ module.exports = function(options) {
   } else {
 
     var partition = partition_parties(all_parties, options.filter_parties);
-    var others = partition[0];
+    var others = partition[1];
     filtered_parties = partition[0];
 
     if (options.rollup_others) {
@@ -59,8 +59,10 @@ function reduce_others(others, party) {
   others.seats_pc += party.seats_pc || 0;
   others.seats_pc_so_far += party.seats_pc_so_far || 0;
   others.seats_change += party.seats_change || 0;
+  others.seats_change_pc += party.seats_change_pc || 0;
   others.seats_gain += party.seats_gain || 0;
   others.seats_loss += party.seats_loss || 0;
+  others.seats_net_gain += party.seats_net_gain || 0;
   others.pa_forecast += party.pa_forecast || 0;
   others.ef_seats += party.ef_seats || 0;
   others.ef_seats_change += party.ef_seats_change || 0;
@@ -73,7 +75,6 @@ function reduce_others(others, party) {
   others.last_seats_pc += party.last_seats_pc || 0;
   return others;
 }
-
 
 function create_party_digest(party) {
 
@@ -90,8 +91,10 @@ function create_party_digest(party) {
     seats_pc_so_far: party.elections.ge15.seats_pc_so_far,
     votes_vs_seats: party.elections.ge15.seats_pc_so_far - party.elections.ge15.votes_pc,
     seats_change: party.elections.ge15.seats_change,
+    seats_change_pc: party.elections.ge15.seats_change_pc,
     seats_gain: party.elections.ge15.seats_gain,
     seats_loss: party.elections.ge15.seats_loss,
+    seats_net_gain: party.elections.ge15.seats_net_gain,
     pa_forecast: party.elections.ge15.pa_forecast,
     ef_seats: party.elections.ge15_projection.seats,
     ef_seats_change: party.elections.ge15_projection.seats_change,

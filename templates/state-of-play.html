@@ -36,7 +36,7 @@
           <td style="width:{{100/parties.length}}%">
             <span class="state-of-play__row-label">Gained&nbsp;from</span>
             <div class="state-of-play__seats">
-              {% for seat in party.gains %}<span class="state-of-play__seat" style="background:{{seat.wasColour}}"></span>{% endfor %}
+              {% for seat in party.gains %}<span class="state-of-play__seat" title="{{ seat.tooltip }}" style="background:{{seat.wasColour}}"></span>{% endfor %}
             </div>
           </td>
           {% endfor %}
@@ -47,7 +47,7 @@
           <td>
             <span class="state-of-play__row-label">Lost&nbsp;to</span>
             <div class="state-of-play__seats">
-              {% for seat in party.losses %}<span class="state-of-play__seat" style="background:{{seat.nowColour}}"></span>{% endfor %}
+              {% for seat in party.losses %}<span class="state-of-play__seat" title="{{ seat.tooltip }}" style="background:{{seat.nowColour}}"></span>{% endfor %}
             </div>
           </td>
           {% endfor %}
