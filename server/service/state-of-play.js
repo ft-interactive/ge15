@@ -36,9 +36,8 @@ module.exports = function (howMany) {
       secondaryColour: party.secondary_colour,
       totalWon: party.elections.ge15.seats,
       netChange: party.elections.ge15.seats_net_gain,
-
       losses: [],
-      gains: [],
+      gains: []
     };
   });
 
