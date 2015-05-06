@@ -6,6 +6,7 @@ const app = require('../../util/app');
 const groupby = require('../../middleware/groupby');
 const db = require('../../../db');
 const service = require('../../service');
+const csv = require('dsv')(',');
 
 const params = {
   collection: function*(name, next) {
@@ -130,6 +131,23 @@ const middleware = {
     this.req.headers.accept = 'application/json';
     var data = yield service.neighbours(this.params.seat_id);
     this.body = data;
+  },
+  seats_digest: function*(next) {
+    var data = service.seats_digest({show_main_parties: !!this.query['show-main-parties']});
+    this.set('X-GE15-Seat-Result-Count', data.result_count);
+    this.set('X-GE15-Seat-Rush-Count', data.rush_count);
+    this.set('X-GE15-Seat-Recount-Count', data.recount_count);
+    this.body = data.seats;
+    yield next;
+  },
+  parties_digest: function*(next) {
+    var filter_parties = this.query['filter-parties'] ? this.query['filter-parties'].toLowerCase().split(',') : null;
+    var rollup_others = !!this.query['rollup-others'];
+    var data = service.parties_digest({filter_parties: filter_parties, rollup_others: rollup_others});
+    this.set('X-GE15-Seats-Count', data.counts.seats);
+    this.set('X-GE15-Votes-Count', data.counts.votes);
+    this.body = data.parties;
+    yield next;
   }
 };
 
@@ -140,6 +158,23 @@ function* secret(next) {
 
 function main() {
   return app({views:false})
+          .use(function*(next) {
+
+            var isCSV = this.query.type === 'csv';
+            yield *next;
+
+            if (isCSV) {
+              this.type = 'text/csv';
+              console.log('set type');
+            }
+
+            var body = this.body;
+
+            if (Array.isArray(body) && isCSV) {
+              this.body = csv.format(body);
+            }
+
+          })
           .use(function*(next){
             yield *next;
 
@@ -176,6 +211,8 @@ function main() {
           .get('/lookup/point/:lon,:lat', middleware.point)
           .get('/lookup/place/:search', middleware.place)
           .get('/lookup/neighbours/:seat_id', middleware.neighbours)
+          .get('/digest/seats', middleware.seats_digest)
+          .get('/digest/parties', middleware.parties_digest)
           .get('/collection/:collection', middleware.index)
           .get('/collection/:collection/:op/:field\::value', middleware.op)
           .get('/db/reload', secret, function* (next) {

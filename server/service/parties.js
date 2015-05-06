@@ -1,17 +1,18 @@
 'use strict';
 
 const db = require('./db');
+const _ = require('lodash');
 
-var parties;
-
-function refresh() {
-  parties = Promise.resolve(db.parties().find());
+function ge15(party) {
+  return party.elections.ge15.seats;
 }
 
-refresh();
-setInterval(refresh, 1000 * 120);
+function last(party) {
+  return party.elections.ge15.seats;
+}
+
 
 module.exports = function(election) {
-  refresh();
-  return parties;
+  //TODO: use a Loki View to do the Sorting.
+  return Promise.resolve(_.sortByOrder(db.parties().find(), [ge15, last], [false, false]));
 };
