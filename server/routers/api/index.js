@@ -17,7 +17,6 @@ const params = {
   field: function*(field, next) {
     this.f = {};
     this.f[field] = this.params.value;
-    console.log(field, this.f);
     yield next;
   },
   where : function*(where, next) {
@@ -44,7 +43,6 @@ const params = {
       return r;
 
     }, {});
-    console.dir(where);
     this.data = _.where(this.entity.list, where);
     yield next;
   },
@@ -79,7 +77,6 @@ const middleware = {
     yield next;
   },
   op: function*(next) {
-    console.log('op');
     var data;
     switch (this.params.op) {
       case 'by':
@@ -165,7 +162,6 @@ function main() {
 
             if (isCSV) {
               this.type = 'text/csv';
-              console.log('set type');
             }
 
             var body = this.body;
