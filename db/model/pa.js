@@ -178,8 +178,6 @@ exports.update_seat_result = function(file, xml, callback) {
       type = Types.RESULT;
     }
 
-debug('type: '+type);
-debug('pa_id: '+pa_id);
     if (!type) {
       callback(new Error('File type is not recognised'));
       return;
@@ -216,8 +214,6 @@ debug('pa_id: '+pa_id);
     var existing_revision = seat.elections.ge15.source && typeof seat.elections.ge15.source.revision === 'number' ? seat.elections.ge15.source.revision : 0;
 
     message_context += ' current=(type:' + existing_type + ',revision:' + existing_revision + ')';
-
-    var correction_only = false;
 
     // We only want to think about cancelling the update
     // if we already have results data

@@ -10,9 +10,7 @@ module.exports = function(seat_id) {
     not_found_error.status = 404;
     return Promise.reject(not_found_error);
   }
-  console.dir(data);
   var seats = db.seats().find({id: {'$in': data.neighbours}});
 
   return Promise.resolve(_.sortBy(seats, 'name'));
-
 };
