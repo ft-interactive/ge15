@@ -3,13 +3,6 @@
 const ukParties = require('uk-political-parties');
 const _ = require('lodash');
 const db = require('./db');
-
-const knownParties = [
-  'lab', 'c', 'ld', 'green', 'ukip', 'snp', 'dup',
-  'sf', 'pc', 'alliance', 'other', 'sdlp', 'uup'
-];
-
-
 const order_of_appearance = ['c', 'lab', 'snp', 'ld', 'ukip', 'dup', 'pc', 'green'];
 
 var expires;
@@ -17,12 +10,10 @@ var last;
 var age = 1000 * 10;
 
 module.exports = function (howMany) {
-  // return dummy data, plundered from the battlegrounds data for now
 
   if (last && expires && Date.now() < expires) {
     return last;
   }
-
 
   var selected_parties = order_of_appearance.slice(0, Math.max(howMany - 1, 0));
 
@@ -44,7 +35,7 @@ module.exports = function (howMany) {
     var winner = seat.elections.ge15.winner;
     var loser = seat.elections.last.winner;
 
-    // FIXME: what!?
+    // FIXME: what!? wont this break when we throw others into the mix
     if (winner.party in gains_and_losses) {
       gains_and_losses[winner.party].gains.push({
         nowColour: ukParties.colour(winner.party),
@@ -55,7 +46,7 @@ module.exports = function (howMany) {
       });
     }
 
-    // FIXME: what!?
+    // FIXME: what!?  wont this break when we throw others into the mix
     if (loser.party in gains_and_losses) {
       gains_and_losses[loser.party].losses.push({
         nowColour: ukParties.colour(winner.party),
