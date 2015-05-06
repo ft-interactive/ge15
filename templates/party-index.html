@@ -11,9 +11,9 @@
     <thead>
 <tr>
   <th></th>
-  <th colspan="2">Last</th>
+  <th colspan="2">Result</th>
   <th colspan="5">Projected</th>
-  <th colspan="2">Actual</th>
+  <th colspan="2">Last</th>
 </tr>
 <tr>
   <th>Party</th>
@@ -32,15 +32,15 @@
   {% endif %}
   <tr>
     <td>{{ party.full }}</td>
-    <td>{{ party.elections.last.seats }}</td>
-    <td>{{ party.elections.last.seats_pc | format('0,00%') }}</td>
+    <td>{{ party.elections.ge15.seats }}</td>
+    <td>{{ party.elections.ge15.seats_pc | format('0.00') }}%</td>
     <td>{{ party.elections.ge15_projection.seats_lo }}</td>
     <td>{{ party.elections.ge15_projection.seats }}</td>
     <td>{{ party.elections.ge15_projection.seats_pc | format('0.00') }}%</td>
     <td>{{ party.elections.ge15_projection.seats_change }}</td>
     <td>{{ party.elections.ge15_projection.seats_hi }}</td>
-    <td>{{ party.elections.ge15.seats }}</td>
-    <td>{{ party.elections.ge15.seats_pc | format('0,00%') }}</td>
+    <td>{{ party.elections.last.seats }}</td>
+    <td>{{ party.elections.last.seats_pc | format('0.00') }}%</td>
   </tr>
   {% if loop.last %}</tbody></table>{% endif %}
 {% endfor %}
