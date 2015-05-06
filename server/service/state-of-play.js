@@ -35,8 +35,7 @@ module.exports = function (howMany) {
       colour: party.colour,
       secondaryColour: party.secondary_colour,
       totalWon: party.elections.ge15.seats,
-      // netChange: Math.round((Math.random() - 0.5) * 50),
-      netChange: 999,
+      netChange: party.elections.ge15.seats_net_gain,
 
       losses: [],
       gains: [],
