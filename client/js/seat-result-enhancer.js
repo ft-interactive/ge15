@@ -1,26 +1,25 @@
 /**
  * The 'enhancer' for the local result widget.
  * 
- * To use: put the "local result" component HTML on the page, select the
- * `.local-result.figure` element, and pass it into this function.
+ * To use: put the "seat result" component HTML on the page, select the
+ * `.seat-result.figure` element, and pass it into this function.
  */
 
 'use strict';
 
 var hostname = require('./hostname');
-var template = require('./local-result-card.hbs');
+// var template = require('./seat-result-card.hbs');
 var ukParties = require('uk-political-parties');
 
 
 module.exports = function (figureElement) {
-  var card = figureElement.querySelector('.local-result__card');
-  var form = figureElement.querySelector('.local-result__postcode-form');
+  var card = figureElement.querySelector('.seat-result__card');
+  var form = figureElement.querySelector('.seat-result__postcode-form');
   var input = form.querySelector('input');
 
   form.onsubmit = function () {
     var url = (
-      'http://' +
-      hostname +
+      'http://' + hostname +
       '/uk/2015/api/lookup/postcode/' +
       encodeURIComponent(input.value.trim())
     );
@@ -36,14 +35,20 @@ module.exports = function (figureElement) {
 
         if (result.error) throw result;
 
-        // build data and render the result
-        var whichElection = 'last'; // for testing
-        var templateData = {
-          name: result.seat.name,
-          winner: ukParties.fullName(result.seat.elections[whichElection].winner.party),
-        };
+        // do a second hop to find the seat
+        var secondURL = (
+          'http://' + hostname +
+          '/uk/2015/live-figures/seat-result-fragment/' +
+          encodeURIComponent(result.seat.id)
+        );
 
-        card.innerHTML = template(templateData);
+        console.log('requesting', secondURL);
+
+        return fetch(secondURL).then(function (response) {
+          return response.text();
+        }).then(function (fragment) {
+          card.innerHTML = fragment;
+        });
       })
       .catch(function (err) {
         if (err.error) {

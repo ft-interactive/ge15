@@ -1,4 +1,4 @@
-.local-result {
+.seat-result {
   position: relative;
 
   // scss-lint:disable ImportantRule
@@ -13,7 +13,7 @@
 }
   
   // scss-lint:disable QualifyingElement
-  .local-result__postcode-form > input[type=text] { // high specificity to override liveblog styles
+  .seat-result__postcode-form > input[type=text] { // high specificity to override liveblog styles
     display: block;
     line-height: 30px;
     height: 30px;
@@ -25,3 +25,5 @@
     background: color(white) url(https://image.webservices.ft.com/v1/images/raw/fticon:search?width=13&source=ge15) no-repeat 6px 7px;
   }
   // scss-lint:enable QualifyingElement
+
+  
