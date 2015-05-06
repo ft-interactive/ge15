@@ -41,7 +41,7 @@ module.exports = function (fragmentPath, container, config) {
         // case it was already shown and the app has elected to stop showing it).
         wrapper.innerHTML = '';
 
-        console.log('Not showing figure (because no data):', figureId);
+        console.log('Not showing (or hiding) figure, because not present in fragment:', figureId);
       }
     });
   })

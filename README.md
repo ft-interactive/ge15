@@ -118,7 +118,7 @@ http://uk-election-2015.herokuapp.com/
 
 ## Live figures
 
-The state-of-play, local-result and votes-vs-seats components can all be used as "live figures", which means they can be embedded in any page dynamically using JS.
+The state-of-play, seat-result and votes-vs-seats components can all be used as "live figures", which means they can be embedded in any page dynamically using JS.
 
 The `live-figures` router provides these routes:
 
