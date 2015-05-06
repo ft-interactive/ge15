@@ -2,6 +2,7 @@
 
 const async = require('async');
 const debug = require('debug')('db-update');
+const slave = require('./slave');
 
 const use_mock_data = process.env.USE_MOCK_DATA === 'on';
 const collect_results_data = process.env.COLLECT_RESULTS === 'on';
@@ -11,6 +12,7 @@ exports.national_projections = require('./national-projections');
 exports.ge15_PA_results = require('./ge15-PA-results');
 exports.mock_nation_results = require('./mock-national-results');
 exports.mock_seat_results = require('./mock-seat-results');
+
 
 exports.results = function(cb) {
 
@@ -54,7 +56,7 @@ exports.all = function(cb) {
 
   var tasks = [
     exports.projections,
-    //exports.results
+    slave.start_polling
   ];
 
   function complete() {
@@ -62,8 +64,6 @@ exports.all = function(cb) {
     cb();
   }
 
-  async.parallel(tasks, function() {
-    complete();
-  });
+  async.parallel(tasks, complete);
 
 };
