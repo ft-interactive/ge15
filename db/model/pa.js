@@ -267,6 +267,15 @@ exports.update_seat_result = function(file, xml, callback) {
 };
 
 function candidateXMLtoSeatPartyResult(node) {
+
+  var pa_party_abbrv = party.abbreviation.toLowerCase();
+  // handle Scottish Labour candidates that style themselves as Labout Co-op
+  if (pa_party_abbrv === 'lab co-op') {
+    party.abbreviation = PoliticalParties.data.lab.id;
+  } else if (pa_party_abbrv === 'the speaker' || pa_party_abbrv === 'speaker') {
+    party.abbreviation = PoliticalParties.data.c.id;
+  }
+
   var candidate = node.$;
   var party = node.Party[0].$;
   var code = PoliticalParties.paToCode(party.abbreviation);
