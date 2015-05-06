@@ -73,6 +73,7 @@ var f = exports.factory = {
       revision: Number(o.revision) || 0
     };
 
+    d.seats_net_gain = d.seats_gain - d.seats_loss;
     d.seats_pc = d.seats / 6.5;
 
     if (!d.votes_pc && d.votes && typeof electorateSize === 'number') {
