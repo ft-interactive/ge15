@@ -9,7 +9,7 @@ var nameOverrides = {
 
 var expires;
 var last;
-var age = 1000 * 10;
+var age = 1000 * 60;
 
 module.exports = function () {
 
