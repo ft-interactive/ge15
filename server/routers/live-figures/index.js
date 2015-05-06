@@ -18,6 +18,11 @@ function* liveblogFragment(next) {
 
   debug(JSON.stringify(data.votesVsSeats, null, 2));
 
+  this.set('Cache-Control', // jshint ignore:line
+    'public, max-age=10, stale-while-revalidate=3600, stale-if-error=3600');
+
+  this.set('Surrogate-Control', 'max-age=60'); // jshint ignore:line
+
   yield this.render('liveblog-fragment', data); // jshint ignore:line
 
   yield next;
@@ -48,6 +53,11 @@ function* ftcomFragment(next) {
   data.stateOfPlay.linkURL = 'http://training.blogs.ft.com/westminster/liveblogs/2015-04-22-2/';
 
   debug(JSON.stringify(data.votesVsSeats, null, 2));
+
+  this.set('Cache-Control', // jshint ignore:line
+    'public, max-age=10, stale-while-revalidate=3600, stale-if-error=3600');
+
+  this.set('Surrogate-Control', 'max-age=60'); // jshint ignore:line
 
   yield this.render('ftcom-fragment', data); // jshint ignore:line
 
