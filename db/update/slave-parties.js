@@ -4,7 +4,7 @@ const debug = require('debug')('db-slave:parties');
 const request = require('request-promise');
 const db = require('../loki');
 const master = process.env.MASTER_PARTIES_RESULTS;
-const interval = 1000 * 60;
+const interval = process.env.PARTY_RESULTS_INTERVAL ? parseInt(process.env.PARTY_RESULTS_INTERVAL) : 1000 * 60;
 
 var started = false;
 
