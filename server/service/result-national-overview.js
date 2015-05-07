@@ -3,10 +3,18 @@
 const db = require('./db');
 
 var major = ['c','lab','snp','ld','dup','pc','sdlp','ukip','green'];
+var expires;
+var last;
+var age = 1000 * 60;
+
 
 module.exports = function(){
-  var allParties = db.parties().find().map(simplify);
 
+  if (last && expires && Date.now() < expires) {
+    return last;
+  }
+
+  var allParties = db.parties().find().map(simplify);
   var parties = allParties
     .filter(majorParties)
     .sort(bySeats);
@@ -17,12 +25,13 @@ module.exports = function(){
 
   parties.push(other);
 
-  return Promise.resolve(
-  {
+  last = Promise.resolve({
     parties:parties,
     //updated:"2015-04-30T23:03:04.448Z",
     source:"PA"
   });
+
+  return last;
 };
 
 function simplify(d){
