@@ -247,7 +247,7 @@ Nick Butler: Solar energy
                     </li>
                     <li data-pos="1">
                         <a href="http://podcast.ft.com?pid=2568">
-Podcast: FT Online MBA rankings 
+Podcast: FT Online MBA rankings
 </a>
                     </li>
                     <li data-pos="2">
@@ -267,18 +267,18 @@ McCoy&rsquo;s swan song
         <div class="master-column middleSection " data-nozone="middleSection" data-timer-key="6">
             <div class="master-row contentSection " data-nozone="contentSection" data-timer-key="7">
                 <div class="master-row editorialSection" data-nozone="editorialSection" data-timer-key="8">
-                    
+
 {# BEGIN FTCOM EMBED CODE (nb. asset urls will need to be made absolute #}
   <div class="ge15-ftcom-figures">
     <div class="figure-wrapper figure-wrapper--state-of-play--js"></div>
   </div>
 
-  <link href="/css/pages/ftcom.css" rel="stylesheet">
+  <link href="http://{{context.host}}{{ asset("css/pages/ftcom.css") }}" rel="stylesheet">
   <script src="https://cdn.polyfill.io/v1/polyfill.min.js?features=default,fetch"></script>
-  <script src="/js/vendor.js"></script>
-  <script src="/js/ftcom.js"></script>
+  <script src="http://{{context.host}}{{ asset("js/vendor.js") }}"></script>
+  <script src="http://{{context.host}}{{ asset("js/ftcom.js") }}"></script>
 {# END FTCOM EMBED CODE #}
-        
+
 
                     <div class="freestyle" data-comp-name="freestyle" data-comp-view="freestyle" data-comp-index="1" data-timer-key="10" id="239710">
                         <span></span>
@@ -1025,17 +1025,17 @@ MARKETS DATA
                             line-height: 18px;
                             white-space: nowrap;
                         }
-                        
+
                         .fastft-logo {
                             float: left;
                             margin-right: 2px;
                             border: 1px solid red;
                         }
-                        
+
                         .fastft-list {
                             margin-top: 3px;
                         }
-                        
+
                         .fastft-arrow {
                             border-style: dashed;
                             border-color: transparent;
@@ -1052,7 +1052,7 @@ MARKETS DATA
                             border-left-color: #666;
                             left: 0.25em;
                         }
-                        
+
                         .fastft-introtext a:hover .fastft-arrow {
                             border-left-color: #E5250E;
                         }
@@ -1110,32 +1110,32 @@ MARKETS DATA
                         .sitepageShare {
                             padding: 16px 10px 28px 10px
                         }
-                        
+
                         .sitepageShare ul {
                             margin: 0 0 10px
                         }
-                        
+
                         .sitepageShare ul li {
                             display: inline-block;
                             margin-right: 15px;
                             width: 24px;
                             height: 24px
                         }
-                        
+
                         .sitepageShare ul li a {
                             display: inline-block;
                             width: 24px;
                             height: 24px
                         }
-                        
+
                         .msie7 .sitepageShare ul {
                             clear: both
                         }
-                        
+
                         .msie7 .sitepageShare ul li {
                             float: left
                         }
-                        
+
                         .sitepageShare .facebook,
                         .sitepageShare .googleplus,
                         .sitepageShare .twitter,
@@ -1144,27 +1144,27 @@ MARKETS DATA
                         .sitepageShare .tumblr {
                             background: url(data:image/png;base64,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) no-repeat
                         }
-                        
+
                         .sitepageShare .facebook {
                             background-position: 0 0
                         }
-                        
+
                         .sitepageShare .googleplus {
                             background-position: 0 -24px
                         }
-                        
+
                         .sitepageShare .twitter {
                             background-position: 0 -48px
                         }
-                        
+
                         .sitepageShare .linkedin {
                             background-position: 0 -72px
                         }
-                        
+
                         .sitepageShare .youtube {
                             background-position: 0 -96px
                         }
-                        
+
                         .sitepageShare .tumblr {
                             background-position: 0 -120px
                         }
@@ -1374,7 +1374,7 @@ Audio slideshows
                 </li>
                 <li data-pos="6">
                     <a href="http://www.ft.com/multimedia/slideshows">
-Picture slideshows 
+Picture slideshows
 </a>
                 </li>
             </ul>
@@ -1517,7 +1517,7 @@ Quick links
             <ul>
                 <li data-pos="34">
                     <a href="http://live.ft.com/">
-FT Live 
+FT Live
 </a>
                 </li>
                 <li data-pos="35">
