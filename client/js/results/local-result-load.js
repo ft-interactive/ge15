@@ -39,7 +39,7 @@ module.exports = function(){
       aggregateOther.votes_pc = Math.round(aggregateOther.votes_pc * 100) /100;
       squashedParties.push(aggregateOther);
     }
-    
+
     var resultIn = 'noresult';
     if(newParty) resultIn = 'result';
 
@@ -153,7 +153,7 @@ module.exports = function(){
       }).catch(function(){
         showError(type);
       });
-    }
+    };
   }
 
   var locbtn = document.getElementById('use-mylocation-js');
@@ -163,7 +163,7 @@ module.exports = function(){
 
       function geoloc_onsuccess(position) {
         document.getElementById('seat-search-js').elements.postcode.value = '';
-        var points = [position.coords.longitude, position.coords.latitude].join(',')
+        var points = [position.coords.longitude, position.coords.latitude].join(',');
         var url = '/uk/2015/api/lookup/point/' + points;
         fetch(url).then(lookup_onsuccess).catch(get_lookup_error_handler('location'));
       }
@@ -178,7 +178,7 @@ module.exports = function(){
   document.getElementById('seat-search-js').addEventListener('submit', function(event) {
     event.preventDefault();
 
-    var input = event.target.elements.postcode
+    var input = event.target.elements.postcode;
     var postcode = input.value.trim();
 
     if (!postcode) {
@@ -187,7 +187,7 @@ module.exports = function(){
       return;
     }
 
-    var offlineErrorMessage = 'Cannot connect to the internet to find postcode.';
+    //var offlineErrorMessage = 'Cannot connect to the internet to find postcode.';
     var url = '/uk/2015/api/lookup/postcode/' + postcode;
 
     fetch(url).then(lookup_onsuccess).catch(get_lookup_error_handler('postcode'));
