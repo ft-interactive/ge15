@@ -31,7 +31,7 @@ module.exports = function (howMany) {
 
     return {
       id: party.id,
-      label: ukParties.shortName(party.id),
+      label: party.short,
       colour: party.colour,
       secondaryColour: party.secondary_colour,
       totalWon: party.elections.ge15.seats,
@@ -115,7 +115,7 @@ module.exports = function (howMany) {
       if (seat.elections.ge15.change !== (loserId !== winnerId)) {
         console.warn(
           'WARNING: seat.elections.ge15.change is ' + seat.elections.ge15.change + ' for "' + seat.name + '"' +
-          ' but loserId is ' + loserId + ' and winnerId is ' + winnerId 
+          ' but loserId is ' + loserId + ' and winnerId is ' + winnerId
         );
       }
 
