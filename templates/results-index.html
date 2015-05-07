@@ -19,9 +19,9 @@
       {% include './votes-vs-seats.html' with votesVsSeats only ignore missing %}
     </div>
 
-    <div class="results-page-panel">
+    <!-- <div class="results-page-panel">
       {% include "./national-change.html" %}
-    </div>
+    </div> -->
   </div>
   <div data-o-grid-colspan="12 M6 L4">
     <form id="seat-search-js" method="GET" action="postcode">
@@ -38,107 +38,5 @@
     addScript('{{ asset("js/results.js") }}', false, false);
   }
 
-
-  function showSeat(seat) {
-    var el = document.getElementById('seat-search-results-js');
-    var html = '<h3>'+ seat.name +'</h3><p>Region: '+seat.region_name+'</p><p>Party:'+ seat.elections.last.winner.party+'</p>';
-    html += '<table><thead><tr><th>Party</th><th>%</th></tr></thead><tbody>';
-    console.dir( seat.elections.last);
-    for (var i = 0; i < seat.elections.last.results.length; i++) {
-      html += '<tr><td>' + seat.elections.last.results[i].party + '</td><td>' +seat.elections.last.results[i].votes_pc + '%</td></tr>'
-    }
-    html += '</tbody></table>';
-    el.innerHTML = html;
-    console.dir(seat);
-  }
-
-  function showError(err) {
-    var message;
-
-    if (err === 'location') {
-      message = 'Couldn\'t get your location.';
-    } else if (err === 'postcode') {
-      message = 'There was a problem searching for a postcode.';
-    } else if (!err) {
-      message = 'Couldn\'t find the seat';
-    } else {
-      message = err;
-    }
-
-    var el = document.getElementById('seat-search-results-js');
-    el.innerHTML = message;
-  }
-
-  function clear() {
-    document.getElementById('seat-search-results-js').innerHTML = '';
-  }
-
-  function lookup_onsuccess(response) {
-
-    if (response.status !== 200) {
-      throw response;
-    }
-
-    return response.json().then(function(json) {
-      showSeat(json.seat);
-    });
-  }
-
-  function get_lookup_error_handler(type) {
-    return function (response) {
-
-      // TODO: give different message to this if user is offline
-      // TODO: handle when reach some kind of backend API rate limit
-
-      if (response instanceof Error || response.status === 500) {
-        console.error(response);
-        showError(type);
-        return;
-      }
-
-      return response.json().then(function(json) {
-        showError(json.error);
-      }).catch(function(){
-        showError(type);
-      });
-    }
-  }
-
-  locbtn = document.getElementById('use-mylocation-js');
-
-  if ('geolocation' in navigator) {
-    locbtn.addEventListener('click', function(event) {
-
-      function geoloc_onsuccess(position) {
-        document.getElementById('seat-search-js').elements.postcode.value = '';
-        var points = [position.coords.longitude, position.coords.latitude].join(',')
-        var url = '/uk/2015/api/lookup/point/' + points;
-        fetch(url).then(lookup_onsuccess).catch(get_lookup_error_handler('location'));
-      }
-
-      navigator.geolocation.getCurrentPosition(geoloc_onsuccess, get_lookup_error_handler('location'));
-    });
-  } else {
-    locbtn.style.display = 'none';
-  }
-
-
-  document.getElementById('seat-search-js').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    var input = event.target.elements.postcode
-    var postcode = input.value.trim();
-
-    if (!postcode) {
-      input.value = '';
-      clear();
-      return;
-    }
-
-    var offlineErrorMessage = 'Cannot connect to the internet to find postcode.';
-    var url = '/uk/2015/api/lookup/postcode/' + postcode;
-
-    fetch(url).then(lookup_onsuccess).catch(get_lookup_error_handler('postcode'));
-  });
 </script>
 {% endblock %}
