@@ -21,6 +21,11 @@ function* india(next) {
   yield next;
 }
 
+function* loader_IO(next) {
+  this.body = 'loaderio-5d48ad080f851bf1a83489b6dfd684b2';
+  yield next;
+}
+
 function* home(next) {
   this.set('Cache-Control', 'public, max-age=3600, stale-while-revalidate=28800, stale-if-error=86400'); // jshint ignore:line
   this.set('Surrogate-Control', 'max-age=900'); // jshint ignore:line
@@ -34,6 +39,7 @@ function main() {
           .get('/', home)
           .get('/india/general-election-2014', india)
           .get('/robots.txt', robots)
+          .get('/loaderio-5d48ad080f851bf1a83489b6dfd684b2', loader_IO)
           .get('/__gtg', gtg);
 }
 
