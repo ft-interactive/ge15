@@ -65,7 +65,6 @@
         .votes-vs-seats__tick {
           display: inline-block;
           height: 100%;
-          width: 20%;
           position: relative;
           border-left: 1px dotted color(grey-tint1);
           margin-top: -(($row-thickness - $track-thickness) / 2);

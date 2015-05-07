@@ -26,7 +26,6 @@ module.exports = function () {
       percentSeatsWon: party.elections.ge15.seats_pc_so_far,
       colour: party.colour
     };
-
   });
 
   var sorted = _.sortByOrder(parties, ['percentVoteWon'], [false]);
@@ -43,10 +42,30 @@ module.exports = function () {
 
   expires = Date.now() + age;
 
-  last = Promise.resolve({
+
+  // the chart should always extend to at least 50%, even if all bars are lower
+  var minChartExtent = 50;
+
+  // the chart should extend to accommodate the highest value in the data
+  var chartExtent = Math.max.apply(null,
+    _.pluck(sorted, 'percentSeatsWon').concat(
+      _.pluck(sorted, 'percentVoteWon'),
+      minChartExtent
+    )
+  );
+
+  // the chart should be rounded up to the nearest 10
+  chartExtent = Math.ceil(chartExtent/10) * 10;
+
+  console.assert(chartExtent <= 100, 'chartExtent should be <= 100; got: ' + chartExtent);
+
+  var finalData = {
     headline: 'Popular vote vs. seats won',
     parties: sorted,
-  });
+    chartExtent: chartExtent,
+    percentageTicks: _.range(0, chartExtent + 1, 10),
+  };
 
+  last = Promise.resolve(finalData);
   return last;
 };
