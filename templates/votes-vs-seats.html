@@ -26,9 +26,9 @@
 
       {# 2nd layer: the vertical tick lines along the x-axis, inc. percent labels #}
       <div class="votes-vs-seats__ticks">
-        {% for percentage in [0, 10, 20, 30, 40, 50] %}
-        <div class="votes-vs-seats__tick">
-          <div class="votes-vs-seats__tick__label">{{percentage}}</div>
+        {% for percentage in percentageTicks %}
+        <div class="votes-vs-seats__tick" style="width:{{ 1000 / chartExtent }}%">
+          <div class="votes-vs-seats__tick__label">{{ percentage }}</div>
         </div>
         {% endfor %}
       </div>
@@ -49,13 +49,13 @@
           {# bar for vote percentage #}
           <div
             class="votes-vs-seats__vote-percent"
-            style="width:{{ party.percentVoteWon * 2 }}%"
+            style="width:{{ (party.percentVoteWon) * (100 / chartExtent) }}%"
             title="{{party.percentVoteWon | round(1)}}% of votes won"></div>
 
           {# icon for seats percentage #}
           <div
             class="votes-vs-seats__seats-percent"
-            style="left:{{ party.percentSeatsWon * 2 }}%"
+            style="left:{{ (party.percentSeatsWon) * (100 / chartExtent) }}%"
             title="{{party.percentSeatsWon | round(1)}}% of seats won"></div>
         </div>
         {% endfor %}

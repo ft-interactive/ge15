@@ -7,10 +7,14 @@
     </h3>
 
     <p class="figure__note">
-      {% if numSeatsDeclared > 0 %}
-      <b>{{numSeatsDeclared}}</b> of 650 seats declared
+      {% if numSeatsDeclared === 650 %}
+        All 650 seats declared
       {% else %}
-      No seats declared
+        {% if numSeatsDeclared > 0 %}
+        <b>{{ numSeatsDeclared }}</b> of 650 seats declared
+        {% else %}
+        No seats declared
+        {% endif %}
       {% endif %}
 
       {% if updated %}
@@ -27,7 +31,7 @@
         {% for party in parties %}
         <th style="background:{{party.colour}};border-bottom-color:{{party.secondaryColour}};width:{{100/parties.length}}%">
           {{party.label}}
-          <span class="state-of-play__party-total">{{party.totalWon}}</span>
+          <span class="state-of-play__party-total">{% if numSeatsDeclared === 0 %}&ndash;{% else %}{{ party.totalWon }}{% endif %}</span>
         </th>
         {% endfor %}
       </thead>
@@ -65,7 +69,7 @@
           {% if !party.minitable %}
           <td style="width:{{100/parties.length}}%">
             <span class="state-of-play__row-label">Net&nbsp;change</span>
-            <span class="state-of-play__net-change">{% if party.netChange > 0 %}+{% endif %}{{ party.netChange }}</span>
+            <span class="state-of-play__net-change">{% if numSeatsDeclared === 0 %}&ndash;{% else %}{{ party.netChange | safe }}{% endif %}</span>
           </td>
           {% endif %}
           {% endfor %}
