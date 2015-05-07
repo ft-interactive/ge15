@@ -127,6 +127,8 @@ const middleware = {
   neighbours: function*(next) {
     this.req.headers.accept = 'application/json';
     var data = yield service.neighbours(this.params.seat_id);
+    this.set('Cache-Control', 'public, max-age=60, stale-while-revalidate=60, stale-if-error=3600');
+    this.set('Surrogate-Control', 'max-age=60');
     this.body = data;
   },
   seats_digest: function*(next) {
@@ -134,6 +136,8 @@ const middleware = {
     this.set('X-GE15-Seat-Result-Count', data.result_count);
     this.set('X-GE15-Seat-Rush-Count', data.rush_count);
     this.set('X-GE15-Seat-Recount-Count', data.recount_count);
+    this.set('Cache-Control', 'public, max-age=10, stale-while-revalidate=60, stale-if-error=3600');
+    this.set('Surrogate-Control', 'max-age=30');
     this.body = data.seats;
     yield next;
   },
@@ -143,6 +147,8 @@ const middleware = {
     var data = service.parties_digest({filter_parties: filter_parties, rollup_others: rollup_others});
     this.set('X-GE15-Seats-Count', data.counts.seats);
     this.set('X-GE15-Votes-Count', data.counts.votes);
+    this.set('Cache-Control', 'public, max-age=10, stale-while-revalidate=60, stale-if-error=3600');
+    this.set('Surrogate-Control', 'max-age=30'); // jshint ignore:line
     this.body = data.parties;
     yield next;
   }
