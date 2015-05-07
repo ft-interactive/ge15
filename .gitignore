@@ -17,5 +17,5 @@ iojs-v*
 .idea
 .sass-cache
 .haikro-cache
-.env
+.env*
 db/data.json
