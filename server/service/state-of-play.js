@@ -3,136 +3,184 @@
 const ukParties = require('uk-political-parties');
 const _ = require('lodash');
 const db = require('./db');
+const paResultTypes = require('../../db/model/types');
 const order_of_appearance = ['c', 'lab', 'snp', 'ld', 'ukip', 'dup', 'pc', 'green'];
 
-var expires;
-var last;
+var expires = {};
+var last = {};
 var age = 1000 * 10;
 
 module.exports = function (howMany) {
 
-  if (last && expires && Date.now() < expires) {
-    return last;
+  if (last[howMany] && expires[howMany] && Date.now() < expires[howMany]) {
+    return last[howMany];
   }
 
   var selected_parties = order_of_appearance.slice(0, Math.max(howMany - 1, 0));
 
-  var sopParties = selected_parties.map(create_party);
 
-  // var other =
-  // sopParties.push(create_party('other'))
+  // number to count up the global total of seats
+  var numSeatsDeclared = 0;
 
-  var gains_and_losses = selected_parties.reduce(function(o, id){
-    o[id] = {
-      gains: [],
-      losses: []
+
+  // make an array of parties we're interested in
+  var sopParties = selected_parties.map(function (id) {
+    var party = db.parties().findOne({id: id});
+
+    numSeatsDeclared += party.elections.ge15.seats;
+
+    return {
+      id: party.id,
+      label: ukParties.shortName(party.id),
+      colour: party.colour,
+      secondaryColour: party.secondary_colour,
+      totalWon: party.elections.ge15.seats,
+      netChange: party.elections.ge15.seats_net_gain,
+      losses: [],
+      gains: []
     };
-    return o;
-  },{});
+  });
 
-  db.seats().find().forEach(function(seat) {
-    if (!seat.elections.ge15.change) return;
-    var winner = seat.elections.ge15.winner;
-    var loser = seat.elections.last.winner;
-
-    // FIXME: what!? wont this break when we throw others into the mix
-    if (winner.party in gains_and_losses) {
-      gains_and_losses[winner.party].gains.push({
-        nowColour: ukParties.colour(winner.party),
-        wasColour: ukParties.colour(loser.party),
-        tooltip: seat.name,
-        was: loser.party,
-        now: winner.party
-      });
-    }
-
-    // FIXME: what!?  wont this break when we throw others into the mix
-    if (loser.party in gains_and_losses) {
-      gains_and_losses[loser.party].losses.push({
-        nowColour: ukParties.colour(winner.party),
-        wasColour: ukParties.colour(loser.party),
-        tooltip: seat.name,
-        was: loser.party,
-        now: winner.party
-      });
-    }
+  // find all the parties who are not in our selected bunch
+  var others = db.parties().find().filter(function (party) {
+    return selected_parties.indexOf(party.id) === -1;
   });
 
 
-  sopParties.forEach(function(party) {
-    party.gains = gains_and_losses[party.id].gains;
-    party.losses = gains_and_losses[party.id].losses;
+  // make an extra 'party' object (kept separate for now)
+  var othersParty = {
+    id: 'xxx',
+    label: 'Others',
+    colour: ukParties.colour('other'),
+    secondaryColour: ukParties.secondaryColour('other'),
+    totalWon: others.reduce(function (total, party) {
+        return total + party.elections.ge15.seats;
+      }, 0),
+
+    minitable: (function () {
+      var customShortNames = {
+        'A': 'Alliance',
+        'Grn': 'Greens',
+        'Oth': 'Other',
+        'SF': 'Sinn Fein'
+      };
+      var minitable = others
+        // only parties who have won something
+        .filter(function (party) {
+          return party.elections.ge15.seats > 0;
+        })
+        // make the table row objects
+        .map(function (party) {
+          var shortName = ukParties.shortName(party.id);
+          shortName = customShortNames[shortName] || shortName;
+          var fullName = ukParties.fullName(party.id);
+
+          return {
+            shortName: shortName,
+            fullName: fullName,
+            numSeats: party.elections.ge15.seats
+          };
+        })
+        // sort by highest number of seats
+        .sort(function (a, b) {
+          if (a.numSeats > b.numSeats) return -1;
+          if (a.numSeats < b.numSeats) return 1;
+          return 0;
+        });
+
+      // move the 'other' to the end
+      var otherRowIndex;
+      minitable.forEach(function (row, i) {
+        if (row.shortName === 'Other') otherRowIndex = i;
+      });
+      minitable.push(minitable.splice(otherRowIndex, 1)[0]);
+
+      return minitable;
+    })()
+  };
+
+  numSeatsDeclared += othersParty.totalWon;
+
+  // go through all the seats and increment the relevant bits and bobs
+  db.seats().find().forEach(function (seat) {
+    if (seatIsCalled(seat)) {
+      // find who lost and who won this seat
+      var loserId = seat.elections.last.winner.party;
+      var winnerId = seat.elections.ge15.winner.party;
+
+      var loser = _.findWhere(sopParties, {id: loserId});
+      var winner = _.findWhere(sopParties, {id: winnerId});
+
+      // sanity check
+      if (seat.elections.ge15.change !== (loserId !== winnerId)) {
+        console.warn(
+          'WARNING: seat.elections.ge15.change is ' + seat.elections.ge15.change + ' for "' + seat.name + '"' +
+          ' but loserId is ' + loserId + ' and winnerId is ' + winnerId 
+        );
+      }
+
+      // if this seat has changed hands, add it as a loss to the relevant party
+      if (loserId !== winnerId) {
+        // nb: we need to use ukParties lookup here, because it might be an 'Other'
+        var seatChangeDetails = {
+          // loserColour: ukParties.colour(loserId),
+          winnerColour: ukParties.colour(winnerId),
+          tooltip: seat.name + ' (' + ukParties.shortName(loserId) + ' → ' + ukParties.shortName(winnerId) + ')',
+          was: loserId,
+          now: winnerId
+        };
+
+        if (loser) loser.losses.push(seatChangeDetails);
+        if (winner) winner.gains.push(seatChangeDetails);
+      }
+    }
   });
-
-  // TODO: folder in the others into the other.
-
-  // TODO: number of seats declared
-
-  // TODO: gains and loss
-  /* gains and losses arrays need to be filled with these
-
-  {
-    party: p.party,
-    colour: ukParties.colour(p.party),
-    from: p.resultnow,
-    to : p.resultprediction
-  }
-
-  */
-
-  // TODO: should we get the updated date from the PA data somehow?
-
-  // TODO: check that net change (for each party) is working
 
 
   // augment the top 5 with extra bits, and sort their squares
   sopParties.forEach(function (party) {
-    party.label = (party.id === 'other') ? 'Other' : ukParties.shortName(party.id);
-
-    party.netChange = party.gains.length - party.losses.length;
-
-
     // sort so the little squares are grouped into parties (with biggest group fist)
-    var gainedFromParties = {};
-    party.gains.forEach(function (seat) {
-      if (!gainedFromParties[seat.was]) gainedFromParties[seat.was] = 0;
-      gainedFromParties[seat.was]++;
-    });
-    party.gains.sort(function (a, b) {
-      return gainedFromParties[b.was] - gainedFromParties[a.was];
-    });
-
-    var lostToParties = {};
+    var gainerTotals = {};
     party.losses.forEach(function (seat) {
-      if (!lostToParties[seat.now]) lostToParties[seat.now] = 0;
-      lostToParties[seat.now]++;
+      if (!gainerTotals[seat.now]) gainerTotals[seat.now] = 0;
+      gainerTotals[seat.now]++;
     });
     party.losses.sort(function (a, b) {
-      return lostToParties[b.now] - lostToParties[a.now];
+      if (gainerTotals[b.now] > gainerTotals[a.now]) return 1;
+      if (gainerTotals[b.now] < gainerTotals[a.now]) return -1;
+      return 0;
     });
+
+    // party.losses.splice(0, 90); // for seeing how it might really look
   });
 
-  expires = Date.now() + age;
 
-  last = Promise.resolve({
+  // add "Others" party to the main array
+  sopParties.push(othersParty);
+
+
+  // TODO: should we get the updated date from the PA data somehow?
+
+
+  var finalData = {
     parties: sopParties,
     headline: 'State of play',
-    numSeatsDeclared: 134,
+    numSeatsDeclared: numSeatsDeclared,
     updated: new Date()
-  });
+  };
 
-  return last;
 
+  expires[howMany] = Date.now() + age;
+  last[howMany] = Promise.resolve(finalData);
+  return last[howMany];
 };
 
-function create_party(id) {
-  var party = db.parties().findOne({id: id});
-  return {
-    id: party.id,
-    colour: party.colour,
-    secondaryColour: party.secondary_colour,
-    totalWon: party.elections.ge15.seats,
-    gains: [],
-    losses: []
-  };
+
+function seatIsCalled(seat) {
+  switch(seat.elections.ge15.source.type) {
+    case paResultTypes.RUSH:
+    case paResultTypes.RESULT:
+      return true;
+  }
+  return false;
 }

@@ -10,11 +10,13 @@ var debug = require('debug')('liveblog');
  * A fragment containing all the figures used on the liveblog.
  */
 function* liveblogFragment(next) {
-  var data = _.zipObject(['stateOfPlay', 'votesVsSeats', 'localResult'], yield Promise.all([
+  var data = _.zipObject(['stateOfPlay', 'votesVsSeats', 'seatResult'], yield Promise.all([
     service.stateOfPlay(5),
     service.votesVsSeats(),
-    service.localResult(),
+    service.seatResult(),
   ]));
+
+  console.log('data', data.seatResult);
 
   debug(JSON.stringify(data.votesVsSeats, null, 2));
 
@@ -83,6 +85,27 @@ function* ftcomMockup(next) {
 }
 
 
+
+
+/**
+ * A fragment for a single constituency result
+ */
+function* seatResultFragment(next) {
+  this.set('Cache-Control', // jshint ignore:line
+    'public, max-age=10, stale-while-revalidate=3600, stale-if-error=3600');
+
+  this.set('Surrogate-Control', 'max-age=60'); // jshint ignore:line
+
+  var seat = service.db.seats().findOne({id: this.params.seat});
+  this.assert(seat, 404, 'Seat not found'); // jshint ignore:line
+
+  yield this.render('seat-result-fragment', seat); // jshint ignore:line
+  ;
+
+  yield next;
+}
+
+
 module.exports = function main() {
   return app()
         .router()
@@ -90,5 +113,7 @@ module.exports = function main() {
         .get('liveblog-fragment', '/liveblog-fragment', liveblogFragment) // a fragment of all the widget fragments
 
         .get('ftcom-mockup', '/ftcom-mockup', ftcomMockup) // mockup page for testing functionality
-        .get('ftcom-fragment', '/ftcom-fragment', ftcomFragment); // a fragment of all the widget fragments
+        .get('ftcom-fragment', '/ftcom-fragment', ftcomFragment) // a fragment of all the widget fragments
+
+        .get('ftcom-fragment', '/seat-result-fragment/:seat', seatResultFragment);
 };

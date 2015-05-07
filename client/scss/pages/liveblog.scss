@@ -3,7 +3,7 @@
 
 @import "../components/state-of-play";
 @import "../components/votes-vs-seats";
-@import "../components/local-result";
+@import "../components/seat-result";
 
 @include votes-vs-seats;
 
@@ -33,7 +33,7 @@
         color: color(grey-tint5);
         margin: 0;
       }
-  
+
 
       // when the note is in the header, use floats
       &--with-note {

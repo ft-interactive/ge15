@@ -12,7 +12,7 @@ exports.resultNationalSlopes = require('./result-national-slopes');
 
 exports.votesVsSeats = require('./votes-vs-seats');
 exports.stateOfPlay = require('./state-of-play');
-exports.localResult = require('./local-result');
+exports.seatResult = require('./seat-result');
 exports.neighbours = require('./neighbours');
 exports.seat_select = require('./seat-select');
 exports.seats_digest = require('./seats-digest');

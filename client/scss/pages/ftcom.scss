@@ -91,6 +91,11 @@
   .state-of-play__row-label {
     margin-bottom: 2px;
   }
+
+  .state-of-play__minitable > table {
+    font-size: 12px;
+    line-height: 14px;    
+  }
 }
 
 @import "../components/state-of-play";
