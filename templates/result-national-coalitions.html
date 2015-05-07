@@ -4,6 +4,9 @@
   </header>
   <div class="figure__body">
     <div class="results-national-coalitions__display">
+    {% if number < 1 %}
+        <p>As yet no likely group of parties can form a coalition</p>
+    {% endif %}
     {% for group in groups %}
     <div class="results-national-coalitions__group o-grid-row">
 
