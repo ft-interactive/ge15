@@ -3,8 +3,9 @@
     <h3 class="figure__title">Possible coalitions</h3>
   </header>
   <div class="figure__body">
+    <div class="results-national-coalitions__display">
     {% for group in groups %}
-    <div class="results-national-coalitions__group" class="o-grid-row">
+    <div class="results-national-coalitions__group o-grid-row">
 
       <div class="results-national-coalitions__party-list"  data-o-grid-colspan="6">
         {% for party in group.parties %}
@@ -16,5 +17,12 @@
       </div>
     </div>
     {% endfor %}
+    </div>
+    <div class="results-national-coalitions__description figure__footer" >
+      <p>If no coalition can form a majority, a &quot;confidence and supply&quot; deal with smaller parties could allow a minority Conservative or Labour government to pass its Queen’s Speech and its Budget.
+      All other issues would then be decided vote by vote.</p>
+      <p>
+      Although 326 seats is a majority in the House of Commons, Sinn Féin MPs do not take their seats, so the number of seats needed to win a vote will be lower, most likely 323.</p>
+    </div>
   </div>
 </div>

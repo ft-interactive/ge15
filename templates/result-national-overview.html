@@ -1,15 +1,20 @@
 <div class="figure results-national-overview">
+  {% set seatsDomain = 400 %}
   <header class="figure__header">
     <h3 class="figure__title">Number of seats won</h3>
   </header>
   <div class="figure__body">
-    <div class=" results-national-overview__headings"></div>
+    <div class="results-national-overview__headings"></div>
+    <div class="results-national-overview__tick" style="width:{{ 325 | percentageOf(seatsDomain) }}%">
+      <div class="results-national-overview__tick-label"></div>
+      <div class="results-national-overview__tick"></div>
+    </div>
     {% for party in parties %}
     <div class="results-national-overview__party" class="o-grid-row">
       <div data-o-grid-colspan="2">{{ party.party | partyShortName }}</div>
       <div  class="results-national-overview__seats" data-o-grid-colspan="1">{{ party.seats }}</div>
       <div class="results-national-overview__bar-container"  data-o-grid-colspan="8">
-        <div class="results-national-overview__bar {{ party.party | partyClassName }}-block" style="width:{{ party.seats | percentageOf(330) }}%"></div>
+        <div class="results-national-overview__bar {{ party.party | partyClassName }}-block" style="width:{{ party.seats | percentageOf(seatsDomain) }}%"></div>
       </div>
       <div  class="results-national-overview__change" data-o-grid-colspan="1">{{ party.seats_change | change}}</div>
     </div>
