@@ -22,8 +22,6 @@ function* liveblogFragment(next) {
     service.seatResult(),
   ]));
 
-  console.log('data', data.seatResult);
-
   debug(JSON.stringify(data.votesVsSeats, null, 2));
 
   this.set('Cache-Control', // jshint ignore:line
