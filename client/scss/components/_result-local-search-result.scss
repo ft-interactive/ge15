@@ -53,6 +53,7 @@
 .seat-search-results__table {
   margin-top: 20px;
   font-size: 0.8em;
+  margin-bottom: 16px;
 }
 
 .seat-search-results__bar {
@@ -64,13 +65,22 @@
 }
 
 .neighbouring-results__new-party {
-  display: inline-block;
-  width: 80%;
+  // display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 100%;
+  border: 1px solid oColorsGetPaletteColor(pink);
+  position: relative;
+  top: -21px;
+  margin-left: 4px;
 }
 
 .neighbouring-results__old-party {
-  display: inline-block;
-  width: 20%;
+  // display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 100%;
+  border: 1px solid oColorsGetPaletteColor(pink);
 }
 
 .seat-search-results__waiting {
@@ -83,4 +93,10 @@
 
 .seat-search-results__detail {
   list-style-type: none;
+}
+
+.neighbouring-result {
+  font-size: 0.8em;
+  position: relative;
+  top: -3px;
 }
