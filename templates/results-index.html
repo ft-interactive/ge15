@@ -5,7 +5,7 @@
 
 {% block article_body %}
 <div class="o-grid-row">
-  <div data-o-grid-colspan="12 M6 L8">
+  <div class="results-coaltions" data-o-grid-colspan="12 M6 L8">
 
     <div class="results-page-panel">
       {% include "./result-national-overview.html" with overview only ignore missing %}
@@ -23,12 +23,14 @@
       {% include "./national-change.html" %}
     </div> -->
   </div>
-  <div data-o-grid-colspan="12 M6 L4">
+  <div class="postcode-lookup" data-o-grid-colspan="12 M6 L4">
     <form id="seat-search-js" method="GET" action="postcode">
       <input type="search" name="postcode" placeholder="Postcode search">
-      <button type="submit">Search</button>
+      <button class="o-buttons o-buttons--standout">Search</button>
+      <!-- <button type="submit">Search</button> -->
     </form>
-    <button id="use-mylocation-js">Use my location</button>
+    <button class="o-buttons o-buttons--uncolored" id="use-mylocation-js">Use my location</button>
+    <!-- <button id="use-mylocation-js">Use my location</button> -->
     <div id="seat-search-results-js"></div>
   </div>
 </div>
