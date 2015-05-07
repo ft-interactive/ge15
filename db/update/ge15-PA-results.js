@@ -3,12 +3,16 @@
 const debug = require('debug')('db-update:PA-seats');
 const _ = require('lodash');
 const PA = require('../model/pa');
+const fs = require('fs');
+const path = require('path');
 const Types = require('../model/types');
 const ProcessState = require('./process-state');
 const FTP = require('./ftp');
+const loki = require('../loki');
 
 const dir = process.env.PA_RESULTS_DIR || '/results/';
 const timestamp_path = dir + '.timestamp';
+const save_dir = process.env.SAVE_DIR || './data/';
 
 var last_timestamp = 0;
 var previous_latest_SOP_file;
@@ -61,6 +65,7 @@ function process_latest_seat_files(callback) {
   var files_errored = [];
 
   function on_complete() {
+    fs.writeFileSync(path.resolve(__dirname, save_dir) + '/seats.json', JSON.stringify(loki.getCollection('seats').find()), {flags:'w'});
     currently_processing_seat_files = false;
     debug('Done process %d seat files.', files_done.length);
     debug(_.pluck(files_done, 'path'));
@@ -135,6 +140,7 @@ function process_latest_SOP_file() {
   }
 
   function complete() {
+    fs.writeFileSync(path.resolve(__dirname, save_dir) + '/parties.json', JSON.stringify(loki.getCollection('parties').find()), {flags:'w'});
     debug('SOP update complete. %s', msg_suffix);
     FTP.end();
     processing_SOP_file.process_state = ProcessState.DONE;
