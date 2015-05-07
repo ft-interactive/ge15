@@ -4,6 +4,7 @@ const async = require('async');
 const debug = require('debug')('db-update');
 const slave_seats = require('./slave-seats');
 const slave_parties = require('./slave-parties');
+const collect_from_PA = require('./pa-collect.js');
 
 const is_master = (process.env.REPLICATION || '').toLowerCase() === 'master';
 const is_slave = (process.env.REPLICATION || '').toLowerCase() === 'slave';
@@ -67,7 +68,7 @@ exports.all = function(cb) {
       tasks.push(slave_parties.start_polling);
     } else if (is_master) {
       debug('Polling is ON. Replication=master');
-      //TODO: start polling PA FTP
+      collect_from_PA.start_polling();
     }
   } else {
     debug('Polling is OFF, no replication will happen');

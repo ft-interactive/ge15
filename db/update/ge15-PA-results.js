@@ -97,6 +97,11 @@ function process_latest_seat_files(callback) {
           return;
         }
 
+        if(!str) {
+          on_file_error(file, new Error('File content empty'));
+          return;
+        }
+
         try {
           PA.update_seat_result(file, str, function(ue) {
             if (ue) {
