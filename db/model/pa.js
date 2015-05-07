@@ -1,3 +1,4 @@
+
 'use strict';
 
 const debug = require('debug')('model-pa');
@@ -272,7 +273,7 @@ exports.update_seat_result = function(file, xml, callback) {
 };
 
 function candidateXMLtoSeatPartyResult(node) {
-
+  var party = node.Party[0].$;
   var pa_party_abbrv = party.abbreviation.toLowerCase();
   // handle Scottish Labour candidates that style themselves as Labout Co-op
   if (pa_party_abbrv === 'lab co-op') {
