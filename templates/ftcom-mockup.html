@@ -268,16 +268,7 @@ McCoy&rsquo;s swan song
             <div class="master-row contentSection " data-nozone="contentSection" data-timer-key="7">
                 <div class="master-row editorialSection" data-nozone="editorialSection" data-timer-key="8">
 
-{# BEGIN FTCOM EMBED CODE (nb. asset urls will need to be made absolute #}
-  <div class="ge15-ftcom-figures">
-    <div class="figure-wrapper figure-wrapper--state-of-play--js"></div>
-  </div>
-
-  <link href="http://{{context.host}}{{ asset("css/pages/ftcom.css") }}" rel="stylesheet">
-  <script src="https://cdn.polyfill.io/v1/polyfill.min.js?features=fetch"></script>
-  <script src="http://{{context.host}}{{ asset("js/ftcom.js") }}"></script>
-{# END FTCOM EMBED CODE #}
-
+                    {% include './ftcom-embed-code.html' with {hostname: context.host} %}
 
                     <div class="freestyle" data-comp-name="freestyle" data-comp-view="freestyle" data-comp-index="1" data-timer-key="10" id="239710">
                         <span></span>
