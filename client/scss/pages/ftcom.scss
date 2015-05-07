@@ -15,7 +15,7 @@
       height: 29px;
       padding-bottom: 3px;
       margin: 0 0 5px;
-      
+
       > .figure__title {
         font: bold 18px/29px BentonSans, sans-serif;
         color: color(grey-tint5);
@@ -33,7 +33,7 @@
             height: 28px;
             background: transparent url(../../images/rosette.png) no-repeat left top;
 
-            @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
+            @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
               background: url(../../images/rosette@2x.png);
               background-size: 40px 56px;
             }
@@ -65,7 +65,7 @@
   }
 
 
-  
+
   // override state-of-play styles to make things bigger/spacier
   .state-of-play__seat {
     width: 9px;
@@ -93,7 +93,7 @@
 
   .state-of-play__minitable > table {
     font-size: 12px;
-    line-height: 14px;    
+    line-height: 14px;
   }
 }
 

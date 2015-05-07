@@ -1,11 +1,21 @@
-<link href="http://{{context.host}}{{ asset("css/pages/ftcom.css") }}" rel="stylesheet">
-{% if stateOfPlay %}
-<div class="ge15-ftcom-figures">
-  <div class="figure-wrapper figure-wrapper--state-of-play--js">
-    <aside class="state-of-play--js">
-      {% include './state-of-play.html' with stateOfPlay only ignore missing %}
-    </aside>
+<div class="next-ge15-widget">
+  <link href="http://{{context.host}}{{ asset("css/pages/ftcom.css") }}" rel="stylesheet">
+
+  {# override ft.com widget styles #}
+  <style>
+  .ge15-ftcom-figures { width: 100%; }
+  </style>
+
+  {% if stateOfPlay %}
+  <div class="ge15-ftcom-figures">
+    <div class="figure-wrapper figure-wrapper--state-of-play--js">
+      <aside class="state-of-play--js">
+        {% include './state-of-play.html' with stateOfPlay only ignore missing %}
+      </aside>
+    </div>
   </div>
+  {% endif %}
+
+  {# js for refreshing the data #}
+  <script src="http://{{context.host}}{{ asset("js/next.js") }}"></script>
 </div>
-{% endif %}
-<script src="http://{{context.host}}{{ asset("js/ftcom.js") }}"></script>

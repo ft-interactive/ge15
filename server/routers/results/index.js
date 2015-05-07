@@ -5,6 +5,7 @@ const _ = require('lodash');
 const service = require('../../service');
 const viewLocals = require('../../middleware/view-locals');
 const siteNav = require('../../middleware/site-navigation');
+const serve_results = process.env.FLAG_SERVE_RESULTS === 'on';
 
 const pages = {
   homeAfterCalled: {
@@ -18,6 +19,9 @@ const pages = {
 };
 
 function* home(next) {
+
+  this.assert(serve_results, 404, 'Results will be here later');
+
   const data = _.zipObject(['overview', 'coalitions', 'votesVsSeats','nationalSlopes'], yield Promise.all([
     service.resultNationalOverview(),
     service.resultNationalCoalitions(),

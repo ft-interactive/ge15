@@ -4,12 +4,17 @@ var app = require('../../util/app');
 var service = require('../../service');
 var _ = require('lodash');
 var debug = require('debug')('liveblog');
-
+var kill_liveblog_fragment = process.env.KILL_LIVEBLOG === 'on';
+var kill_ftcom_fragment = process.env.KILL_FTCOM === 'on';
+var kill_next_fragment = process.env.KILL_NEXT === 'on';
 
 /**
  * A fragment containing all the figures used on the liveblog.
  */
 function* liveblogFragment(next) {
+
+  this.assert(!kill_liveblog_fragment, 404, 'Off'); // jshint ignore:line
+
   var data = _.zipObject(['stateOfPlay', 'votesVsSeats', 'seatResult'], yield Promise.all([
     service.stateOfPlay(5),
     service.votesVsSeats(),
@@ -35,6 +40,9 @@ function* liveblogFragment(next) {
  * A fragment containing only the figure used on the FT.com homepage (i.e. a modified 'state of play').
  */
 function* ftcomFragment(next) {
+
+  this.assert(!kill_ftcom_fragment, 404, 'Off'); // jshint ignore:line
+
   var data = {
     stateOfPlay: yield service.stateOfPlay(6)
   };
@@ -66,6 +74,9 @@ function* ftcomFragment(next) {
 
 
 function* nextFragment(next) {
+
+  this.assert(!kill_next_fragment, 404, 'Off'); // jshint ignore:line
+
   var data = {
     stateOfPlay: yield service.stateOfPlay(6)
   };
