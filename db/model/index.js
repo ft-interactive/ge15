@@ -97,6 +97,7 @@ var f = exports.factory = {
 
     var d = {
       id: o.id || null,
+      short: o.short || null,
       full: o.full || null,
       pa: o.pa || null,
       class: o.class || null,
