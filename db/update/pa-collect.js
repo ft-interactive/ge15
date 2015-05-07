@@ -26,18 +26,10 @@ function get_data(cb) {
   debug('Calling get data on PA');
   cb = cb || function(){};
 
-  var is_done = false;
-
   function done() {
     cb();
     repeat();
   }
-
-  setTimeout(function(){
-    if (!is_done) {
-      done();
-    }
-  }, 1000 * 10);
 
   updater.update(done);
 }
