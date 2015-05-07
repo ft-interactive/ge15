@@ -13,6 +13,7 @@ var kill_next_fragment = process.env.KILL_NEXT === 'on';
  */
 function* liveblogFragment(next) {
 
+
   this.assert(!kill_liveblog_fragment, 404, 'Off'); // jshint ignore:line
 
   var data = _.zipObject(['stateOfPlay', 'votesVsSeats', 'seatResult'], yield Promise.all([
