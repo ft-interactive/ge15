@@ -28,6 +28,7 @@ module.exports = function (howMany) {
     var party = db.parties().findOne({id: id});
 
     numSeatsDeclared += party.elections.ge15.seats;
+    var netChange = party.elections.ge15.seats_net_gain;
 
     return {
       id: party.id,
@@ -35,7 +36,15 @@ module.exports = function (howMany) {
       colour: party.colour,
       secondaryColour: party.secondary_colour,
       totalWon: party.elections.ge15.seats,
-      netChange: party.elections.ge15.seats_net_gain,
+      netChange: (
+        netChange < 0 ?
+          '&minus;&#8202;' + (-netChange) :
+          (
+            netChange === 0 ?
+              '0' :
+              '+&#8202;' + netChange
+          )
+      ),
       losses: [],
       gains: []
     };
