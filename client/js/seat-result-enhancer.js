@@ -1,6 +1,6 @@
 /**
  * The 'enhancer' for the local result widget.
- * 
+ *
  * To use: put the "seat result" component HTML on the page, select the
  * `.seat-result.figure` element, and pass it into this function.
  */
@@ -9,7 +9,7 @@
 
 var hostname = require('./hostname');
 // var template = require('./seat-result-card.hbs');
-var ukParties = require('uk-political-parties');
+// var ukParties = require('uk-political-parties');
 
 
 module.exports = function (figureElement) {

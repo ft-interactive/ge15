@@ -11,19 +11,17 @@
   }
   // scss-lint:enable ImportantRule
 }
-  
-  // scss-lint:disable QualifyingElement
-  .seat-result__postcode-form > input[type=text] { // high specificity to override liveblog styles
-    display: block;
-    line-height: 30px;
-    height: 30px;
-    width: 100%;
-    font-size: 14px;
-    border: 1px solid color(grey-tint1);
-    border-radius: 5px;
-    padding-left: 25px;
-    background: color(white) url(https://image.webservices.ft.com/v1/images/raw/fticon:search?width=13&source=ge15) no-repeat 6px 7px;
-  }
-  // scss-lint:enable QualifyingElement
 
-  
+// scss-lint:disable QualifyingElement
+.seat-result__postcode-form > input[type=text] { // high specificity to override liveblog styles
+  display: block;
+  line-height: 30px;
+  height: 30px;
+  width: 100%;
+  font-size: 14px;
+  border: 1px solid color(grey-tint1);
+  border-radius: 5px;
+  padding-left: 25px;
+  background: color(white) url(https://image.webservices.ft.com/v1/images/raw/fticon:search?width=13&source=ge15) no-repeat 6px 7px;
+}
+// scss-lint:enable QualifyingElement
