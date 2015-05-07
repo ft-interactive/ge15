@@ -54,7 +54,7 @@ module.exports = function(){
 };
 
 function viable(d){
-  return (d.majority > 0);
+  return (d.majority > -5);
 }
 
 function byMajority(a,b){

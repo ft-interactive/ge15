@@ -1,10 +1,10 @@
 <div class="state-of-play figure">
   {% if headline %}
   <header class="figure__header figure__header--with-note">
-    <h3 class="figure__title{% if showRosette %} figure__title--with-rosette{% endif %}">
+    <h2 class="article-body__subhead figure__title{% if showRosette %} figure__title--with-rosette{% endif %}">
       {# {% if showRosette %}<span class="figure__header__rosette"></span>{% endif %} #}
       {{headline}}
-    </h3>
+    </h2>
 
     <p class="figure__note">
       {% if numSeatsDeclared > 0 %}
@@ -19,7 +19,7 @@
     </p>
   </header>
   {% endif %}
-  
+
   {% if linkURL %}<a href="{{ linkURL }}">{% endif %}
   <div class="figure__body">
     <table class="state-of-play__table">

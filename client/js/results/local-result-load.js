@@ -3,7 +3,6 @@
 var ukParties = require('uk-political-parties');
 
 module.exports = function(){
-  console.log('local-result-load');
 
   function showSeat(seat) {
     var el = document.getElementById('seat-search-results-js');
@@ -43,7 +42,7 @@ module.exports = function(){
     var resultIn = 'noresult';
     if(newParty) resultIn = 'result';
 
-    var html = '<h3>'+ seat.name +'</h3>' +
+    var html = '<h2 class="article-body__subhead figure__title">'+ seat.name +'</h2>' +
       '<div class="seat-search-results__banner--' + resultIn + ' '+ukParties.className(newParty)+'-block">'+
         description +
       '</div>';
@@ -83,7 +82,7 @@ module.exports = function(){
   function showNeighbours(data){
     console.log('neighbours'  , data);
     var el = document.getElementById('neighbouring-results-js');
-    var html = '<h3>Nearby constituencies</h3>';
+    var html = '<h4 class="article-body__subhead figure__title">Nearby constituencies</h4>';
     for(var i=0; i<data.length; i++){
       html+= '<div class="o-grid-row">'+
         '<div data-o-grid-colspan="1">' +
