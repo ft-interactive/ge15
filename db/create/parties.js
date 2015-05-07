@@ -33,7 +33,8 @@ function historicalElectionResults(filename) {
     var party_history = index[party.id];
 
     party.elections.last = model.factory.PartyNationalResult({
-      seats: party_history ? party_history.last_seats : 0
+      seats: party_history ? party_history.last_seats : 0,
+      votes: party_history ? party_history.last_votes : 0,
     });
 
     return party;
