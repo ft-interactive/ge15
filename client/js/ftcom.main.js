@@ -2,9 +2,7 @@
 
 var embedLiveFigures = require('./embed-live-figures');
 
-var cutsTheMustard = (
-  'querySelectorAll' in document
-);
+var cutsTheMustard = ('getComputedStyle' in window);
 
 var fragmentPath = '/uk/2015/live-figures/ftcom-fragment';
 
@@ -20,7 +18,7 @@ if (cutsTheMustard) {
 
   embedLiveFigures(fragmentPath, container, config);
 
-  // and repeat every 2 minutes
+  // and repeat every minute
   setInterval(function () {
     embedLiveFigures(fragmentPath, container, config);
   }, 1000 * 60);
