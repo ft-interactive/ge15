@@ -139,11 +139,14 @@ Front-end assets that embed and style the live figures
 
 ### Wordpress embedding
 
-- Training liveblog: http://training.blogs.ft.com/westminster/liveblogs/2015-04-22-2/
-- Edit the training liveblog embed code here: http://training.blogs.ft.com/westminster/wp-admin/widgets.php
+- **REAL** liveblog: http://blogs.ft.com/westminster/liveblogs/2015-05-06/
+- Edit the **REAL** liveblog embed code here: http://blogs.ft.com/westminster/wp-admin/widgets.php
   - Expand "Webchats sidebar" widget, bottom-right, and edit "Assanka HTML widget"
   - The embed code you need is in `templates/liveblog-mockup.html` (demarcated by comments)
-    - But edit the script/stylesheet URLs to make them absolute.
+    - BUT you'll need to edit all the script/stylesheet URLs to:
+      - make them absolute, and
+      - add the REV HASHES!
+
 
 ### FT.com embedding
 
