@@ -33,6 +33,13 @@ module.exports = function(options) {
     }
 
     var winner = seat.elections.ge15.winner || {};
+    var declaration_time = seat.elections.ge15.source &&
+                                seat.elections.ge15.source.declaration_time ?
+                                new Date(seat.elections.ge15.source.declaration_time) : '';
+
+    if (declaration_time) {
+      declaration_time = declaration_time.toLocaleTimeString();
+    }
 
     var o = {
       id: seat.id,
@@ -51,6 +58,11 @@ module.exports = function(options) {
       loser_votes: loser.votes || null,
       loser_votes_pc: loser.votes_pc || null,
       loser_notable: !!loser.person_of_note,
+      turnout: seat.elections.ge15.turnout,
+      turnout_pc: seat.elections.ge15.turnout_pc,
+      turnout_pc_change: seat.elections.ge15.turnout_pc_change,
+      electorate: seat.elections.ge15.electorate,
+      declaration_time: declaration_time,
       cartogram_x: seat.geo.cartogram.x,
       cartogram_y: seat.geo.cartogram.y,
       pa_id: seat.pa_id,
