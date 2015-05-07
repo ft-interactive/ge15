@@ -25,6 +25,7 @@ module.exports = function(){
 
   parties.push(other);
 
+  expires = Date.now() + age;
   last = Promise.resolve({
     parties:parties,
     //updated:"2015-04-30T23:03:04.448Z",
