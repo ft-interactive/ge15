@@ -51,10 +51,8 @@ function* ftcomFragment(next) {
     party.label = longerNames[party.label] || party.label;
   });
 
-  data.stateOfPlay.linkText = 'Election Live Blog »';
-  data.stateOfPlay.linkURL = 'http://training.blogs.ft.com/westminster/liveblogs/2015-04-22-2/';
-
-  debug(JSON.stringify(data.votesVsSeats, null, 2));
+  data.stateOfPlay.linkText = process.env.FTCOM_HOMEPAGE_LINK_TEXT || '';
+  data.stateOfPlay.linkURL = process.env.FTCOM_HOMEPAGE_LINK_URL || '';
 
   this.set('Cache-Control', // jshint ignore:line
     'public, max-age=10, stale-while-revalidate=3600, stale-if-error=3600');
@@ -62,6 +60,37 @@ function* ftcomFragment(next) {
   this.set('Surrogate-Control', 'max-age=60'); // jshint ignore:line
 
   yield this.render('ftcom-fragment', data); // jshint ignore:line
+
+  yield next;
+}
+
+
+function* nextFragment(next) {
+  var data = {
+    stateOfPlay: yield service.stateOfPlay(6)
+  };
+
+  // alter the template data to suit the homepage
+  data.stateOfPlay.headline = 'UK GENERAL ELECTION';
+  data.stateOfPlay.showRosette = true;
+  var longerNames = {
+    'Lab': 'Labour',
+    'LD': 'Lib Dems',
+    'Con': 'Conservatives'
+  };
+  data.stateOfPlay.parties.forEach(function (party) {
+    party.label = longerNames[party.label] || party.label;
+  });
+
+  data.stateOfPlay.linkText = process.env.FTCOM_HOMEPAGE_LINK_TEXT || '';
+  data.stateOfPlay.linkURL = process.env.FTCOM_HOMEPAGE_LINK_URL || '';
+
+  this.set('Cache-Control', // jshint ignore:line
+    'public, max-age=10, stale-while-revalidate=3600, stale-if-error=3600');
+
+  this.set('Surrogate-Control', 'max-age=60'); // jshint ignore:line
+
+  yield this.render('next-fragment', data); // jshint ignore:line
 
   yield next;
 }
@@ -114,6 +143,7 @@ module.exports = function main() {
 
         .get('ftcom-mockup', '/ftcom-mockup', ftcomMockup) // mockup page for testing functionality
         .get('ftcom-fragment', '/ftcom-fragment', ftcomFragment) // a fragment of all the widget fragments
+        .get('next-fragment', '/next-fragment', nextFragment) // a fragment of all the widget fragments
 
         .get('ftcom-fragment', '/seat-result-fragment/:seat', seatResultFragment);
 };

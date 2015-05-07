@@ -7,6 +7,7 @@ module.exports = function(){
   //get the config-details
   d3.selectAll('.figure__body.slope-graphic').call(function(parent){
     var svg = parent.select('svg');
+    if(!svg.dataset) return;
     var config = svg.node().dataset;
 
     var margin = {

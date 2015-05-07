@@ -1,0 +1,8 @@
+<link href="http://{{context.host}}{{ asset("css/pages/ftcom.css") }}" rel="stylesheet">
+<script src="http://{{context.host}}{{ asset("js/ftcom.js") }}"></script>
+
+{% if stateOfPlay %}
+  <aside class="state-of-play--js">
+    {% include './state-of-play.html' with stateOfPlay only ignore missing %}
+  </aside>
+{% endif %}
