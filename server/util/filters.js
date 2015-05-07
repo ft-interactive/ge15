@@ -4,7 +4,7 @@ const S = require('string');
 S.extendPrototype();
 const n = require('numeral')();
 const _ = require('lodash');
-const parties = require('uk-political-parties');
+const parties = require('uk-political-parties').data;
 const debug = require('debug')('filters');
 const d3 = require('d3');
 
@@ -86,23 +86,23 @@ exports.json = function(obj) {
 };
 
 exports.partyAbbreviation = function(str) {
-  return parties.shortName(str);
+  return parties[str] ? parties[str].short : parties.other.short;
 };
 
 exports.partyClassName = function(str) {
-  return parties.className(str) || '';
+  return parties[str] ? parties[str].class : parties.other.class;
 };
 
 exports.partyFullName = function(str) {
-  return parties.fullName(str) || '';
+  return parties[str] ? parties[str].full : parties.other.full;
 };
 
 exports.partyShortName = function(str) {
-  return parties.shortName(str) || '';
+  return parties[str] ? parties[str].short : parties.other.short;
 };
 
 exports.partyColor = function(str) {
-  return parties.colour(str) || '';
+  return parties[str] ? parties[str].colour : parties.other.colour;
 };
 
 exports.round = function(number, dp) {
