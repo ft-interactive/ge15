@@ -20,6 +20,7 @@
         font: bold 18px/29px BentonSans, sans-serif;
         color: color(grey-tint5);
         margin: 0;
+
         &--with-rosette {
           text-indent: 24px;
 
@@ -65,7 +66,6 @@
   }
 
 
-  
   // override state-of-play styles to make things bigger/spacier
   .state-of-play__seat {
     width: 9px;

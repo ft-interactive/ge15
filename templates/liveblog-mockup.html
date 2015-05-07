@@ -23,7 +23,7 @@ body {
 
 <div class="fake-right-rail">
 
-{% include './liveblog-embed-code.html' %}
+{% include './liveblog-embed-code.html' with {hostname: context.host} %}
 
 </div>
 

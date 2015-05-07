@@ -85,8 +85,6 @@ function* ftcomMockup(next) {
 }
 
 
-
-
 /**
  * A fragment for a single constituency result
  */
@@ -105,11 +103,8 @@ function* seatResultFragment(next) {
 }
 
 
-
-
-
 /**
- * Outputs just the embed code for FT.com
+ * The embed code for FT.com (plain text)
  */
 function* ftcomEmbedCode(next) {
   this.set('Cache-Control', // jshint ignore:line
@@ -117,7 +112,7 @@ function* ftcomEmbedCode(next) {
 
   this.set('Surrogate-Control', 'max-age=60'); // jshint ignore:line
 
-  yield this.render('ftcom-embed-code'); // jshint ignore:line
+  yield this.render('ftcom-embed-code', {hostname: 'elections.ft.com'}); // jshint ignore:line
 
   this.set('Content-Type', 'text/plain'); // jshint ignore:line
 
@@ -125,9 +120,8 @@ function* ftcomEmbedCode(next) {
 }
 
 
-
 /**
- * Outputs just the embed code for the liveblog
+ * The embed code for the liveblog (plain text)
  */
 function* liveblogEmbedCode(next) {
   this.set('Cache-Control', // jshint ignore:line
@@ -135,14 +129,12 @@ function* liveblogEmbedCode(next) {
 
   this.set('Surrogate-Control', 'max-age=60'); // jshint ignore:line
 
-  yield this.render('liveblog-embed-code'); // jshint ignore:line
+  yield this.render('liveblog-embed-code', {hostname: 'elections.ft.com'}); // jshint ignore:line
 
   this.set('Content-Type', 'text/plain'); // jshint ignore:line
 
   yield next;
 }
-
-
 
 
 module.exports = function main() {
