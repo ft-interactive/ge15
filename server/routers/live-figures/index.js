@@ -100,10 +100,49 @@ function* seatResultFragment(next) {
   this.assert(seat, 404, 'Seat not found'); // jshint ignore:line
 
   yield this.render('seat-result-fragment', seat); // jshint ignore:line
-  ;
 
   yield next;
 }
+
+
+
+
+
+/**
+ * Outputs just the embed code for FT.com
+ */
+function* ftcomEmbedCode(next) {
+  this.set('Cache-Control', // jshint ignore:line
+    'public, max-age=10, stale-while-revalidate=3600, stale-if-error=3600');
+
+  this.set('Surrogate-Control', 'max-age=60'); // jshint ignore:line
+
+  yield this.render('ftcom-embed-code'); // jshint ignore:line
+
+  this.set('Content-Type', 'text/plain'); // jshint ignore:line
+
+  yield next;
+}
+
+
+
+/**
+ * Outputs just the embed code for the liveblog
+ */
+function* liveblogEmbedCode(next) {
+  this.set('Cache-Control', // jshint ignore:line
+    'public, max-age=10, stale-while-revalidate=3600, stale-if-error=3600');
+
+  this.set('Surrogate-Control', 'max-age=60'); // jshint ignore:line
+
+  yield this.render('liveblog-embed-code'); // jshint ignore:line
+
+  this.set('Content-Type', 'text/plain'); // jshint ignore:line
+
+  yield next;
+}
+
+
 
 
 module.exports = function main() {
@@ -115,5 +154,8 @@ module.exports = function main() {
         .get('ftcom-mockup', '/ftcom-mockup', ftcomMockup) // mockup page for testing functionality
         .get('ftcom-fragment', '/ftcom-fragment', ftcomFragment) // a fragment of all the widget fragments
 
-        .get('ftcom-fragment', '/seat-result-fragment/:seat', seatResultFragment);
+        .get('seat-result-fragment', '/seat-result-fragment/:seat', seatResultFragment)
+
+        .get('ftcom-embed-code', '/liveblog-embed-code', liveblogEmbedCode)
+        .get('ftcom-embed-code', '/ftcom-embed-code', ftcomEmbedCode);
 };

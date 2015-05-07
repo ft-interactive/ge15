@@ -23,20 +23,7 @@ body {
 
 <div class="fake-right-rail">
 
-<!-- START general election liveblog widgets -->
-
-  <div class="ge15-liveblog-figures">
-    <div class="figure-wrapper figure-wrapper--state-of-play--js"></div>
-    <div class="figure-wrapper figure-wrapper--seat-result--js"></div>
-    <div class="figure-wrapper figure-wrapper--votes-vs-seats--js"></div>
-  </div>
-
-  <link href="http://{{context.host}}{{ asset("css/pages/liveblog.css") }}" rel="stylesheet">
-  <script src="https://cdn.polyfill.io/v1/polyfill.min.js?features=fetch"></script>
-  <script src="http://{{context.host}}{{ asset("js/vendor.js") }}"></script>
-  <script src="http://{{context.host}}{{ asset("js/liveblog.js") }}"></script>
-
-<!-- END general election liveblog widgets -->
+{% include './liveblog-embed-code.html' %}
 
 </div>
 
