@@ -16,6 +16,6 @@
     {% endfor %}
   </div>
   <footer class="figure__footer">
-    <p>updated {{ updated | ftdate }}</p>
+    {% if updated %}<p>updated {{ updated | ftdate }}</p>{% endif %}
   </footer>
 </div>
