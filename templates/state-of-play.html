@@ -18,7 +18,7 @@
       {% endif %}
 
       {% if updated %}
-      <span class="time"> – {{ updated | date('g:i a') }}</span>
+      <span class="time"> – {{ updated | date('g:i a', -60) }}</span>
       {% endif %}
     </p>
   </header>
