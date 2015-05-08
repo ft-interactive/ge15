@@ -164,16 +164,16 @@ Two manual checks:
 
 Before promoting, compare these two URLs:
 
-    http://elections.ft.com/uk/2015/live-figures/liveblog-embed-code
-    http://uk-election-2015-ci.herokuapp.com/uk/2015/live-figures/liveblog-embed-code
+- old: http://elections.ft.com/uk/2015/live-figures/liveblog-embed-code
+- new: http://uk-election-2015-ci.herokuapp.com/uk/2015/live-figures/liveblog-embed-code
 
-If any differences, copy the CI version and paste it over the widget code here: http://blogs.ft.com/westminster/wp-admin/widgets.php
+If any differences, copy the **new** one and paste it over the widget code in **[Wordpress Admin](http://blogs.ft.com/westminster/wp-admin/widgets.php)** (in 'Webchats Sidebar', bottom-right).
 
 #### 2. Homepage
 
 Before promoting, compare these two URLs:
 
-    http://elections.ft.com/uk/2015/live-figures/ftcom-embed-code
-    http://uk-election-2015-ci.herokuapp.com/uk/2015/live-figures/ftcom-embed-code
+- old: http://elections.ft.com/uk/2015/live-figures/ftcom-embed-code
+- new: http://uk-election-2015-ci.herokuapp.com/uk/2015/live-figures/ftcom-embed-code
 
-If any differences, copy the CI version and paste it over the widget code in Preditor (on every homepage). Remember the optional style tag.
+If any differences, copy the **new** one and paste it into **Preditor** (on every homepage).
