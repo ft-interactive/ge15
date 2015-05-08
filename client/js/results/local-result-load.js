@@ -199,7 +199,7 @@ module.exports = function(){
       startSpinning();
 
       function failed(err) {
-        stopSpinnning();
+        stopSpinning();
         return get_lookup_error_handler('location')(err);
       }
 
@@ -207,7 +207,7 @@ module.exports = function(){
         document.getElementById('seat-search-js').elements.postcode.value = '';
         var points = [position.coords.longitude, position.coords.latitude].join(',');
         var url = '/uk/2015/api/lookup/point/' + points;
-        fetch(url).then(lookup_onsuccess).then(stopSpinnning).catch(failed);
+        fetch(url).then(lookup_onsuccess).then(stopSpinning).catch(failed);
       }
 
       navigator.geolocation.getCurrentPosition(geoloc_onsuccess, failed);
