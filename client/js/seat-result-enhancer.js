@@ -8,20 +8,25 @@
 'use strict';
 
 var hostname = require('./hostname');
-// var template = require('./seat-result-card.hbs');
-// var ukParties = require('uk-political-parties');
-
 
 module.exports = function (figureElement) {
   var card = figureElement.querySelector('.seat-result__card');
   var form = figureElement.querySelector('.seat-result__postcode-form');
   var input = form.querySelector('input');
 
+  
+
   form.onsubmit = function () {
+    var value = input.value.trim();
+    if (!value) {
+      card.innerHTML = '';
+      return false;
+    }
+
     var url = (
       'http://' + hostname +
       '/uk/2015/api/lookup/postcode/' +
-      encodeURIComponent(input.value.trim())
+      encodeURIComponent(value)
     );
 
     fetch(url)
