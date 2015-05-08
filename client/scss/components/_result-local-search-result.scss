@@ -1,3 +1,45 @@
+// scss-lint:disable QualifyingElement
+#seat-search-js {
+  margin-bottom: 8px;
+  input { // high specificity to override liveblog styles
+    display: inline-block;
+    line-height: 30px;
+    height: 30px;
+    width: 100%;
+    font-size: 14px;
+    border: 1px solid color(grey-tint1);
+    border-radius: 5px;
+    padding-left: 25px;
+    margin-right: 4px;
+    margin-bottom: 16px;
+    background: color(white) url(https://image.webservices.ft.com/v1/images/raw/fticon:search?width=13&source=ge15) no-repeat 6px 7px;
+  }
+}
+
+.results-coaltions {
+  padding-right: 1em;
+}
+
+.postcode-lookup {
+  background-color: oColorsGetPaletteColor(pink-tint1);
+  padding: 12px 12px 24px;
+  border-radius: 6px;
+  button {
+    min-height: 30px;
+    // display: inline-block;
+    width: 50%;
+    margin: 0 25%;
+  }
+}
+// scss-lint:enable QualifyingElement
+
+#seat-search-results-js {
+  h2 {
+    margin-bottom: 1em;
+    margin-top: 1em;
+  }
+}
+
 .seat-search-results__banner--result {
   text-align: center;
   font-weight: bold;
@@ -14,6 +56,7 @@
 .seat-search-results__table {
   margin-top: 20px;
   font-size: 0.8em;
+  margin-bottom: 16px;
 }
 
 .seat-search-results__bar {
@@ -21,17 +64,23 @@
   height: 20px;
 }
 
-.neighbouring-result {
-}
-
 .neighbouring-results__new-party {
-  display: inline-block;
-  width: 80%;
+  // display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 100%;
+  border: 1px solid oColorsGetPaletteColor(pink);
+  position: relative;
+  top: -21px;
+  margin-left: 4px;
 }
 
 .neighbouring-results__old-party {
-  display: inline-block;
-  width: 20%;
+  // display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 100%;
+  border: 1px solid oColorsGetPaletteColor(pink);
 }
 
 .seat-search-results__waiting {
@@ -44,4 +93,10 @@
 
 .seat-search-results__detail {
   list-style-type: none;
+}
+
+.neighbouring-result {
+  font-size: 0.9em;
+  position: relative;
+  top: -3px;
 }

@@ -64,9 +64,9 @@ module.exports = function(){
 
     //add extra info
     html += '<div class="figure__footer"><ul class="seat-search-results__detail-container">';
-    if(seat.elections.ge15.winner) html += '<li class="seat-search-results__detail">Winner: ' + seat.elections.ge15.winner.person + ' &ndash; ' + ukParties.fullName(seat.elections.ge15.winner.party) + '</li>';
-    if(seat.elections.ge15.turnout_pc) html += '<li class="seat-search-results__detail">Turnout: ' +seat.elections.ge15.turnout_pc + '% ('+change(seat.elections.ge15.turnout_pc_change)+')</li>';
-    if(seat.elections.ge15.winner.majority) html += '<li class="seat-search-results__detail">Majority: ' +seat.elections.ge15.winner.majority_pc + '%</li>';
+    if(seat.elections.ge15.winner) html += '<li class="seat-search-results__detail"><b>Winner:</b> ' + seat.elections.ge15.winner.person + ' &ndash; ' + ukParties.fullName(seat.elections.ge15.winner.party) + '</li>';
+    if(seat.elections.ge15.turnout_pc) html += '<li class="seat-search-results__detail"><b>Turnout:</b> ' +seat.elections.ge15.turnout_pc + '% ('+change(seat.elections.ge15.turnout_pc_change)+')</li>';
+    if(seat.elections.ge15.winner.majority) html += '<li class="seat-search-results__detail"><b>Majority:</b> ' +seat.elections.ge15.winner.majority_pc + '%</li>';
     html+='</ul></div>';
 
     html += '</div><div id="neighbouring-results-js"></div></div>';
