@@ -16,6 +16,19 @@ module.exports = function(){
     }, 50);
 
     window.addEventListener('resize', resize, false);
+
+    d3.select('#flow-all').on('click', function(){
+      d3.event.preventDefault();
+      d3.selectAll('.link').classed('selected',true)
+        .style('stroke', selectedStrokeStyle)
+        .style('stroke-opacity',1);
+      return false;
+    });
+    d3.select('#flow-reset').on('click', function(){
+      d3.event.preventDefault();
+      d3.selectAll('.link').classed('selected',false);
+      return false;
+    });
   }
 };
 
