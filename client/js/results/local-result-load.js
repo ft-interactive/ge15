@@ -166,7 +166,7 @@ module.exports = function(){
     }
 
     var el = document.getElementById('seat-search-results-js');
-    el.innerHTML = message;
+    el.innerHTML = '<p class="postcode-lookup__error-message">' + message + '</p>';
   }
 
   function clear() {

@@ -44,7 +44,13 @@
 
   & &__or {
     text-align: center;
-    padding-bottom: 10px;
+    padding-bottom: 10px ;
+  }
+
+  & &__error-message {
+    padding: 1.5em 0.5em;
+    color: rgb(174, 25, 25);
+    text-align: center;
   }
 }
 // scss-lint:enable QualifyingElement
