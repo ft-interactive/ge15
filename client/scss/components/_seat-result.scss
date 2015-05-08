@@ -10,18 +10,92 @@
     font-family: inherit;
   }
   // scss-lint:enable ImportantRule
+
+  &.figure > .figure__header {
+    border-bottom: 0;
+    margin-bottom: 3px;
+  }
 }
 
-// scss-lint:disable QualifyingElement
-.seat-result__postcode-form > input[type=text] { // high specificity to override liveblog styles
-  display: block;
-  line-height: 30px;
-  height: 30px;
-  width: 100%;
-  font-size: 14px;
-  border: 1px solid color(grey-tint1);
-  border-radius: 5px;
-  padding-left: 25px;
-  background: color(white) url(https://image.webservices.ft.com/v1/images/raw/fticon:search?width=13&source=ge15) no-repeat 6px 7px;
-}
-// scss-lint:enable QualifyingElement
+  // scss-lint:disable QualifyingElement
+  .seat-result__postcode-form > input[type=search] { // high specificity to override liveblog styles
+    display: block;
+    line-height: 30px;
+    height: 30px;
+    width: 100%;
+    font-size: 14px;
+    border: 1px solid color(grey-tint1);
+    border-radius: 5px;
+    padding-left: 25px;
+    background: color(white) url(https://image.webservices.ft.com/v1/images/raw/fticon:search?width=13&source=ge15) no-repeat 6px 7px;
+  }
+  // scss-lint:enable QualifyingElement
+
+  .seat-result__card {
+    > h3 {
+      font-weight: 200;
+      font-size: 20px;
+      line-height: 1;
+      color: color(grey-tint5);
+      margin: 20px auto 12px;
+    }
+  }
+
+    .seat-result__banner {
+      font-size: 16px;
+      line-height: 26px;
+      color: white;
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    
+    .seat-result__chart {
+      
+    }
+
+      $chart-labels-width: 70px;
+      $chart-percentages-width: 70px;
+      $bar-thickness: 22px;
+      $bar-spacing: 5px;
+
+      .seat-result__chart__track {
+        // outline: 1px solid green;
+        position: relative;
+        clear: both;
+        margin: 0 $chart-percentages-width $bar-spacing $chart-labels-width;
+
+        &:first-child {
+          font-weight: bold;
+        }
+
+        > span {
+          display: block;
+          height: $bar-thickness;
+          // outline: 1px solid rgba(255,0,0,0.3);
+          font-size: 14px;
+          line-height: $bar-thickness;
+          color: color(grey-tint4);
+        }
+      }
+
+        .seat-result__chart__label {
+          position: absolute;
+          left: -$chart-labels-width;
+        }
+
+        .seat-result__chart__bar {
+          // outline: 1px solid blue;
+        }
+        .seat-result__chart__percentage {
+          position: absolute;
+          right: -$chart-percentages-width;
+          top: 0;
+        }
+      
+    .seat-result__details {
+      margin-top: 20px;
+      font-size: 11px;
+      line-height: 1.35;
+      color: color(pink-tint4);
+    }
