@@ -1,6 +1,7 @@
 'use strict';
 
 var ukParties = require('uk-political-parties');
+var d3 = require('d3');
 
 module.exports = function(){
 
@@ -64,7 +65,7 @@ module.exports = function(){
 
     //add extra info
     html += '<div class="figure__footer"><ul class="seat-search-results__detail-container">';
-    if(seat.elections.ge15.winner) html += '<li class="seat-search-results__detail"><b>Winner:</b> ' + seat.elections.ge15.winner.person + ' &ndash; ' + ukParties.fullName(seat.elections.ge15.winner.party) + '</li>';
+    if(seat.elections.ge15.winner !== undefined) html += '<li class="seat-search-results__detail"><b>Winner:</b> ' + seat.elections.ge15.winner.person + ' &ndash; ' + ukParties.fullName(seat.elections.ge15.winner.party) + '</li>';
     if(seat.elections.ge15.turnout_pc) html += '<li class="seat-search-results__detail"><b>Turnout:</b> ' +seat.elections.ge15.turnout_pc + '% ('+change(seat.elections.ge15.turnout_pc_change)+')</li>';
     if(seat.elections.ge15.winner.majority) html += '<li class="seat-search-results__detail"><b>Majority:</b> ' +seat.elections.ge15.winner.majority_pc + '%</li>';
     html+='</ul></div>';
@@ -81,18 +82,47 @@ module.exports = function(){
 
   function showNeighbours(data){
     console.log('neighbours'  , data);
-    var el = document.getElementById('neighbouring-results-js');
-    var html = '<h4 class="article-body__subhead figure__title">Nearby constituencies</h4>';
-    for(var i=0; i<data.length; i++){
-      html+= '<div class="o-grid-row">'+
-        '<div data-o-grid-colspan="1">' +
-          '<div class="neighbouring-results__old-party '+ukParties.className(data[i].elections.last.winner.party)+'-block">&nbsp;</div>' +
-          '<div class="neighbouring-results__new-party '+ukParties.className(data[i].elections.ge15.winner.party)+'-block">&nbsp;</div>' +
-        '</div>' +
-        '<div class="neighbouring-result" data-o-grid-colspan="11" data-seat="'+data[i].id+'">'+ data[i].name + '</div>' +
-      '</div>';
-    }
-    el.innerHTML = html;
+    var el = d3.select('#neighbouring-results-js');
+    el.append('h4').attr('class','article-body__subhead figure__title').html('Nearby constituencies');
+
+    var row = el
+      .selectAll('div.neighbouring-results__row').data(data)
+      .enter()
+      .append('div')
+        .attr({
+          'class':'o-grid-row neighbouring-results__row'
+        });
+
+
+    row.append('div').attr({
+        'data-o-grid-colspan':'1'
+      })
+      .call(function(parent){
+          parent.append('div')
+            .attr({
+              'class':function(d){
+                return 'neighbouring-results__old-party ' + ukParties.className(d.elections.last.winner.party) + '-block';
+              }
+            }).html('&nbsp;');
+
+          parent.append('div')
+            .attr({
+              'class':function(d){
+                return 'neighbouring-results__new-party ' + ukParties.className(d.elections.ge15.winner.party) + '-block';
+              }
+            }).html('&nbsp;');
+          return parent;
+        });
+
+    row.append('div')
+      .attr({
+        'class':'neighbouring-result'
+      }).html(function(d){
+        return d.name;
+      }).on('click', function(d){
+        showSeat(d);
+      });
+
   }
 
   function neighbours_onsuccess(response) {
