@@ -17,3 +17,9 @@
     {% include './seat-result.html' with seatResult only ignore missing %}
   </aside>
 {% endif %}
+
+{% if resultsLink %}
+  <aside class="results-link--js">
+    {% include './results-link.html' %}
+  </aside>
+{% endif %}

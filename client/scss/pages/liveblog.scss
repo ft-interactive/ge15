@@ -58,4 +58,25 @@
 
     > b { color: color(grey-tint5); }
   }
+  
+  .seat-result__card {
+    margin-bottom: 20px;
+  }
+
+  .results-link {
+    margin-top: -20px !important;
+    // text-align: right;
+
+    > a {
+      text-decoration: none;
+      color: oColorsGetColorFor(link, text);
+      font-weight: bold;
+
+      &:active,
+      &:focus,
+      &:hover {
+        color: oColorsGetColorFor(link-hover, text);
+      }
+    }
+  }
 }
