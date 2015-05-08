@@ -1,0 +1,26 @@
+<html>
+<head>
+<style>
+body {
+  background: #fff1e0;
+}
+
+.fake-right-rail {
+  width: 352px;
+  margin: 0 auto;
+  background-color: #f9e9da;
+}
+</style>
+</head>
+<body>
+
+<h1>Seat lookup mockup</h1>
+
+<div class="fake-right-rail">
+
+{% include './seat-lookup-embed-code.html' with {hostname: context.host} %}
+
+</div>
+
+</body>
+</html>

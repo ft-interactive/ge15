@@ -1,0 +1,52 @@
+@import "o-colors/main";
+@import "o-fonts/main";
+@import "../functions";
+
+@include oFontsInclude(BentonSans, normal);
+@include oFontsInclude(BentonSans, bold);
+
+@import "../components/seat-result";
+
+.ge15-seat-lookup { // to prevent styles leaking out into page
+  width: 352px;
+  position: relative;
+  background: color(pink);
+  font-family: BentonSans, sans-serif;
+  -webkit-font-smoothing: antialiased;
+
+  > .figure-wrapper {
+    padding-bottom: 24px;
+  }
+    .figure__header {
+      > .seat-result__kicker {
+        font-family: BentonSans;
+        color: color(grey-tint5);
+        font-weight: normal;
+        text-transform: uppercase;
+        font-size: 11px;
+      }
+
+      > .figure__title {
+        font: bold 18px/1 BentonSans, sans-serif;
+        color: #222222;
+        margin: 6px 0 17px;
+      }
+
+      // when the note is in the header, use floats
+      &--with-note {
+        > .figure__title {
+          float: left;
+          height: 0;
+        }
+
+        > .figure__note {
+          float: right;
+          margin-top: 8px;
+        }
+      }
+    }
+
+  .seat-result__card {
+    margin-bottom: 20px;
+  }
+}

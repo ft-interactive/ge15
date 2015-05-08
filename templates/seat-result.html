@@ -1,6 +1,7 @@
 <div class="seat-result figure">
   {% if headline %}
   <header class="figure__header">
+    {% if kicker %}<span class="seat-result__kicker">{{ kicker }}</span>{% endif %}
     <h3 class="figure__title">{{ headline }}</h3>
   </header>
   {% endif %}
