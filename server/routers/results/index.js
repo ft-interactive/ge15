@@ -22,11 +22,11 @@ function* home(next) {
 
   this.assert(!kill_results, 404, 'Results will be here later');
 
-  const data = _.zipObject(['overview', 'coalitions', 'votesVsSeats','nationalSlopes'], yield Promise.all([
+  const data = _.zipObject(['overview', 'coalitions', 'votesVsSeats','sankey'], yield Promise.all([
     service.resultNationalOverview(),
     service.resultNationalCoalitions(),
     service.votesVsSeats(),
-    service.resultNationalSlopes()
+    service.resultSankeyData()
   ]));
 
 
@@ -50,6 +50,14 @@ function* nationalCoalitions(next) {
   yield next;
 }
 
+function* sankeyData(next) {
+  var data = {
+    sankey:yield service.resultSankeyData()
+  };
+  yield this.render('result-sankey', data);
+  yield next;
+}
+
 function main() {
 
   return app()
@@ -63,7 +71,8 @@ function main() {
     .get('/', home)
     .get('/national-overview', nationalOverview)
     .get('/national-coalitions', nationalCoalitions)
-    .get('/national-change', nationalOverview);
+    .get('/national-change', nationalOverview)
+    .get('/sankey', sankeyData);
 }
 
 module.exports = main;

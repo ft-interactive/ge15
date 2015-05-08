@@ -13,6 +13,7 @@
 @import "components/result-slope";
 @import "components/result-local-search-result";
 @import "components/votes-vs-seats";
+@import "components/result_sankey";
 
 // votes-vs-seats is done as a mixin so dimensions can be overridden easily.
 @include votes-vs-seats(
