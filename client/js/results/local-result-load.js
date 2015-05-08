@@ -100,7 +100,6 @@ module.exports = function(){
   }
 
   function showNeighbours(data){
-    console.log('neighbours'  , data);
     var el = d3.select('#neighbouring-results-js');
     el.append('h4').attr('class','article-body__subhead figure__title').html('Nearby constituencies');
 
@@ -219,7 +218,6 @@ module.exports = function(){
       startSpinning();
 
       function failed(err) {
-        console.log('REFUSED');
         stopSpinnning();
         return get_lookup_error_handler('location')(err);
       }
