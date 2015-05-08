@@ -1,0 +1,131 @@
+// scss-lint:disable IdSelector
+
+@import "var";
+@import "o-colors/main";
+@import "o-grid/main";
+#svg-source {
+  color: oColorsGetPaletteColor(grey-tint3);
+  display: inline;
+  font-size: 12px;
+  height: auto;
+  line-height: 18px;
+  width: auto;
+}
+
+svg {
+  font-family: $font-body;
+}
+
+.node {
+  shape-rendering: crispEdges;
+  cursor: pointer;
+  stroke-width: 0;
+  fill-opacity: 1;
+  .o-hoverable-on &:hover {
+    fill-opacity: 0.6;
+  }
+}
+
+
+.node-label,
+.link-label {
+  $pink: oColorsGetPaletteColor(pink);
+  font-size: 0.8em;
+  text-shadow: 0 0 4px $pink;
+
+  @include oGridRespondTo(S) {
+    text-shadow: 0 0 2px $pink,
+    0 0 3px $pink,
+    0 0 4px $pink,
+    0 0 5px $pink,
+    0 0 6px $pink,
+    0 0 12px $pink,
+    0 0 12px $pink,
+    0 0 12px $pink;
+  }
+}
+
+.node-label {
+  cursor: pointer;
+}
+
+.inactive {
+  display: none;
+}
+
+.seat-count {
+  font-weight: bold;
+}
+
+
+
+.selection-rect {
+  fill-opacity: 0;
+  cursor: pointer;
+}
+
+.sankey {
+  .axis-label {
+    font-weight: 200;
+    font-size: 1.2em;
+  }
+
+  .link {
+    fill: none;
+    stroke: oColorsGetPaletteColor(pink-tint5);
+    stroke-opacity: 0.2;
+    cursor: pointer;
+  }
+
+  .link.hint,
+  .link:hover {
+    stroke-opacity: 0.5;
+  }
+}
+
+#sankey-description {
+  padding-left: 5px;
+
+  @include oGridRespondTo(S) {
+    padding-left: 1em;
+  }
+
+  ul {
+    margin: 0 0 0.5em 0.3em;
+    padding: 0;
+    line-height: 1.5em;
+  }
+
+  li {
+    list-style: none;
+  }
+}
+
+#inputs {
+  padding-bottom: 0.5em;
+}
+
+.chart-preset {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.chart-preset.reset:before {
+  opacity: 0.5;
+  padding-right: 5px;
+  content: url('http://image.webservices.ft.com/v1/images/raw/fticon:refresh?width=6&dpr=2&source=ge15');
+}
+
+.notes {
+  color: oColorsGetPaletteColor(pink-tint5);
+  font-size: 0.7em;
+  border-top: 1px solid oColorsGetPaletteColor(pink-tint4);
+  margin-top: 2em;
+  padding-top: 1em;
+  max-width: 670px;
+}
+
+.undeclared-area{
+  stroke: none;
+  fill: oColorsGetPaletteColor(pink-tint5);
+}
