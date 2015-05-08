@@ -81,7 +81,6 @@ module.exports = function(){
   }
 
   function showNeighbours(data){
-    console.log('neighbours'  , data);
     var el = d3.select('#neighbouring-results-js');
     el.append('h4').attr('class','article-body__subhead figure__title').html('Nearby constituencies');
 
@@ -185,19 +184,33 @@ module.exports = function(){
     };
   }
 
+  var container = document.querySelector('.postcode-lookup');
+  function startSpinning() {
+    container.classList.add('loading');
+  }
+  function stopSpinning() {
+    container.classList.remove('loading');
+  }
+
   var locbtn = document.getElementById('use-mylocation-js');
 
   if ('geolocation' in navigator) {
     locbtn.addEventListener('click', function(event) {
+      startSpinning();
+
+      function failed(err) {
+        stopSpinnning();
+        return get_lookup_error_handler('location')(err);
+      }
 
       function geoloc_onsuccess(position) {
         document.getElementById('seat-search-js').elements.postcode.value = '';
         var points = [position.coords.longitude, position.coords.latitude].join(',');
         var url = '/uk/2015/api/lookup/point/' + points;
-        fetch(url).then(lookup_onsuccess).catch(get_lookup_error_handler('location'));
+        fetch(url).then(lookup_onsuccess).then(stopSpinnning).catch(failed);
       }
 
-      navigator.geolocation.getCurrentPosition(geoloc_onsuccess, get_lookup_error_handler('location'));
+      navigator.geolocation.getCurrentPosition(geoloc_onsuccess, failed);
     });
   } else {
     locbtn.style.display = 'none';
@@ -206,6 +219,12 @@ module.exports = function(){
 
   document.getElementById('seat-search-js').addEventListener('submit', function(event) {
     event.preventDefault();
+    startSpinning();
+
+    function failed(err) {
+      stopSpinning();
+      return get_lookup_error_handler('postcode')(err);
+    }
 
     var input = event.target.elements.postcode;
     var postcode = input.value.trim();
@@ -219,7 +238,7 @@ module.exports = function(){
     //var offlineErrorMessage = 'Cannot connect to the internet to find postcode.';
     var url = '/uk/2015/api/lookup/postcode/' + postcode;
 
-    fetch(url).then(lookup_onsuccess).catch(get_lookup_error_handler('postcode'));
+    fetch(url).then(lookup_onsuccess).then(stopSpinning).catch(failed);
   });
 };
 
