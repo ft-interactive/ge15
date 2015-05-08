@@ -24,11 +24,22 @@
   background-color: oColorsGetPaletteColor(pink-tint1);
   padding: 12px 12px 24px;
   border-radius: 6px;
+
   button {
     min-height: 30px;
     // display: inline-block;
     width: 50%;
     margin: 0 25%;
+  }
+
+
+  &.loading:after {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 32px;
+    background-image: url(../../images/spinner.gif);
+    margin: 20px auto 0;
   }
 }
 // scss-lint:enable QualifyingElement
