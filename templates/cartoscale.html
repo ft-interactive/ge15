@@ -1,7 +1,9 @@
 {% set values = [0,20,40,60,80,100] %}
+<div class="cartogram-scale">
 {% for v in values %}
-<div style="display:inline-block; width=10%">
-  <div style="width=100%;">{{ v }}%</div>
-  <div style="background:{{ v | cartoPctScale }}; width=100%;">&nbsp;</div>
+<div class="cartogram-scale__entry" >
+  <div class="cartogram-scale__value" >{{ v }}%</div>
+  <div class="cartogram-scale__swatch" style="background:{{ v | cartoPctScale }};">&nbsp;</div>
 </div>
 {% endfor %}
+</div>
