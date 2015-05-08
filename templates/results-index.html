@@ -13,6 +13,10 @@
     </div>
 
     <div class="results-page-panel">
+      {% include "./result-national-usefulLinks.html" with overview only ignore missing %}
+    </div>
+
+    <div class="results-page-panel">
     {% include "./result-national-coalitions.html" with coalitions only ignore missing %}
     </div>
 
@@ -26,7 +30,7 @@
   </div>
   <div class="figure postcode-lookup" data-o-grid-colspan="12 M5 L4 Loffset1">
     <header class="figure__header">
-      <h2 class="article-body__subhead figure__title">Look up your constituency</h2>
+      <h2 class="article-body__subhead figure__title">Find your constituency</h2>
     </header>
     <form id="seat-search-js" method="GET" action="postcode">
       <input type="search" name="postcode" placeholder="Postcode search">
@@ -37,6 +41,9 @@
     <!-- <button id="use-mylocation-js">Use my location</button> -->
     <div id="seat-search-results-js"></div>
   </div>
+</div>
+<div class="o-grid-row">
+  <div class="indepth-link" data-o-grid-colspan="12 M6 L8"> <a href="/http://www.ft.com/cms/s/2/7ec06b42-f4f1-11e4-abb5-00144feab7de.html"><b>Full election coverage &raquo;</b></a></div>
 </div>
 <script>
 

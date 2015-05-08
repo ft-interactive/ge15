@@ -100,3 +100,17 @@
   position: relative;
   top: -3px;
 }
+
+ .indepth-link{
+  margin-top: 12px;
+}
+
+@include oGridRespondTo($until: M) {
+  .postcode-lookup {
+    background-color: transparent;
+    border-bottom: 1px solid oColorsGetPaletteColor(pink-tint3);
+  }
+  .indepth-link{
+    text-align: center;
+  }
+}
