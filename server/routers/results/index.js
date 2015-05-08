@@ -9,12 +9,12 @@ const kill_results = process.env.KILL_RESULTS === 'on';
 
 const pages = {
   homeAfterCalled: {
-    title: 'Election results',
-    summary: 'The Conservative/Lib-Dem coalition is likely to hold office.\nExpect new party alliances to boost the majority.'
+    title: 'UK general election: the full results',
+    summary: 'David Cameron will return to Downing Street following a dramatic Conservative election victory.'
   },
   homeBeforeCalled: {
-    title: 'UK Election, the results so far',
-    summary: 'As ballot papers continue to be counted a picture is emerging.'
+    title: 'UK general election: the results so far',
+    summary: 'David Cameron is on course to return to Downing Street with results pointing to a dramatic Conservative election victory.'
   }
 };
 
