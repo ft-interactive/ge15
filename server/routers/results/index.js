@@ -22,13 +22,13 @@ function* home(next) {
 
   this.assert(!kill_results, 404, 'Results will be here later');
 
-  const data = _.zipObject(['overview', 'coalitions', 'votesVsSeats','nationalSlopes'], yield Promise.all([
+  const data = _.zipObject(['overview', 'coalitions', 'votesVsSeats','nationalSlopes', 'cartogram'], yield Promise.all([
     service.resultNationalOverview(),
     service.resultNationalCoalitions(),
     service.votesVsSeats(),
-    service.resultNationalSlopes()
+    service.resultNationalSlopes(),
+    service.cartogram()
   ]));
-
 
   data.page = this.locals.flags.electionCalled ? pages.homeAfterCalled : pages.homeBeforeCalled;
 
