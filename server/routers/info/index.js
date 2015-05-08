@@ -1,8 +1,7 @@
 'use strict';
 
 const app = require('../../util/app');
-const election_called = process.env.ELECTION_CALLED === 'on';
-const home_redirect = election_called ? '/uk/2015/results' : '/uk/2015/projections';
+const home_redirect = process.env.KILL_RESULTS === 'on' ? '/uk/2015/projections' : '/uk/2015/results';
 
 function* gtg(next) {
   this.set('Cache-Control', 'no-cache');

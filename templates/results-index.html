@@ -2,10 +2,15 @@
 {% set stylesheet = 'pages/results-index.css' %}
 {% block title %}#GE2015 - Full Results{% endblock %}
 
+{% set  view.article = {center: false} %}
+{% block article_header %}
+<h1 class="article-header__headline" itemprop="name">UK election results so far</h1>
+<p class="article-header__summary" itemprop="description">David Cameron is on course to return to Downing Street with results pointing to a dramatic Conservative election victory</p>
+{% endblock %}
 
 {% block article_body %}
 <div class="o-grid-row">
-
+  <p style="font-size:0.8em;">The election was <a href="http://www.ft.com/intl/cms/s/2/f350d9ac-f4fa-11e4-8a42-00144feab7de.html"> a triumph for the Scottish nationalists</a>, who gained dozens of seats, and <a href="http://www.ft.com/intl/cms/s/2/263584b0-f4fd-11e4-abb5-00144feab7de.html">a disappointment for Labour</a>. The <a href="http://www.ft.com/intl/cms/s/2/283dec32-f504-11e4-abb5-00144feab7de.html">Liberal Democrats were crushed</a> in seats across the country.</p>
   <div class="results-coaltions" data-o-grid-colspan="12 M7">
 
     <div class="results-page-panel">
