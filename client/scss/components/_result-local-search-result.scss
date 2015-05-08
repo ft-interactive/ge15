@@ -11,7 +11,7 @@
     border-radius: 5px;
     padding-left: 25px;
     margin-right: 4px;
-    margin-bottom: 16px;
+    margin-bottom: 3px;
     background: color(white) url(https://image.webservices.ft.com/v1/images/raw/fticon:search?width=13&source=ge15) no-repeat 6px 7px;
   }
 }
@@ -40,6 +40,11 @@
     height: 32px;
     background-image: url(../../images/spinner.gif);
     margin: 20px auto 0;
+  }
+
+  & &__or {
+    text-align: center;
+    padding-bottom: 10px;
   }
 }
 // scss-lint:enable QualifyingElement
