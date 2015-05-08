@@ -5,6 +5,25 @@ var d3 = require('d3');
 
 module.exports = function(){
 
+  d3.selectAll('.cartogram-matrix .seat').each(function(p){
+    var id = this.dataset.seatId;
+    d3.select(this).on('click', function(){
+      console.log(id);
+      var url = '/uk/2015/api/collection/seats/by/id:' + id;
+      fetch(url).then(seat_onsuccess).catch(function(){ console.log('couldn\'t find seat: ', id, url)});
+    });
+  });
+
+  function seat_onsuccess(response){
+    if (response.status !== 200) {
+      throw response;
+    }
+
+    return response.json().then(function(json) {
+      showSeat(json);
+    });
+  }
+
   function showSeat(seat) {
     var el = document.getElementById('seat-search-results-js');
     var lastParty = seat.elections.last.winner.party;
