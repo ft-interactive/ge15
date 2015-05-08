@@ -29,7 +29,7 @@ function* liveblogFragment(next) {
   this.set('Cache-Control', // jshint ignore:line
     'public, max-age=10, stale-while-revalidate=3600, stale-if-error=3600');
 
-  this.set('Surrogate-Control', 'max-age=60'); // jshint ignore:line
+  this.set('Surrogate-Control', 'max-age=10'); // jshint ignore:line
 
   yield this.render('liveblog-fragment', data); // jshint ignore:line
 
@@ -66,7 +66,7 @@ function* ftcomFragment(next) {
   this.set('Cache-Control', // jshint ignore:line
     'public, max-age=10, stale-while-revalidate=3600, stale-if-error=3600');
 
-  this.set('Surrogate-Control', 'max-age=60'); // jshint ignore:line
+  this.set('Surrogate-Control', 'max-age=10'); // jshint ignore:line
 
   yield this.render('ftcom-fragment', data); // jshint ignore:line
 
@@ -100,7 +100,7 @@ function* nextFragment(next) {
   this.set('Cache-Control', // jshint ignore:line
     'public, max-age=10, stale-while-revalidate=3600, stale-if-error=3600');
 
-  this.set('Surrogate-Control', 'max-age=60'); // jshint ignore:line
+  this.set('Surrogate-Control', 'max-age=10'); // jshint ignore:line
 
   yield this.render('next-fragment', data); // jshint ignore:line
 
@@ -133,7 +133,7 @@ function* seatResultFragment(next) {
   this.set('Cache-Control', // jshint ignore:line
     'public, max-age=10, stale-while-revalidate=3600, stale-if-error=3600');
 
-  this.set('Surrogate-Control', 'max-age=60'); // jshint ignore:line
+  this.set('Surrogate-Control', 'max-age=10'); // jshint ignore:line
 
   var seat = service.db.seats().findOne({id: this.params.seat});
   this.assert(seat, 404, 'Seat not found'); // jshint ignore:line
@@ -151,7 +151,7 @@ function* ftcomEmbedCode(next) {
   this.set('Cache-Control', // jshint ignore:line
     'public, max-age=10, stale-while-revalidate=3600, stale-if-error=3600');
 
-  this.set('Surrogate-Control', 'max-age=60'); // jshint ignore:line
+  this.set('Surrogate-Control', 'max-age=10'); // jshint ignore:line
 
   yield this.render('ftcom-embed-code', {hostname: 'elections.ft.com'}); // jshint ignore:line
 
@@ -168,7 +168,7 @@ function* liveblogEmbedCode(next) {
   this.set('Cache-Control', // jshint ignore:line
     'public, max-age=10, stale-while-revalidate=3600, stale-if-error=3600');
 
-  this.set('Surrogate-Control', 'max-age=60'); // jshint ignore:line
+  this.set('Surrogate-Control', 'max-age=10'); // jshint ignore:line
 
   yield this.render('liveblog-embed-code', {hostname: 'elections.ft.com'}); // jshint ignore:line
 

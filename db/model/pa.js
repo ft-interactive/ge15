@@ -283,7 +283,6 @@ function candidateXMLtoSeatPartyResult(node) {
   }
 
   var candidate = node.$;
-  var party = node.Party[0].$;
   var code = PoliticalParties.paToCode(party.abbreviation);
   var o = f.SeatPartyResult({
     person: candidate.firstName + ' ' + candidate.surname,
