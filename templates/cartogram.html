@@ -1,36 +1,3 @@
-<style>
-
-.cartogram,
-.cartogram *,
-.cartogram *:after {
-  box-sizing: border-box;
-}
-
-.cartogram-matrix:after{
-  content: " ";
-  padding-top: 50%;
-  position: relative;
-  display: block;
-}
-
-.cartogram .cartogram-matrix{
-  position: relative;
-  width: 100%;
-  padding-top: 100%;
-  height: 1em;
-}
-
-.cartogram .seat{
-  position: absolute;
-  width: 3.03030303%;
-  padding-top: 3.03030303%;
-  line-height: 0;
-  background: black;
-  border-radius: 100%;
-  cursor: pointer;
-}
-</style>
-
 <div class="national-map figure">
 
   {% if headline %}
@@ -39,19 +6,17 @@
   </header>
   {% endif %}
 
-  <div class="figure__body">
-      <div class="cartogram">
-        <div class="cartogram-matrix">
+  <div class="figure__body" style="width:500px;">
+      <div style="">
+        <svg xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;" version="1.1" class="cartogram"
+                        viewBox="0 0 130 160" preserveAspectRatio="xMidYMid meet">
           {% for seat in seats %}
-          <div class="seat" title="{{ seat.name }} - {{ seat.party | partyFullName | default('No result') }}"
+          <circle title="{{ seat.name }} - {{ seat.party | partyFullName | default('No result') }}"
                 data-seat-coord-x="{{ seat.x }}" data-seat-coord-y="{{ seat.y }}" data-seat-id="{{ seat.id }}"
-                style="background-color:{{ seat.party | partyColor | default('#f6e9d8') }};outline-color:{{ seat.party | partyColor | default('auto') }};top: {{ seat.y * 3.03030303 }}%;left: {{ seat.x * 3.03030303 }}%;"></div>
+                class="seat" data-seat-id="{{ seat.id }}" cx="{{seat.x * 3 + 2}}" cy="{{seat.y * 3 + 2}}" r="1.5"
+                fill="{{ seat.party | partyColor | default('#f6e9d8') }}" />
           {% endfor %}
-        </div>
-      </div>
-      <div>
-        This is the name of the constituency you're hovering on.
-        Pull the seat ID off the data-seat-id attribute.
+        </svg>
       </div>
   </div>
 </div>
