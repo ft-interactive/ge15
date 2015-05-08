@@ -2,7 +2,7 @@
 
 const debug = require('debug')('db-master:PA');
 const updater = require('./ge15-PA-results');
-const interval = 1000 * 60;
+const interval = process.env.COLLECT_INTERVAL ? parseInt(process.env.COLLECT_INTERVAL) : 1000 * 20;
 
 var started = false;
 

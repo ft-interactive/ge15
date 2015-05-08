@@ -18,7 +18,6 @@ module.exports = function (howMany) {
 
   var selected_parties = order_of_appearance.slice(0, Math.max(howMany - 1, 0));
 
-
   // number to count up the global total of seats
   var numSeatsDeclared = 0;
 

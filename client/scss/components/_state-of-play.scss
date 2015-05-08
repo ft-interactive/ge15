@@ -24,7 +24,7 @@
     }
 
     th {
-      border-bottom: 4px solid transparent; 
+      border-bottom: 4px solid transparent;
       text-align: center;
       color: color(white);
       font-size: 12px;
@@ -62,7 +62,7 @@
 
         td:first-child & { visibility: visible; }
       }
-    
+
       .state-of-play__seats {
         line-height: 0px;
       }
@@ -74,13 +74,13 @@
           margin: 0 -1px -1px 0;
           position: relative;
           z-index: 1;
-
-          // &:hover {
-          //   border-color: #000;
-          //   z-index: 2;
-          // }
+          transition: transform 0.3s ease-in-out;
+          &:hover {
+            transform: scale(1.5, 1.5);
+            z-index: 999999999;
+          }
         }
-    
+
       .state-of-play__minitable {
         background: color(pink-tint1);
         border-bottom: 2px solid color(pink-tint2);
@@ -117,7 +117,7 @@
         font-weight: bold;
         color: color(grey-tint4);
       }
-  
+
   .state-of-play__link {
     display: block;
     float: right;
