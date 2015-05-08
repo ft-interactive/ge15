@@ -260,6 +260,16 @@ exports.update_seat_result = function(file, xml, callback) {
     var data = exports.seat_xml_to_result(type, file, result);
 
     // apply all the new data to the seat object
+    try{
+
+      var old = seat.elections.ge15;
+
+      if (old.source.message && !data.source.message) {
+        data.source.message = old.source.message;
+      }
+
+    } catch(e) {}
+
     seat.elections.ge15 = data;
 
     // update the object
@@ -275,11 +285,11 @@ exports.update_seat_result = function(file, xml, callback) {
 function candidateXMLtoSeatPartyResult(node) {
   var party = node.Party[0].$;
   var pa_party_abbrv = party.abbreviation.toLowerCase();
-  // handle Scottish Labour candidates that style themselves as Labout Co-op
+    // handle Scottish Labour candidates that style themselves as Labout Co-op
   if (pa_party_abbrv === 'lab co-op') {
-    party.abbreviation = PoliticalParties.data.lab.id;
+    party.abbreviation = PoliticalParties.data.lab.pa;
   } else if (pa_party_abbrv === 'the speaker' || pa_party_abbrv === 'speaker') {
-    party.abbreviation = PoliticalParties.data.c.id;
+    party.abbreviation = PoliticalParties.data.c.pa;
   }
 
   var candidate = node.$;
@@ -298,7 +308,6 @@ function candidateXMLtoSeatPartyResult(node) {
 
   // TODO: add "person_of_note_field"
   //       by combining some bertha data and PA data
-
   if (PoliticalParties.isKnownParty(code)) {
     o.party = code;
   } else {
