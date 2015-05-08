@@ -22,16 +22,14 @@
     </div>
 
     <div class="results-page-panel">
-    {% include "./result-national-coalitions.html" with coalitions only ignore missing %}
-    </div>
-
-    <div class="results-page-panel">
       {% include './votes-vs-seats.html' with votesVsSeats only ignore missing %}
     </div>
 
-    <!-- <div class="results-page-panel">
-      {% include "./national-change.html" %}
-    </div> -->
+    <div class="results-page-panel">
+      {% include './result-sankey.html' with sankey only ignore missing %}
+    </div>
+    <div class="results-national-coalitions__description figure__footer">
+      <p>source PA</p>    </div>
   </div>
   <div class="figure postcode-lookup" data-o-grid-colspan="12 M5 L4 Loffset1">
     <header class="figure__header">
@@ -48,7 +46,7 @@
   </div>
 </div>
 <div class="o-grid-row">
-  <div class="indepth-link" data-o-grid-colspan="12 M6 L8"> <a href="http://www.ft.com/cms/s/2/7ec06b42-f4f1-11e4-abb5-00144feab7de.html"><b>Full election coverage &raquo;</b></a></div>
+  <div class="indepth-link" data-o-grid-colspan="12 M6 L8"> <a href="http://www.ft.com/indepth/uk-general-election"><b>Full election coverage &raquo;</b></a></div>
 </div>
 <script>
 

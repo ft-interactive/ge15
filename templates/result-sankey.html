@@ -1,0 +1,13 @@
+<div class="results-sankey">
+    <h2 class="article-body__subhead figure__title">Seat changes</h2>
+    <div class="results-national-coalitions__description figure__footer">
+      <p>This graphic shows how all the House of Commons seats have been redistributed between parties by the general election.</p>
+    </div>
+</div>
+
+<script>
+  var sankeyData = {
+    nodes:{{ nodes | safe | json }},
+    links:{{ links | safe | json }}
+  };
+</script>

@@ -17,6 +17,7 @@ module.exports = function createSankeyData(data){
       forecast:'Other'
     });
   }
+  console.log('d',data);
 
   data.forEach(function(d){
     if(!links[d.current + '->' + d.forecast]) links[d.current + '->' + d.forecast] = 0;
@@ -45,6 +46,7 @@ module.exports = function createSankeyData(data){
       });
     }
   }
+  console.log('sankey data', sankeyData);
   return sankeyData;
 };
 
