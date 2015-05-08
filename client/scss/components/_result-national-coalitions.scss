@@ -15,6 +15,7 @@
   font-weight: bold;
   color: oColorsGetPaletteColor(white);
   margin-right: 4px;
+  margin-bottom: 8px;
   padding: 2px 0 3px;
 }
 
@@ -28,4 +29,12 @@
 .results-national-coalitions__seats,
 .results-national-coalitions__majority {
   font-weight: bold;
+}
+
+@include oGridRespondTo($until: L) {
+  .results-national-coalitions__seat-count,
+  .results-national-coalitions__party-list {
+    display: block;
+  }
+
 }

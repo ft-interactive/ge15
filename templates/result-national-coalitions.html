@@ -9,12 +9,12 @@
     {% endif %}
     {% for group in groups %}
     <div class="results-national-coalitions__group o-grid-row">
-      <div class="results-national-coalitions__party-list"  data-o-grid-colspan="6">
+      <div class="results-national-coalitions__party-list"  data-o-grid-colspan="12 L6 XL6">
         {% for party in group.parties %}
         <div class="{{ party | partyClassName }}-block results-national-coalitions__coalition-party-block">{{ party | partyShortName }}</div>
         {% endfor %}
       </div>
-      <div class="results-national-coalitions__seat-count" data-o-grid-colspan="6">
+      <div class="results-national-coalitions__seat-count" data-o-grid-colspan="12 L6 XL6">
         <span class="results-national-coalitions__seats">{{ group.seats }}</span> seats, majority of <span class="results-national-coalitions__majority">{{ group.majority }}</span>
       </div>
     </div>
