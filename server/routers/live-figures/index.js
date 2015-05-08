@@ -125,7 +125,8 @@ function* ftcomMockup(next) {
 
 
 /**
- * A fragment for a single constituency result
+ * A fragment for a single constituency result.
+ * (This gets fetched by clientside liveblog code.)
  */
 function* seatResultFragment(next) {
   this.set('Cache-Control', // jshint ignore:line
@@ -133,10 +134,11 @@ function* seatResultFragment(next) {
 
   this.set('Surrogate-Control', 'max-age=60'); // jshint ignore:line
 
-  var seat = service.db.seats().findOne({id: this.params.seat});
-  this.assert(seat, 404, 'Seat not found'); // jshint ignore:line
+  var data = yield service.seatResultFragment(this.params.seat); // jshint ignore:line
 
-  yield this.render('seat-result-fragment', seat); // jshint ignore:line
+  this.assert(data, 404, 'Seat not found'); // jshint ignore:line
+
+  yield this.render('seat-result-fragment', data); // jshint ignore:line
 
   yield next;
 }

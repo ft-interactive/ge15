@@ -1,1 +1,45 @@
-SEAT RESULT FRAGMENT FOR: {{name}}
+<div class="seat-result__card">
+  <h3>{{name}}</h3>
+
+  {# CALLED #}
+  {% if called %}
+    <div class="seat-result__banner" style="background:{{ partyId | partyColor }}">
+      {{ partyId | partyFullName }}
+      {% if elections.ge15.change %}
+      gain from {{ lastElectionPartyId | partyShortName }}
+      {% else %}
+      hold
+      {% endif %}
+    </div>
+    
+    {# ADD RESULTS CHART #}
+    {% if results && results.length %}
+      <div class="seat-result__chart">
+        {% for result in results %}
+          <div class="seat-result__chart__track">
+            <span class="seat-result__chart__label">{{ result.label }}</span>
+            <span class="seat-result__chart__bar" style="width:{{ result.percentage }}%"></span>
+            <span class="seat-result__chart__percentage">{{ result.percentage | round(1) }}%</span>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <div class="seat-result__details">
+      {% if winnerName %}<div class="seat-result__detail">Winner: {{ winnerName }}</div>{% endif %}
+      {% if turnout %}
+      <div class="seat-result__detail">
+        Turnout: {{ turnout | round(1) }}%
+        {% if turnoutChange %}
+        ({{ turnoutChange | safe }}%)
+        {% endif %}
+      </div>
+      {% endif %}
+      {% if majority %}<div class="seat-result__detail">Majority: {{ majority | round(1) }}%</div>{% endif %}
+    </div>
+
+  {# NOT CALLED #}
+  {% else %}
+    <div class="seat-result__banner" style="background:#cec6b9">Result not declared</div>
+  {% endif %}
+</div>
