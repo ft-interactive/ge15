@@ -16,6 +16,7 @@ if (cutsTheMustard) {
   var config = {
     'state-of-play': {},
     'votes-vs-seats': {},
+    'results-link': {},
     'seat-result': {
       enhance: require('./seat-result-enhancer'),
       retain: true, // prevents it being rewritten after the first time (would be bad for this widget)

@@ -3,7 +3,7 @@
 var app = require('../../util/app');
 var service = require('../../service');
 var _ = require('lodash');
-var debug = require('debug')('liveblog');
+// var debug = require('debug')('liveblog');
 var kill_liveblog_fragment = process.env.KILL_LIVEBLOG === 'on';
 var kill_ftcom_fragment = process.env.KILL_FTCOM === 'on';
 var kill_next_fragment = process.env.KILL_NEXT === 'on';
@@ -16,10 +16,13 @@ function* liveblogFragment(next) {
 
   this.assert(!kill_liveblog_fragment, 404, 'Off'); // jshint ignore:line
 
-  var data = _.zipObject(['stateOfPlay', 'votesVsSeats', 'seatResult'], yield Promise.all([
+  var data = _.zipObject([
+    'stateOfPlay', 'votesVsSeats', 'seatResult', 'resultsLink'
+  ], yield Promise.all([
     service.stateOfPlay(5),
     service.votesVsSeats(),
     service.seatResult(),
+    service.resultsLink()
   ]));
 
   this.set('Cache-Control', // jshint ignore:line
