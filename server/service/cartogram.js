@@ -2,31 +2,29 @@
 
 const db = require('./db');
 
-var last = pluck('last');
-var ge15_projection = pluck('ge15_projection');
-var ge15 = pluck('ge15');
+var expires;
+var last;
+var age = 1000 * 60;
 
-function pluck(election) {
-  return Promise.resolve(db.seats().find().map(function(seat){
+module.exports = function() {
+
+  if (last && expires && Date.now() < expires) {
+    return last;
+  }
+
+  expires = Date.now() + age;
+
+  last = Promise.resolve({seats: db.seats().find().map(function(seat){
     return {
       id: seat.id,
       name: seat.name,
       slug: seat.slug,
-      party: seat.elections[election].winner.party,
+      party: seat.elections.ge15.winner.party,
       x: seat.geo.cartogram.x,
       y: seat.geo.cartogram.y
     };
-  }));
-}
+  })});
 
-module.exports = function(election) {
-  if (election === 'last') {
-    return last;
-  } else if (election === 'ge15-projection') {
-    return ge15_projection;
-  } else if (election === 'ge15') {
-    return ge15;
-  }
+  return last;
 
-  throw new Error('Unknown election');
 };
