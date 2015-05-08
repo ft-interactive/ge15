@@ -7,6 +7,7 @@ var _ = require('lodash');
 var kill_liveblog_fragment = process.env.KILL_LIVEBLOG === 'on';
 var kill_ftcom_fragment = process.env.KILL_FTCOM === 'on';
 var kill_next_fragment = process.env.KILL_NEXT === 'on';
+var kill_seat_lookup_fragment = process.env.KILL_SEAT_LOOKUP === 'on';
 
 /**
  * A fragment containing all the figures used on the liveblog.
@@ -17,13 +18,16 @@ function* liveblogFragment(next) {
   this.assert(!kill_liveblog_fragment, 404, 'Off'); // jshint ignore:line
 
   var data = _.zipObject([
-    'stateOfPlay', 'votesVsSeats', 'seatResult', 'resultsLink'
+    'stateOfPlay', 'votesVsSeats', 'resultsLink'
   ], yield Promise.all([
     service.stateOfPlay(5),
     service.votesVsSeats(),
-    service.seatResult(),
     service.resultsLink()
   ]));
+
+  data.seatResult = {
+    headline: 'Look up a constituency'
+  };
 
   this.set('Cache-Control', // jshint ignore:line
     'public, max-age=10, stale-while-revalidate=3600, stale-if-error=3600');
@@ -107,11 +111,41 @@ function* nextFragment(next) {
 }
 
 
+
+/**
+ * An fragment containing just a seat lookup form.
+ */
+function* seatLookupFragment(next) {
+
+  this.assert(!kill_seat_lookup_fragment, 404, 'Off'); // jshint ignore:line
+
+  this.set('Cache-Control', // jshint ignore:line
+    'public, max-age=300, stale-while-revalidate=3600, stale-if-error=3600');
+
+  this.set('Surrogate-Control', 'max-age=300'); // jshint ignore:line
+
+  yield this.render('seat-lookup-fragment', {seatResult: { // jshint ignore:line
+    kicker: 'General Election 2015',
+    headline: 'Look up a constituency result'
+  }}); // jshint ignore:line
+
+  yield next;
+}
+
+
+
 /**
  * A mockup page that imitates the real liveblog, for testing components in situ.
  */
 function* liveblogMockup(next) {
   yield this.render('liveblog-mockup'); // jshint ignore:line
+  yield next;
+}
+
+
+
+function* seatLookupMockup(next) {
+  yield this.render('seat-lookup-mockup'); // jshint ignore:line
   yield next;
 }
 
@@ -179,6 +213,21 @@ function* liveblogEmbedCode(next) {
 }
 
 
+function* seatLookupEmbedCode(next) {
+  this.set('Cache-Control', // jshint ignore:line
+    'public, max-age=10, stale-while-revalidate=3600, stale-if-error=3600');
+
+  this.set('Surrogate-Control', 'max-age=10'); // jshint ignore:line
+
+  yield this.render('seat-lookup-embed-code', {hostname: 'elections.ft.com'}); // jshint ignore:line
+
+  this.set('Content-Type', 'text/plain'); // jshint ignore:line
+
+  yield next;
+}
+
+
+
 module.exports = function main() {
   return app()
         .router()
@@ -189,8 +238,12 @@ module.exports = function main() {
         .get('ftcom-fragment', '/ftcom-fragment', ftcomFragment) // a fragment of all the widget fragments
         .get('next-fragment', '/next-fragment', nextFragment) // a fragment of all the widget fragments
 
+        .get('seat-lookup-fragment', '/seat-lookup-fragment', seatLookupFragment) // a fragment for just a seat-lookup form
+        .get('seat-lookup-mockup', '/seat-lookup-mockup', seatLookupMockup) // a fragment for just a seat-lookup form
+
         .get('seat-result-fragment', '/seat-result-fragment/:seat', seatResultFragment)
 
-        .get('ftcom-embed-code', '/liveblog-embed-code', liveblogEmbedCode)
+        .get('liveblog-embed-code', '/liveblog-embed-code', liveblogEmbedCode)
+        .get('seat-lookup-embed-code', '/seat-lookup-embed-code', seatLookupEmbedCode)
         .get('ftcom-embed-code', '/ftcom-embed-code', ftcomEmbedCode);
 };

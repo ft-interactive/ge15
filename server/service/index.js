@@ -13,7 +13,6 @@ exports.resultSankeyData = require('./sankey');
 
 exports.votesVsSeats = require('./votes-vs-seats');
 exports.stateOfPlay = require('./state-of-play');
-exports.seatResult = require('./seat-result');
 exports.seatResultFragment = require('./seat-result-fragment');
 exports.resultsLink = require('./results-link');
 exports.neighbours = require('./neighbours');
