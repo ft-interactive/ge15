@@ -131,6 +131,13 @@ exports.verticalScale = function(value, domain, range) {
     .range([range,0])(value);
 };
 
+exports.cartoPctScale = function(v){
+  var quantize = d3.scale.quantize()
+    .domain([0, 100])
+    .range( ['rgba(0,0,0,0)','rgba(0,0,0,0.2)','rgba(0,0,0,0.4)','rgba(0,0,0,0.6)','rgba(0,0,0,0.8)','rgba(0,0,0,1)'] );
+  return quantize(v);
+};
+
 exports.percentageOf = function(part, whole) {
   return parseFloat(part)/whole * 100;
 };

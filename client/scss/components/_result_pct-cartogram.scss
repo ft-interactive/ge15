@@ -1,0 +1,16 @@
+.cartogram-scale__swatch {
+  width: 100%;
+}
+
+.cartogram-scale__value {
+  font-size: 0.8em;
+  padding-left: 4px;
+  border-left:1px solid rgba(0,0,0,0.2);
+  width: 100%;
+}
+
+.cartogram-scale__entry {
+  display: inline-block;
+
+  width: 45px;
+}

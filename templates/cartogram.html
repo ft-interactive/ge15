@@ -1,11 +1,16 @@
-<div>
-  <svg xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;" version="1.1" class="cartogram"
-                  viewBox="0 0 140 150" preserveAspectRatio="xMidYMid meet">
-    {% for seat in seats %}
-    <rect title="{{ seat.name }} - {{ seat.party | partyFullName | default('No result') }}"
-          class="seat" data-seat-id="{{ seat.id }}" x="{{seat.x * 3}}" y="{{seat.y * 3}}" width="3" height="3"
-          fill="{{ seat.party | partyColor | default('#f6e9d8') }}" />
-    {% endfor %}
-
-  </svg>
+{% set lMargin = 20 %}
+{% set scale = 3 %}
+<div class="national-map figure">
+  <div class="figure__body">
+      <div style="">
+        <svg xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;" version="1.1" class="cartogram"
+                        viewBox="0 0 140 150" preserveAspectRatio="xMidYMid meet">
+          {% for seat in seats %}
+          <rect title="{{ seat.name }} - {{ seat.value }}%"
+                class="seat" data-seat-id="{{ seat.id }}" x="{{seat.x * scale + lMargin}}" y="{{seat.y * scale}}" width="3" height="3"
+                fill="{{ seat.value | cartoPctScale }}" />
+          {% endfor %}
+        </svg>
+      </div>
+  </div>
 </div>
