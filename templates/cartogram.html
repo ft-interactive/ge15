@@ -9,13 +9,13 @@
   <div class="figure__body" style="width:500px;">
       <div style="">
         <svg xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;" version="1.1" class="cartogram"
-                        viewBox="0 0 130 160" preserveAspectRatio="xMidYMid meet">
+                        viewBox="0 0 140 150" preserveAspectRatio="xMidYMid meet">
           {% for seat in seats %}
-          <circle title="{{ seat.name }} - {{ seat.party | partyFullName | default('No result') }}"
-                data-seat-coord-x="{{ seat.x }}" data-seat-coord-y="{{ seat.y }}" data-seat-id="{{ seat.id }}"
-                class="seat" data-seat-id="{{ seat.id }}" cx="{{seat.x * 3 + 2}}" cy="{{seat.y * 3 + 2}}" r="1.5"
+          <rect title="{{ seat.name }} - {{ seat.party | partyFullName | default('No result') }}"
+                class="seat" data-seat-id="{{ seat.id }}" x="{{seat.x * 3}}" y="{{seat.y * 3}}" width="3" height="3"
                 fill="{{ seat.party | partyColor | default('#f6e9d8') }}" />
           {% endfor %}
+
         </svg>
       </div>
   </div>

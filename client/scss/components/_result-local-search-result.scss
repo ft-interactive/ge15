@@ -148,3 +148,16 @@
     text-align: center;
   }
 }
+
+.cartogram {
+  .seat {
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    transform-origin: 50% 50%;
+    stroke-width: 0;
+    &:hover {
+      transform: scale(2);
+      stroke-width: 0.1px;
+    }
+  }
+}

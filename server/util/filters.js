@@ -105,6 +105,10 @@ exports.partyColor = function(str) {
   return parties[str] ? parties[str].colour : parties.other.colour;
 };
 
+exports.partySecondaryColor = function(str) {
+  return parties[str] ? parties[str].secondaryColor : parties.other.secondaryColor;
+};
+
 exports.round = function(number, dp) {
   var expo = Math.pow(10, dp || 0);
   return Math.round(number * expo) / expo;

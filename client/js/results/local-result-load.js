@@ -5,12 +5,13 @@ var d3 = require('d3');
 
 module.exports = function(){
 
-  d3.selectAll('.cartogram-matrix .seat').each(function(p){
+  d3.selectAll('.cartogram .seat').each(function(p){
     var id = this.dataset.seatId;
     d3.select(this).on('click', function(){
-      console.log(id);
       var url = '/uk/2015/api/collection/seats/by/id:' + id;
       fetch(url).then(seat_onsuccess).catch(function(){ console.log('couldn\'t find seat: ', id, url)});
+    }).on('mouseenter', function() {
+        this.parentElement.appendChild(this);
     });
   });
 
