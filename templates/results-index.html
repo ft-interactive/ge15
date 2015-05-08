@@ -26,6 +26,10 @@
     </div>
 
     <div class="results-page-panel">
+      {% include './geography.html' with geography only ignore missing %}
+    </div>
+
+    <div class="results-page-panel">
       {% include './result-sankey.html' with sankey only ignore missing %}
     </div>
     <div class="results-national-coalitions__description figure__footer">
@@ -35,9 +39,6 @@
 
   <div  data-o-grid-colspan="12 M5 L4 Loffset1">
 
-    <div class="results-page-panel">
-      {% include './cartogram.html' with cartogram %}
-    </div>
     <div class="figure postcode-lookup">
       <header class="figure__header">
         <h2 class="article-body__subhead figure__title">Find your constituency</h2>

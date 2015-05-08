@@ -1,0 +1,25 @@
+<div class="figure">
+  <header class="figure__header">
+    <h2 class="article-body__subhead figure__title">Electoral geography</h2>
+    <h3 class="figure__subtitle">How votes distributed across the country.</h3>
+  </header>
+  <div class="figure__body">
+    <style>.inline-figure{
+      padding: 1em;
+      box-sizing: border-box;
+      display: inline-block;
+      border: 1px solid #ddd;
+      }</style>
+    {% set inline_figure_width = 100 / parties.length %}
+    {% for party in parties %}
+    <div class="inline-figure" style="width:{{ inline_figure_width }}%;">
+      <div class="inline-figure__graphic">
+        {% include "./cartogram.html" with party only ignore missing %}
+      </div>
+      <div class="inline-figure__label">
+        {{ party.full }}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>

@@ -31,7 +31,13 @@ function* home(next) {
   ]));
 
   data.page = this.locals.flags.electionCalled ? pages.homeAfterCalled : pages.homeBeforeCalled;
-
+  data.geography = {scale: [], parties: [
+    {id:'c', full: 'Conservatives', seats:[]},
+    {id:'lab', full: 'Labour', seats:[]},
+    {id:'ukip', full: 'Ukip', seats:[]},
+    {id:'ld', full: 'Lib Dems', seats:[]},
+    {id:'snp', full: 'SNP', seats:[]}
+  ]};
   yield this.render('results-index', data);
   yield next;
 }
