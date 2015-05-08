@@ -2,6 +2,6 @@
 
 module.exports = function () {
   return Promise.resolve({
-    headline: 'Look up your local result'
+    headline: 'Look up your constituency'
   });
 };

@@ -2,6 +2,14 @@
 
 const db = require('./db');
 const filters = require('../util/filters');
+const _ = require('lodash');
+
+const customNames = {
+  'A': 'Alliance',
+  'Grn': 'Greens',
+  'Oth': 'Other',
+  'SF': 'Sinn Fein'
+};
 
 var expires = {};
 var last = {};
@@ -19,27 +27,31 @@ module.exports = function (seatId) {
   if (seat) {
     // make the results data (if this is called, and not just a rush)
     var finalResults;
+    var chartExtent;
     var ge15 = seat.elections.ge15;
 
     if (ge15.source.type > 1) {
       var results = ge15.results.map(function (result, index) {
+        var label = ukParties.shortName(result.party);
+        label = customNames[label] || label;
+
         return {
           partyId: result.party,
-          label: ukParties.shortName(result.party),
+          label: label,
           percentage: result.votes_pc
         };
       });
 
-      console.log('\n\n\nRESULTS', results);
+      // console.log('\n\n\nRESULTS', results);
 
       // select just the top 4
       var NUM_TO_SHOW = 5;
       finalResults = results.slice(0, NUM_TO_SHOW - 1);
-      console.log('\n\n\nLEADERS', finalResults);
+      // console.log('\n\n\nLEADERS', finalResults);
       
       // roll up the stragglers
       var stragglers = results.slice(NUM_TO_SHOW);
-      console.log('\n\n\nSTRAGGLERS', stragglers);
+      // console.log('\n\n\nSTRAGGLERS', stragglers);
       if (stragglers.length) {
         finalResults.push({
           partyId: 'other',
@@ -50,7 +62,9 @@ module.exports = function (seatId) {
         });
       }
 
-      console.log('\n\n\nFINAL RESULTS', finalResults);
+      // console.log('\n\n\nFINAL RESULTS', finalResults);
+
+      chartExtent = Math.max.apply(null,_.pluck(finalResults, 'percentage'));
     }
 
     var turnoutChange;
@@ -71,7 +85,8 @@ module.exports = function (seatId) {
         ukParties.fullName(ge15.winner.party),
       turnout: ge15.turnout_pc,
       turnoutChange: turnoutChange,
-      results: finalResults
+      results: finalResults,
+      chartExtent: chartExtent
     };
   }
 
