@@ -2,6 +2,8 @@
 
 var hostname = require('./hostname');
 
+var currentVersion;
+
 module.exports = function (fragmentPath, container, config) {
   console.log('Embedding live figures,', new Date(), 'from ' + fragmentPath);
 
@@ -12,6 +14,19 @@ module.exports = function (fragmentPath, container, config) {
     // make an HTML version of the loaded figures so we can select them
     var loadedFigures = document.createElement('div');
     loadedFigures.innerHTML = html;
+
+    var newVersion = loadedFigures.querySelector('[data-version]');
+    if (newVersion) newVersion = newVersion.getAttribute('data-version');
+
+    if (currentVersion && newVersion && currentVersion !== newVersion) {
+      // force a refresh of the page
+      console.log('Refreshing page, out of date!');
+      location.reload(true);
+      return;
+    }
+
+    console.log('VERSION', newVersion);
+    currentVersion = newVersion;
 
     // insert/replace them all one-by-one
     Object.keys(config).forEach(function (figureId) {
