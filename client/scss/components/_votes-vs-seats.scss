@@ -34,6 +34,9 @@
     }
       .votes-vs-seats__key__label {
         margin: 0 20px 0 5px;
+        &:last-child{
+          margin-right:0;
+        }
       }
     
     .votes-vs-seats__chart {
