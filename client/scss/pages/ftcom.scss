@@ -79,10 +79,13 @@
     padding: 8px 4px 20px 8px;
   }
 
+  // scss-lint:disable SelectorDepth
   .figure__body > .state-of-play__table > th {
     font-size: 14px;
     padding: 10px 0 6px;
   }
+  // scss-lint:enable SelectorDepth
+
   .state-of-play__party-total {
     font-size: 22px;
   }
