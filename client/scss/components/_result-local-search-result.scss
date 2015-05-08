@@ -5,12 +5,13 @@
     display: inline-block;
     line-height: 30px;
     height: 30px;
-    width: 50%;
+    width: 100%;
     font-size: 14px;
     border: 1px solid color(grey-tint1);
     border-radius: 5px;
     padding-left: 25px;
     margin-right: 4px;
+    margin-bottom: 16px;
     background: color(white) url(https://image.webservices.ft.com/v1/images/raw/fticon:search?width=13&source=ge15) no-repeat 6px 7px;
   }
 }
@@ -21,18 +22,20 @@
 
 .postcode-lookup {
   background-color: oColorsGetPaletteColor(pink-tint1);
-  padding: 12px;
+  padding: 12px 12px 24px;
   border-radius: 6px;
   button {
-    height: 30px;
-    display: inline-block;
+    min-height: 30px;
+    // display: inline-block;
+    width: 50%;
+    margin: 0 25%;
   }
 }
 // scss-lint:enable QualifyingElement
 
 #seat-search-results-js {
   h2 {
-    margin-bottom: 0.3em;
+    margin-bottom: 1em;
     margin-top: 1em;
   }
 }
