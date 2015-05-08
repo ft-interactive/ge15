@@ -152,3 +152,28 @@ Front-end assets that embed and style the live figures
 
 - The embed code you need is in `templates/ftcom-mockup.html` (search for "BEGIN FTCOM EMBED CODE")
   - But edit the script/stylesheet URLs to make them absolute.
+
+
+----
+
+## Promoting from CI to production
+
+Two manual checks:
+
+#### 1. Liveblog
+
+Before promoting, compare these two URLs:
+
+    http://elections.ft.com/uk/2015/live-figures/liveblog-embed-code
+    http://uk-election-2015-ci.herokuapp.com/uk/2015/live-figures/liveblog-embed-code
+
+If any differences, copy the CI version and paste it over the widget code here: http://blogs.ft.com/westminster/wp-admin/widgets.php
+
+#### 2. Homepage
+
+Before promoting, compare these two URLs:
+
+    http://elections.ft.com/uk/2015/live-figures/ftcom-embed-code
+    http://uk-election-2015-ci.herokuapp.com/uk/2015/live-figures/ftcom-embed-code
+
+If any differences, copy the CI version and paste it over the widget code in Preditor (on every homepage). Remember the optional style tag.
