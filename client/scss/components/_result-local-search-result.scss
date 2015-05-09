@@ -4,15 +4,14 @@
   input { // high specificity to override liveblog styles
     display: inline-block;
     line-height: 30px;
-    height: 30px;
     width: 100%;
-    font-size: 14px;
+    font-size: 16px;
     border: 1px solid color(grey-tint1);
     border-radius: 5px;
     padding-left: 25px;
     margin-right: 4px;
     margin-bottom: 3px;
-    background: color(white) url(https://image.webservices.ft.com/v1/images/raw/fticon:search?width=13&source=ge15) no-repeat 6px 7px;
+    background: color(white) url(https://image.webservices.ft.com/v1/images/raw/fticon:search?width=13&source=ge15) no-repeat 10px;
   }
 }
 
@@ -21,17 +20,33 @@
 }
 
 .postcode-lookup {
-  background-color: oColorsGetPaletteColor(pink-tint1);
-  padding: 12px 12px 24px;
-  border-radius: 6px;
+  border-bottom: 1px solid oColorsGetPaletteColor(pink-tint3);
+  padding-bottom: 2em;
 
-  button {
-    min-height: 30px;
-    // display: inline-block;
-    width: 50%;
-    margin: 0 25%;
+  @include oGridRespondTo(M) {
+    border-radius: 6px;
+    padding: 12px 12px 24px 12px;
+    background-color: oColorsGetPaletteColor(pink-tint1);
   }
 
+  &__submit {
+    display: block;
+    width: 100%;
+    margin: 0.5em 0 0.8em 0;
+    @include oGridRespondTo(M) {
+      display: none;
+      margin: 0;
+    }
+  }
+
+  &__mylocation {
+    width: 100%;
+    margin: 0;
+    @include oGridRespondTo(M) {
+      margin: 0 25%;
+      width: 50%;
+    }
+  }
 
   &.loading:after {
     content: '';
@@ -43,8 +58,15 @@
   }
 
   & &__or {
+    padding: 0;
     text-align: center;
-    padding-bottom: 10px;
+    max-width: none;
+  }
+
+  & &__error-message {
+    padding: 1.5em 0.5em;
+    color: rgb(174, 25, 25);
+    text-align: center;
   }
 }
 // scss-lint:enable QualifyingElement
@@ -131,14 +153,4 @@
 
 .indepth-link {
   margin-top: 12px;
-}
-
-@include oGridRespondTo($until: M) {
-  .postcode-lookup {
-    background-color: transparent;
-    border-bottom: 1px solid oColorsGetPaletteColor(pink-tint3);
-  }
-  .indepth-link {
-    text-align: center;
-  }
 }

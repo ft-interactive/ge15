@@ -2,54 +2,71 @@
 {% set stylesheet = 'pages/results-index.css' %}
 {% block title %}#GE2015 - Full Results{% endblock %}
 
-{% set  view.article = {center: false} %}
-{% block article_header %}
-<h1 class="article-header__headline" itemprop="name">UK election results</h1>
-<p class="article-header__summary" itemprop="description">The Conservatives secure a majority in a stunning victory</p>
-{% endblock %}
+{% block content %}
+<article class="article" itemscope itemtype="http://schema.org/NewsArticle">
 
-{% block article_body %}
-<div class="o-grid-row">
-  <p style="font-size:0.8em;">The election was <a href="http://www.ft.com/intl/cms/s/2/f350d9ac-f4fa-11e4-8a42-00144feab7de.html"> a triumph for the Scottish nationalists</a>, who gained dozens of seats, and <a href="http://www.ft.com/intl/cms/s/2/263584b0-f4fd-11e4-abb5-00144feab7de.html">a disappointment for Labour</a>. The <a href="http://www.ft.com/intl/cms/s/2/283dec32-f504-11e4-abb5-00144feab7de.html">Liberal Democrats were crushed</a> in seats across the country.</p>
-  <div class="results-coaltions" data-o-grid-colspan="12 M7">
+  <div class="o-grid-row">
+    <div class="results-coaltions" data-o-grid-colspan="12 M7">
 
-    <div class="results-page-panel">
-      {% include "./result-national-overview.html" with overview only ignore missing %}
+      <header class="article-header {%if view.article.center%}article-header--center {% endif %}o-grid-row">
+        <div data-o-grid-colspan="12">
+          <h1 class="article-header__headline" itemprop="name">UK election results</h1>
+          <p class="article-header__summary" itemprop="description">The Conservatives secure a majority in a stunning victory</p>
+        </div>
+      </header>
+
+      <div class="article-body">
+        <p style="font-size:0.8em;">The election was <a href="http://www.ft.com/intl/cms/s/2/f350d9ac-f4fa-11e4-8a42-00144feab7de.html"> a triumph for the Scottish nationalists</a>, who gained dozens of seats, and <a href="http://www.ft.com/intl/cms/s/2/263584b0-f4fd-11e4-abb5-00144feab7de.html">a disappointment for Labour</a>. The <a href="http://www.ft.com/intl/cms/s/2/283dec32-f504-11e4-abb5-00144feab7de.html">Liberal Democrats were crushed</a> in seats across the country.</p>
+
+        <div class="results-page-panel">
+          {% include "./result-national-overview.html" with overview only ignore missing %}
+        </div>
+
+        <div class="results-page-panel">
+          {% include "./result-national-usefulLinks.html" with overview only ignore missing %}
+        </div>
+
+        <div class="results-page-panel">
+          {% include './votes-vs-seats.html' with votesVsSeats only ignore missing %}
+        </div>
+
+        <div class="results-page-panel">
+          {% include './result-sankey.html' with sankey only ignore missing %}
+        </div>
+        <div class="results-national-coalitions__description figure__footer">
+          <p>Source PA</p>
+        </div>
+
+        <p><a href="http://www.ft.com/indepth/uk-general-election"><b>Full election coverage &raquo;</b></a></p>
+      </div>
+
     </div>
 
-    <div class="results-page-panel">
-      {% include "./result-national-usefulLinks.html" with overview only ignore missing %}
-    </div>
+    <div data-o-grid-colspan="12 M5 L4 Loffset1">
 
-    <div class="results-page-panel">
-      {% include './votes-vs-seats.html' with votesVsSeats only ignore missing %}
-    </div>
+      <div class="figure postcode-lookup">
+        <header class="figure__header">
+          <h2 class="article-body__subhead figure__title">Find your constituency</h2>
+        </header>
 
-    <div class="results-page-panel">
-      {% include './result-sankey.html' with sankey only ignore missing %}
-    </div>
-    <div class="results-national-coalitions__description figure__footer">
-      <p>Source PA</p>
+        <form id="seat-search-js" method="GET" action="postcode">
+          <input type="search" name="postcode" placeholder="Postcode search">
+          <button type="submit" class="o-buttons o-buttons--big o-buttons--standout postcode-lookup__submit">Search postcode</button>
+        </form>
+        <p class="postcode-lookup__or">― OR ―</p>
+        <button class="o-buttons o-buttons--uncolored o-buttons--big postcode-lookup__mylocation" id="use-mylocation-js">Use my location</button>
+        <div id="seat-search-results-js"></div>
+      </div>
+
+      <p class="article-body" style="text-align:center;">
+        <a href="http://www.ft.com/indepth/uk-general-election"><b>Full election coverage &raquo;</b></a>
+      </p>
+
     </div>
   </div>
-  <div class="figure postcode-lookup" data-o-grid-colspan="12 M5 L4 Loffset1">
-    <header class="figure__header">
-      <h2 class="article-body__subhead figure__title">Find your constituency</h2>
-    </header>
-    <form id="seat-search-js" method="GET" action="postcode">
-      <input type="search" name="postcode" placeholder="Postcode search">
-      <!-- <button class="o-buttons o-buttons--standout">Search</button> -->
-      <!-- <button type="submit">Search</button> -->
-    </form>
-    <p class="postcode-lookup__or">― OR ―</p>
-    <button class="o-buttons o-buttons--uncolored" id="use-mylocation-js">Use my location</button>
-    <!-- <button id="use-mylocation-js">Use my location</button> -->
-    <div id="seat-search-results-js"></div>
-  </div>
-</div>
-<div class="o-grid-row">
-  <div class="indepth-link" data-o-grid-colspan="12 M6 L8"> <a href="http://www.ft.com/indepth/uk-general-election"><b>Full election coverage &raquo;</b></a></div>
-</div>
+
+</article>
+
 <script>
 
   if (cutsTheMustard) {
