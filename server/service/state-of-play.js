@@ -172,7 +172,7 @@ module.exports = function (howMany) {
 
   var finalData = {
     parties: sopParties,
-    headline: 'State of play',
+    headline: 'Final result',
     numSeatsDeclared: numSeatsDeclared,
     updated: new Date()
   };
