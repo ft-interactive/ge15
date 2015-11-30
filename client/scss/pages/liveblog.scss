@@ -15,7 +15,7 @@
 .ge15-liveblog-figures { // to prevent styles leaking out into page
   width: 352px;
   position: relative;
-  background: color(pink);
+  background: color('pink');
   font-family: BentonSans, sans-serif;
   -webkit-font-smoothing: antialiased;
 
@@ -23,7 +23,7 @@
     padding-bottom: 24px;
   }
     .figure__header {
-      border-bottom: 1px solid color(grey-tint1);
+      border-bottom: 1px solid color('grey-tint1');
       height: 29px;
       overflow: hidden;
       padding-bottom: 3px;
@@ -31,7 +31,7 @@
       
       > .figure__title {
         font: bold 18px/29px BentonSans, sans-serif;
-        color: color(grey-tint5);
+        color: color('grey-tint5');
         margin: 0;
       }
 
@@ -54,9 +54,9 @@
     margin: 0;
     font-weight: normal;
     font-size: 12px;
-    color: color(grey-tint4);
+    color: color('grey-tint4');
 
-    > b { color: color(grey-tint5); }
+    > b { color: color('grey-tint5'); }
   }
   
   .seat-result__card {

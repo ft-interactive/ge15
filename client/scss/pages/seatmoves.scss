@@ -4,7 +4,7 @@
 @import "o-colors/main";
 @import "o-grid/main";
 #svg-source {
-  color: oColorsGetPaletteColor(grey-tint3);
+  color: oColorsGetPaletteColor('grey-tint3');
   display: inline;
   font-size: 12px;
   height: auto;
@@ -68,7 +68,7 @@ svg {
 
 .node-label,
 .link-label {
-  $pink: oColorsGetPaletteColor(pink);
+  $pink: oColorsGetPaletteColor('pink');
   font-size: 0.8em;
   text-shadow: 0 0 4px $pink;
 
@@ -111,7 +111,7 @@ svg {
 
   .link {
     fill: none;
-    stroke: oColorsGetPaletteColor(pink-tint5);
+    stroke: oColorsGetPaletteColor('pink-tint5');
     stroke-opacity: 0.2;
     cursor: pointer;
   }
@@ -152,13 +152,13 @@ svg {
 .chart-preset.reset:before {
   opacity: 0.5;
   padding-right: 5px;
-  content: url('http://image.webservices.ft.com/v1/images/raw/fticon:refresh?width=6&dpr=2&source=ge15');
+  content: url('https://h2.ft.com/image/v1/images/raw/fticon:refresh?width=6&dpr=2&source=ge15');
 }
 
 .notes {
-  color: oColorsGetPaletteColor(pink-tint5);
+  color: oColorsGetPaletteColor('pink-tint5');
   font-size: 0.7em;
-  border-top: 1px solid oColorsGetPaletteColor(pink-tint4);
+  border-top: 1px solid oColorsGetPaletteColor('pink-tint4');
   margin-top: 2em;
   padding-top: 1em;
   max-width: 670px;

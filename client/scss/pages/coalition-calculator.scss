@@ -25,6 +25,7 @@
     user-select: none;
     cursor: normal;
 }
+
 .slider-input__label {
   font-family: BentonSans, sans-serif;
   font-weight: bold;
@@ -89,7 +90,7 @@
 }
 
 .preset-adjustment {
-  background: oColorsGetPaletteColor(pink-tint2);
+  background: oColorsGetPaletteColor('pink-tint2');
   border-radius: 10px;
   padding-top: 2px;
   padding-bottom: 4px;
@@ -100,13 +101,13 @@
 
 .preset-adjustment.selected {
   background: #2e6e9e;
-  color: oColorsGetPaletteColor(pink-tint2);
+  color: oColorsGetPaletteColor('pink-tint2');
 }
 
 .notes {
-  color: oColorsGetPaletteColor(pink-tint5);
+  color: oColorsGetPaletteColor('pink-tint5');
   font-size: 0.7em;
-  border-top: 1px solid oColorsGetPaletteColor(pink-tint4);
+  border-top: 1px solid oColorsGetPaletteColor('pink-tint4');
   margin-top: 2em;
   padding-top: 1em;
   max-width: 670px;

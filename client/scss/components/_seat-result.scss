@@ -24,10 +24,10 @@
     height: 30px;
     width: 100%;
     font-size: 14px;
-    border: 1px solid color(grey-tint1);
+    border: 1px solid color('grey-tint1');
     border-radius: 5px;
     padding-left: 25px;
-    background: color(white) url(https://image.webservices.ft.com/v1/images/raw/fticon:search?width=13&source=ge15) no-repeat 6px 7px;
+    background: color('white') url(https://h2.ft.com/image/v1/images/raw/fticon:search?width=13&source=ge15) no-repeat 6px 7px;
   }
   // scss-lint:enable QualifyingElement
 
@@ -36,7 +36,7 @@
       font-weight: 200;
       font-size: 20px;
       line-height: 1;
-      color: color(grey-tint5);
+      color: color('grey-tint5');
       margin: 20px auto 12px;
     }
   }
@@ -97,5 +97,5 @@
       margin-top: 20px;
       font-size: 11px;
       line-height: 1.35;
-      color: color(pink-tint4);
+      color: color('pink-tint4');
     }
