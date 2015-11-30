@@ -23,12 +23,12 @@
     "dom-delegate": "~2.0.3",
     "o-typography": "~1.16.0",
     "topojson": "~1.6.18",
-    "o-dom": "~1.0.0",
-    "o-header": "~3.0.0",
-    "o-footer": "~3.0.0",
-    "o-buttons": "~2.0.0",
-    "o-errors": "~2.0.0",
-    "o-table": "~1.7.0"
+    "o-dom": "^1.0.0",
+    "o-header": "^3.0.0",
+    "o-footer": "^3.0.0",
+    "o-buttons": "^2.0.0",
+    "o-errors": "^2.0.0",
+    "o-table": "^1.7.0"
   },
   "resolutions": {
     "sass-mq": "~3.1.0",
