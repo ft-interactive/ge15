@@ -18,7 +18,7 @@
     "position": "~0.2.14",
     "headroom.js": "https://github.com/WickyNilliams/headroom.js.git#^v0.7.0",
     "o-grid": "~3.1.0",
-    "o-ft-icons": "~2.3.4",
+    "o-ft-icons": "^3.2.0",
     "o-date": "~1.1.0",
     "dom-delegate": "~2.0.3",
     "o-typography": "~1.16.0",
@@ -35,6 +35,7 @@
     "o-assets": "^0.4.0",
     "o-dom": "~1.0.0",
     "o-grid": "~3.1.0",
-    "o-colors": ">=2.5.0 <4"
+    "o-colors": ">=2.5.0 <4",
+    "o-ft-icons": "^3.2.0"
   }
 }
