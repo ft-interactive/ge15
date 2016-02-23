@@ -7,11 +7,11 @@
     "postinstall": "bower install",
     "deploy": "npm run db-create && gulp && npm prune --production && haikro build deploy --heroku-token $HEROKU_AUTH_TOKEN --app $HEROKU_APP --verbose",
     "local": "gulp && NODE_ENV=production npm run start",
-    "start": "node --harmony ./app.js",
+    "start": "node ./app.js",
     "pre-test": "gulp lint sass",
     "test": "testling",
-    "db": "node --harmony bin/db-query",
-    "db-create": "node --harmony bin/db-create",
+    "db": "nodey bin/db-query",
+    "db-create": "node bin/db-create",
     "watch": "npm run db-create && gulp watch"
   },
   "repository": {
@@ -115,7 +115,7 @@
     "watchify": "^3.1.0"
   },
   "engines": {
-    "node": "0.11.15"
+    "node": "5.x.x"
   },
   "testling": {
     "files": [
