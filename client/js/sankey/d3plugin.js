@@ -1,8 +1,7 @@
+/* jshint ignore:start */
+
 'use strict';
-//ignore 'don't make functions in a loop'
-/*jshint -W083 */
-//ignore defined not used
-/*jshint -W098 */
+
 
 var d3 = require('d3');
 
@@ -300,3 +299,4 @@ module.exports = function() {
 
   return sankey;
 };
+/* jshint ignore:end */

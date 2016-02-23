@@ -8,7 +8,7 @@
   "nonbsp": false,
   "undef": true,
   "unused": "vars",
-  "strict": "global",
+  "strict": true,
   "trailing": true,
   "node": true,
   "esnext": true,
