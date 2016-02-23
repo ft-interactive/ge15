@@ -10,7 +10,7 @@
 .ge15-seat-lookup { // to prevent styles leaking out into page
   width: 352px;
   position: relative;
-  background: color(pink);
+  background: color('pink');
   font-family: BentonSans, sans-serif;
   -webkit-font-smoothing: antialiased;
 
@@ -20,7 +20,7 @@
     .figure__header {
       > .seat-result__kicker {
         font-family: BentonSans;
-        color: color(grey-tint5);
+        color: color('grey-tint5');
         font-weight: normal;
         text-transform: uppercase;
         font-size: 11px;

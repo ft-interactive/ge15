@@ -20,7 +20,7 @@
     .figure__body {
       position: relative;
       font: #{$font-size}/1 BentonSans, sans-serif;
-      color: color(grey-tint3);
+      color: color('grey-tint3');
     }
   }
 
@@ -57,7 +57,7 @@
         .votes-vs-seats__track {
           height: $track-thickness;
           margin-bottom: $row-thickness - $track-thickness;
-          background-color: color(pink-tint1);
+          background-color: color('pink-tint1');
         }
 
       .votes-vs-seats__ticks {
@@ -69,11 +69,11 @@
           display: inline-block;
           height: 100%;
           position: relative;
-          border-left: 1px dotted color(grey-tint1);
+          border-left: 1px dotted color('grey-tint1');
           margin-top: -(($row-thickness - $track-thickness) / 2);
 
           &:first-child {
-            border-left: 1px solid color(grey-tint5);
+            border-left: 1px solid color('grey-tint5');
             z-index: 2;
           }
         }
@@ -115,7 +115,7 @@
             position: absolute;
             top: ($track-thickness - $bar-thickness) / 2;
             height: $bar-thickness;
-            background: color(grey-tint2);
+            background: color('grey-tint2');
             overflow: hidden;
           }
 
@@ -126,8 +126,8 @@
             transform: rotateZ(45deg);
             width: $seats-icon-size;
             height: $seats-icon-size;
-            background: color(white);
-            border: 2px solid color(grey-tint4);
+            background: color('white');
+            border: 2px solid color('grey-tint4');
             z-index: 3;
           }
 }

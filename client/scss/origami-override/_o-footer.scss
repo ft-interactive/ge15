@@ -1,6 +1,6 @@
 .o-footer {
   background: $nav-bg-color;
-  border-top: 1px solid oColorsGetPaletteColor(pink-tint3);
+  border-top: 1px solid oColorsGetPaletteColor('pink-tint3');
   border-color: rgba(0, 0, 0, 0.15);
   color: $nav-text-color;
   margin-top: 40px;

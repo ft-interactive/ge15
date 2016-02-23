@@ -102,13 +102,13 @@ sup {
   th {
     padding: 4px;
     text-align: left;
-    border-bottom: 1px solid oColorsGetPaletteColor(pink-tint3);
+    border-bottom: 1px solid oColorsGetPaletteColor('pink-tint3');
   }
   td {
     padding: 4px;
   }
   tbody tr:nth-child(odd) {
-    background-color: oColorsGetPaletteColor(pink-tint1);
+    background-color: oColorsGetPaletteColor('pink-tint1');
   }
   td:last-child,
   th:last-child {

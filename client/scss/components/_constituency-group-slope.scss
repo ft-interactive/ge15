@@ -85,7 +85,7 @@
   table {
     border-spacing: 0;
     width: 100%;
-    color: oColorsGetPaletteColor(grey-tint5);
+    color: oColorsGetPaletteColor('grey-tint5');
     font-size: 12px;
     margin-bottom: 2em;
   }
@@ -95,7 +95,7 @@
     padding: 5px;
     font-size: 1em;
     text-align: left;
-    border-bottom: 1px solid oColorsGetPaletteColor(pink-tint2);
+    border-bottom: 1px solid oColorsGetPaletteColor('pink-tint2');
   }
   thead th {
     font-weight: 400;

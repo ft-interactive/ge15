@@ -6,12 +6,12 @@
     line-height: 30px;
     width: 100%;
     font-size: 16px;
-    border: 1px solid color(grey-tint1);
+    border: 1px solid color('grey-tint1');
     border-radius: 5px;
     padding-left: 25px;
     margin-right: 4px;
     margin-bottom: 3px;
-    background: color(white) url(https://image.webservices.ft.com/v1/images/raw/fticon:search?width=13&source=ge15) no-repeat 10px;
+    background: color('white') url(https://image.webservices.ft.com/v1/images/raw/fticon:search?width=13&source=ge15) no-repeat 10px;
   }
 }
 
@@ -20,13 +20,13 @@
 }
 
 .postcode-lookup {
-  border-bottom: 1px solid oColorsGetPaletteColor(pink-tint3);
+  border-bottom: 1px solid oColorsGetPaletteColor('pink-tint3');
   padding-bottom: 2em;
 
   @include oGridRespondTo(M) {
     border-radius: 6px;
     padding: 12px 12px 24px 12px;
-    background-color: oColorsGetPaletteColor(pink-tint1);
+    background-color: oColorsGetPaletteColor('pink-tint1');
   }
 
   &__submit {
@@ -81,7 +81,7 @@
 .seat-search-results__banner--result {
   text-align: center;
   font-weight: bold;
-  color: oColorsGetPaletteColor(white);
+  color: oColorsGetPaletteColor('white');
   margin-right: 4px;
   padding: 2px 0;
 }
@@ -107,7 +107,7 @@
   width: 16px;
   height: 16px;
   border-radius: 100%;
-  border: 1px solid oColorsGetPaletteColor(pink);
+  border: 1px solid oColorsGetPaletteColor('pink');
   position: relative;
   top: -21px;
   margin-left: 4px;
@@ -118,7 +118,7 @@
   width: 16px;
   height: 16px;
   border-radius: 100%;
-  border: 1px solid oColorsGetPaletteColor(pink);
+  border: 1px solid oColorsGetPaletteColor('pink');
 }
 
 .seat-search-results__waiting {

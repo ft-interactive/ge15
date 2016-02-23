@@ -26,7 +26,7 @@
     th {
       border-bottom: 4px solid transparent;
       text-align: center;
-      color: color(white);
+      color: color('white');
       font-size: 12px;
       line-height: 1.2;
       padding: 7px 0 4px;
@@ -42,8 +42,8 @@
     // .state-of-play__gains-row,
     .state-of-play__losses-row {
       > td {
-        border-left: 1px solid color(pink-tint2);
-        border-right: 1px solid color(pink-tint2);
+        border-left: 1px solid color('pink-tint2');
+        border-right: 1px solid color('pink-tint2');
         min-height: 30px;
         padding: 8px 3px 20px;
 
@@ -58,7 +58,7 @@
         line-height: 15px;
         display: block;
         visibility: hidden;
-        color: color(grey-tint3);
+        color: color('grey-tint3');
 
         td:first-child & { visibility: visible; }
       }
@@ -70,7 +70,7 @@
           display: inline-block;
           width: 7px;
           height: 7px;
-          border: 1px solid color(pink);
+          border: 1px solid color('pink');
           margin: 0 -1px -1px 0;
           position: relative;
           z-index: 1;
@@ -82,8 +82,8 @@
         }
 
       .state-of-play__minitable {
-        background: color(pink-tint1);
-        border-bottom: 2px solid color(pink-tint2);
+        background: color('pink-tint1');
+        border-bottom: 2px solid color('pink-tint2');
         tr > & { // specificity override
           padding-top: 10px;
           padding-bottom: 8px;
@@ -91,7 +91,7 @@
 
         > table {
           width: 100%;
-          color: color(grey-tint3);
+          color: color('grey-tint3');
           font-size: 10px;
           line-height: 12px;
           margin: 0 auto;
@@ -100,11 +100,11 @@
 
     .state-of-play__net-change-row {
       > td {
-        background: color(pink-tint1);
+        background: color('pink-tint1');
         padding: 6px 3px;
-        border-left: 1px solid color(pink-tint2);
-        border-right: 1px solid color(pink-tint2);
-        border-bottom: 2px solid color(pink-tint2);
+        border-left: 1px solid color('pink-tint2');
+        border-right: 1px solid color('pink-tint2');
+        border-bottom: 2px solid color('pink-tint2');
 
         &:first-child { border-left-width: 2px; }
         // &:last-child { border-right-width: 2px; }
@@ -115,7 +115,7 @@
         text-align: center;
         font-size: 16px;
         font-weight: bold;
-        color: color(grey-tint4);
+        color: color('grey-tint4');
       }
 
   .state-of-play__link {

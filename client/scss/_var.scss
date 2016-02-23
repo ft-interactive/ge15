@@ -44,8 +44,8 @@ $sdlp-dark: #9cb157;
 $other: #cec6b9;
 $other-dark: #a7a59b;
 
-$line-color: oColorsGetPaletteColor(pink-tint2);
-$line-color-dark: oColorsGetPaletteColor(pink-tint3);
+$line-color: oColorsGetPaletteColor('pink-tint2');
+$line-color-dark: oColorsGetPaletteColor('pink-tint3');
 $line-width--s: 1px;
 $line-width--m: 1px;
 $line-width--l: 1px;
