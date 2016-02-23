@@ -80,7 +80,7 @@ To get code onto the master branch:
 * use d3 anywhere by just requiring it... `var d3 = require('d3');`
 * make use of [Origami modules](http://registry.origami.ft.com/components)!
 * use the [image service](http://image.webservices.ft.com/v1/)
-* the [Polyfill service](http://polyfill.webservices.ft.com/v1/docs/features/) is already available on the page. lean on it. use modern APIs
+* the [Polyfill service](http://polyfill.webservices.ft.com/v2/docs/features/) is already available on the page. lean on it. use modern APIs
 * use promises (via the polyfill service) often
 * remember to make "core" and "enhanced" experiences. use this to rationalise testing and how you think about browser feature support. IE8 is core. IE9 is enhanced.
 

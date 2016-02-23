@@ -28,11 +28,11 @@
 
         <script>{% spaceless %}
         if(cutsTheMustard){
-          addScript('https://cdn.polyfill.io/v1/polyfill.min.js?features=default,Promise,fetch', false, false);
+          addScript('https://cdn.polyfill.io/v2/polyfill.min.js?features=default,Promise,fetch', false, false);
           addScript('{{ asset("js/vendor.js") }}', false, false);
           addScript('{{ asset("js/common.js") }}', false, false);
         }else{
-          addScript('//cdn.polyfill.io/v1/polyfill.min.js?features=Document', false, false);
+          addScript('//cdn.polyfill.io/v2/polyfill.min.js?features=Document', false, false);
         }
         {% endspaceless %}</script>
 
