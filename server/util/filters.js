@@ -143,3 +143,11 @@ exports.diamondPath = function(size) {
     ' L 0 0 L ' + (size/2) + ' ' + (size/2)
   );
 };
+
+exports.encodeJSON = function (str) {
+	try {
+    return encodeURIComponent(JSON.stringify(JSON.parse(str || ''), null, ''));
+  } catch (e) {
+    return '';
+  }
+}

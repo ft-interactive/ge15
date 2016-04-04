@@ -1,0 +1,81 @@
+{% if flags.tracking %}
+
+<script>
+(function(){
+
+function init() {
+  var oTracking = Origami['o-tracking'];
+  var product = 'IG'; 
+  var page_data = {
+    content: { asset_type: 'interactive' }
+  };
+
+  var properties = [].reduce.call(document.querySelectorAll('head meta[property^="ft.track:"]')||[], function(o, el) {
+    o[el.getAttribute('property').replace('ft.track:', '')] = el.getAttribute('content');
+    return o;
+  }, {});
+
+  properties.product = properties.product || product;
+
+  if (properties.uuid) {
+    page_data.content.uuid = properties.uuid;
+  }
+
+  if (properties.microsite_name) {
+    page_data.content.microsite_name = properties.microsite_name;
+  }
+
+  oTracking.init({
+    server: 'https://spoor-api.ft.com/px.gif',
+    system: { is_live: true },
+    context: { product: properties.product }
+  });
+
+  // Automatic link tracking
+  oTracking.link.init();
+  // Register page view
+  oTracking.page(page_data);
+}
+
+var o = document.createElement('script');
+o.async = o.defer = true;
+o.src = 'https://build.origami.ft.com/v2/bundles/js?modules=o-tracking';
+var s = document.getElementsByTagName('script')[0];
+
+if (o.hasOwnProperty('onreadystatechange')) {
+  o.onreadystatechange = function() {
+    if (o.readyState === 'loaded') {
+      init();
+    }
+  };
+} else {
+  o.onload = init;
+}
+
+s.parentNode.insertBefore(o, s);
+
+}());
+</script>
+<noscript data-o-component="o-tracking">
+<img src="https://spoor-api.ft.com/px.gif?data={% filter encodeJSON %}
+{
+    "action": "view",
+    "category": "page",
+    "context": {
+        "content": {
+            "asset_type": "interactive"
+            {% if uuid %},"uuid": "{{ uuid }}"{% endif %}
+        },
+        "product": "IG",
+        "microsite_name": "elections.ft.com"
+    },
+    "system": {
+        "is_live": true,
+        "apiKey": "qUb9maKfKbtpRsdp0p2J7uWxRPGJEP",
+        "source": "o-tracking-ns",
+        "version": "1.0.0"
+    }
+}
+{% endfilter %}" height="1" width="1" />
+</noscript>
+{% endif %}

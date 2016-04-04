@@ -14,6 +14,13 @@
         {# start chartbeat timer #}
         <script>var _sf_startpt=(new Date()).getTime()</script>
 
+        <meta property="ft.track:is_live" content="true"/>
+        <meta property="ft.track:product" content="IG"/>
+        <meta property="ft.track:microsite_name" content="elections.ft.com"/>
+				{% if uuid %}
+        <meta property="ft.track:uuid" content="{{ uuid }}"/>
+        {% endif %}
+
         {% include "./cut-the-mustard.html" %}
 
         {% include "./social-meta.html" %}
@@ -42,7 +49,7 @@
     </head>
     <body itemscope itemtype="http://schema.org/WebPage" class="{{ view.layout.body.classes|join(' ') }}">
 
-        {% include "./tracking-ijento.html" %}
+        {% include "./tracking-ft.html" %}
 
         {% block header%}
         {% include "./site-header.html" %}

@@ -120,7 +120,6 @@ function* widget(next) {
       d.Seats = Number(d.Seats);
       return d;
     });
-
   }
 
   this.set('Cache-Control', 'public, max-age=3600, stale-while-revalidate=28800, stale-if-error=86400'); // jshint ignore:line
