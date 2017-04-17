@@ -254,7 +254,7 @@ function drawSliderInput(){
     });
     d3.select('#slider').call(drawSliderBars);
     drawCoalitions();
-    writeHash();
+    //writeHash();
   });
 
 //bars
