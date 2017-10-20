@@ -1,8 +1,1 @@
-{
-  "registry": {
-    "search": [
-      "https://bower.herokuapp.com",
-      "http://registry.origami.ft.com"
-    ]
-  }
-}
+{"registry":{"search":["https://bower.herokuapp.com","https://origami-bower-registry.ft.com"]}}
